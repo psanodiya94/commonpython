@@ -1,0 +1,2 @@
+# Testing dependencies only
+coverage>=7.0.0

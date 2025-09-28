@@ -1,0 +1,80 @@
+---
+alwaysApply: true
+---
+
+
+/**
+
+* @brief Ensure every function, class, and module in the project is documented using Doxygen-style comments.
+*
+* Each functionality (function, class, method, or module) must have a Doxygen comment block that describes its purpose,
+* parameters, return values, exceptions, and any other relevant details.
+*
+* Example for a function:
+* @code
+* /**
+* * @brief Brief description of what the function does.
+* * @param param1 Description of the first parameter.
+* * @param param2 Description of the second parameter.
+* * @return Description of the return value.
+* *\/
+* int exampleFunction(int param1, int param2);
+* @endcode
+*
+* Example for a class:
+* @code
+* /**
+* * @brief Brief description of the class.
+* * @details More detailed description if necessary.
+* *\/
+* class ExampleClass {
+* public:
+*     /**
+*      * @brief Brief description of the method.
+*      * @param value Description of the parameter.
+*      * @return Description of the return value.
+*      *\/
+*     int exampleMethod(int value);
+* };
+* @endcode
+*
+* All documentation should follow the Doxygen format to ensure consistency and enable automated documentation generation.
+ */
+
+/**
+
+* @brief Ensure every function, class, and module in the project is documented using Doxygen-style comments.
+*
+* Each functionality (function, class, method, or module) must have a Doxygen comment block that describes its purpose,
+* parameters, return values, exceptions, and any other relevant details.
+*
+* Example for a function:
+* @code
+* /**
+* * @brief Brief description of what the function does.
+* * @param param1 Description of the first parameter.
+* * @param param2 Description of the second parameter.
+* * @return Description of the return value.
+* *\/
+* int exampleFunction(int param1, int param2);
+* @endcode
+*
+* Example for a class:
+* @code
+* /**
+* * @brief Brief description of the class.
+* * @details More detailed description if necessary.
+* *\/
+* class ExampleClass {
+* public:
+*     /**
+*      * @brief Brief description of the method.
+*      * @param value Description of the parameter.
+*      * @return Description of the return value.
+*      *\/
+*     int exampleMethod(int value);
+* };
+* @endcode
+*
+* All documentation should follow the Doxygen format to ensure consistency and enable automated documentation generation.
+ */
