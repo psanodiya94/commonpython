@@ -24,6 +24,106 @@ class TestCLI(unittest.TestCase):
 	
 	@brief Comprehensive test suite for command-line interface functionality.
 	"""
+
+	@patch('sys.exit')
+	def test_execute_query_setup_fail(self, mock_exit):
+		"""
+		@brief Test execute_query exits if setup fails.
+		"""
+		self.cli._setup_database = MagicMock(return_value=False)
+		self.cli.execute_query('SELECT * FROM test')
+		self.assertGreaterEqual(mock_exit.call_count, 1)
+		mock_exit.assert_any_call(1)
+
+	@patch('sys.exit')
+	def test_execute_query_exception(self, mock_exit):
+		"""
+		Test execute_query exits on exception.
+		"""
+		self.cli._setup_database = MagicMock(return_value=True)
+		self.cli.db_manager.execute_query = MagicMock(side_effect=Exception('fail'))
+		self.cli.execute_query('SELECT * FROM test')
+		mock_exit.assert_called_once_with(1)
+
+	@patch('sys.exit')
+	def test_get_table_info_setup_fail(self, mock_exit):
+		"""
+		@brief Test get_table_info exits if setup fails.
+		"""
+		self.cli._setup_database = MagicMock(return_value=False)
+		self.cli.get_table_info('table')
+		self.assertGreaterEqual(mock_exit.call_count, 1)
+		mock_exit.assert_any_call(1)
+
+	@patch('sys.exit')
+	def test_get_table_info_exception(self, mock_exit):
+		"""
+		Test get_table_info exits on exception.
+		"""
+		self.cli._setup_database = MagicMock(return_value=True)
+		self.cli.db_manager.get_table_info = MagicMock(side_effect=Exception('fail'))
+		self.cli.get_table_info('table')
+		mock_exit.assert_called_once_with(1)
+
+	@patch('sys.exit')
+	def test_put_message_setup_fail(self, mock_exit):
+		"""
+		@brief Test put_message exits if setup fails.
+		"""
+		self.cli._setup_messaging = MagicMock(return_value=False)
+		self.cli.put_message('Q', 'msg')
+		self.assertGreaterEqual(mock_exit.call_count, 1)
+		mock_exit.assert_any_call(1)
+
+	@patch('sys.exit')
+	def test_put_message_exception(self, mock_exit):
+		"""
+		Test put_message exits on exception.
+		"""
+		self.cli._setup_messaging = MagicMock(return_value=True)
+		self.cli.mq_manager.put_message = MagicMock(side_effect=Exception('fail'))
+		self.cli.put_message('Q', 'msg')
+		mock_exit.assert_called_once_with(1)
+
+	@patch('sys.exit')
+	def test_get_message_setup_fail(self, mock_exit):
+		"""
+		@brief Test get_message exits if setup fails.
+		"""
+		self.cli._setup_messaging = MagicMock(return_value=False)
+		self.cli.get_message('Q')
+		self.assertGreaterEqual(mock_exit.call_count, 1)
+		mock_exit.assert_any_call(1)
+
+	@patch('sys.exit')
+	def test_get_message_exception(self, mock_exit):
+		"""
+		Test get_message exits on exception.
+		"""
+		self.cli._setup_messaging = MagicMock(return_value=True)
+		self.cli.mq_manager.get_message = MagicMock(side_effect=Exception('fail'))
+		self.cli.get_message('Q')
+		mock_exit.assert_called_once_with(1)
+
+	@patch('sys.exit')
+	def test_get_queue_depth_setup_fail(self, mock_exit):
+		"""
+		@brief Test get_queue_depth exits if setup fails.
+		"""
+		self.cli._setup_messaging = MagicMock(return_value=False)
+		self.cli.get_queue_depth('Q')
+		self.assertGreaterEqual(mock_exit.call_count, 1)
+		mock_exit.assert_any_call(1)
+
+	@patch('sys.exit')
+	def test_get_queue_depth_exception(self, mock_exit):
+		"""
+		Test get_queue_depth exits on exception.
+		"""
+		self.cli._setup_messaging = MagicMock(return_value=True)
+		self.cli.mq_manager.get_queue_depth = MagicMock(side_effect=Exception('fail'))
+		self.cli.get_queue_depth('Q')
+		mock_exit.assert_called_once_with(1)
 	
 	def setUp(self):
 		"""
@@ -110,6 +210,29 @@ class TestCLI(unittest.TestCase):
 		finally:
 			os.unlink(config_file)
 	
+		def test_db_command_error(self):
+			"""
+			Test error branch for db command.
+			"""
+			self.cli.db_manager.connect = MagicMock(side_effect=Exception("fail"))
+			with self.assertRaises(Exception):
+				self.cli.db_command('test')
+
+		def test_mq_command_error(self):
+			"""
+			Test error branch for mq command.
+			"""
+			self.cli.mq_manager.connect = MagicMock(side_effect=Exception("fail"))
+			with self.assertRaises(Exception):
+				self.cli.mq_command('test')
+
+		def test_config_command_error(self):
+			"""
+			Test error branch for config command.
+			"""
+			self.cli.config_manager.get = MagicMock(side_effect=Exception("fail"))
+			with self.assertRaises(Exception):
+				self.cli.config_command('show')
 	@patch('commonpython.database.db2_manager.DB2Manager')
 	@patch('commonpython.config.config_manager.ConfigManager')
 	@patch('commonpython.logging.logger_manager.LoggerManager')
@@ -543,6 +666,3 @@ class TestCreateParser(unittest.TestCase):
 		self.assertEqual(args.config_command, 'show')
 		args = parser.parse_args(['test-all'])
 		self.assertEqual(args.command, 'test-all')
-
-if __name__ == '__main__':
-	unittest.main()

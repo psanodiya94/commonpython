@@ -520,7 +520,69 @@ class TestMQManager(unittest.TestCase):
         result = self.mq_manager.test_connection()
         
         self.assertFalse(result)
+    
+    @patch('subprocess.run')
+    def test_get_message_json_decode_error(self, mock_run):
+        """
+        @brief Test get_message with invalid JSON (should fallback to string).
+        """
+        self.mq_manager.connected = True
+        with patch('subprocess.run') as mock_run:
+            mock_result = MagicMock()
+            mock_result.returncode = 0
+            mock_result.stdout = '{invalid_json}'
+            mock_result.stderr = ''
+            mock_run.return_value = mock_result
+            result = self.mq_manager.get_message('TEST.QUEUE')
+            self.assertIsInstance(result['data'], str)
+    
+    def test_get_queue_depth_parse_error(self):
+        """
+        @brief Test get_queue_depth with unparsable CURDEPTH value.
+        """
+        self.mq_manager.connected = True
+        with patch('subprocess.run') as mock_run:
+            mock_result = MagicMock()
+            mock_result.returncode = 0
+            mock_result.stdout = 'CURDEPTH notanumber'
+            mock_result.stderr = ''
+            mock_run.return_value = mock_result
+            result = self.mq_manager.get_queue_depth('TEST.QUEUE')
+            self.assertEqual(result, 0)
+    
+    @patch('subprocess.run')
+    def test_execute_mq_command_logger_error(self, mock_run):
+        """
+        @brief Test _execute_mq_command with logger raising error.
+        """
+        mq_manager = MQManager(self.config, MagicMock())
+        mq_manager.logger.logger.error.side_effect = Exception("Logger fail")
+        with patch('subprocess.run', side_effect=Exception("subprocess error")):
+            with self.assertRaises(Exception):
+                mq_manager._execute_mq_command("display", ["qmgr"])
+    
+    @patch('subprocess.run')
+    def test_execute_mq_command_no_logger(self, mock_run):
+        """
+        @brief Test _execute_mq_command with no logger present.
+        """
+        mq_manager = MQManager(self.config)
+        with patch('subprocess.run', side_effect=Exception("subprocess error")):
+            with self.assertRaises(Exception):
+                mq_manager._execute_mq_command("display", ["qmgr"])
+    
+    @patch('subprocess.run')
+    def test_get_queue_depth_unexpected_output(self, mock_run):
+        """
+        @brief Test get_queue_depth with unexpected CLI output.
+        """
+        self.mq_manager.connected = True
+        with patch('subprocess.run') as mock_run:
+            mock_result = MagicMock()
+            mock_result.returncode = 0
+            mock_result.stdout = 'SOMETHING ELSE'
+            mock_result.stderr = ''
+            mock_run.return_value = mock_result
+            result = self.mq_manager.get_queue_depth('TEST.QUEUE')
+            self.assertEqual(result, 0)
 
-
-if __name__ == '__main__':
-    unittest.main()

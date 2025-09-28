@@ -109,6 +109,50 @@ class TestDB2Manager(unittest.TestCase):
         self.assertTrue(result['success'])
         self.assertEqual(result['stdout'], "Success")
         self.assertEqual(result['returncode'], 0)
+
+    @patch('subprocess.run')
+    def test_execute_db2_command_failure(self, mock_run):
+        """
+        Test DB2 command execution failure branch.
+        """
+        mock_run.side_effect = Exception("subprocess error")
+        with self.assertRaises(Exception):
+            self.db_manager._execute_db2_command("SELECT * FROM test")
+
+    def test_connect_failure(self):
+        """
+        Test connect failure branch.
+        """
+        self.db_manager._build_connection_string = MagicMock(return_value=None)
+        with patch.object(self.db_manager, '_execute_db2_command', side_effect=Exception("fail")):
+            result = self.db_manager.connect()
+            self.assertFalse(result)
+
+    def test_disconnect_failure(self):
+        """
+        Test disconnect failure branch.
+        """
+        self.db_manager.connected = True
+        with patch.object(self.db_manager, '_execute_db2_command', side_effect=Exception("fail")):
+            self.db_manager.disconnect()  # Should not raise
+
+    def test_execute_query_failure(self):
+        """
+        Test execute_query failure branch.
+        """
+        self.db_manager.connected = True
+        with patch.object(self.db_manager, '_execute_db2_command', side_effect=Exception("fail")):
+            with self.assertRaises(Exception):
+                self.db_manager.execute_query("SELECT * FROM test")
+
+    def test_execute_update_failure(self):
+        """
+        Test execute_update failure branch.
+        """
+        self.db_manager.connected = True
+        with patch.object(self.db_manager, '_execute_db2_command', side_effect=Exception("fail")):
+            with self.assertRaises(Exception):
+                self.db_manager.execute_update("UPDATE test SET x=1")
     
     @patch('subprocess.run')
     def test_execute_db2_command_failure(self, mock_run):
@@ -468,6 +512,63 @@ class TestDB2Manager(unittest.TestCase):
         finally:
             os.unlink(csv_file)
 
+    def test_execute_query_finally_cleanup(self):
+        """
+        @brief Test execute_query cleans up temp files in finally block.
+        """
+        self.db_manager.connected = True
+        with patch.object(self.db_manager, '_execute_db2_command') as mock_exec:
+            mock_exec.side_effect = [MagicMock(success=True, stdout='', stderr='', returncode=0), MagicMock(success=True, stdout='', stderr='', returncode=0)]
+            with patch('os.unlink') as mock_unlink:
+                with patch('builtins.open', mock_open(read_data='col1,col2\nval1,val2\n')):
+                    with patch.object(self.db_manager, '_parse_csv_results', return_value=[{'col1': 'val1', 'col2': 'val2'}]):
+                        result = self.db_manager.execute_query('SELECT * FROM test')
+                        mock_unlink.assert_called()
+                        self.assertEqual(result, [{'col1': 'val1', 'col2': 'val2'}])
 
-if __name__ == '__main__':
-    unittest.main()
+    def test_execute_update_finally_cleanup(self):
+        """
+        @brief Test execute_update cleans up temp files in finally block.
+        """
+        self.db_manager.connected = True
+        with patch.object(self.db_manager, '_execute_db2_command', return_value=MagicMock(success=True, stdout='', stderr='', returncode=0)):
+            with patch('os.unlink') as mock_unlink:
+                result = self.db_manager.execute_update('UPDATE test SET x=1')
+                mock_unlink.assert_called()
+                self.assertEqual(result, 1)
+
+    def test_execute_query_csv_parse_error(self):
+        """
+        @brief Test error branch in _parse_csv_results.
+        """
+        with patch('builtins.open', side_effect=Exception('fail')):
+            result = self.db_manager._parse_csv_results('fake.csv')
+            self.assertEqual(result, [])
+    
+    def test_execute_db2_command_logger_error(self):
+        """
+        @brief Test _execute_db2_command with logger raising error.
+        """
+        db_manager = DB2Manager(self.config, MagicMock())
+        db_manager.logger.logger.error.side_effect = Exception("Logger fail")
+        with patch('subprocess.run', side_effect=Exception("subprocess error")):
+            with self.assertRaises(Exception):
+                db_manager._execute_db2_command("SELECT * FROM test")
+
+    def test_execute_db2_command_no_logger(self):
+        """
+        @brief Test _execute_db2_command with no logger present.
+        """
+        db_manager = DB2Manager(self.config)
+        with patch('subprocess.run', side_effect=Exception("subprocess error")):
+            with self.assertRaises(Exception):
+                db_manager._execute_db2_command("SELECT * FROM test")
+
+    def test_execute_query_csv_result_missing_file(self):
+        """
+        @brief Test _parse_csv_results with missing file.
+        """
+        db_manager = DB2Manager(self.config)
+        with patch('builtins.open', side_effect=FileNotFoundError()):
+            result = db_manager._parse_csv_results('missing.csv')
+            self.assertEqual(result, [])

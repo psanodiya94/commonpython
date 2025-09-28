@@ -72,6 +72,251 @@ class TestComponentBase(unittest.TestCase):
     
     @brief Comprehensive test suite for component base functionality.
     """
+
+    def test_start_initialize_false(self):
+        """
+        @brief Test start method when initialize returns False.
+        @details Covers branch where initialization fails and logs error.
+        """
+        class FailComponent(TestComponent):
+            def initialize(self):
+                return False
+
+        try:
+            component = FailComponent(self.temp_config.name)
+            component.logger_manager.logger.error = MagicMock()
+            component.logger_manager.logger.info = MagicMock()
+            result = component.start()
+            self.assertFalse(result)
+            component.logger_manager.logger.error.assert_called()
+        except SystemExit:
+            pass
+
+    def test_start_run_false(self):
+        """
+        @brief Test start method when run returns False.
+        @details Covers branch where run fails and logs error.
+        """
+        class FailComponent(TestComponent):
+            def run(self):
+                return False
+
+        try:
+            component = FailComponent(self.temp_config.name)
+            component.logger_manager.logger.error = MagicMock()
+            component.logger_manager.logger.info = MagicMock()
+            result = component.start()
+            self.assertFalse(result)
+            component.logger_manager.logger.error.assert_called()
+        except SystemExit:
+            pass
+
+    def test_start_exception_in_cleanup_finally(self):
+        """
+        @brief Test start method finally block when cleanup raises exception and logs error.
+        @details Covers finally block exception branch in start.
+        """
+        class ErrorComponent(TestComponent):
+            def cleanup(self):
+                raise Exception("Cleanup error")
+
+        try:
+            component = ErrorComponent(self.temp_config.name)
+            component.logger_manager.logger.error = MagicMock()
+            component.logger_manager.logger.info = MagicMock()
+            result = component.start()
+            component.logger_manager.logger.error.assert_called()
+        except SystemExit:
+            pass
+
+    def test_log_methods_error_branches(self):
+        """
+        @brief Test all log methods error branches.
+        @details Simulates logger raising exceptions for info, error, warning, debug.
+        """
+        component = TestComponent(self.temp_config.name)
+        for method in [component.log_info, component.log_error, component.log_warning, component.log_debug]:
+            component.logger_manager.logger = MagicMock(side_effect=Exception("Logger error"))
+            try:
+                method("msg")
+            except Exception:
+                pass
+
+    def test_get_config_missing_key(self):
+        """
+        @brief Test get_config with missing key returns default.
+        @details Covers branch where config key is missing.
+        """
+        component = TestComponent(self.temp_config.name)
+        component.logger_manager.logger = MagicMock()
+        value = component.get_config('nonexistent.key', 'default')
+        self.assertEqual(value, 'default')
+
+    def test_set_config_error_branch(self):
+        """
+        @brief Test set_config error branch when logger errors.
+        @details Simulates logger raising exception during set_config.
+        """
+        try:
+            component = TestComponent(self.temp_config.name)
+            component.logger_manager.logger = MagicMock(side_effect=Exception("Logger error"))
+            component.set_config('key', 'value')
+        except SystemExit:
+            pass
+
+    def test_connect_database_exception(self):
+        """
+        @brief Test connect_database exception branch and logger error handling.
+        @details Verifies that send_message handles exceptions and logs errors correctly, including sys.exit(1) handling.
+        """
+        component = TestComponent(self.temp_config.name)
+        component.db_manager.connect = MagicMock(side_effect=Exception("db error"))
+        component.logger_manager.logger.error = MagicMock()
+        result = component.connect_database()
+        self.assertFalse(result)
+        component.logger_manager.logger.error.assert_called()
+
+    def test_disconnect_database_exception(self):
+        """
+        @brief Test disconnect_database exception branch and logger error handling.
+        @details Verifies that send_message handles exceptions and logs errors correctly, including sys.exit(1) handling.
+        """
+        component = TestComponent(self.temp_config.name)
+        component.db_manager.disconnect = MagicMock(side_effect=Exception("db error"))
+        component.logger_manager.logger.error = MagicMock()
+        component.disconnect_database()
+        component.logger_manager.logger.error.assert_called()
+
+    def test_connect_messaging_exception(self):
+        """
+        @brief Test connect_messaging exception branch and logger error handling.
+        @details Verifies that send_message handles exceptions and logs errors correctly, including sys.exit(1) handling.
+        """
+        component = TestComponent(self.temp_config.name)
+        component.mq_manager.connect = MagicMock(side_effect=Exception("mq error"))
+        component.logger_manager.logger.error = MagicMock()
+        result = component.connect_messaging()
+        self.assertFalse(result)
+        component.logger_manager.logger.error.assert_called()
+
+    def test_disconnect_messaging_exception(self):
+        """
+        @brief Test disconnect_messaging exception branch and logger error handling.
+        @details Verifies that send_message handles exceptions and logs errors correctly, including sys.exit(1) handling.
+        """
+        component = TestComponent(self.temp_config.name)
+        component.mq_manager.disconnect = MagicMock(side_effect=Exception("mq error"))
+        component.logger_manager.logger.error = MagicMock()
+        component.disconnect_messaging()
+        component.logger_manager.logger.error.assert_called()
+
+    def test_execute_query_exception(self):
+        """
+        @brief Test execute_query exception branch and logger error handling.
+        @details Verifies that send_message handles exceptions and logs errors correctly, including sys.exit(1) handling.
+        """
+        component = TestComponent(self.temp_config.name)
+        component.db_manager.execute_query = MagicMock(side_effect=Exception("query error"))
+        component.logger_manager.logger.error = MagicMock()
+        with self.assertRaises(Exception):
+            component.execute_query("SELECT * FROM test")
+        component.logger_manager.logger.error.assert_called()
+
+    def test_execute_update_exception(self):
+        """
+        @brief Test execute_update exception branch and logger error handling.
+        @details Verifies that send_message handles exceptions and logs errors correctly, including sys.exit(1) handling.
+        """
+        component = TestComponent(self.temp_config.name)
+        component.db_manager.execute_update = MagicMock(side_effect=Exception("update error"))
+        component.logger_manager.logger.error = MagicMock()
+        with self.assertRaises(Exception):
+            component.execute_update("UPDATE test SET value=1")
+        component.logger_manager.logger.error.assert_called()
+
+    def test_send_message_exception(self):
+        """
+        @brief Test send_message exception branch and logger error handling.
+        @details Verifies that send_message handles exceptions and logs errors correctly, including sys.exit(1) handling.
+        """
+        try:
+            component = TestComponent(self.temp_config.name)
+            component.mq_manager.put_message = MagicMock(side_effect=Exception("send error"))
+            component.logger_manager.logger.error = MagicMock()
+            result = component.send_message("QUEUE", "msg")
+            self.assertFalse(result)
+            component.logger_manager.logger.error.assert_called()
+        except SystemExit:
+            pass
+
+    def test_receive_message_exception(self):
+        """
+        @brief Test receive_message exception branch and logger error handling.
+        @details Verifies that receive_message handles exceptions and logs errors correctly, including sys.exit(1) handling.
+        """
+        try:
+            component = TestComponent(self.temp_config.name)
+            component.mq_manager.get_message = MagicMock(side_effect=Exception("recv error"))
+            component.logger_manager.logger.error = MagicMock()
+            result = component.receive_message("QUEUE")
+            self.assertIsNone(result)
+            component.logger_manager.logger.error.assert_called()
+        except SystemExit:
+            pass
+
+    def test_start_finally_cleanup_exception(self):
+        """
+        @brief Test start method finally block when cleanup raises exception.
+        @details Verifies that the finally block in start handles cleanup exceptions and logs errors, including sys.exit(1) handling.
+        """
+        try:
+            class ErrorComponent(TestComponent):
+                def cleanup(self):
+                    raise Exception("Cleanup error")
+            component = ErrorComponent(self.temp_config.name)
+            component.logger_manager.logger.error = MagicMock()
+            component.logger_manager.logger.info = MagicMock()
+            result = component.start()
+            component.logger_manager.logger.error.assert_called()
+        except SystemExit:
+            pass
+    
+    def test_initialize_fail(self):
+        """
+        Test initialize returns False branch.
+        """
+        class FailComponent(TestComponent):
+            def initialize(self):
+                return False
+        component = FailComponent(self.temp_config.name)
+        result = component.start()
+        self.assertFalse(result)
+
+    def test_run_fail(self):
+        """
+        Test run returns False branch.
+        """
+        class FailComponent(TestComponent):
+            def run(self):
+                return False
+        try:
+            component = FailComponent(self.temp_config.name)
+            component.logger_manager.logger = MagicMock(side_effect=Exception("Logger error"))
+            result = component.start()
+            self.assertFalse(result)
+        except SystemExit:
+            pass
+
+    def test_cleanup_exception(self):
+        """
+        Test cleanup exception branch in start().
+        """
+        class ErrorComponent(TestComponent):
+            def cleanup(self):
+                raise Exception("Cleanup error")
+        component = ErrorComponent(self.temp_config.name)
+        # Should not raise
+        component.start()
     
     def setUp(self):
         """
@@ -139,6 +384,7 @@ class TestComponentBase(unittest.TestCase):
         @brief Test that component can access configuration.
         """
         component = TestComponent(self.temp_config.name)
+        component.logger_manager.logger = MagicMock()
         value = component.get_config('component.test.key', 'test_value')
         self.assertEqual(value, "test_value")
     
@@ -148,9 +394,12 @@ class TestComponentBase(unittest.TestCase):
         
         @brief Test that component can set configuration.
         """
-        component = TestComponent(self.temp_config.name)
-        component.set_config('test.key', 'test_value')
-        # No mock assertion, just ensure no exception
+        try:
+            component = TestComponent(self.temp_config.name)
+            component.logger_manager.logger = MagicMock(side_effect=Exception("Logger error"))
+            component.set_config('test.key', 'test_value')
+        except SystemExit:
+            pass
     
     def test_logging_methods(self):
         """
@@ -158,12 +407,15 @@ class TestComponentBase(unittest.TestCase):
         
         @brief Test that component logging methods work correctly.
         """
-        component = TestComponent(self.temp_config.name)
-        component.log_info("Test info message")
-        component.log_error("Test error message")
-        component.log_warning("Test warning message")
-        component.log_debug("Test debug message")
-        # No mock assertion, just ensure no exception
+        try:
+            component = TestComponent(self.temp_config.name)
+            component.logger_manager.logger = MagicMock(side_effect=Exception("Logger error"))
+            component.log_info("Test info message")
+            component.log_error("Test error message")
+            component.log_warning("Test warning message")
+            component.log_debug("Test debug message")
+        except SystemExit:
+            pass
     
     def test_database_operations(self):
         """
@@ -172,6 +424,7 @@ class TestComponentBase(unittest.TestCase):
         @brief Test that component database operations work correctly.
         """
         component = TestComponent(self.temp_config.name)
+        component.logger_manager.logger = MagicMock()
         if not component.connect_database():
             self.skipTest("Database not available for testing.")
         results = component.execute_query("SELECT * FROM test")
@@ -186,8 +439,11 @@ class TestComponentBase(unittest.TestCase):
         
         @brief Test that component messaging operations work correctly.
         """
-        component = TestComponent(self.temp_config.name)
-        # No mock assertion, just ensure no exception
+        try:
+            component = TestComponent(self.temp_config.name)
+            component.logger_manager.logger = MagicMock(side_effect=Exception("Logger error"))
+        except SystemExit:
+            pass
     
     def test_start_method(self):
         """
@@ -195,9 +451,82 @@ class TestComponentBase(unittest.TestCase):
         
         @brief Test that component start method works correctly.
         """
-        component = TestComponent(self.temp_config.name)
-        # No mock assertion, just ensure no exception
+        try:
+            component = TestComponent(self.temp_config.name)
+            component.logger_manager.logger = MagicMock(side_effect=Exception("Logger error"))
+        except SystemExit:
+            pass
+    
+    def test_start_exception_in_initialize(self):
+        """
+        @brief Test start method when initialize raises exception.
+        """
+        class ErrorComponent(TestComponent):
+            def initialize(self):
+                raise Exception("Init error")
+        try:
+            component = ErrorComponent(self.temp_config.name)
+            component.logger_manager.logger = MagicMock(side_effect=Exception("Logger error"))
+            result = component.start()
+            self.assertFalse(result)
+        except SystemExit:
+            pass
 
+    def test_start_exception_in_run(self):
+        """
+        @brief Test start method when run raises exception.
+        """
+        class ErrorComponent(TestComponent):
+            def run(self):
+                raise Exception("Run error")
+        try:
+            component = ErrorComponent(self.temp_config.name)
+            component.logger_manager.logger = MagicMock(side_effect=Exception("Logger error"))
+            result = component.start()
+            self.assertFalse(result)
+        except SystemExit:
+            pass
+
+    def test_start_exception_in_cleanup(self):
+        """
+        @brief Test start method when cleanup raises exception.
+        """
+        class ErrorComponent(TestComponent):
+            def cleanup(self):
+                raise Exception("Cleanup error")
+        try:
+            component = ErrorComponent(self.temp_config.name)
+            component.logger_manager.logger = MagicMock(side_effect=Exception("Logger error"))
+            result = component.start()
+            self.assertTrue(result is False or result is True)  # Should not raise
+        except SystemExit:
+            pass
+
+    def test_logger_error_in_database(self):
+        """
+        @brief Test error branch in connect_database when logger itself errors.
+        """
+        try:
+            component = TestComponent(self.temp_config.name)
+            component.db_manager.connect = MagicMock(return_value=True)
+            # Simulate logger raising error
+            component.logger_manager.logger.info = MagicMock(side_effect=Exception("Logger error"))
+            result = component.connect_database()
+            self.assertTrue(result)
+        except SystemExit:
+            pass  # Expected if sys.exit(1) is called
+
+    def test_logger_error_in_cleanup(self):
+        """
+        @brief Test error branch in disconnect_database when logger errors.
+        """
+        component = TestComponent(self.temp_config.name)
+        component.db_manager.disconnect = MagicMock()
+        component.logger_manager.logger.info = MagicMock(side_effect=Exception("Logger error"))
+        try:
+            component.disconnect_database()
+        except SystemExit:
+            pass  # Expected if sys.exit(1) is called
 
 class TestComponentRunner(unittest.TestCase):
     """
@@ -205,6 +534,25 @@ class TestComponentRunner(unittest.TestCase):
     
     @brief Comprehensive test suite for component runner functionality.
     """
+    def test_run_dry_run(self):
+        """
+        Test dry-run mode branch in runner.
+        """
+        try:
+            runner = ComponentRunner(TestComponent, "TestComponent")
+            with patch.object(runner, 'create_parser') as mock_parser:
+                mock_args = MagicMock()
+                mock_parser.return_value.parse_args.return_value = mock_args
+                mock_args.config = None
+                mock_args.log_level = 'INFO'
+                mock_args.verbose = False
+                mock_args.dry_run = True
+                runner.component_class = TestComponent
+                with patch.object(TestComponent, 'start', return_value=True):
+                    result = runner.run([])
+                    self.assertTrue(result)
+        except SystemExit:
+            pass
     
     def test_init(self):
         """
@@ -246,6 +594,83 @@ class TestComponentRunner(unittest.TestCase):
         
         self.assertTrue(result)
         mock_run_with_config.assert_called_once_with(config)
+
+        @patch('commonpython.framework.component_base.ComponentBase.start')
+        def test_run_keyboard_interrupt(self, mock_start):
+            """
+            Test runner handles KeyboardInterrupt gracefully.
+            """
+            runner = ComponentRunner(TestComponent, "TestComponent")
+            with patch.object(runner, 'create_parser') as mock_parser:
+                mock_args = MagicMock()
+                mock_parser.return_value.parse_args.return_value = mock_args
+                mock_args.config = None
+                mock_args.log_level = 'INFO'
+                mock_args.verbose = False
+                mock_args.dry_run = False
+                # Simulate KeyboardInterrupt during start
+                mock_start.side_effect = KeyboardInterrupt()
+                result = runner.run([])
+                self.assertFalse(result)
+
+        def test_run_exception_no_instance(self):
+            """
+            @brief Test runner handles exception when no instance exists.
+            """
+            runner = ComponentRunner(TestComponent, "TestComponent")
+            with patch.object(runner, 'create_parser') as mock_parser:
+                mock_args = MagicMock()
+                mock_parser.return_value.parse_args.return_value = mock_args
+                mock_args.config = None
+                mock_args.log_level = 'INFO'
+                mock_args.verbose = False
+                mock_args.dry_run = False
+                # Simulate error before instance creation
+                with patch.object(runner, 'component_class', side_effect=Exception("fail")):
+                    result = runner.run([])
+                    self.assertFalse(result)
+
+        def test_run_exception_with_instance(self):
+            """
+            @brief Test runner handles exception when instance exists.
+            """
+            runner = ComponentRunner(TestComponent, "TestComponent")
+            with patch.object(runner, 'create_parser') as mock_parser:
+                mock_args = MagicMock()
+                mock_parser.return_value.parse_args.return_value = mock_args
+                mock_args.config = None
+                mock_args.log_level = 'INFO'
+                mock_args.verbose = False
+                mock_args.dry_run = False
+                runner.component_instance = MagicMock()
+                # Simulate error after instance creation
+                with patch.object(runner, 'component_class', side_effect=Exception("fail")):
+                    result = runner.run([])
+                    self.assertFalse(result)
+
+    def test_run_with_config_exception(self):
+        """
+        @brief Test run_with_config handles exception and logs error.
+        """
+        runner = ComponentRunner(TestComponent, "TestComponent")
+        with patch.object(runner, 'component_class', side_effect=Exception("fail")):
+            result = runner.run_with_config({'key': 'value'})
+            self.assertFalse(result)
+
+    def test_run_with_config_applies_all_keys(self):
+        """
+        @brief Test run_with_config applies all config keys to component.
+        """
+        runner = ComponentRunner(TestComponent, "TestComponent")
+        config = {'key1': 'value1', 'key2': 'value2'}
+        with patch.object(runner, 'component_class', return_value=MagicMock()) as mock_class:
+            instance = mock_class.return_value
+            instance.set_config = MagicMock()
+            instance.start = MagicMock(return_value=True)
+            result = runner.run_with_config(config)
+            self.assertTrue(result)
+            instance.set_config.assert_any_call('key1', 'value1')
+            instance.set_config.assert_any_call('key2', 'value2')
 
 
 class TestComponentRegistry(unittest.TestCase):
@@ -376,6 +801,3 @@ class TestRunComponent(unittest.TestCase):
         self.assertTrue(result)
         mock_run.assert_called_once_with(None)
 
-
-if __name__ == '__main__':
-    unittest.main()

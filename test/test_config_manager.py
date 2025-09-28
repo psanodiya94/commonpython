@@ -101,6 +101,39 @@ class TestConfigManager(unittest.TestCase):
         """
         self.assertEqual(self.config_manager.get('nonexistent.key'), None)
         self.assertEqual(self.config_manager.get('nonexistent.key', 'default'), 'default')
+
+    def test_load_config_file_error(self):
+        """
+        Test error branch when loading a bad config file.
+        
+        @brief Test retrieval of existing configuration file will lead to error.
+        """
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.yaml', delete=False) as f:
+            f.write("bad: [unclosed")
+            config_file = f.name
+        try:
+            with self.assertRaises(Exception):
+                ConfigManager(config_file)
+        finally:
+            os.unlink(config_file)
+
+    def test_set_nested_value_error(self):
+        """
+        @brief Test error branch for _set_nested_value with bad key (should not raise).
+        @return Should set config with empty string key.
+        """
+        self.config_manager._set_nested_value('', 'value')
+        self.assertEqual(self.config_manager._config, {'': 'value'})
+
+    def test_save_to_file_error(self):
+        """
+        @brief Test error branch for save_to_file with bad file.
+        """
+        self.config_manager._config = {'a': 1}
+        # Simulate IOError
+        with patch('builtins.open', side_effect=IOError):
+            with self.assertRaises(IOError):
+                self.config_manager.save_to_file('badfile.yaml')
     
     def test_get_nested_value(self):
         """
@@ -287,6 +320,3 @@ class TestConfigManager(unittest.TestCase):
         self.config_manager._set_nested_value('test.string', 'hello')
         self.assertEqual(self.config_manager.get('test.string'), 'hello')
 
-
-if __name__ == '__main__':
-    unittest.main()

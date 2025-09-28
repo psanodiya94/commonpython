@@ -102,6 +102,42 @@ class TestLoggerManager(unittest.TestCase):
         logger_manager = LoggerManager("test", config)
         logger_manager.set_level("DEBUG")
         self.assertEqual(logger_manager.logger.level, logging.DEBUG)
+
+    def test_set_level_invalid(self):
+        """
+        Test set_level with invalid level.
+        """
+        config = {'dir': 'log'}
+        logger_manager = LoggerManager("test", config)
+        # Should not raise, but fallback to default
+        logger_manager.set_level("NOTALEVEL")
+
+    def test_json_formatter_error(self):
+        """
+        @brief Test JSONFormatter with unserializable object (should fallback to str).
+        """
+        import logging
+        formatter = JSONFormatter()
+        # Create a real LogRecord with unserializable msg
+        record = logging.LogRecord(name="test", level=logging.INFO, pathname="", lineno=0, msg=object(), args=(), exc_info=None)
+        try:
+            formatter.format(record)
+        except Exception:
+            self.fail("JSONFormatter raised unexpectedly!")
+
+    def test_colored_formatter_error(self):
+        """
+        Test ColoredFormatter with missing color.
+        """
+        formatter = ColoredFormatter()
+        record = MagicMock()
+        record.levelname = "NOTALEVEL"
+        record.getMessage.return_value = "msg"
+        # Should not raise
+        try:
+            formatter.format(record)
+        except Exception:
+            self.fail("ColoredFormatter raised unexpectedly!")
     
     def test_log_function_call(self):
         """
@@ -299,7 +335,3 @@ class TestColoredFormatter(unittest.TestCase):
             
             formatted = formatter.format(record)
             self.assertIn(expected_color, formatted)
-
-
-if __name__ == '__main__':
-    unittest.main()
