@@ -72,6 +72,7 @@ CommonPython is a framework that provides common functionality for building Pyth
 ### When to Use This Framework
 
 Use CommonPython when you need to build applications that:
+
 - Connect to IBM DB2 databases
 - Send/receive messages via IBM MQ
 - Require structured logging and configuration management
@@ -124,13 +125,12 @@ if __name__ == '__main__':
 ```
 
 Run it:
+
 ```bash
 python my_first_component.py --config config/config.yaml --verbose
 ```
 
 ## Installation
-
-### Basic Installation
 
 ```bash
 # Clone the repository
@@ -139,9 +139,6 @@ cd commonpython
 
 # Install in development mode
 pip install -e .
-
-# Or install basic version
-pip install -e . -f setup-basic.py
 ```
 
 ### Dependencies
@@ -304,6 +301,7 @@ if __name__ == '__main__':
 ```
 
 **Run your component:**
+
 ```bash
 python my_component.py --config config/component_config.yaml --verbose
 ```
@@ -426,6 +424,10 @@ The framework requires IBM MQ CLI tools to be installed and available in the sys
 
 MIT License - see LICENSE file for details.
 
+---
+
+> **Note:** This tool was developed with help from Cursor AI.
+
 ## Contributing
 
 1. Fork the repository
@@ -440,29 +442,37 @@ MIT License - see LICENSE file for details.
 ### Common Issues
 
 #### Configuration File Not Found
+
 **Error**: `Configuration file 'config.yaml' not found`
-**Solution**: 
+**Solution**:
+
 - Copy `config.yaml` to your project directory
 - Use absolute paths: `--config /path/to/config.yaml`
 - Check file permissions
 
 #### Database Connection Failed
+
 **Error**: `DB2 command error: [Errno 2] No such file or directory: 'db2'`
 **Solution**:
+
 - Install IBM DB2 CLI tools
 - Add DB2 tools to system PATH: `export PATH=$PATH:/opt/ibm/db2/V11.5/bin`
 - Verify installation: `db2 -v`
 
 #### Messaging Connection Failed
+
 **Error**: `MQ command error: [Errno 2] No such file or directory: 'runmqsc'`
 **Solution**:
+
 - Install IBM MQ CLI tools
 - Add MQ tools to system PATH: `export PATH=$PATH:/opt/mqm/bin`
 - Verify installation: `runmqsc -v`
 
 #### Permission Denied
+
 **Error**: `Permission denied` when accessing log files
 **Solution**:
+
 - Check file permissions: `chmod 755 log/`
 - Ensure log directory exists: `mkdir -p log`
 - Run with appropriate permissions
