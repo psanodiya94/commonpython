@@ -3,7 +3,6 @@
 A comprehensive Python framework providing configuration management, logging, database connectivity, message queue operations, and command-line interface functionality using only standard Python modules and IBM CLI interfaces.
 
 [![Python Version](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/downloads/)
-[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Tests](https://img.shields.io/badge/tests-130%20passed-brightgreen.svg)](scripts/test_commonpython.py)
 
 ## 🚀 Quick Start
