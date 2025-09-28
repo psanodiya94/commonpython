@@ -1,0 +1,26 @@
+<map id="commonpython.messaging.mq_manager.MQManager.browse_message" name="commonpython.messaging.mq_manager.MQManager.browse_message">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,201,229,255"/>
+<area shape="rect" id="Node000002" href="$d6/dd2/classcommonpython_1_1cli_1_1cli_1_1CLI.html#a3f977116a5cf6d8c00f2bb246cfef782" title=" " alt="" coords="284,29,495,69"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="139,199,197,139,235,107,276,79,289,72,292,77,279,84,238,111,201,142,143,203"/>
+<area shape="rect" id="Node000005" href="$da/d7a/classcommonpython_1_1messaging_1_1mq__manager_1_1MQManager.html#aa20f4e808bd10e87110c2815c7172988" title=" " alt="" coords="277,233,501,287"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="230,239,264,243,264,248,229,244"/>
+<area shape="rect" id="Node000006" href="$d6/d85/classcommonpython_1_1database_1_1db2__manager_1_1DB2Manager.html#ae9d97b4b4535b05be8b744f32c4c14b3" title=" " alt="" coords="570,233,786,287"/>
+<area shape="poly" id="edge8_Node000001_Node000006" title=" " alt="" coords="230,219,277,217,389,212,439,212,502,217,561,227,560,232,501,223,438,218,390,218,277,223,230,224"/>
+<area shape="rect" id="Node000007" href="$da/d7a/classcommonpython_1_1messaging_1_1mq__manager_1_1MQManager.html#a65be5e8c672869dfb55aee2f08e56395" title=" " alt="" coords="549,319,807,359"/>
+<area shape="poly" id="edge9_Node000001_Node000007" title=" " alt="" coords="139,254,164,285,196,320,234,352,278,376,321,389,365,396,411,398,455,395,540,380,611,361,612,366,541,386,456,400,411,403,365,401,320,394,276,381,231,356,192,323,159,288,135,257"/>
+<area shape="rect" id="Node000008" href="$d6/dd2/classcommonpython_1_1cli_1_1cli_1_1CLI.html#a8aadb5626fc6f25b75fdddbd7e978faa" title=" " alt="" coords="284,117,495,157"/>
+<area shape="poly" id="edge10_Node000001_Node000008" title=" " alt="" coords="199,198,315,159,317,164,201,203"/>
+<area shape="rect" id="Node000009" href="$da/d7a/classcommonpython_1_1messaging_1_1mq__manager_1_1MQManager.html#a7ebf18c3bf61946366a302d19508710d" title=" " alt="" coords="277,311,501,366"/>
+<area shape="poly" id="edge13_Node000001_Node000009" title=" " alt="" coords="178,253,278,296,298,304,296,309,276,301,176,258"/>
+<area shape="poly" id="edge4_Node000002_Node000002" title=" " alt="" coords="339,30,336,20,344,10,362,5,389,3,421,5,438,13,436,18,420,11,389,8,363,10,347,15,341,21,344,28"/>
+<area shape="rect" id="Node000003" href="$d6/dd2/classcommonpython_1_1cli_1_1cli_1_1CLI.html#ae6928d446a98c9c86e7435eb46d842e3" title=" " alt="" coords="583,29,773,69"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="495,47,569,47,569,52,495,52"/>
+<area shape="rect" id="Node000004" href="$d6/dd2/classcommonpython_1_1cli_1_1cli_1_1CLI.html#a0a650b67088eade813342c1a2c930667" title=" " alt="" coords="583,105,773,145"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="467,67,589,99,588,104,465,72"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="502,257,556,257,556,263,502,263"/>
+<area shape="poly" id="edge7_Node000005_Node000007" title=" " alt="" coords="491,285,591,312,590,317,490,290"/>
+<area shape="poly" id="edge11_Node000008_Node000004" title=" " alt="" coords="495,130,569,127,569,133,495,136"/>
+<area shape="poly" id="edge12_Node000008_Node000008" title=" " alt="" coords="339,118,336,108,344,98,362,93,389,91,421,93,438,101,436,106,420,99,389,96,363,98,347,103,341,109,344,116"/>
+<area shape="poly" id="edge14_Node000009_Node000006" title=" " alt="" coords="490,309,563,288,565,294,491,314"/>
+<area shape="poly" id="edge15_Node000009_Node000007" title=" " alt="" coords="502,336,536,336,536,341,502,341"/>
+</map>

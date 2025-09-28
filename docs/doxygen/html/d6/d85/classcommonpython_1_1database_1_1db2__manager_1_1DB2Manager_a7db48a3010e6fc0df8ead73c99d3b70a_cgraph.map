@@ -1,0 +1,21 @@
+<map id="commonpython.database.db2_manager.DB2Manager.execute_batch" name="commonpython.database.db2_manager.DB2Manager.execute_batch">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,119,276,159"/>
+<area shape="rect" id="Node000002" href="$d6/d85/classcommonpython_1_1database_1_1db2__manager_1_1DB2Manager.html#ad0ab28d7036184db12445c789f9ce863" title=" " alt="" coords="673,5,907,60"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="200,117,259,99,323,83,498,56,658,39,659,44,499,61,325,89,261,104,202,122"/>
+<area shape="rect" id="Node000003" href="$d6/d85/classcommonpython_1_1database_1_1db2__manager_1_1DB2Manager.html#a0d37e4a0c62f2474d75130bf59b59d26" title=" " alt="" coords="324,119,604,159"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="276,137,310,137,310,142,276,142"/>
+<area shape="rect" id="Node000004" href="$d6/d85/classcommonpython_1_1database_1_1db2__manager_1_1DB2Manager.html#ae9d97b4b4535b05be8b744f32c4c14b3" title=" " alt="" coords="682,88,898,143"/>
+<area shape="poly" id="edge10_Node000001_Node000004" title=" " alt="" coords="237,117,324,105,414,99,505,98,668,104,668,109,505,104,414,105,324,110,238,122"/>
+<area shape="rect" id="Node000005" href="$da/d7a/classcommonpython_1_1messaging_1_1mq__manager_1_1MQManager.html#a65be5e8c672869dfb55aee2f08e56395" title=" " alt="" coords="661,174,919,214"/>
+<area shape="poly" id="edge11_Node000001_Node000005" title=" " alt="" coords="243,157,324,169,492,182,648,189,648,194,492,188,324,174,242,162"/>
+<area shape="rect" id="Node000006" href="$dd/dfd/classcommonpython_1_1framework_1_1component__base_1_1ComponentBase.html#a5f2976b6d101f240778bf68d83bc50e6" title=" " alt="" coords="325,258,603,298"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="189,157,405,250,403,255,187,162"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="522,117,651,73,686,62,688,67,653,78,523,122"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="604,126,668,122,668,127,605,132"/>
+<area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="584,157,657,169,656,174,583,162"/>
+<area shape="poly" id="edge7_Node000006_Node000006" title=" " alt="" coords="405,259,401,248,411,239,432,233,464,231,501,234,521,241,520,246,500,239,464,237,433,239,413,244,406,249,410,257"/>
+<area shape="rect" id="Node000007" href="$dd/dfd/classcommonpython_1_1framework_1_1component__base_1_1ComponentBase.html#a52cf5bc5fef500fcb0ec6a1147f5090c" title=" " alt="" coords="652,318,928,358"/>
+<area shape="poly" id="edge8_Node000006_Node000007" title=" " alt="" coords="574,295,668,313,667,318,573,301"/>
+<area shape="rect" id="Node000008" href="$dd/dfd/classcommonpython_1_1framework_1_1component__base_1_1ComponentBase.html#aeb18efa5983399481ec92169a058ba9d" title=" " alt="" coords="652,254,928,294"/>
+<area shape="poly" id="edge9_Node000006_Node000008" title=" " alt="" coords="603,274,638,273,638,279,603,279"/>
+</map>
