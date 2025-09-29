@@ -73,6 +73,65 @@ class TestComponentBase(unittest.TestCase):
     @brief Comprehensive test suite for component base functionality.
     """
 
+    def setUp(self):
+        """
+        Set up test fixtures.
+        
+        @brief Initialize test environment before each test.
+        """
+        # Create temporary config file with proper YAML structure
+        self.temp_config = tempfile.NamedTemporaryFile(mode='w', suffix='.yaml', delete=False)
+        import yaml
+        test_config = {
+            'component': {
+                'test_value': 'test',
+                'operation_count': 5,
+                'test': {
+                    'key': 'test_value'
+                }
+            },
+            'database': {
+                'host': 'localhost',
+                'port': 50000,
+                'name': 'testdb',
+                'user': 'db2inst1',
+                'password': 'password',
+                'schema': 'testschema',
+                'timeout': 30
+            },
+            'messaging': {
+                'host': 'localhost',
+                'port': 1414,
+                'queue_manager': 'TEST_QM',
+                'channel': 'SYSTEM.DEF.SVRCONN',
+                'user': 'mquser',
+                'password': 'mqpass',
+                'timeout': 30
+            },
+            'logging': {
+                'level': 'INFO',
+                'file': 'TestComponent.log',
+                'dir': 'log',
+                'format': '%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+                'max_size': 10485760,
+                'backup_count': 5,
+                'colored': True,
+                'json_format': False,
+                'console': False
+            }
+        }
+        yaml.dump(test_config, self.temp_config)
+        self.temp_config.close()
+    
+    def tearDown(self):
+        """
+        Clean up test fixtures.
+        
+        @brief Clean up test environment after each test.
+        """
+        if hasattr(self, 'temp_config') and self.temp_config and os.path.exists(self.temp_config.name):
+            os.unlink(self.temp_config.name)
+    
     def test_start_initialize_false(self):
         """
         @brief Test start method when initialize returns False.
@@ -317,65 +376,6 @@ class TestComponentBase(unittest.TestCase):
         component = ErrorComponent(self.temp_config.name)
         # Should not raise
         component.start()
-    
-    def setUp(self):
-        """
-        Set up test fixtures.
-        
-        @brief Initialize test environment before each test.
-        """
-        # Create temporary config file with proper YAML structure
-        self.temp_config = tempfile.NamedTemporaryFile(mode='w', suffix='.yaml', delete=False)
-        import yaml
-        test_config = {
-            'component': {
-                'test_value': 'test',
-                'operation_count': 5,
-                'test': {
-                    'key': 'test_value'
-                }
-            },
-            'database': {
-                'host': 'localhost',
-                'port': 50000,
-                'name': 'testdb',
-                'user': 'db2inst1',
-                'password': 'password',
-                'schema': 'testschema',
-                'timeout': 30
-            },
-            'messaging': {
-                'host': 'localhost',
-                'port': 1414,
-                'queue_manager': 'TEST_QM',
-                'channel': 'SYSTEM.DEF.SVRCONN',
-                'user': 'mquser',
-                'password': 'mqpass',
-                'timeout': 30
-            },
-            'logging': {
-                'level': 'INFO',
-                'file': 'TestComponent.log',
-                'dir': 'log',
-                'format': '%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-                'max_size': 10485760,
-                'backup_count': 5,
-                'colored': True,
-                'json_format': False,
-                'console': False
-            }
-        }
-        yaml.dump(test_config, self.temp_config)
-        self.temp_config.close()
-    
-    def tearDown(self):
-        """
-        Clean up test fixtures.
-        
-        @brief Clean up test environment after each test.
-        """
-        if hasattr(self, 'temp_config') and self.temp_config and os.path.exists(self.temp_config.name):
-            os.unlink(self.temp_config.name)
     
     def test_config_access(self):
         """

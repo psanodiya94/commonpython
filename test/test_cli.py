@@ -25,6 +25,65 @@ class TestCLI(unittest.TestCase):
 	@brief Comprehensive test suite for command-line interface functionality.
 	"""
 
+	def setUp(self):
+		"""
+		Set up test fixtures.
+
+		@brief Initialize test environment before each test.
+		"""
+		# Create a temporary config file with required sections
+		with tempfile.NamedTemporaryFile(mode='w', suffix='.yaml', delete=False) as f:
+			import yaml
+			test_config = {
+				'database': {
+					'host': 'localhost',
+					'port': 50000,
+					'name': 'testdb',
+					'user': 'db2inst1',
+					'password': 'password',
+					'schema': 'testschema',
+					'timeout': 30
+				},
+				'messaging': {
+					'host': 'localhost',
+					'port': 1414,
+					'queue_manager': 'TEST_QM',
+					'channel': 'SYSTEM.DEF.SVRCONN',
+					'user': 'mquser',
+					'password': 'mqpass',
+					'timeout': 30
+				},
+				'logging': {
+					'level': 'INFO',
+					'file': 'test.log',
+					'dir': 'log',
+					'format': '%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+					'max_size': 10485760,
+					'backup_count': 5,
+					'colored': True,
+					'json_format': False
+				}
+			}
+			yaml.dump(test_config, f)
+			self.config_file = f.name
+		
+		self.cli = CLI(self.config_file)
+		
+		# Mock the manager objects
+		with patch.object(self.cli, 'db_manager') as mock_db:
+			with patch.object(self.cli, 'mq_manager') as mock_mq:
+				self.cli.db_manager = mock_db
+				self.cli.mq_manager = mock_mq
+	
+	def tearDown(self):
+		"""
+		Clean up test fixtures.
+		
+		@brief Clean up test environment after each test.
+		"""
+		if hasattr(self, 'config_file') and self.config_file and os.path.exists(self.config_file):
+			os.unlink(self.config_file)
+	
 	@patch('sys.exit')
 	def test_execute_query_setup_fail(self, mock_exit):
 		"""
@@ -125,65 +184,6 @@ class TestCLI(unittest.TestCase):
 		self.cli.get_queue_depth('Q')
 		mock_exit.assert_called_once_with(1)
 	
-	def setUp(self):
-		"""
-		Set up test fixtures.
-
-		@brief Initialize test environment before each test.
-		"""
-		# Create a temporary config file with required sections
-		with tempfile.NamedTemporaryFile(mode='w', suffix='.yaml', delete=False) as f:
-			import yaml
-			test_config = {
-				'database': {
-					'host': 'localhost',
-					'port': 50000,
-					'name': 'testdb',
-					'user': 'db2inst1',
-					'password': 'password',
-					'schema': 'testschema',
-					'timeout': 30
-				},
-				'messaging': {
-					'host': 'localhost',
-					'port': 1414,
-					'queue_manager': 'TEST_QM',
-					'channel': 'SYSTEM.DEF.SVRCONN',
-					'user': 'mquser',
-					'password': 'mqpass',
-					'timeout': 30
-				},
-				'logging': {
-					'level': 'INFO',
-					'file': 'test.log',
-					'dir': 'log',
-					'format': '%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-					'max_size': 10485760,
-					'backup_count': 5,
-					'colored': True,
-					'json_format': False
-				}
-			}
-			yaml.dump(test_config, f)
-			self.config_file = f.name
-		
-		self.cli = CLI(self.config_file)
-		
-		# Mock the manager objects
-		with patch.object(self.cli, 'db_manager') as mock_db:
-			with patch.object(self.cli, 'mq_manager') as mock_mq:
-				self.cli.db_manager = mock_db
-				self.cli.mq_manager = mock_mq
-	
-	def tearDown(self):
-		"""
-		Clean up test fixtures.
-		
-		@brief Clean up test environment after each test.
-		"""
-		if hasattr(self, 'config_file') and self.config_file and os.path.exists(self.config_file):
-			os.unlink(self.config_file)
-	
 	def test_init(self):
 		"""
 		Test CLI initialization.
@@ -210,29 +210,30 @@ class TestCLI(unittest.TestCase):
 		finally:
 			os.unlink(config_file)
 	
-		def test_db_command_error(self):
-			"""
-			Test error branch for db command.
-			"""
-			self.cli.db_manager.connect = MagicMock(side_effect=Exception("fail"))
-			with self.assertRaises(Exception):
-				self.cli.db_command('test')
+	def test_db_command_error(self):
+		"""
+		Test error branch for db command.
+		"""
+		self.cli.db_manager.connect = MagicMock(side_effect=Exception("fail"))
+		with self.assertRaises(Exception):
+			self.cli.db_command('test')
 
-		def test_mq_command_error(self):
-			"""
-			Test error branch for mq command.
-			"""
-			self.cli.mq_manager.connect = MagicMock(side_effect=Exception("fail"))
-			with self.assertRaises(Exception):
-				self.cli.mq_command('test')
+	def test_mq_command_error(self):
+		"""
+		Test error branch for mq command.
+		"""
+		self.cli.mq_manager.connect = MagicMock(side_effect=Exception("fail"))
+		with self.assertRaises(Exception):
+			self.cli.mq_command('test')
 
-		def test_config_command_error(self):
-			"""
-			Test error branch for config command.
-			"""
-			self.cli.config_manager.get = MagicMock(side_effect=Exception("fail"))
-			with self.assertRaises(Exception):
-				self.cli.config_command('show')
+	def test_config_command_error(self):
+		"""
+		Test error branch for config command.
+		"""
+		self.cli.config_manager.get = MagicMock(side_effect=Exception("fail"))
+		with self.assertRaises(Exception):
+			self.cli.config_command('show')
+
 	@patch('commonpython.database.db2_manager.DB2Manager')
 	@patch('commonpython.config.config_manager.ConfigManager')
 	@patch('commonpython.logging.logger_manager.LoggerManager')
@@ -666,3 +667,6 @@ class TestCreateParser(unittest.TestCase):
 		self.assertEqual(args.config_command, 'show')
 		args = parser.parse_args(['test-all'])
 		self.assertEqual(args.command, 'test-all')
+
+if __name__ == '__main__':
+	unittest.main()
