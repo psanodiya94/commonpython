@@ -861,19 +861,19 @@ Here is the caller graph for this function:</div>
 <div class="line"><span class="lineno">  246</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
 <div class="line"><span class="lineno">  247</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> self._setup_messaging():</div>
 <div class="line"><span class="lineno">  248</span>            sys.exit(1)</div>
-<div class="line"><span class="lineno">  249</span>        </div>
-<div class="line"><span class="lineno">  250</span>        <span class="keywordflow">try</span>:</div>
-<div class="line"><span class="lineno">  251</span>            <span class="comment"># Parse message properties if provided</span></div>
-<div class="line"><span class="lineno">  252</span>            message_properties = <span class="keywordtype">None</span></div>
-<div class="line"><span class="lineno">  253</span>            <span class="keywordflow">if</span> properties:</div>
-<div class="line"><span class="lineno">  254</span>                message_properties = json.loads(properties)</div>
-<div class="line"><span class="lineno">  255</span>            </div>
-<div class="line"><span class="lineno">  256</span>            <span class="comment"># Try to parse message as JSON, fallback to string</span></div>
-<div class="line"><span class="lineno">  257</span>            <span class="keywordflow">try</span>:</div>
-<div class="line"><span class="lineno">  258</span>                message_data = json.loads(message)</div>
-<div class="line"><span class="lineno">  259</span>            <span class="keywordflow">except</span> json.JSONDecodeError:</div>
-<div class="line"><span class="lineno">  260</span>                message_data = message</div>
-<div class="line"><span class="lineno">  261</span>            </div>
+<div class="line"><span class="lineno">  249</span>        <span class="keywordflow">try</span>:</div>
+<div class="line"><span class="lineno">  250</span>            <span class="comment"># Parse message properties if provided</span></div>
+<div class="line"><span class="lineno">  251</span>            message_properties = <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno">  252</span>            <span class="keywordflow">if</span> properties:</div>
+<div class="line"><span class="lineno">  253</span>                <span class="keywordflow">try</span>:</div>
+<div class="line"><span class="lineno">  254</span>                    message_properties = json.loads(properties)</div>
+<div class="line"><span class="lineno">  255</span>                <span class="keywordflow">except</span> json.JSONDecodeError:</div>
+<div class="line"><span class="lineno">  256</span>                    message_properties = <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno">  257</span>            <span class="comment"># Try to parse message as JSON, fallback to string</span></div>
+<div class="line"><span class="lineno">  258</span>            <span class="keywordflow">try</span>:</div>
+<div class="line"><span class="lineno">  259</span>                message_data = json.loads(message)</div>
+<div class="line"><span class="lineno">  260</span>            <span class="keywordflow">except</span> json.JSONDecodeError:</div>
+<div class="line"><span class="lineno">  261</span>                message_data = message</div>
 <div class="line"><span class="lineno">  262</span>            success = self.mq_manager.put_message(queue_name, message_data, message_properties)</div>
 <div class="line"><span class="lineno">  263</span>            <span class="keywordflow">if</span> success:</div>
 <div class="line"><span class="lineno">  264</span>                print(f<span class="stringliteral">&quot;Message sent to queue {queue_name}&quot;</span>)</div>

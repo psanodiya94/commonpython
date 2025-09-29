@@ -227,46 +227,48 @@ Here is the caller graph for this function:</div>
 <div class="line"><span class="lineno">  419</span>        parser.print_help()</div>
 <div class="line"><span class="lineno">  420</span>        <span class="keywordflow">return</span></div>
 <div class="line"><span class="lineno">  421</span>    </div>
-<div class="line"><span class="lineno">  422</span>    cli = CLI(args.config)</div>
-<div class="line"><span class="lineno">  423</span>    </div>
-<div class="line"><span class="lineno">  424</span>    <span class="keywordflow">try</span>:</div>
-<div class="line"><span class="lineno">  425</span>        <span class="keywordflow">if</span> args.command == <span class="stringliteral">&#39;database&#39;</span>:</div>
-<div class="line"><span class="lineno">  426</span>            <span class="keywordflow">if</span> args.db_command == <span class="stringliteral">&#39;test&#39;</span>:</div>
-<div class="line"><span class="lineno">  427</span>                cli.test_database()</div>
-<div class="line"><span class="lineno">  428</span>            <span class="keywordflow">elif</span> args.db_command == <span class="stringliteral">&#39;execute&#39;</span>:</div>
-<div class="line"><span class="lineno">  429</span>                cli.execute_query(args.query, args.params)</div>
-<div class="line"><span class="lineno">  430</span>            <span class="keywordflow">elif</span> args.db_command == <span class="stringliteral">&#39;info&#39;</span>:</div>
-<div class="line"><span class="lineno">  431</span>                cli.get_table_info(args.table_name)</div>
-<div class="line"><span class="lineno">  432</span>        </div>
-<div class="line"><span class="lineno">  433</span>        <span class="keywordflow">elif</span> args.command == <span class="stringliteral">&#39;messaging&#39;</span>:</div>
-<div class="line"><span class="lineno">  434</span>            <span class="keywordflow">if</span> args.mq_command == <span class="stringliteral">&#39;test&#39;</span>:</div>
-<div class="line"><span class="lineno">  435</span>                cli.test_messaging()</div>
-<div class="line"><span class="lineno">  436</span>            <span class="keywordflow">elif</span> args.mq_command == <span class="stringliteral">&#39;get&#39;</span>:</div>
-<div class="line"><span class="lineno">  437</span>                cli.get_message(args.queue_name, args.timeout)</div>
-<div class="line"><span class="lineno">  438</span>            <span class="keywordflow">elif</span> args.mq_command == <span class="stringliteral">&#39;put&#39;</span>:</div>
-<div class="line"><span class="lineno">  439</span>                cli.put_message(args.queue_name, args.message, args.properties)</div>
-<div class="line"><span class="lineno">  440</span>            <span class="keywordflow">elif</span> args.mq_command == <span class="stringliteral">&#39;depth&#39;</span>:</div>
-<div class="line"><span class="lineno">  441</span>                cli.get_queue_depth(args.queue_name)</div>
-<div class="line"><span class="lineno">  442</span>        </div>
-<div class="line"><span class="lineno">  443</span>        <span class="keywordflow">elif</span> args.command == <span class="stringliteral">&#39;config&#39;</span>:</div>
-<div class="line"><span class="lineno">  444</span>            <span class="keywordflow">if</span> args.config_command == <span class="stringliteral">&#39;show&#39;</span>:</div>
-<div class="line"><span class="lineno">  445</span>                cli.show_config()</div>
-<div class="line"><span class="lineno">  446</span>            <span class="keywordflow">elif</span> args.config_command == <span class="stringliteral">&#39;get&#39;</span>:</div>
-<div class="line"><span class="lineno">  447</span>                cli.get_config(args.key)</div>
-<div class="line"><span class="lineno">  448</span>            <span class="keywordflow">elif</span> args.config_command == <span class="stringliteral">&#39;set&#39;</span>:</div>
-<div class="line"><span class="lineno">  449</span>                cli.set_config(args.key, args.value)</div>
-<div class="line"><span class="lineno">  450</span>        </div>
-<div class="line"><span class="lineno">  451</span>        <span class="keywordflow">elif</span> args.command == <span class="stringliteral">&#39;test-all&#39;</span>:</div>
-<div class="line"><span class="lineno">  452</span>            cli.test_all()</div>
-<div class="line"><span class="lineno">  453</span>    </div>
-<div class="line"><span class="lineno">  454</span>    <span class="keywordflow">except</span> KeyboardInterrupt:</div>
-<div class="line"><span class="lineno">  455</span>        print(<span class="stringliteral">&quot;\nOperation cancelled by user&quot;</span>)</div>
-<div class="line"><span class="lineno">  456</span>        sys.exit(1)</div>
-<div class="line"><span class="lineno">  457</span>    <span class="keywordflow">except</span> Exception <span class="keyword">as</span> e:</div>
-<div class="line"><span class="lineno">  458</span>        print(f<span class="stringliteral">&quot;Error: {str(e)}&quot;</span>)</div>
-<div class="line"><span class="lineno">  459</span>        sys.exit(1)</div>
-<div class="line"><span class="lineno">  460</span> </div>
-<div class="line"><span class="lineno">  461</span> </div>
+<div class="line"><span class="lineno">  422</span>    cli = <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno">  423</span>    <span class="keywordflow">try</span>:</div>
+<div class="line"><span class="lineno">  424</span>        <span class="keywordflow">if</span> args.command != <span class="stringliteral">&#39;help&#39;</span>:</div>
+<div class="line"><span class="lineno">  425</span>            cli = CLI(args.config)</div>
+<div class="line"><span class="lineno">  426</span>            </div>
+<div class="line"><span class="lineno">  427</span>        <span class="keywordflow">if</span> args.command == <span class="stringliteral">&#39;database&#39;</span>:</div>
+<div class="line"><span class="lineno">  428</span>            <span class="keywordflow">if</span> args.db_command == <span class="stringliteral">&#39;test&#39;</span>:</div>
+<div class="line"><span class="lineno">  429</span>                cli.test_database()</div>
+<div class="line"><span class="lineno">  430</span>            <span class="keywordflow">elif</span> args.db_command == <span class="stringliteral">&#39;execute&#39;</span>:</div>
+<div class="line"><span class="lineno">  431</span>                cli.execute_query(args.query, args.params)</div>
+<div class="line"><span class="lineno">  432</span>            <span class="keywordflow">elif</span> args.db_command == <span class="stringliteral">&#39;info&#39;</span>:</div>
+<div class="line"><span class="lineno">  433</span>                cli.get_table_info(args.table_name)</div>
+<div class="line"><span class="lineno">  434</span>        </div>
+<div class="line"><span class="lineno">  435</span>        <span class="keywordflow">elif</span> args.command == <span class="stringliteral">&#39;messaging&#39;</span>:</div>
+<div class="line"><span class="lineno">  436</span>            <span class="keywordflow">if</span> args.mq_command == <span class="stringliteral">&#39;test&#39;</span>:</div>
+<div class="line"><span class="lineno">  437</span>                cli.test_messaging()</div>
+<div class="line"><span class="lineno">  438</span>            <span class="keywordflow">elif</span> args.mq_command == <span class="stringliteral">&#39;get&#39;</span>:</div>
+<div class="line"><span class="lineno">  439</span>                cli.get_message(args.queue_name, args.timeout)</div>
+<div class="line"><span class="lineno">  440</span>            <span class="keywordflow">elif</span> args.mq_command == <span class="stringliteral">&#39;put&#39;</span>:</div>
+<div class="line"><span class="lineno">  441</span>                cli.put_message(args.queue_name, args.message, args.properties)</div>
+<div class="line"><span class="lineno">  442</span>            <span class="keywordflow">elif</span> args.mq_command == <span class="stringliteral">&#39;depth&#39;</span>:</div>
+<div class="line"><span class="lineno">  443</span>                cli.get_queue_depth(args.queue_name)</div>
+<div class="line"><span class="lineno">  444</span>        </div>
+<div class="line"><span class="lineno">  445</span>        <span class="keywordflow">elif</span> args.command == <span class="stringliteral">&#39;config&#39;</span>:</div>
+<div class="line"><span class="lineno">  446</span>            <span class="keywordflow">if</span> args.config_command == <span class="stringliteral">&#39;show&#39;</span>:</div>
+<div class="line"><span class="lineno">  447</span>                cli.show_config()</div>
+<div class="line"><span class="lineno">  448</span>            <span class="keywordflow">elif</span> args.config_command == <span class="stringliteral">&#39;get&#39;</span>:</div>
+<div class="line"><span class="lineno">  449</span>                cli.get_config(args.key)</div>
+<div class="line"><span class="lineno">  450</span>            <span class="keywordflow">elif</span> args.config_command == <span class="stringliteral">&#39;set&#39;</span>:</div>
+<div class="line"><span class="lineno">  451</span>                cli.set_config(args.key, args.value)</div>
+<div class="line"><span class="lineno">  452</span>        </div>
+<div class="line"><span class="lineno">  453</span>        <span class="keywordflow">elif</span> args.command == <span class="stringliteral">&#39;test-all&#39;</span>:</div>
+<div class="line"><span class="lineno">  454</span>            cli.test_all()</div>
+<div class="line"><span class="lineno">  455</span>    </div>
+<div class="line"><span class="lineno">  456</span>    <span class="keywordflow">except</span> KeyboardInterrupt:</div>
+<div class="line"><span class="lineno">  457</span>        print(<span class="stringliteral">&quot;\nOperation cancelled by user&quot;</span>)</div>
+<div class="line"><span class="lineno">  458</span>        sys.exit(1)</div>
+<div class="line"><span class="lineno">  459</span>    <span class="keywordflow">except</span> Exception <span class="keyword">as</span> e:</div>
+<div class="line"><span class="lineno">  460</span>        print(f<span class="stringliteral">&quot;Error: {str(e)}&quot;</span>)</div>
+<div class="line"><span class="lineno">  461</span>        sys.exit(1)</div>
+<div class="line"><span class="lineno">  462</span> </div>
+<div class="line"><span class="lineno">  463</span> </div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="../../d7/dc6/cli_8py_source.html#l00347">commonpython.cli.cli.create_parser()</a>, and <a class="el" href="../../d7/dc6/cli_8py_source.html#l00409">commonpython.cli.cli.main()</a>.</p>
 
