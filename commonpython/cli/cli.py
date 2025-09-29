@@ -419,9 +419,11 @@ def main():
         parser.print_help()
         return
     
-    cli = CLI(args.config)
-    
+    cli = None
     try:
+        if args.command != 'help':
+            cli = CLI(args.config)
+            
         if args.command == 'database':
             if args.db_command == 'test':
                 cli.test_database()
