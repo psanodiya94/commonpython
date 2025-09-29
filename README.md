@@ -2,8 +2,9 @@
 
 A comprehensive Python framework providing configuration management, logging, database connectivity, message queue operations, and command-line interface functionality using only standard Python modules and IBM CLI interfaces.
 
-[![Python Version](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/downloads/)
-[![Tests](https://img.shields.io/badge/tests-130%20passed-brightgreen.svg)](scripts/test_commonpython.py)
+[![Python Version](https://img.shields.io/badge/python-3.12%2B-blue.svg)](https://www.python.org/downloads/)
+[![Tests](https://img.shields.io/badge/tests-225%20passed-brightgreen.svg)](scripts/test_commonpython.py)
+[![Coverage](https://img.shields.io/badge/coverage-89%25-green.svg)](scripts/test_commonpython.py)
 
 ## 🚀 Quick Start
 
@@ -52,10 +53,13 @@ python examples/quick_start.py
 
 ## 📋 Requirements
 
-- Python 3.8 or higher
+- Python 3.12 or higher (tested with 3.12.3)
 - IBM DB2 CLI tools (for database operations)
 - IBM MQ CLI tools (for messaging operations)
-- Coverage (for testing only)
+- Coverage 7.0.0 or higher (for testing)
+- PyYAML (for configuration handling)
+
+Note: The framework is actively tested with Python 3.12.3 but may work with earlier versions.
 
 ## 🎯 For New Users
 
