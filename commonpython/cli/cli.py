@@ -246,19 +246,19 @@ class CLI:
         """
         if not self._setup_messaging():
             sys.exit(1)
-        
         try:
             # Parse message properties if provided
             message_properties = None
             if properties:
-                message_properties = json.loads(properties)
-            
+                try:
+                    message_properties = json.loads(properties)
+                except json.JSONDecodeError:
+                    message_properties = None
             # Try to parse message as JSON, fallback to string
             try:
                 message_data = json.loads(message)
             except json.JSONDecodeError:
                 message_data = message
-            
             success = self.mq_manager.put_message(queue_name, message_data, message_properties)
             if success:
                 print(f"Message sent to queue {queue_name}")
