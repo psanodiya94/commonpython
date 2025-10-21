@@ -33,7 +33,7 @@ pip install -e ".[library]"
 pip install -e ".[all]"
 ```
 
-> 📖 **[Complete Installation Guide](INSTALLATION.md)** - Detailed instructions for all scenarios
+> 📖 **[Complete Installation Guide](docs/INSTALLATION.md)** - Detailed instructions for all scenarios
 
 ### 2. Create Your First Component
 
@@ -65,7 +65,7 @@ python examples/quick_start.py
 - **🔄 Adapter Pattern**: Seamlessly switch between CLI and library implementations via configuration
 - **💻 Command Line Interface**: Full-featured CLI for all operations
 - **🧩 Component Framework**: Common framework for building components with shared functionality
-- **🧪 Testing**: Comprehensive test suite with 295+ tests and coverage reporting
+- **🧪 Testing**: Comprehensive test suite with 295+ tests using Python's unittest framework
 - **📚 Documentation**: Complete Doxygen-style documentation and architecture guides
 - **🚀 Zero Migration Cost**: Switch implementations without changing application code
 
@@ -226,9 +226,22 @@ pip install -e .
 
 ### Dependencies
 
-The framework uses only standard Python modules with the following optional dependencies:
+The framework has minimal dependencies to keep it lightweight:
 
-- `coverage>=7.0.0` (for testing only)
+**Mandatory:**
+- `PyYAML>=6.0` - Configuration file parsing
+
+**Optional (Testing):**
+- `coverage>=7.0.0` - Test coverage reporting with Python's unittest
+
+**Optional (Development):**
+- `black>=23.0.0` - Code formatting
+- `ruff>=0.1.0` - Code linting
+- `mypy>=1.0.0` - Type checking
+
+**Optional (IBM Integration):**
+- `ibm_db>=3.0.0` - Native DB2 library adapter
+- `pymqi>=1.12.0` - Native MQ library adapter
 
 ## Configuration
 
@@ -391,83 +404,102 @@ python my_component.py --config config/component_config.yaml --verbose
 
 ## Testing
 
-### Run Basic Tests
+The framework uses Python's built-in **unittest** framework (no third-party test frameworks required).
+
+### Run All Tests
 
 ```bash
-# Run basic test suite
-python test_framework_basic.py
+# Run all tests
+python -m unittest discover -s test -p "test_*.py" -v
 
-# Or use the test runner
-python test/run_tests.py
+# Or use the test script
+python scripts/test_commonpython.py
 ```
 
-### Run Comprehensive Tests
+### Run Tests with Coverage
 
 ```bash
-# Run comprehensive test suite
-python test_framework.py
+# Install coverage (optional)
+pip install coverage
 
-# Run with coverage
-python test_framework.py --coverage
+# Run tests with coverage
+coverage run -m unittest discover -s test -p "test_*.py" -v
+coverage report -m
+coverage html  # Generate HTML report in htmlcov/
 ```
 
-### Individual Test Modules
+### Run Individual Test Modules
 
 ```bash
 # Run specific test modules
-python -m unittest test.test_config_manager
-python -m unittest test.test_logger_manager
-python -m unittest test.test_db2_manager
-python -m unittest test.test_mq_manager
-python -m unittest test.test_cli
+python -m unittest test.test_config_manager -v
+python -m unittest test.test_logger_manager -v
+python -m unittest test.test_db2_manager -v
+python -m unittest test.test_mq_manager -v
+python -m unittest test.test_cli -v
 ```
+
+### Test Structure
+
+All tests use Python's standard `unittest` framework:
+- No pytest or other third-party test frameworks
+- All test files follow the pattern `test_*.py`
+- Tests can be run individually or as a complete suite
+- Coverage reporting uses the `coverage` package
 
 ## Architecture
 
-### Module Structure
+### Repository Structure
 
 ```text
 commonpython/
-├── commonpython/
-│   ├── __init__.py              # Main package
-│   ├── config/
-│   │   ├── __init__.py          # Config module
-│   │   └── config_manager.py   # Configuration management
-│   ├── logging/
-│   │   ├── __init__.py          # Logging module
-│   │   └── logger_manager.py   # Logging functionality
-│   ├── database/
-│   │   ├── __init__.py          # Database module
-│   │   └── db2_manager.py       # DB2 operations via CLI
-│   ├── messaging/
-│   │   ├── __init__.py          # Messaging module
-│   │   └── mq_manager.py        # MQ operations via CLI
-│   └── cli/
-│       ├── __init__.py          # CLI module
-│       └── cli.py               # Command-line interface
-├── test/
-│   ├── __init__.py              # Test package
-│   ├── test_config_manager.py   # Configuration tests
-│   ├── test_logger_manager.py   # Logging tests
-│   ├── test_db2_manager.py      # Database tests
-│   ├── test_mq_manager.py       # Messaging tests
-│   ├── test_cli.py             # CLI tests
-│   └── run_tests.py            # Test runner
-├── config.yaml                 # Example configuration
-├── requirements.txt            # Dependencies
-├── setup.py                    # Setup script
-├── test_framework.py          # Test framework
-└── README.md                   # Documentation
+├── commonpython/               # Main package
+│   ├── adapters/              # Adapter pattern implementations
+│   ├── cli/                   # Command-line interface
+│   ├── config/                # Configuration management
+│   ├── database/              # Database operations
+│   ├── factories/             # Factory pattern for adapters
+│   ├── framework/             # Component framework
+│   ├── interfaces/            # Abstract interfaces
+│   ├── logging/               # Logging functionality
+│   └── messaging/             # Message queue operations
+├── config/                    # Configuration examples
+│   ├── config.yaml           # Main config example
+│   └── component_config.yaml # Component config example
+├── docs/                      # Documentation
+│   ├── ADAPTER_ARCHITECTURE.md
+│   ├── CHANGELOG.md
+│   ├── CONTRIBUTING.md
+│   ├── DEVELOPMENT_GUIDE.md
+│   ├── Doxyfile              # Doxygen configuration
+│   ├── IMPLEMENTATION_SUMMARY.md
+│   ├── IMPROVEMENTS.md
+│   └── INSTALLATION.md
+├── examples/                  # Example code
+│   ├── component_template.py
+│   └── quick_start.py
+├── scripts/                   # Utility scripts
+│   └── test_commonpython.py  # Test runner
+├── test/                      # Test suite (unittest)
+│   ├── test_*.py             # Test modules
+│   └── __init__.py
+├── .gitignore                # Git ignore rules
+├── LICENSE                   # MIT License
+├── pyproject.toml            # Project metadata (modern)
+├── README.md                 # This file
+├── requirements.txt          # Test dependencies
+└── setup.py                  # Setup script (legacy compat)
 ```
 
 ### Key Design Principles
 
-1. **Standard Library Only**: Uses only Python standard library modules
-2. **CLI Interface**: Uses IBM CLI tools instead of SDK modules
-3. **Comprehensive Testing**: Full test coverage with detailed reporting
-4. **Documentation**: Complete Doxygen-style documentation
-5. **Configuration**: Flexible configuration management
-6. **Logging**: Structured logging with multiple output formats
+1. **Minimal Dependencies**: Only PyYAML required; everything else is optional
+2. **Adapter Pattern**: Switch between CLI and library implementations seamlessly
+3. **unittest Framework**: All tests use Python's built-in unittest (no pytest)
+4. **Comprehensive Testing**: Full test coverage with unittest and coverage reporting
+5. **Complete Documentation**: Doxygen-style docs and architecture guides in docs/
+6. **Flexible Configuration**: YAML-based with environment variable support
+7. **Structured Logging**: Multiple output formats (console, JSON, colored)
 
 ## IBM CLI Requirements
 
@@ -586,9 +618,12 @@ logging:
 ## 📚 Additional Resources
 
 - **[Development Guide](docs/DEVELOPMENT_GUIDE.md)**: Comprehensive guide for developers
+- **[Adapter Architecture](docs/ADAPTER_ARCHITECTURE.md)**: Migration guide and design details
+- **[Installation Guide](docs/INSTALLATION.md)**: Detailed installation instructions
+- **[Changelog](docs/CHANGELOG.md)**: Version history and changes
+- **[Contributing](docs/CONTRIBUTING.md)**: How to contribute to the project
 - **[Examples](examples/)**: Working examples of components
-- **[Templates](examples/)**: Component templates for quick start
-- **[Test Suite](scripts/test_commonpython.py)**: Comprehensive test framework
+- **[Test Suite](scripts/test_commonpython.py)**: Comprehensive unittest-based test framework
 
 ## Support
 
