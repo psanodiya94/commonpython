@@ -3,6 +3,12 @@
 
 # Database configuration for IBM DB2
 database:
+  # Implementation type: 'cli' (default) or 'library' (requires ibm_db)
+  implementation: cli
+  # Auto fallback to CLI if library is not available
+  auto_fallback: true
+
+  # Connection details
   host: localhost
   port: 50000
   name: testdb
@@ -13,6 +19,12 @@ database:
 
 # Messaging configuration for IBM MQ
 messaging:
+  # Implementation type: 'cli' (default) or 'library' (requires pymqi)
+  implementation: cli
+  # Auto fallback to CLI if library is not available
+  auto_fallback: true
+
+  # Connection details
   host: localhost
   port: 1414
   queue_manager: QM1
