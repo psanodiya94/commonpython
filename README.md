@@ -11,14 +11,29 @@ A comprehensive Python framework providing configuration management, logging, da
 
 ### 1. Installation
 
+#### Option A: Minimal Install (Mandatory Only)
 ```bash
 # Clone the repository
 git clone <repository-url>
 cd commonpython
 
-# Install in development mode
+# Install core framework only
 pip install -e .
 ```
+
+#### Option B: High Performance (Recommended)
+```bash
+# Install with library adapters for 10-50x better performance
+pip install -e ".[library]"
+```
+
+#### Option C: Full Development Setup
+```bash
+# Install everything (libraries + testing tools)
+pip install -e ".[all]"
+```
+
+> 📖 **[Complete Installation Guide](INSTALLATION.md)** - Detailed instructions for all scenarios
 
 ### 2. Create Your First Component
 
@@ -56,27 +71,48 @@ python examples/quick_start.py
 
 ## 📋 Requirements
 
-### Core Requirements
-- Python 3.12 or higher (tested with 3.12.3)
-- PyYAML (for configuration handling)
-- Coverage 7.0.0 or higher (for testing)
+### ✅ Mandatory (Always Required)
 
-### Implementation-Specific Requirements
+| Requirement | Version | Purpose | Install |
+|-------------|---------|---------|---------|
+| **Python** | 3.12+ | Core runtime | [Download](https://www.python.org/downloads/) |
+| **PyYAML** | Latest | Configuration parsing | `pip install pyyaml` |
 
-**CLI Implementation** (Default - Always Available):
-- IBM DB2 CLI tools (for database operations)
-- IBM MQ CLI tools (for messaging operations)
+### ⚙️ Optional - For CLI Implementation (Default)
 
-**Library Implementation** (Optional - Better Performance):
-- `ibm_db` - For native DB2 database operations
-- `pymqi` - For native IBM MQ messaging operations
+| Requirement | Purpose | Status |
+|-------------|---------|--------|
+| **IBM DB2 CLI tools** | Database operations via CLI | Optional - Only if using database |
+| **IBM MQ CLI tools** | Messaging operations via CLI | Optional - Only if using messaging |
 
-Install library dependencies with:
+> 💡 **Note**: CLI implementation works without Python libraries but requires IBM CLI tools installed and in PATH.
+
+### 🚀 Optional - For Library Implementation (Better Performance)
+
+| Package | Purpose | Performance Gain | Install |
+|---------|---------|------------------|---------|
+| **ibm_db** | Native DB2 operations | 10-50x faster | `pip install ibm_db` |
+| **pymqi** | Native MQ operations | 10-50x faster | `pip install pymqi` |
+
+Install all library dependencies:
 ```bash
 pip install ibm_db pymqi
 ```
 
-Note: The framework is actively tested with Python 3.12.3 but may work with earlier versions.
+> 💡 **Note**: Library implementations are **optional**. The framework automatically falls back to CLI if libraries aren't installed.
+
+### 🧪 Optional - For Development & Testing
+
+| Package | Version | Purpose | Install |
+|---------|---------|---------|---------|
+| **coverage** | 7.0.0+ | Code coverage analysis | `pip install coverage` |
+
+---
+
+**Compatibility Notes:**
+- ✅ Framework tested with Python 3.12.3
+- ⚠️ May work with Python 3.8+ (untested)
+- 🔄 Auto-fallback: Library → CLI if dependencies missing
 
 ## 🏗️ Architecture: Adapter Pattern
 
