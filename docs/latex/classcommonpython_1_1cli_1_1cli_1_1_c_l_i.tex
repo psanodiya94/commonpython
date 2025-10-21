@@ -1,0 +1,376 @@
+\doxysection{commonpython.\+cli.\+cli.\+CLI Class Reference}
+\hypertarget{classcommonpython_1_1cli_1_1cli_1_1_c_l_i}{}\label{classcommonpython_1_1cli_1_1cli_1_1_c_l_i}\index{commonpython.cli.cli.CLI@{commonpython.cli.cli.CLI}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a99330c8082d7fb8c586eda7e52eee397}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, Optional\mbox{[}str\mbox{]} \mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a0e7f5f2bb6a4bf985d390dd7b2929654}{config\+\_\+file}}=None)
+\item 
+None \mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a16c2f6fe657560399d1a4f3bd5f563ab}{test\+\_\+database}} (self)
+\item 
+None \mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a6f385c3d725bfb3c1a901c7d702627e0}{execute\+\_\+query}} (self, str query, Optional\mbox{[}str\mbox{]} params=None)
+\item 
+None \mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_ad7e1799bc52e9ae732cddeb43e6ec083}{get\+\_\+table\+\_\+info}} (self, str table\+\_\+name)
+\item 
+None \mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a6da3814194d7512377ad5099f41abaf2}{test\+\_\+messaging}} (self)
+\item 
+None \mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a3f977116a5cf6d8c00f2bb246cfef782}{get\+\_\+message}} (self, str queue\+\_\+name, Optional\mbox{[}int\mbox{]} timeout=None)
+\item 
+None \mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a8aadb5626fc6f25b75fdddbd7e978faa}{put\+\_\+message}} (self, str queue\+\_\+name, str message, Optional\mbox{[}str\mbox{]} properties=None)
+\item 
+None \mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a5b831c5dbe6824d9e2c27a673daf3ef1}{get\+\_\+queue\+\_\+depth}} (self, str queue\+\_\+name)
+\item 
+None \mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a5b97312ff83dc76429a4a924fbd01fb1}{show\+\_\+config}} (self)
+\item 
+None \mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a7a7b77e0c66c54b9c5c97a3fd0c584c9}{get\+\_\+config}} (self, str key)
+\item 
+None \mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_ad2844c1a7bd2fda408ae5995f2567162}{set\+\_\+config}} (self, str key, str value)
+\item 
+None \mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a167dfb23681ed2d0caa8796d0a432166}{test\+\_\+all}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a0e7f5f2bb6a4bf985d390dd7b2929654}{config\+\_\+file}} = config\+\_\+file
+\item 
+\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a3cebcea48127bb73ccf8a7dad0657c3a}{config\+\_\+manager}} = None
+\item 
+\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a47e703c4566d85ac1468b685558e40c0}{logger\+\_\+manager}} = None
+\item 
+\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a8d61839c0c1dcc19c8b7dd4f6435ed9b}{db\+\_\+manager}} = None
+\item 
+\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a58f27211f0b21773ec26f5062b9f3558}{mq\+\_\+manager}} = None
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+None \mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_ae8b52470216cf97426636b06a151df1a}{\+\_\+initialize\+\_\+components}} (self)
+\item 
+bool \mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_af44ec25e783d6ebcc3674731d3d10f75}{\+\_\+setup\+\_\+database}} (self)
+\item 
+bool \mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a0a650b67088eade813342c1a2c930667}{\+\_\+setup\+\_\+messaging}} (self)
+\item 
+None \mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_ae6928d446a98c9c86e7435eb46d842e3}{\+\_\+display\+\_\+results}} (self, Any results, str title="{}Results"{})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Command-line interface for the CommonPython framework.
+
+Provides interactive and non-interactive access to framework functionality
+using only standard Python modules.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{cli_8py_source_l00019}{19}} of file \mbox{\hyperlink{cli_8py_source}{cli.\+py}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a99330c8082d7fb8c586eda7e52eee397}\index{commonpython.cli.cli.CLI@{commonpython.cli.cli.CLI}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!commonpython.cli.cli.CLI@{commonpython.cli.cli.CLI}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a99330c8082d7fb8c586eda7e52eee397} 
+commonpython.\+cli.\+cli.\+CLI.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Optional\mbox{[}str\mbox{]} }]{config\+\_\+file}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Initialize the CLI.
+
+@brief Initialize CLI with configuration file support.
+@param config_file Path to configuration file
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{cli_8py_source_l00027}{27}} of file \mbox{\hyperlink{cli_8py_source}{cli.\+py}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_ae6928d446a98c9c86e7435eb46d842e3}\index{commonpython.cli.cli.CLI@{commonpython.cli.cli.CLI}!\_display\_results@{\_display\_results}}
+\index{\_display\_results@{\_display\_results}!commonpython.cli.cli.CLI@{commonpython.cli.cli.CLI}}
+\doxysubsubsection{\texorpdfstring{\_display\_results()}{\_display\_results()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_ae6928d446a98c9c86e7435eb46d842e3} 
+ None commonpython.\+cli.\+cli.\+CLI.\+\_\+display\+\_\+results (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Any}]{results}{, }\item[{str }]{title}{ = {\ttfamily "{}Results"{}}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Display results in a formatted table.
+
+@brief Display results in a readable format.
+@param results Results to display
+@param title Title for the results
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{cli_8py_source_l00098}{98}} of file \mbox{\hyperlink{cli_8py_source}{cli.\+py}}.
+
+\Hypertarget{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_ae8b52470216cf97426636b06a151df1a}\index{commonpython.cli.cli.CLI@{commonpython.cli.cli.CLI}!\_initialize\_components@{\_initialize\_components}}
+\index{\_initialize\_components@{\_initialize\_components}!commonpython.cli.cli.CLI@{commonpython.cli.cli.CLI}}
+\doxysubsubsection{\texorpdfstring{\_initialize\_components()}{\_initialize\_components()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_ae8b52470216cf97426636b06a151df1a} 
+ None commonpython.\+cli.\+cli.\+CLI.\+\_\+initialize\+\_\+components (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Initialize framework components.
+
+@brief Initialize configuration, logging, database, and messaging managers.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{cli_8py_source_l00043}{43}} of file \mbox{\hyperlink{cli_8py_source}{cli.\+py}}.
+
+\Hypertarget{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_af44ec25e783d6ebcc3674731d3d10f75}\index{commonpython.cli.cli.CLI@{commonpython.cli.cli.CLI}!\_setup\_database@{\_setup\_database}}
+\index{\_setup\_database@{\_setup\_database}!commonpython.cli.cli.CLI@{commonpython.cli.cli.CLI}}
+\doxysubsubsection{\texorpdfstring{\_setup\_database()}{\_setup\_database()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_af44ec25e783d6ebcc3674731d3d10f75} 
+ bool commonpython.\+cli.\+cli.\+CLI.\+\_\+setup\+\_\+database (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Setup database connection.
+
+@brief Establish database connection.
+@return True if connection successful, False otherwise
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{cli_8py_source_l00072}{72}} of file \mbox{\hyperlink{cli_8py_source}{cli.\+py}}.
+
+\Hypertarget{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a0a650b67088eade813342c1a2c930667}\index{commonpython.cli.cli.CLI@{commonpython.cli.cli.CLI}!\_setup\_messaging@{\_setup\_messaging}}
+\index{\_setup\_messaging@{\_setup\_messaging}!commonpython.cli.cli.CLI@{commonpython.cli.cli.CLI}}
+\doxysubsubsection{\texorpdfstring{\_setup\_messaging()}{\_setup\_messaging()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a0a650b67088eade813342c1a2c930667} 
+ bool commonpython.\+cli.\+cli.\+CLI.\+\_\+setup\+\_\+messaging (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Setup messaging connection.
+
+@brief Establish messaging connection.
+@return True if connection successful, False otherwise
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{cli_8py_source_l00085}{85}} of file \mbox{\hyperlink{cli_8py_source}{cli.\+py}}.
+
+\Hypertarget{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a6f385c3d725bfb3c1a901c7d702627e0}\index{commonpython.cli.cli.CLI@{commonpython.cli.cli.CLI}!execute\_query@{execute\_query}}
+\index{execute\_query@{execute\_query}!commonpython.cli.cli.CLI@{commonpython.cli.cli.CLI}}
+\doxysubsubsection{\texorpdfstring{execute\_query()}{execute\_query()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a6f385c3d725bfb3c1a901c7d702627e0} 
+ None commonpython.\+cli.\+cli.\+CLI.\+execute\+\_\+query (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{query}{, }\item[{Optional\mbox{[}str\mbox{]} }]{params}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Execute a database query.
+
+@brief Execute database query and display results.
+@param query SQL query to execute
+@param params Query parameters as JSON string
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{cli_8py_source_l00155}{155}} of file \mbox{\hyperlink{cli_8py_source}{cli.\+py}}.
+
+\Hypertarget{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a7a7b77e0c66c54b9c5c97a3fd0c584c9}\index{commonpython.cli.cli.CLI@{commonpython.cli.cli.CLI}!get\_config@{get\_config}}
+\index{get\_config@{get\_config}!commonpython.cli.cli.CLI@{commonpython.cli.cli.CLI}}
+\doxysubsubsection{\texorpdfstring{get\_config()}{get\_config()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a7a7b77e0c66c54b9c5c97a3fd0c584c9} 
+ None commonpython.\+cli.\+cli.\+CLI.\+get\+\_\+config (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{key}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get a configuration value.
+
+@brief Get specific configuration value.
+@param key Configuration key
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{cli_8py_source_l00302}{302}} of file \mbox{\hyperlink{cli_8py_source}{cli.\+py}}.
+
+\Hypertarget{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a3f977116a5cf6d8c00f2bb246cfef782}\index{commonpython.cli.cli.CLI@{commonpython.cli.cli.CLI}!get\_message@{get\_message}}
+\index{get\_message@{get\_message}!commonpython.cli.cli.CLI@{commonpython.cli.cli.CLI}}
+\doxysubsubsection{\texorpdfstring{get\_message()}{get\_message()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a3f977116a5cf6d8c00f2bb246cfef782} 
+ None commonpython.\+cli.\+cli.\+CLI.\+get\+\_\+message (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{queue\+\_\+name}{, }\item[{Optional\mbox{[}int\mbox{]} }]{timeout}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get a message from queue.
+
+@brief Get message from queue and display results.
+@param queue_name Name of the queue
+@param timeout Timeout in seconds
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{cli_8py_source_l00217}{217}} of file \mbox{\hyperlink{cli_8py_source}{cli.\+py}}.
+
+\Hypertarget{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a5b831c5dbe6824d9e2c27a673daf3ef1}\index{commonpython.cli.cli.CLI@{commonpython.cli.cli.CLI}!get\_queue\_depth@{get\_queue\_depth}}
+\index{get\_queue\_depth@{get\_queue\_depth}!commonpython.cli.cli.CLI@{commonpython.cli.cli.CLI}}
+\doxysubsubsection{\texorpdfstring{get\_queue\_depth()}{get\_queue\_depth()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a5b831c5dbe6824d9e2c27a673daf3ef1} 
+ None commonpython.\+cli.\+cli.\+CLI.\+get\+\_\+queue\+\_\+depth (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{queue\+\_\+name}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get queue depth.
+
+@brief Get queue depth and display results.
+@param queue_name Name of the queue
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{cli_8py_source_l00272}{272}} of file \mbox{\hyperlink{cli_8py_source}{cli.\+py}}.
+
+\Hypertarget{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_ad7e1799bc52e9ae732cddeb43e6ec083}\index{commonpython.cli.cli.CLI@{commonpython.cli.cli.CLI}!get\_table\_info@{get\_table\_info}}
+\index{get\_table\_info@{get\_table\_info}!commonpython.cli.cli.CLI@{commonpython.cli.cli.CLI}}
+\doxysubsubsection{\texorpdfstring{get\_table\_info()}{get\_table\_info()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_ad7e1799bc52e9ae732cddeb43e6ec083} 
+ None commonpython.\+cli.\+cli.\+CLI.\+get\+\_\+table\+\_\+info (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{table\+\_\+name}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get table information.
+
+@brief Get table metadata and display results.
+@param table_name Name of the table
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{cli_8py_source_l00184}{184}} of file \mbox{\hyperlink{cli_8py_source}{cli.\+py}}.
+
+\Hypertarget{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a8aadb5626fc6f25b75fdddbd7e978faa}\index{commonpython.cli.cli.CLI@{commonpython.cli.cli.CLI}!put\_message@{put\_message}}
+\index{put\_message@{put\_message}!commonpython.cli.cli.CLI@{commonpython.cli.cli.CLI}}
+\doxysubsubsection{\texorpdfstring{put\_message()}{put\_message()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a8aadb5626fc6f25b75fdddbd7e978faa} 
+ None commonpython.\+cli.\+cli.\+CLI.\+put\+\_\+message (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{queue\+\_\+name}{, }\item[{str}]{message}{, }\item[{Optional\mbox{[}str\mbox{]} }]{properties}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Put a message to queue.
+
+@brief Send message to queue.
+@param queue_name Name of the queue
+@param message Message content
+@param properties Message properties as JSON string
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{cli_8py_source_l00238}{238}} of file \mbox{\hyperlink{cli_8py_source}{cli.\+py}}.
+
+\Hypertarget{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_ad2844c1a7bd2fda408ae5995f2567162}\index{commonpython.cli.cli.CLI@{commonpython.cli.cli.CLI}!set\_config@{set\_config}}
+\index{set\_config@{set\_config}!commonpython.cli.cli.CLI@{commonpython.cli.cli.CLI}}
+\doxysubsubsection{\texorpdfstring{set\_config()}{set\_config()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_ad2844c1a7bd2fda408ae5995f2567162} 
+ None commonpython.\+cli.\+cli.\+CLI.\+set\+\_\+config (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{key}{, }\item[{str}]{value}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Set a configuration value.
+
+@brief Set configuration value.
+@param key Configuration key
+@param value Configuration value
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{cli_8py_source_l00312}{312}} of file \mbox{\hyperlink{cli_8py_source}{cli.\+py}}.
+
+\Hypertarget{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a5b97312ff83dc76429a4a924fbd01fb1}\index{commonpython.cli.cli.CLI@{commonpython.cli.cli.CLI}!show\_config@{show\_config}}
+\index{show\_config@{show\_config}!commonpython.cli.cli.CLI@{commonpython.cli.cli.CLI}}
+\doxysubsubsection{\texorpdfstring{show\_config()}{show\_config()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a5b97312ff83dc76429a4a924fbd01fb1} 
+ None commonpython.\+cli.\+cli.\+CLI.\+show\+\_\+config (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Show current configuration.
+
+@brief Display current configuration.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{cli_8py_source_l00293}{293}} of file \mbox{\hyperlink{cli_8py_source}{cli.\+py}}.
+
+\Hypertarget{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a167dfb23681ed2d0caa8796d0a432166}\index{commonpython.cli.cli.CLI@{commonpython.cli.cli.CLI}!test\_all@{test\_all}}
+\index{test\_all@{test\_all}!commonpython.cli.cli.CLI@{commonpython.cli.cli.CLI}}
+\doxysubsubsection{\texorpdfstring{test\_all()}{test\_all()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a167dfb23681ed2d0caa8796d0a432166} 
+ None commonpython.\+cli.\+cli.\+CLI.\+test\+\_\+all (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test all framework components.
+
+@brief Test all framework components and display results.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{cli_8py_source_l00323}{323}} of file \mbox{\hyperlink{cli_8py_source}{cli.\+py}}.
+
+\Hypertarget{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a16c2f6fe657560399d1a4f3bd5f563ab}\index{commonpython.cli.cli.CLI@{commonpython.cli.cli.CLI}!test\_database@{test\_database}}
+\index{test\_database@{test\_database}!commonpython.cli.cli.CLI@{commonpython.cli.cli.CLI}}
+\doxysubsubsection{\texorpdfstring{test\_database()}{test\_database()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a16c2f6fe657560399d1a4f3bd5f563ab} 
+ None commonpython.\+cli.\+cli.\+CLI.\+test\+\_\+database (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test database connection.
+
+@brief Test database connection and display results.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{cli_8py_source_l00139}{139}} of file \mbox{\hyperlink{cli_8py_source}{cli.\+py}}.
+
+\Hypertarget{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a6da3814194d7512377ad5099f41abaf2}\index{commonpython.cli.cli.CLI@{commonpython.cli.cli.CLI}!test\_messaging@{test\_messaging}}
+\index{test\_messaging@{test\_messaging}!commonpython.cli.cli.CLI@{commonpython.cli.cli.CLI}}
+\doxysubsubsection{\texorpdfstring{test\_messaging()}{test\_messaging()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a6da3814194d7512377ad5099f41abaf2} 
+ None commonpython.\+cli.\+cli.\+CLI.\+test\+\_\+messaging (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test MQ connection.
+
+@brief Test messaging connection and display results.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{cli_8py_source_l00201}{201}} of file \mbox{\hyperlink{cli_8py_source}{cli.\+py}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a0e7f5f2bb6a4bf985d390dd7b2929654}\index{commonpython.cli.cli.CLI@{commonpython.cli.cli.CLI}!config\_file@{config\_file}}
+\index{config\_file@{config\_file}!commonpython.cli.cli.CLI@{commonpython.cli.cli.CLI}}
+\doxysubsubsection{\texorpdfstring{config\_file}{config\_file}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a0e7f5f2bb6a4bf985d390dd7b2929654} 
+commonpython.\+cli.\+cli.\+CLI.\+config\+\_\+file = config\+\_\+file}
+
+
+
+Definition at line \mbox{\hyperlink{cli_8py_source_l00034}{34}} of file \mbox{\hyperlink{cli_8py_source}{cli.\+py}}.
+
+\Hypertarget{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a3cebcea48127bb73ccf8a7dad0657c3a}\index{commonpython.cli.cli.CLI@{commonpython.cli.cli.CLI}!config\_manager@{config\_manager}}
+\index{config\_manager@{config\_manager}!commonpython.cli.cli.CLI@{commonpython.cli.cli.CLI}}
+\doxysubsubsection{\texorpdfstring{config\_manager}{config\_manager}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a3cebcea48127bb73ccf8a7dad0657c3a} 
+commonpython.\+cli.\+cli.\+CLI.\+config\+\_\+manager = None}
+
+
+
+Definition at line \mbox{\hyperlink{cli_8py_source_l00035}{35}} of file \mbox{\hyperlink{cli_8py_source}{cli.\+py}}.
+
+\Hypertarget{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a8d61839c0c1dcc19c8b7dd4f6435ed9b}\index{commonpython.cli.cli.CLI@{commonpython.cli.cli.CLI}!db\_manager@{db\_manager}}
+\index{db\_manager@{db\_manager}!commonpython.cli.cli.CLI@{commonpython.cli.cli.CLI}}
+\doxysubsubsection{\texorpdfstring{db\_manager}{db\_manager}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a8d61839c0c1dcc19c8b7dd4f6435ed9b} 
+commonpython.\+cli.\+cli.\+CLI.\+db\+\_\+manager = None}
+
+
+
+Definition at line \mbox{\hyperlink{cli_8py_source_l00037}{37}} of file \mbox{\hyperlink{cli_8py_source}{cli.\+py}}.
+
+\Hypertarget{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a47e703c4566d85ac1468b685558e40c0}\index{commonpython.cli.cli.CLI@{commonpython.cli.cli.CLI}!logger\_manager@{logger\_manager}}
+\index{logger\_manager@{logger\_manager}!commonpython.cli.cli.CLI@{commonpython.cli.cli.CLI}}
+\doxysubsubsection{\texorpdfstring{logger\_manager}{logger\_manager}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a47e703c4566d85ac1468b685558e40c0} 
+commonpython.\+cli.\+cli.\+CLI.\+logger\+\_\+manager = None}
+
+
+
+Definition at line \mbox{\hyperlink{cli_8py_source_l00036}{36}} of file \mbox{\hyperlink{cli_8py_source}{cli.\+py}}.
+
+\Hypertarget{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a58f27211f0b21773ec26f5062b9f3558}\index{commonpython.cli.cli.CLI@{commonpython.cli.cli.CLI}!mq\_manager@{mq\_manager}}
+\index{mq\_manager@{mq\_manager}!commonpython.cli.cli.CLI@{commonpython.cli.cli.CLI}}
+\doxysubsubsection{\texorpdfstring{mq\_manager}{mq\_manager}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a58f27211f0b21773ec26f5062b9f3558} 
+commonpython.\+cli.\+cli.\+CLI.\+mq\+\_\+manager = None}
+
+
+
+Definition at line \mbox{\hyperlink{cli_8py_source_l00038}{38}} of file \mbox{\hyperlink{cli_8py_source}{cli.\+py}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+commonpython/cli/\mbox{\hyperlink{cli_8py}{cli.\+py}}\end{DoxyCompactItemize}

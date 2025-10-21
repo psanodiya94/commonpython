@@ -1,0 +1,381 @@
+\doxysection{test\+\_\+logger\+\_\+manager.\+py}
+\hypertarget{test__logger__manager_8py_source}{}\label{test__logger__manager_8py_source}\index{test/test\_logger\_manager.py@{test/test\_logger\_manager.py}}
+\mbox{\hyperlink{test__logger__manager_8py}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00001}\mbox{\hyperlink{namespacetest_1_1test__logger__manager}{00001}}\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00002}00002\ \textcolor{stringliteral}{Test\ cases\ for\ LoggerManager}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00003}00003\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00004}00004\ \textcolor{stringliteral}{Tests\ logging\ functionality\ using\ only\ standard\ Python\ modules.}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00005}00005\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00007}00007\ \textcolor{keyword}{import}\ unittest}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00008}00008\ \textcolor{keyword}{import}\ tempfile}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00009}00009\ \textcolor{keyword}{import}\ os}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00010}00010\ \textcolor{keyword}{import}\ logging}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00011}00011\ \textcolor{keyword}{import}\ json}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00012}00012\ \textcolor{keyword}{from}\ unittest.mock\ \textcolor{keyword}{import}\ patch,\ MagicMock}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00013}00013\ \textcolor{keyword}{import}\ sys}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00014}00014\ \textcolor{keyword}{from}\ pathlib\ \textcolor{keyword}{import}\ Path}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00015}00015\ \textcolor{keyword}{import}\ time}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00017}00017\ \textcolor{comment}{\#\ Add\ the\ parent\ directory\ to\ the\ path\ to\ import\ the\ module}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00018}00018\ sys.path.insert(0,\ str(Path(\_\_file\_\_).parent.parent))}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00020}00020\ \textcolor{keyword}{from}\ \mbox{\hyperlink{namespacecommonpython_1_1logging_1_1logger__manager}{commonpython.logging.logger\_manager}}\ \textcolor{keyword}{import}\ LoggerManager,\ JSONFormatter,\ ColoredFormatter}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00023}\mbox{\hyperlink{namespacetest_1_1test__logger__manager_a587943d782d6dc6406a53256f1221fe6}{00023}}\ \textcolor{keyword}{def\ }\mbox{\hyperlink{namespacetest_1_1test__logger__manager_a587943d782d6dc6406a53256f1221fe6}{safe\_remove}}(filepath,\ retries=5,\ delay=0.2):}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00024}00024\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Try\ to\ remove\ a\ file\ with\ retries\ to\ avoid\ Windows\ PermissionError."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00025}00025\ \ \ \ \ \textcolor{keywordflow}{for}\ \_\ \textcolor{keywordflow}{in}\ range(retries):}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00026}00026\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ os.remove(filepath)}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00029}00029\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ PermissionError:}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ time.sleep(delay)}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00031}00031\ \ \ \ \ \textcolor{comment}{\#\ Last\ attempt}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00032}00032\ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00033}00033\ \ \ \ \ \ \ \ \ os.remove(filepath)}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00034}00034\ \ \ \ \ \textcolor{keywordflow}{except}\ PermissionError:}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00035}00035\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ sys.platform.startswith(\textcolor{stringliteral}{'win'}):}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{pass}\ \ \textcolor{comment}{\#\ Skip\ deletion\ on\ Windows\ if\ still\ locked}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00037}00037\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00041}\mbox{\hyperlink{classtest_1_1test__logger__manager_1_1_test_logger_manager}{00041}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtest_1_1test__logger__manager_1_1_test_logger_manager}{TestLoggerManager}}(unittest.TestCase):}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00042}00042\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00043}00043\ \textcolor{stringliteral}{\ \ \ \ Test\ cases\ for\ LoggerManager\ class.}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00044}00044\ \textcolor{stringliteral}{\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00045}00045\ \textcolor{stringliteral}{\ \ \ \ @brief\ Comprehensive\ test\ suite\ for\ logging\ functionality.}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00046}00046\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00047}00047\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00048}\mbox{\hyperlink{classtest_1_1test__logger__manager_1_1_test_logger_manager_ae5ae04bf3e88c604d93f27b2afa53cdb}{00048}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtest_1_1test__logger__manager_1_1_test_logger_manager_ae5ae04bf3e88c604d93f27b2afa53cdb}{setUp}}(self):}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00049}00049\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00050}00050\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Set\ up\ test\ fixtures.}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00051}00051\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00052}00052\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Initialize\ test\ environment\ before\ each\ test.}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00053}00053\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00054}00054\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Clear\ any\ existing\ handlers}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00055}00055\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ handler\ \textcolor{keywordflow}{in}\ logging.root.handlers[:]:}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ logging.root.removeHandler(handler)}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00057}00057\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00058}\mbox{\hyperlink{classtest_1_1test__logger__manager_1_1_test_logger_manager_a1b4e569bcb729b73d1b4913d788caf3e}{00058}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtest_1_1test__logger__manager_1_1_test_logger_manager_a1b4e569bcb729b73d1b4913d788caf3e}{test\_init\_default}}(self):}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00059}00059\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00060}00060\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Test\ LoggerManager\ initialization\ with\ default\ parameters.}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00061}00061\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00062}00062\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Test\ that\ LoggerManager\ initializes\ correctly\ with\ default\ settings.}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00063}00063\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00064}00064\ \ \ \ \ \ \ \ \ config\ =\ \{\textcolor{stringliteral}{'dir'}:\ \textcolor{stringliteral}{'log'}\}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00065}00065\ \ \ \ \ \ \ \ \ logger\_manager\ =\ \mbox{\hyperlink{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager}{LoggerManager}}(config=config)}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00066}00066\ \ \ \ \ \ \ \ \ self.assertIsInstance(logger\_manager,\ LoggerManager)}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00067}00067\ \ \ \ \ \ \ \ \ self.assertEqual(logger\_manager.name,\ \textcolor{stringliteral}{"{}commonpython"{}})}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00068}00068\ \ \ \ \ \ \ \ \ self.assertEqual(logger\_manager.config,\ config)}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00069}00069\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00070}\mbox{\hyperlink{classtest_1_1test__logger__manager_1_1_test_logger_manager_a3dfe93f4027d814ed6ca68a70c8cf1c9}{00070}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtest_1_1test__logger__manager_1_1_test_logger_manager_a3dfe93f4027d814ed6ca68a70c8cf1c9}{test\_init\_with\_name}}(self):}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00071}00071\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00072}00072\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Test\ LoggerManager\ initialization\ with\ custom\ name.}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00073}00073\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00074}00074\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Test\ LoggerManager\ initialization\ with\ custom\ logger\ name.}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00075}00075\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00076}00076\ \ \ \ \ \ \ \ \ config\ =\ \{\textcolor{stringliteral}{'dir'}:\ \textcolor{stringliteral}{'log'}\}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00077}00077\ \ \ \ \ \ \ \ \ logger\_manager\ =\ \mbox{\hyperlink{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager}{LoggerManager}}(\textcolor{stringliteral}{"{}test\_logger"{}},\ config)}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00078}00078\ \ \ \ \ \ \ \ \ self.assertEqual(logger\_manager.name,\ \textcolor{stringliteral}{"{}test\_logger"{}})}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00079}00079\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00080}\mbox{\hyperlink{classtest_1_1test__logger__manager_1_1_test_logger_manager_ab52e836008a8748afef1225705796426}{00080}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtest_1_1test__logger__manager_1_1_test_logger_manager_ab52e836008a8748afef1225705796426}{test\_init\_with\_config}}(self):}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00081}00081\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00082}00082\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Test\ LoggerManager\ initialization\ with\ configuration.}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00083}00083\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00084}00084\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Test\ LoggerManager\ initialization\ with\ custom\ configuration.}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00085}00085\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00086}00086\ \ \ \ \ \ \ \ \ config\ =\ \{\textcolor{stringliteral}{'level'}:\ \textcolor{stringliteral}{'DEBUG'},\ \textcolor{stringliteral}{'dir'}:\ \textcolor{stringliteral}{'log'},\ \textcolor{stringliteral}{'file'}:\ \textcolor{stringliteral}{'test.log'}\}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00087}00087\ \ \ \ \ \ \ \ \ logger\_manager\ =\ \mbox{\hyperlink{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager}{LoggerManager}}(\textcolor{stringliteral}{"{}test"{}},\ config)}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00088}00088\ \ \ \ \ \ \ \ \ self.assertEqual(logger\_manager.config,\ config)}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00089}00089\ \ \ \ \ \ \ \ \ handlers\ =\ logger\_manager.logger.handlers[:]}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00090}00090\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ handler\ \textcolor{keywordflow}{in}\ handlers:}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ handler.close()}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ logger\_manager.logger.removeHandler(handler)}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00093}00093\ \ \ \ \ \ \ \ \ \textcolor{keyword}{import}\ gc}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00094}00094\ \ \ \ \ \ \ \ \ gc.collect()}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00095}00095\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacetest_1_1test__logger__manager_a587943d782d6dc6406a53256f1221fe6}{safe\_remove}}(os.path.join(\textcolor{stringliteral}{'log'},\ \textcolor{stringliteral}{'test.log'}))}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00096}00096\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00097}\mbox{\hyperlink{classtest_1_1test__logger__manager_1_1_test_logger_manager_a35b8ec2a4822326c0fb3a5567685016a}{00097}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtest_1_1test__logger__manager_1_1_test_logger_manager_a35b8ec2a4822326c0fb3a5567685016a}{test\_get\_logger}}(self):}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00098}00098\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00099}00099\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Test\ getting\ logger\ instance.}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00100}00100\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00101}00101\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Test\ retrieval\ of\ logger\ instance.}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00102}00102\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00103}00103\ \ \ \ \ \ \ \ \ config\ =\ \{\textcolor{stringliteral}{'dir'}:\ \textcolor{stringliteral}{'log'}\}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00104}00104\ \ \ \ \ \ \ \ \ logger\_manager\ =\ \mbox{\hyperlink{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager}{LoggerManager}}(\textcolor{stringliteral}{"{}test"{}},\ config)}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00105}00105\ \ \ \ \ \ \ \ \ logger\ =\ logger\_manager.get\_logger()}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00106}00106\ \ \ \ \ \ \ \ \ self.assertIsInstance(logger,\ logging.Logger)}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00107}00107\ \ \ \ \ \ \ \ \ self.assertEqual(logger.name,\ \textcolor{stringliteral}{"{}test"{}})}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00108}00108\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00109}\mbox{\hyperlink{classtest_1_1test__logger__manager_1_1_test_logger_manager_a71e8402b9a24bd519b5a3e97c0865dd1}{00109}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtest_1_1test__logger__manager_1_1_test_logger_manager_a71e8402b9a24bd519b5a3e97c0865dd1}{test\_get\_logger\_with\_name}}(self):}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00110}00110\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00111}00111\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Test\ getting\ logger\ instance\ with\ custom\ name.}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00112}00112\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00113}00113\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Test\ retrieval\ of\ logger\ instance\ with\ custom\ name.}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00114}00114\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00115}00115\ \ \ \ \ \ \ \ \ config\ =\ \{\textcolor{stringliteral}{'dir'}:\ \textcolor{stringliteral}{'log'}\}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00116}00116\ \ \ \ \ \ \ \ \ logger\_manager\ =\ \mbox{\hyperlink{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager}{LoggerManager}}(\textcolor{stringliteral}{"{}test"{}},\ config)}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00117}00117\ \ \ \ \ \ \ \ \ logger\ =\ logger\_manager.get\_logger(\textcolor{stringliteral}{"{}custom"{}})}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00118}00118\ \ \ \ \ \ \ \ \ self.assertEqual(logger.name,\ \textcolor{stringliteral}{"{}custom"{}})}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00119}00119\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00120}\mbox{\hyperlink{classtest_1_1test__logger__manager_1_1_test_logger_manager_a470e30cd304e40514df6c6ade7a76940}{00120}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtest_1_1test__logger__manager_1_1_test_logger_manager_a470e30cd304e40514df6c6ade7a76940}{test\_set\_level}}(self):}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00121}00121\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00122}00122\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Test\ setting\ logging\ level.}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00123}00123\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00124}00124\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Test\ setting\ logging\ level\ for\ all\ handlers.}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00125}00125\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00126}00126\ \ \ \ \ \ \ \ \ config\ =\ \{\textcolor{stringliteral}{'dir'}:\ \textcolor{stringliteral}{'log'}\}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00127}00127\ \ \ \ \ \ \ \ \ logger\_manager\ =\ \mbox{\hyperlink{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager}{LoggerManager}}(\textcolor{stringliteral}{"{}test"{}},\ config)}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00128}00128\ \ \ \ \ \ \ \ \ logger\_manager.set\_level(\textcolor{stringliteral}{"{}DEBUG"{}})}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00129}00129\ \ \ \ \ \ \ \ \ self.assertEqual(logger\_manager.logger.level,\ logging.DEBUG)}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00130}00130\ }
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00131}\mbox{\hyperlink{classtest_1_1test__logger__manager_1_1_test_logger_manager_a9e732ecb12b4adf3a02062596c9f31b7}{00131}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtest_1_1test__logger__manager_1_1_test_logger_manager_a9e732ecb12b4adf3a02062596c9f31b7}{test\_set\_level\_invalid}}(self):}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00132}00132\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00133}00133\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Test\ set\_level\ with\ invalid\ level.}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00134}00134\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00135}00135\ \ \ \ \ \ \ \ \ config\ =\ \{\textcolor{stringliteral}{'dir'}:\ \textcolor{stringliteral}{'log'}\}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00136}00136\ \ \ \ \ \ \ \ \ logger\_manager\ =\ \mbox{\hyperlink{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager}{LoggerManager}}(\textcolor{stringliteral}{"{}test"{}},\ config)}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00137}00137\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Should\ not\ raise,\ but\ fallback\ to\ default}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00138}00138\ \ \ \ \ \ \ \ \ logger\_manager.set\_level(\textcolor{stringliteral}{"{}NOTALEVEL"{}})}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00139}00139\ }
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00140}\mbox{\hyperlink{classtest_1_1test__logger__manager_1_1_test_logger_manager_a0188e7001193cc1aee94be77da2e085d}{00140}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtest_1_1test__logger__manager_1_1_test_logger_manager_a0188e7001193cc1aee94be77da2e085d}{test\_json\_formatter\_error}}(self):}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00141}00141\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00142}00142\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Test\ JSONFormatter\ with\ unserializable\ object\ (should\ fallback\ to\ str).}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00143}00143\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00144}00144\ \ \ \ \ \ \ \ \ \textcolor{keyword}{import}\ logging}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00145}00145\ \ \ \ \ \ \ \ \ formatter\ =\ \mbox{\hyperlink{classcommonpython_1_1logging_1_1logger__manager_1_1_j_s_o_n_formatter}{JSONFormatter}}()}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00146}00146\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Create\ a\ real\ LogRecord\ with\ unserializable\ msg}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00147}00147\ \ \ \ \ \ \ \ \ record\ =\ logging.LogRecord(name=\textcolor{stringliteral}{"{}test"{}},\ level=logging.INFO,\ pathname=\textcolor{stringliteral}{"{}"{}},\ lineno=0,\ msg=object(),\ args=(),\ exc\_info=\textcolor{keywordtype}{None})}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00148}00148\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ formatter.format(record)}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00150}00150\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ Exception:}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ self.fail(\textcolor{stringliteral}{"{}JSONFormatter\ raised\ unexpectedly!"{}})}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00152}00152\ }
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00153}\mbox{\hyperlink{classtest_1_1test__logger__manager_1_1_test_logger_manager_aa328f0851849d8e09ac984ac25495154}{00153}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtest_1_1test__logger__manager_1_1_test_logger_manager_aa328f0851849d8e09ac984ac25495154}{test\_colored\_formatter\_error}}(self):}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00154}00154\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00155}00155\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Test\ ColoredFormatter\ with\ missing\ color.}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00156}00156\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00157}00157\ \ \ \ \ \ \ \ \ formatter\ =\ \mbox{\hyperlink{classcommonpython_1_1logging_1_1logger__manager_1_1_colored_formatter}{ColoredFormatter}}()}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00158}00158\ \ \ \ \ \ \ \ \ record\ =\ MagicMock()}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00159}00159\ \ \ \ \ \ \ \ \ record.levelname\ =\ \textcolor{stringliteral}{"{}NOTALEVEL"{}}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00160}00160\ \ \ \ \ \ \ \ \ record.getMessage.return\_value\ =\ \textcolor{stringliteral}{"{}msg"{}}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00161}00161\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Should\ not\ raise}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00162}00162\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ formatter.format(record)}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00164}00164\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ Exception:}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ self.fail(\textcolor{stringliteral}{"{}ColoredFormatter\ raised\ unexpectedly!"{}})}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00166}00166\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00167}\mbox{\hyperlink{classtest_1_1test__logger__manager_1_1_test_logger_manager_aa086f157a7bc1877cd78868e736a1993}{00167}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtest_1_1test__logger__manager_1_1_test_logger_manager_aa086f157a7bc1877cd78868e736a1993}{test\_log\_function\_call}}(self):}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00168}00168\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00169}00169\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Test\ logging\ function\ calls.}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00170}00170\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00171}00171\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Test\ logging\ of\ function\ call\ details.}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00172}00172\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00173}00173\ \ \ \ \ \ \ \ \ \textcolor{keyword}{with}\ tempfile.NamedTemporaryFile(mode=\textcolor{stringliteral}{'w'},\ delete=\textcolor{keyword}{False})\ \textcolor{keyword}{as}\ f:}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ temp\_file\ =\ f.name}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00175}00175\ \ \ \ \ \ \ \ \ config\ =\ \{\textcolor{stringliteral}{'file'}:\ temp\_file,\ \textcolor{stringliteral}{'json\_format'}:\ \textcolor{keyword}{True}\}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00176}00176\ \ \ \ \ \ \ \ \ logger\_manager\ =\ \mbox{\hyperlink{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager}{LoggerManager}}(\textcolor{stringliteral}{"{}test"{}},\ config)}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00177}00177\ \ \ \ \ \ \ \ \ logger\_manager.log\_function\_call(}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}test\_function"{}},\ }
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ func\_args=(1,\ 2),\ }
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \ \ func\_kwargs=\{\textcolor{stringliteral}{'key'}:\ \textcolor{stringliteral}{'value'}\},\ }
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ result=\textcolor{stringliteral}{"{}success"{}},\ }
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ duration=0.5}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00183}00183\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00184}00184\ \ \ \ \ \ \ \ \ handlers\ =\ logger\_manager.logger.handlers[:]}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00185}00185\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ handler\ \textcolor{keywordflow}{in}\ handlers:}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ handler.close()}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ logger\_manager.logger.removeHandler(handler)}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00188}00188\ \ \ \ \ \ \ \ \ \textcolor{keyword}{import}\ gc}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00189}00189\ \ \ \ \ \ \ \ \ gc.collect()}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00190}00190\ \ \ \ \ \ \ \ \ \textcolor{keyword}{with}\ open(temp\_file,\ \textcolor{stringliteral}{'r'})\ \textcolor{keyword}{as}\ f:}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ log\_content\ =\ f.read()}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \ \ self.assertIn(\textcolor{stringliteral}{'function\_call'},\ log\_content)}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00193}00193\ \ \ \ \ \ \ \ \ \ \ \ \ self.assertIn(\textcolor{stringliteral}{'test\_function'},\ log\_content)}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00194}00194\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacetest_1_1test__logger__manager_a587943d782d6dc6406a53256f1221fe6}{safe\_remove}}(temp\_file)}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00195}00195\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00196}\mbox{\hyperlink{classtest_1_1test__logger__manager_1_1_test_logger_manager_ace74ed87794a518c8ef7a5f92a146802}{00196}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtest_1_1test__logger__manager_1_1_test_logger_manager_ace74ed87794a518c8ef7a5f92a146802}{test\_log\_database\_operation}}(self):}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00197}00197\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00198}00198\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Test\ logging\ database\ operations.}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00199}00199\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00200}00200\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Test\ logging\ of\ database\ operation\ details.}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00201}00201\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00202}00202\ \ \ \ \ \ \ \ \ \textcolor{keyword}{with}\ tempfile.NamedTemporaryFile(mode=\textcolor{stringliteral}{'w'},\ delete=\textcolor{keyword}{False})\ \textcolor{keyword}{as}\ f:}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00203}00203\ \ \ \ \ \ \ \ \ \ \ \ \ temp\_file\ =\ f.name}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00204}00204\ \ \ \ \ \ \ \ \ config\ =\ \{\textcolor{stringliteral}{'file'}:\ temp\_file,\ \textcolor{stringliteral}{'json\_format'}:\ \textcolor{keyword}{True}\}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00205}00205\ \ \ \ \ \ \ \ \ logger\_manager\ =\ \mbox{\hyperlink{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager}{LoggerManager}}(\textcolor{stringliteral}{"{}test"{}},\ config)}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00206}00206\ \ \ \ \ \ \ \ \ logger\_manager.log\_database\_operation(}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00207}00207\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}SELECT"{}},\ }
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00208}00208\ \ \ \ \ \ \ \ \ \ \ \ \ table=\textcolor{stringliteral}{"{}users"{}},\ }
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00209}00209\ \ \ \ \ \ \ \ \ \ \ \ \ query=\textcolor{stringliteral}{"{}SELECT\ *\ FROM\ users"{}},\ }
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00210}00210\ \ \ \ \ \ \ \ \ \ \ \ \ duration=0.1,\ }
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00211}00211\ \ \ \ \ \ \ \ \ \ \ \ \ rows\_affected=5}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00212}00212\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00213}00213\ \ \ \ \ \ \ \ \ handlers\ =\ logger\_manager.logger.handlers[:]}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00214}00214\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ handler\ \textcolor{keywordflow}{in}\ handlers:}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00215}00215\ \ \ \ \ \ \ \ \ \ \ \ \ handler.close()}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00216}00216\ \ \ \ \ \ \ \ \ \ \ \ \ logger\_manager.logger.removeHandler(handler)}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00217}00217\ \ \ \ \ \ \ \ \ \textcolor{keyword}{import}\ gc}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00218}00218\ \ \ \ \ \ \ \ \ gc.collect()}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00219}00219\ \ \ \ \ \ \ \ \ \textcolor{keyword}{with}\ open(temp\_file,\ \textcolor{stringliteral}{'r'})\ \textcolor{keyword}{as}\ f:}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00220}00220\ \ \ \ \ \ \ \ \ \ \ \ \ log\_content\ =\ f.read()}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00221}00221\ \ \ \ \ \ \ \ \ \ \ \ \ self.assertIn(\textcolor{stringliteral}{'database\_operation'},\ log\_content)}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00222}00222\ \ \ \ \ \ \ \ \ \ \ \ \ self.assertIn(\textcolor{stringliteral}{'SELECT'},\ log\_content)}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00223}00223\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacetest_1_1test__logger__manager_a587943d782d6dc6406a53256f1221fe6}{safe\_remove}}(temp\_file)}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00224}00224\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00225}\mbox{\hyperlink{classtest_1_1test__logger__manager_1_1_test_logger_manager_a94f6075a1bd475f72887f48cf89a7245}{00225}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtest_1_1test__logger__manager_1_1_test_logger_manager_a94f6075a1bd475f72887f48cf89a7245}{test\_log\_mq\_operation}}(self):}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00226}00226\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00227}00227\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Test\ logging\ MQ\ operations.}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00228}00228\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00229}00229\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Test\ logging\ of\ MQ\ operation\ details.}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00230}00230\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00231}00231\ \ \ \ \ \ \ \ \ \textcolor{keyword}{with}\ tempfile.NamedTemporaryFile(mode=\textcolor{stringliteral}{'w'},\ delete=\textcolor{keyword}{False})\ \textcolor{keyword}{as}\ f:}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00232}00232\ \ \ \ \ \ \ \ \ \ \ \ \ temp\_file\ =\ f.name}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00233}00233\ \ \ \ \ \ \ \ \ config\ =\ \{\textcolor{stringliteral}{'file'}:\ temp\_file,\ \textcolor{stringliteral}{'json\_format'}:\ \textcolor{keyword}{True}\}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00234}00234\ \ \ \ \ \ \ \ \ logger\_manager\ =\ \mbox{\hyperlink{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager}{LoggerManager}}(\textcolor{stringliteral}{"{}test"{}},\ config)}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00235}00235\ \ \ \ \ \ \ \ \ logger\_manager.log\_mq\_operation(}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00236}00236\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}PUT"{}},\ }
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00237}00237\ \ \ \ \ \ \ \ \ \ \ \ \ queue=\textcolor{stringliteral}{"{}test\_queue"{}},\ }
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00238}00238\ \ \ \ \ \ \ \ \ \ \ \ \ message\_id=\textcolor{stringliteral}{"{}msg123"{}},\ }
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00239}00239\ \ \ \ \ \ \ \ \ \ \ \ \ message\_size=100,\ }
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00240}00240\ \ \ \ \ \ \ \ \ \ \ \ \ duration=0.05}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00241}00241\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00242}00242\ \ \ \ \ \ \ \ \ handlers\ =\ logger\_manager.logger.handlers[:]}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00243}00243\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ handler\ \textcolor{keywordflow}{in}\ handlers:}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00244}00244\ \ \ \ \ \ \ \ \ \ \ \ \ handler.close()}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00245}00245\ \ \ \ \ \ \ \ \ \ \ \ \ logger\_manager.logger.removeHandler(handler)}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00246}00246\ \ \ \ \ \ \ \ \ \textcolor{keyword}{import}\ gc}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00247}00247\ \ \ \ \ \ \ \ \ gc.collect()}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00248}00248\ \ \ \ \ \ \ \ \ \textcolor{keyword}{with}\ open(temp\_file,\ \textcolor{stringliteral}{'r'})\ \textcolor{keyword}{as}\ f:}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00249}00249\ \ \ \ \ \ \ \ \ \ \ \ \ log\_content\ =\ f.read()}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00250}00250\ \ \ \ \ \ \ \ \ \ \ \ \ self.assertIn(\textcolor{stringliteral}{'mq\_operation'},\ log\_content)}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00251}00251\ \ \ \ \ \ \ \ \ \ \ \ \ self.assertIn(\textcolor{stringliteral}{'PUT'},\ log\_content)}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00252}00252\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacetest_1_1test__logger__manager_a587943d782d6dc6406a53256f1221fe6}{safe\_remove}}(temp\_file)}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00253}00253\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00254}00254\ }
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00255}00255\ }
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00256}\mbox{\hyperlink{classtest_1_1test__logger__manager_1_1_test_j_s_o_n_formatter}{00256}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtest_1_1test__logger__manager_1_1_test_j_s_o_n_formatter}{TestJSONFormatter}}(unittest.TestCase):}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00257}00257\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00258}00258\ \textcolor{stringliteral}{\ \ \ \ Test\ cases\ for\ JSONFormatter\ class.}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00259}00259\ \textcolor{stringliteral}{\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00260}00260\ \textcolor{stringliteral}{\ \ \ \ @brief\ Test\ suite\ for\ JSON\ formatter\ functionality.}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00261}00261\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00262}00262\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00263}\mbox{\hyperlink{classtest_1_1test__logger__manager_1_1_test_j_s_o_n_formatter_a1f34091dc1bbef3b8596398059812d6d}{00263}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtest_1_1test__logger__manager_1_1_test_j_s_o_n_formatter_a1f34091dc1bbef3b8596398059812d6d}{test\_format\_basic}}(self):}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00264}00264\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00265}00265\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Test\ basic\ JSON\ formatting.}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00266}00266\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00267}00267\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Test\ that\ JSONFormatter\ formats\ log\ records\ correctly.}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00268}00268\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00269}00269\ \ \ \ \ \ \ \ \ formatter\ =\ \mbox{\hyperlink{classcommonpython_1_1logging_1_1logger__manager_1_1_j_s_o_n_formatter}{JSONFormatter}}()}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00270}00270\ \ \ \ \ \ \ \ \ record\ =\ logging.LogRecord(}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00271}00271\ \ \ \ \ \ \ \ \ \ \ \ \ name=\textcolor{stringliteral}{"{}test"{}},}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00272}00272\ \ \ \ \ \ \ \ \ \ \ \ \ level=logging.INFO,}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00273}00273\ \ \ \ \ \ \ \ \ \ \ \ \ pathname=\textcolor{stringliteral}{"{}test.py"{}},}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00274}00274\ \ \ \ \ \ \ \ \ \ \ \ \ lineno=1,}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00275}00275\ \ \ \ \ \ \ \ \ \ \ \ \ msg=\textcolor{stringliteral}{"{}Test\ message"{}},}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00276}00276\ \ \ \ \ \ \ \ \ \ \ \ \ args=(),}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00277}00277\ \ \ \ \ \ \ \ \ \ \ \ \ exc\_info=\textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00278}00278\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00279}00279\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00280}00280\ \ \ \ \ \ \ \ \ formatted\ =\ formatter.format(record)}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00281}00281\ \ \ \ \ \ \ \ \ log\_data\ =\ json.loads(formatted)}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00282}00282\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00283}00283\ \ \ \ \ \ \ \ \ self.assertEqual(log\_data[\textcolor{stringliteral}{'level'}],\ \textcolor{stringliteral}{'INFO'})}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00284}00284\ \ \ \ \ \ \ \ \ self.assertEqual(log\_data[\textcolor{stringliteral}{'message'}],\ \textcolor{stringliteral}{'Test\ message'})}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00285}00285\ \ \ \ \ \ \ \ \ self.assertEqual(log\_data[\textcolor{stringliteral}{'logger'}],\ \textcolor{stringliteral}{'test'})}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00286}00286\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00287}\mbox{\hyperlink{classtest_1_1test__logger__manager_1_1_test_j_s_o_n_formatter_acc3301700edff715946a0036f3e633b2}{00287}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtest_1_1test__logger__manager_1_1_test_j_s_o_n_formatter_acc3301700edff715946a0036f3e633b2}{test\_format\_with\_exception}}(self):}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00288}00288\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00289}00289\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Test\ JSON\ formatting\ with\ exception\ information.}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00290}00290\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00291}00291\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Test\ that\ JSONFormatter\ handles\ exceptions\ correctly.}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00292}00292\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00293}00293\ \ \ \ \ \ \ \ \ formatter\ =\ \mbox{\hyperlink{classcommonpython_1_1logging_1_1logger__manager_1_1_j_s_o_n_formatter}{JSONFormatter}}()}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00294}00294\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00295}00295\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00296}00296\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ ValueError(\textcolor{stringliteral}{"{}Test\ exception"{}})}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00297}00297\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ ValueError:}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00298}00298\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{import}\ sys}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00299}00299\ \ \ \ \ \ \ \ \ \ \ \ \ exc\_info\ =\ sys.exc\_info()}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00300}00300\ \ \ \ \ \ \ \ \ \ \ \ \ record\ =\ logging.LogRecord(}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00301}00301\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ name=\textcolor{stringliteral}{"{}test"{}},}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00302}00302\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ level=logging.ERROR,}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00303}00303\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pathname=\textcolor{stringliteral}{"{}test.py"{}},}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00304}00304\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lineno=1,}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00305}00305\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ msg=\textcolor{stringliteral}{"{}Test\ message"{}},}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00306}00306\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ args=(),}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00307}00307\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ exc\_info=exc\_info}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00308}00308\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00309}00309\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00310}00310\ \ \ \ \ \ \ \ \ \ \ \ \ formatted\ =\ formatter.format(record)}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00311}00311\ \ \ \ \ \ \ \ \ \ \ \ \ log\_data\ =\ json.loads(formatted)}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00312}00312\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00313}00313\ \ \ \ \ \ \ \ \ \ \ \ \ self.assertIn(\textcolor{stringliteral}{'exception'},\ log\_data)}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00314}00314\ \ \ \ \ \ \ \ \ \ \ \ \ self.assertIn(\textcolor{stringliteral}{'ValueError'},\ log\_data[\textcolor{stringliteral}{'exception'}])}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00315}00315\ }
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00316}00316\ }
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00317}\mbox{\hyperlink{classtest_1_1test__logger__manager_1_1_test_colored_formatter}{00317}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtest_1_1test__logger__manager_1_1_test_colored_formatter}{TestColoredFormatter}}(unittest.TestCase):}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00318}00318\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00319}00319\ \textcolor{stringliteral}{\ \ \ \ Test\ cases\ for\ ColoredFormatter\ class.}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00320}00320\ \textcolor{stringliteral}{\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00321}00321\ \textcolor{stringliteral}{\ \ \ \ @brief\ Test\ suite\ for\ colored\ formatter\ functionality.}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00322}00322\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00323}00323\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00324}\mbox{\hyperlink{classtest_1_1test__logger__manager_1_1_test_colored_formatter_a4ad3622ebbd67a8eb3aa583b44272932}{00324}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtest_1_1test__logger__manager_1_1_test_colored_formatter_a4ad3622ebbd67a8eb3aa583b44272932}{test\_format\_with\_colors}}(self):}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00325}00325\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00326}00326\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Test\ colored\ formatting.}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00327}00327\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00328}00328\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Test\ that\ ColoredFormatter\ adds\ color\ codes\ correctly.}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00329}00329\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00330}00330\ \ \ \ \ \ \ \ \ formatter\ =\ \mbox{\hyperlink{classcommonpython_1_1logging_1_1logger__manager_1_1_colored_formatter}{ColoredFormatter}}(\textcolor{stringliteral}{'\%(levelname)s\ -\/\ \%(message)s'})}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00331}00331\ \ \ \ \ \ \ \ \ record\ =\ logging.LogRecord(}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00332}00332\ \ \ \ \ \ \ \ \ \ \ \ \ name=\textcolor{stringliteral}{"{}test"{}},}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00333}00333\ \ \ \ \ \ \ \ \ \ \ \ \ level=logging.INFO,}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00334}00334\ \ \ \ \ \ \ \ \ \ \ \ \ pathname=\textcolor{stringliteral}{"{}test.py"{}},}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00335}00335\ \ \ \ \ \ \ \ \ \ \ \ \ lineno=1,}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00336}00336\ \ \ \ \ \ \ \ \ \ \ \ \ msg=\textcolor{stringliteral}{"{}Test\ message"{}},}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00337}00337\ \ \ \ \ \ \ \ \ \ \ \ \ args=(),}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00338}00338\ \ \ \ \ \ \ \ \ \ \ \ \ exc\_info=\textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00339}00339\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00340}00340\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00341}00341\ \ \ \ \ \ \ \ \ formatted\ =\ formatter.format(record)}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00342}00342\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00343}00343\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Check\ that\ color\ codes\ are\ present}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00344}00344\ \ \ \ \ \ \ \ \ self.assertIn(\textcolor{stringliteral}{'\(\backslash\)033[32m'},\ formatted)\ \ \textcolor{comment}{\#\ Green\ for\ INFO}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00345}00345\ \ \ \ \ \ \ \ \ self.assertIn(\textcolor{stringliteral}{'\(\backslash\)033[0m'},\ formatted)\ \ \textcolor{comment}{\#\ Reset\ code}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00346}00346\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00347}\mbox{\hyperlink{classtest_1_1test__logger__manager_1_1_test_colored_formatter_a314f41ea178e8820eb1fddd9f81b919d}{00347}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtest_1_1test__logger__manager_1_1_test_colored_formatter_a314f41ea178e8820eb1fddd9f81b919d}{test\_format\_different\_levels}}(self):}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00348}00348\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00349}00349\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Test\ colored\ formatting\ for\ different\ log\ levels.}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00350}00350\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00351}00351\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Test\ that\ different\ log\ levels\ get\ different\ colors.}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00352}00352\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00353}00353\ \ \ \ \ \ \ \ \ formatter\ =\ \mbox{\hyperlink{classcommonpython_1_1logging_1_1logger__manager_1_1_colored_formatter}{ColoredFormatter}}(\textcolor{stringliteral}{'\%(levelname)s\ -\/\ \%(message)s'})}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00354}00354\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00355}00355\ \ \ \ \ \ \ \ \ levels\ =\ [}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00356}00356\ \ \ \ \ \ \ \ \ \ \ \ \ (logging.DEBUG,\ \textcolor{stringliteral}{'\(\backslash\)033[36m'}),\ \ \ \ \textcolor{comment}{\#\ Cyan}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00357}00357\ \ \ \ \ \ \ \ \ \ \ \ \ (logging.INFO,\ \textcolor{stringliteral}{'\(\backslash\)033[32m'}),\ \ \ \ \ \textcolor{comment}{\#\ Green}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00358}00358\ \ \ \ \ \ \ \ \ \ \ \ \ (logging.WARNING,\ \textcolor{stringliteral}{'\(\backslash\)033[33m'}),\ \textcolor{comment}{\#\ Yellow}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00359}00359\ \ \ \ \ \ \ \ \ \ \ \ \ (logging.ERROR,\ \textcolor{stringliteral}{'\(\backslash\)033[31m'}),\ \ \ \ \textcolor{comment}{\#\ Red}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00360}00360\ \ \ \ \ \ \ \ \ \ \ \ \ (logging.CRITICAL,\ \textcolor{stringliteral}{'\(\backslash\)033[35m'})\ \ \textcolor{comment}{\#\ Magenta}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00361}00361\ \ \ \ \ \ \ \ \ ]}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00362}00362\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00363}00363\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ level,\ expected\_color\ \textcolor{keywordflow}{in}\ levels:}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00364}00364\ \ \ \ \ \ \ \ \ \ \ \ \ record\ =\ logging.LogRecord(}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00365}00365\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ name=\textcolor{stringliteral}{"{}test"{}},}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00366}00366\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ level=level,}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00367}00367\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pathname=\textcolor{stringliteral}{"{}test.py"{}},}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00368}00368\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lineno=1,}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00369}00369\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ msg=\textcolor{stringliteral}{"{}Test\ message"{}},}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00370}00370\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ args=(),}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00371}00371\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ exc\_info=\textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00372}00372\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00373}00373\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00374}00374\ \ \ \ \ \ \ \ \ \ \ \ \ formatted\ =\ formatter.format(record)}
+\DoxyCodeLine{\Hypertarget{test__logger__manager_8py_source_l00375}00375\ \ \ \ \ \ \ \ \ \ \ \ \ self.assertIn(expected\_color,\ formatted)}
+
+\end{DoxyCode}

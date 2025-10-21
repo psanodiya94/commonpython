@@ -12,11 +12,30 @@ import json
 from unittest.mock import patch, MagicMock
 import sys
 from pathlib import Path
+import time
 
 # Add the parent directory to the path to import the module
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from commonpython.logging.logger_manager import LoggerManager, JSONFormatter, ColoredFormatter
+
+
+def safe_remove(filepath, retries=5, delay=0.2):
+    """Try to remove a file with retries to avoid Windows PermissionError."""
+    for _ in range(retries):
+        try:
+            os.remove(filepath)
+            return
+        except PermissionError:
+            time.sleep(delay)
+    # Last attempt
+    try:
+        os.remove(filepath)
+    except PermissionError:
+        if sys.platform.startswith('win'):
+            pass  # Skip deletion on Windows if still locked
+        else:
+            raise
 
 
 class TestLoggerManager(unittest.TestCase):
@@ -67,7 +86,13 @@ class TestLoggerManager(unittest.TestCase):
         config = {'level': 'DEBUG', 'dir': 'log', 'file': 'test.log'}
         logger_manager = LoggerManager("test", config)
         self.assertEqual(logger_manager.config, config)
-        os.remove(os.path.join('log', 'test.log'))
+        handlers = logger_manager.logger.handlers[:]
+        for handler in handlers:
+            handler.close()
+            logger_manager.logger.removeHandler(handler)
+        import gc
+        gc.collect()
+        safe_remove(os.path.join('log', 'test.log'))
     
     def test_get_logger(self):
         """
@@ -147,22 +172,26 @@ class TestLoggerManager(unittest.TestCase):
         """
         with tempfile.NamedTemporaryFile(mode='w', delete=False) as f:
             temp_file = f.name
-        try:
-            config = {'file': temp_file, 'json_format': True}  # Remove 'dir' key
-            logger_manager = LoggerManager("test", config)
-            logger_manager.log_function_call(
-                "test_function", 
-                func_args=(1, 2), 
-                func_kwargs={'key': 'value'}, 
-                result="success", 
-                duration=0.5
-            )
-            with open(temp_file, 'r') as f:
-                log_content = f.read()
-                self.assertIn('function_call', log_content)
-                self.assertIn('test_function', log_content)
-        finally:
-            os.unlink(temp_file)
+        config = {'file': temp_file, 'json_format': True}
+        logger_manager = LoggerManager("test", config)
+        logger_manager.log_function_call(
+            "test_function", 
+            func_args=(1, 2), 
+            func_kwargs={'key': 'value'}, 
+            result="success", 
+            duration=0.5
+        )
+        handlers = logger_manager.logger.handlers[:]
+        for handler in handlers:
+            handler.close()
+            logger_manager.logger.removeHandler(handler)
+        import gc
+        gc.collect()
+        with open(temp_file, 'r') as f:
+            log_content = f.read()
+            self.assertIn('function_call', log_content)
+            self.assertIn('test_function', log_content)
+        safe_remove(temp_file)
     
     def test_log_database_operation(self):
         """
@@ -172,22 +201,26 @@ class TestLoggerManager(unittest.TestCase):
         """
         with tempfile.NamedTemporaryFile(mode='w', delete=False) as f:
             temp_file = f.name
-        try:
-            config = {'file': temp_file, 'json_format': True}  # Remove 'dir' key
-            logger_manager = LoggerManager("test", config)
-            logger_manager.log_database_operation(
-                "SELECT", 
-                table="users", 
-                query="SELECT * FROM users", 
-                duration=0.1, 
-                rows_affected=5
-            )
-            with open(temp_file, 'r') as f:
-                log_content = f.read()
-                self.assertIn('database_operation', log_content)
-                self.assertIn('SELECT', log_content)
-        finally:
-            os.unlink(temp_file)
+        config = {'file': temp_file, 'json_format': True}
+        logger_manager = LoggerManager("test", config)
+        logger_manager.log_database_operation(
+            "SELECT", 
+            table="users", 
+            query="SELECT * FROM users", 
+            duration=0.1, 
+            rows_affected=5
+        )
+        handlers = logger_manager.logger.handlers[:]
+        for handler in handlers:
+            handler.close()
+            logger_manager.logger.removeHandler(handler)
+        import gc
+        gc.collect()
+        with open(temp_file, 'r') as f:
+            log_content = f.read()
+            self.assertIn('database_operation', log_content)
+            self.assertIn('SELECT', log_content)
+        safe_remove(temp_file)
     
     def test_log_mq_operation(self):
         """
@@ -197,22 +230,27 @@ class TestLoggerManager(unittest.TestCase):
         """
         with tempfile.NamedTemporaryFile(mode='w', delete=False) as f:
             temp_file = f.name
-        try:
-            config = {'file': temp_file, 'json_format': True}  # Remove 'dir' key
-            logger_manager = LoggerManager("test", config)
-            logger_manager.log_mq_operation(
-                "PUT", 
-                queue="test_queue", 
-                message_id="msg123", 
-                message_size=100, 
-                duration=0.05
-            )
-            with open(temp_file, 'r') as f:
-                log_content = f.read()
-                self.assertIn('mq_operation', log_content)
-                self.assertIn('PUT', log_content)
-        finally:
-            os.unlink(temp_file)
+        config = {'file': temp_file, 'json_format': True}
+        logger_manager = LoggerManager("test", config)
+        logger_manager.log_mq_operation(
+            "PUT", 
+            queue="test_queue", 
+            message_id="msg123", 
+            message_size=100, 
+            duration=0.05
+        )
+        handlers = logger_manager.logger.handlers[:]
+        for handler in handlers:
+            handler.close()
+            logger_manager.logger.removeHandler(handler)
+        import gc
+        gc.collect()
+        with open(temp_file, 'r') as f:
+            log_content = f.read()
+            self.assertIn('mq_operation', log_content)
+            self.assertIn('PUT', log_content)
+        safe_remove(temp_file)
+        
 
 
 class TestJSONFormatter(unittest.TestCase):

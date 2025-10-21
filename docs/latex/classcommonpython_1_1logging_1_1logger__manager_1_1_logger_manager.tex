@@ -1,0 +1,243 @@
+\doxysection{commonpython.\+logging.\+logger\+\_\+manager.\+Logger\+Manager Class Reference}
+\hypertarget{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager}{}\label{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager}\index{commonpython.logging.logger\_manager.LoggerManager@{commonpython.logging.logger\_manager.LoggerManager}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager_a391c597c8a2fb3d9830fbd94793a5037}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, str \mbox{\hyperlink{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager_a3e2c74a3ab0b60440bac90decb2de33e}{name}}="{}commonpython"{}, Optional\mbox{[}Dict\mbox{[}str, Any\mbox{]}\mbox{]} \mbox{\hyperlink{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager_a0dfccde1a92415088ed7233bed23087a}{config}}=None)
+\item 
+logging.\+Logger \mbox{\hyperlink{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager_a35cbbc409c6933eaa856b6f3ded2be4f}{get\+\_\+logger}} (self, Optional\mbox{[}str\mbox{]} \mbox{\hyperlink{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager_a3e2c74a3ab0b60440bac90decb2de33e}{name}}=None)
+\item 
+\mbox{\hyperlink{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager_ad8cff3be5bdd5b377f08be52a165c551}{log\+\_\+function\+\_\+call}} (self, str func\+\_\+name, tuple func\+\_\+args=(), dict func\+\_\+kwargs=None, Any result=None, float duration=None)
+\item 
+\mbox{\hyperlink{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager_a1d89e18bd391d8be7112339a107d41fd}{log\+\_\+database\+\_\+operation}} (self, str operation, str table=None, str query=None, float duration=None, int rows\+\_\+affected=None)
+\item 
+\mbox{\hyperlink{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager_a673435315dbdf6fd45396649ab494b28}{log\+\_\+mq\+\_\+operation}} (self, str operation, str queue=None, str message\+\_\+id=None, int message\+\_\+size=None, float duration=None)
+\item 
+None \mbox{\hyperlink{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager_a4348926cf010f63ac5eabaebf267830e}{set\+\_\+level}} (self, str level)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager_a3e2c74a3ab0b60440bac90decb2de33e}{name}} = name
+\item 
+\mbox{\hyperlink{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager_a0dfccde1a92415088ed7233bed23087a}{config}} = config or \{\}
+\item 
+\mbox{\hyperlink{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager_a7d28e1078edd49cf796c26fe5ee3cf3b}{logger}} = logging.\+get\+Logger(\mbox{\hyperlink{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager_a3e2c74a3ab0b60440bac90decb2de33e}{name}})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+None \mbox{\hyperlink{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager_a2bece5a5f809be3e477531e91ffe1ab9}{\+\_\+setup\+\_\+logger}} (self)
+\item 
+None \mbox{\hyperlink{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager_ad0135f96db8289a7e47a9cdea31d24ac}{\+\_\+setup\+\_\+console\+\_\+handler}} (self)
+\item 
+None \mbox{\hyperlink{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager_af458993c0641a32d7eff569e6e97f762}{\+\_\+setup\+\_\+file\+\_\+handler}} (self)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Centralized logging manager for the CommonPython framework.
+
+Provides structured logging with multiple handlers and formatters
+using only standard Python modules.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{logger__manager_8py_source_l00061}{61}} of file \mbox{\hyperlink{logger__manager_8py_source}{logger\+\_\+manager.\+py}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager_a391c597c8a2fb3d9830fbd94793a5037}\index{commonpython.logging.logger\_manager.LoggerManager@{commonpython.logging.logger\_manager.LoggerManager}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!commonpython.logging.logger\_manager.LoggerManager@{commonpython.logging.logger\_manager.LoggerManager}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager_a391c597c8a2fb3d9830fbd94793a5037} 
+commonpython.\+logging.\+logger\+\_\+manager.\+Logger\+Manager.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str }]{name}{ = {\ttfamily "{}commonpython"{}}, }\item[{Optional\mbox{[}Dict\mbox{[}str, Any\mbox{]}\mbox{]} }]{config}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Initialize the logger manager.
+
+@brief Initialize logger with configuration using standard Python modules.
+@param name Logger name
+@param config Logging configuration dictionary
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{logger__manager_8py_source_l00069}{69}} of file \mbox{\hyperlink{logger__manager_8py_source}{logger\+\_\+manager.\+py}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager_ad0135f96db8289a7e47a9cdea31d24ac}\index{commonpython.logging.logger\_manager.LoggerManager@{commonpython.logging.logger\_manager.LoggerManager}!\_setup\_console\_handler@{\_setup\_console\_handler}}
+\index{\_setup\_console\_handler@{\_setup\_console\_handler}!commonpython.logging.logger\_manager.LoggerManager@{commonpython.logging.logger\_manager.LoggerManager}}
+\doxysubsubsection{\texorpdfstring{\_setup\_console\_handler()}{\_setup\_console\_handler()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager_ad0135f96db8289a7e47a9cdea31d24ac} 
+ None commonpython.\+logging.\+logger\+\_\+manager.\+Logger\+Manager.\+\_\+setup\+\_\+console\+\_\+handler (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Setup console handler with colored output if enabled.
+
+@brief Configure console handler with optional colored output.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{logger__manager_8py_source_l00102}{102}} of file \mbox{\hyperlink{logger__manager_8py_source}{logger\+\_\+manager.\+py}}.
+
+\Hypertarget{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager_af458993c0641a32d7eff569e6e97f762}\index{commonpython.logging.logger\_manager.LoggerManager@{commonpython.logging.logger\_manager.LoggerManager}!\_setup\_file\_handler@{\_setup\_file\_handler}}
+\index{\_setup\_file\_handler@{\_setup\_file\_handler}!commonpython.logging.logger\_manager.LoggerManager@{commonpython.logging.logger\_manager.LoggerManager}}
+\doxysubsubsection{\texorpdfstring{\_setup\_file\_handler()}{\_setup\_file\_handler()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager_af458993c0641a32d7eff569e6e97f762} 
+ None commonpython.\+logging.\+logger\+\_\+manager.\+Logger\+Manager.\+\_\+setup\+\_\+file\+\_\+handler (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Setup file handler with rotation.
+
+@brief Configure file handler with log rotation using standard Python modules.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{logger__manager_8py_source_l00124}{124}} of file \mbox{\hyperlink{logger__manager_8py_source}{logger\+\_\+manager.\+py}}.
+
+\Hypertarget{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager_a2bece5a5f809be3e477531e91ffe1ab9}\index{commonpython.logging.logger\_manager.LoggerManager@{commonpython.logging.logger\_manager.LoggerManager}!\_setup\_logger@{\_setup\_logger}}
+\index{\_setup\_logger@{\_setup\_logger}!commonpython.logging.logger\_manager.LoggerManager@{commonpython.logging.logger\_manager.LoggerManager}}
+\doxysubsubsection{\texorpdfstring{\_setup\_logger()}{\_setup\_logger()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager_a2bece5a5f809be3e477531e91ffe1ab9} 
+ None commonpython.\+logging.\+logger\+\_\+manager.\+Logger\+Manager.\+\_\+setup\+\_\+logger (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Setup logger with handlers and formatters.
+
+@brief Configure logger with console and file handlers.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{logger__manager_8py_source_l00082}{82}} of file \mbox{\hyperlink{logger__manager_8py_source}{logger\+\_\+manager.\+py}}.
+
+\Hypertarget{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager_a35cbbc409c6933eaa856b6f3ded2be4f}\index{commonpython.logging.logger\_manager.LoggerManager@{commonpython.logging.logger\_manager.LoggerManager}!get\_logger@{get\_logger}}
+\index{get\_logger@{get\_logger}!commonpython.logging.logger\_manager.LoggerManager@{commonpython.logging.logger\_manager.LoggerManager}}
+\doxysubsubsection{\texorpdfstring{get\_logger()}{get\_logger()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager_a35cbbc409c6933eaa856b6f3ded2be4f} 
+ logging.\+Logger commonpython.\+logging.\+logger\+\_\+manager.\+Logger\+Manager.\+get\+\_\+logger (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Optional\mbox{[}str\mbox{]} }]{name}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get a logger instance.
+
+@brief Get logger instance by name.
+@param name Logger name (uses main logger if None)
+@return Logger instance
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{logger__manager_8py_source_l00155}{155}} of file \mbox{\hyperlink{logger__manager_8py_source}{logger\+\_\+manager.\+py}}.
+
+\Hypertarget{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager_a1d89e18bd391d8be7112339a107d41fd}\index{commonpython.logging.logger\_manager.LoggerManager@{commonpython.logging.logger\_manager.LoggerManager}!log\_database\_operation@{log\_database\_operation}}
+\index{log\_database\_operation@{log\_database\_operation}!commonpython.logging.logger\_manager.LoggerManager@{commonpython.logging.logger\_manager.LoggerManager}}
+\doxysubsubsection{\texorpdfstring{log\_database\_operation()}{log\_database\_operation()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager_a1d89e18bd391d8be7112339a107d41fd} 
+commonpython.\+logging.\+logger\+\_\+manager.\+Logger\+Manager.\+log\+\_\+database\+\_\+operation (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{operation}{, }\item[{str }]{table}{ = {\ttfamily None}, }\item[{str }]{query}{ = {\ttfamily None}, }\item[{float }]{duration}{ = {\ttfamily None}, }\item[{int }]{rows\+\_\+affected}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Log database operation.
+
+@brief Log database operation details.
+@param operation Operation type (SELECT, INSERT, UPDATE, DELETE)
+@param table Table name
+@param query SQL query
+@param duration Operation duration
+@param rows_affected Number of rows affected
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{logger__manager_8py_source_l00190}{190}} of file \mbox{\hyperlink{logger__manager_8py_source}{logger\+\_\+manager.\+py}}.
+
+\Hypertarget{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager_ad8cff3be5bdd5b377f08be52a165c551}\index{commonpython.logging.logger\_manager.LoggerManager@{commonpython.logging.logger\_manager.LoggerManager}!log\_function\_call@{log\_function\_call}}
+\index{log\_function\_call@{log\_function\_call}!commonpython.logging.logger\_manager.LoggerManager@{commonpython.logging.logger\_manager.LoggerManager}}
+\doxysubsubsection{\texorpdfstring{log\_function\_call()}{log\_function\_call()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager_ad8cff3be5bdd5b377f08be52a165c551} 
+commonpython.\+logging.\+logger\+\_\+manager.\+Logger\+Manager.\+log\+\_\+function\+\_\+call (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{func\+\_\+name}{, }\item[{tuple }]{func\+\_\+args}{ = {\ttfamily ()}, }\item[{dict }]{func\+\_\+kwargs}{ = {\ttfamily None}, }\item[{Any }]{result}{ = {\ttfamily None}, }\item[{float }]{duration}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Log function call with parameters and result.
+
+@brief Log function execution details.
+@param func_name Function name
+@param func_args Function arguments
+@param func_kwargs Function keyword arguments
+@param result Function result
+@param duration Function execution duration
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{logger__manager_8py_source_l00167}{167}} of file \mbox{\hyperlink{logger__manager_8py_source}{logger\+\_\+manager.\+py}}.
+
+\Hypertarget{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager_a673435315dbdf6fd45396649ab494b28}\index{commonpython.logging.logger\_manager.LoggerManager@{commonpython.logging.logger\_manager.LoggerManager}!log\_mq\_operation@{log\_mq\_operation}}
+\index{log\_mq\_operation@{log\_mq\_operation}!commonpython.logging.logger\_manager.LoggerManager@{commonpython.logging.logger\_manager.LoggerManager}}
+\doxysubsubsection{\texorpdfstring{log\_mq\_operation()}{log\_mq\_operation()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager_a673435315dbdf6fd45396649ab494b28} 
+commonpython.\+logging.\+logger\+\_\+manager.\+Logger\+Manager.\+log\+\_\+mq\+\_\+operation (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{operation}{, }\item[{str }]{queue}{ = {\ttfamily None}, }\item[{str }]{message\+\_\+id}{ = {\ttfamily None}, }\item[{int }]{message\+\_\+size}{ = {\ttfamily None}, }\item[{float }]{duration}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Log MQ operation.
+
+@brief Log MQ operation details.
+@param operation Operation type (PUT, GET, BROWSE)
+@param queue Queue name
+@param message_id Message ID
+@param message_size Message size in bytes
+@param duration Operation duration
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{logger__manager_8py_source_l00214}{214}} of file \mbox{\hyperlink{logger__manager_8py_source}{logger\+\_\+manager.\+py}}.
+
+\Hypertarget{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager_a4348926cf010f63ac5eabaebf267830e}\index{commonpython.logging.logger\_manager.LoggerManager@{commonpython.logging.logger\_manager.LoggerManager}!set\_level@{set\_level}}
+\index{set\_level@{set\_level}!commonpython.logging.logger\_manager.LoggerManager@{commonpython.logging.logger\_manager.LoggerManager}}
+\doxysubsubsection{\texorpdfstring{set\_level()}{set\_level()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager_a4348926cf010f63ac5eabaebf267830e} 
+ None commonpython.\+logging.\+logger\+\_\+manager.\+Logger\+Manager.\+set\+\_\+level (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{level}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Set logging level.
+
+@brief Set logging level for all handlers.
+@param level Logging level (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{logger__manager_8py_source_l00238}{238}} of file \mbox{\hyperlink{logger__manager_8py_source}{logger\+\_\+manager.\+py}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager_a0dfccde1a92415088ed7233bed23087a}\index{commonpython.logging.logger\_manager.LoggerManager@{commonpython.logging.logger\_manager.LoggerManager}!config@{config}}
+\index{config@{config}!commonpython.logging.logger\_manager.LoggerManager@{commonpython.logging.logger\_manager.LoggerManager}}
+\doxysubsubsection{\texorpdfstring{config}{config}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager_a0dfccde1a92415088ed7233bed23087a} 
+commonpython.\+logging.\+logger\+\_\+manager.\+Logger\+Manager.\+config = config or \{\}}
+
+
+
+Definition at line \mbox{\hyperlink{logger__manager_8py_source_l00078}{78}} of file \mbox{\hyperlink{logger__manager_8py_source}{logger\+\_\+manager.\+py}}.
+
+\Hypertarget{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager_a7d28e1078edd49cf796c26fe5ee3cf3b}\index{commonpython.logging.logger\_manager.LoggerManager@{commonpython.logging.logger\_manager.LoggerManager}!logger@{logger}}
+\index{logger@{logger}!commonpython.logging.logger\_manager.LoggerManager@{commonpython.logging.logger\_manager.LoggerManager}}
+\doxysubsubsection{\texorpdfstring{logger}{logger}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager_a7d28e1078edd49cf796c26fe5ee3cf3b} 
+commonpython.\+logging.\+logger\+\_\+manager.\+Logger\+Manager.\+logger = logging.\+get\+Logger(\mbox{\hyperlink{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager_a3e2c74a3ab0b60440bac90decb2de33e}{name}})}
+
+
+
+Definition at line \mbox{\hyperlink{logger__manager_8py_source_l00079}{79}} of file \mbox{\hyperlink{logger__manager_8py_source}{logger\+\_\+manager.\+py}}.
+
+\Hypertarget{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager_a3e2c74a3ab0b60440bac90decb2de33e}\index{commonpython.logging.logger\_manager.LoggerManager@{commonpython.logging.logger\_manager.LoggerManager}!name@{name}}
+\index{name@{name}!commonpython.logging.logger\_manager.LoggerManager@{commonpython.logging.logger\_manager.LoggerManager}}
+\doxysubsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager_a3e2c74a3ab0b60440bac90decb2de33e} 
+commonpython.\+logging.\+logger\+\_\+manager.\+Logger\+Manager.\+name = name}
+
+
+
+Definition at line \mbox{\hyperlink{logger__manager_8py_source_l00077}{77}} of file \mbox{\hyperlink{logger__manager_8py_source}{logger\+\_\+manager.\+py}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+commonpython/logging/\mbox{\hyperlink{logger__manager_8py}{logger\+\_\+manager.\+py}}\end{DoxyCompactItemize}

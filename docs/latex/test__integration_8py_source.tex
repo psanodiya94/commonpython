@@ -1,0 +1,335 @@
+\doxysection{test\+\_\+integration.\+py}
+\hypertarget{test__integration_8py_source}{}\label{test__integration_8py_source}\index{test/test\_integration.py@{test/test\_integration.py}}
+\mbox{\hyperlink{test__integration_8py}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00001}\mbox{\hyperlink{namespacetest_1_1test__integration}{00001}}\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00002}00002\ \textcolor{stringliteral}{Integration\ Tests\ for\ CommonPython\ Framework}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00003}00003\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00004}00004\ \textcolor{stringliteral}{Tests\ the\ integration\ between\ different\ components\ and\ ensures\ that}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00005}00005\ \textcolor{stringliteral}{CLI\ and\ library\ implementations\ behave\ consistently.}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00006}00006\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00008}00008\ \textcolor{keyword}{import}\ unittest}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00009}00009\ \textcolor{keyword}{from}\ unittest.mock\ \textcolor{keyword}{import}\ Mock,\ patch,\ MagicMock}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00010}00010\ \textcolor{keyword}{import}\ sys}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00011}00011\ \textcolor{keyword}{from}\ pathlib\ \textcolor{keyword}{import}\ Path}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00013}00013\ \textcolor{comment}{\#\ Add\ parent\ directory\ to\ path}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00014}00014\ sys.path.insert(0,\ str(Path(\_\_file\_\_).parent.parent))}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00016}00016\ \textcolor{keyword}{from}\ \mbox{\hyperlink{namespacecommonpython_1_1factories}{commonpython.factories}}\ \textcolor{keyword}{import}\ ManagerFactory}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00017}00017\ \textcolor{keyword}{from}\ \mbox{\hyperlink{namespacecommonpython_1_1interfaces}{commonpython.interfaces}}\ \textcolor{keyword}{import}\ IDatabaseManager,\ IMessagingManager}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00018}00018\ \textcolor{keyword}{from}\ \mbox{\hyperlink{namespacecommonpython_1_1adapters}{commonpython.adapters}}\ \textcolor{keyword}{import}\ DB2CLIAdapter,\ MQCLIAdapter}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00021}\mbox{\hyperlink{classtest_1_1test__integration_1_1_test_implementation_consistency}{00021}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtest_1_1test__integration_1_1_test_implementation_consistency}{TestImplementationConsistency}}(unittest.TestCase):}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00022}00022\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00023}00023\ \textcolor{stringliteral}{\ \ \ \ Test\ that\ CLI\ and\ library\ implementations\ behave\ consistently}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00024}00024\ \textcolor{stringliteral}{\ \ \ \ and\ implement\ the\ same\ interface\ correctly.}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00025}00025\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00027}\mbox{\hyperlink{classtest_1_1test__integration_1_1_test_implementation_consistency_a3d0e940d9e15c97b7457d21ef8285b4a}{00027}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtest_1_1test__integration_1_1_test_implementation_consistency_a3d0e940d9e15c97b7457d21ef8285b4a}{setUp}}(self):}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00028}00028\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Set\ up\ test\ fixtures"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00029}\mbox{\hyperlink{classtest_1_1test__integration_1_1_test_implementation_consistency_aada941669bf22e231fb4bf7cda98412e}{00029}}\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classtest_1_1test__integration_1_1_test_implementation_consistency_aada941669bf22e231fb4bf7cda98412e}{logger}}\ =\ Mock()}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00030}00030\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classtest_1_1test__integration_1_1_test_implementation_consistency_aada941669bf22e231fb4bf7cda98412e}{logger}}.logger\ =\ Mock()}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00031}00031\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classtest_1_1test__integration_1_1_test_implementation_consistency_aada941669bf22e231fb4bf7cda98412e}{logger}}.log\_database\_operation\ =\ Mock()}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00032}00032\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classtest_1_1test__integration_1_1_test_implementation_consistency_aada941669bf22e231fb4bf7cda98412e}{logger}}.log\_mq\_operation\ =\ Mock()}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00034}\mbox{\hyperlink{classtest_1_1test__integration_1_1_test_implementation_consistency_a3e1f0c4f08b4edda3d166787eea0d78a}{00034}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtest_1_1test__integration_1_1_test_implementation_consistency_a3e1f0c4f08b4edda3d166787eea0d78a}{test\_database\_interface\_consistency}}(self):}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00035}00035\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Test\ that\ both\ DB\ implementations\ have\ same\ interface\ methods"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00036}00036\ \ \ \ \ \ \ \ \ cli\_config\ =\ \{\textcolor{stringliteral}{'implementation'}:\ \textcolor{stringliteral}{'cli'},\ \textcolor{stringliteral}{'host'}:\ \textcolor{stringliteral}{'localhost'},\ \textcolor{stringliteral}{'port'}:\ 50000,\ \textcolor{stringliteral}{'name'}:\ \textcolor{stringliteral}{'testdb'}\}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00038}00038\ \ \ \ \ \ \ \ \ cli\_manager\ =\ ManagerFactory.create\_database\_manager(cli\_config,\ self.\mbox{\hyperlink{classtest_1_1test__integration_1_1_test_implementation_consistency_aada941669bf22e231fb4bf7cda98412e}{logger}})}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00040}00040\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Check\ all\ interface\ methods\ exist}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00041}00041\ \ \ \ \ \ \ \ \ interface\_methods\ =\ [}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'connect'},\ \textcolor{stringliteral}{'disconnect'},\ \textcolor{stringliteral}{'is\_connected'},\ \textcolor{stringliteral}{'execute\_query'},}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'execute\_update'},\ \textcolor{stringliteral}{'execute\_batch'},\ \textcolor{stringliteral}{'transaction'},}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'get\_table\_info'},\ \textcolor{stringliteral}{'get\_database\_info'},\ \textcolor{stringliteral}{'test\_connection'}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00045}00045\ \ \ \ \ \ \ \ \ ]}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00047}00047\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ method\ \textcolor{keywordflow}{in}\ interface\_methods:}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ self.assertTrue(}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hasattr(cli\_manager,\ method),}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ f\textcolor{stringliteral}{"{}CLI\ adapter\ missing\ method:\ \{method\}"{}}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ self.assertTrue(}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ callable(getattr(cli\_manager,\ method)),}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ f\textcolor{stringliteral}{"{}CLI\ adapter\ \{method\}\ is\ not\ callable"{}}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00057}00057\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ If\ library\ implementation\ is\ available,\ test\ it\ too}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00058}00058\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ library\_config\ =\ \{\textcolor{stringliteral}{'implementation'}:\ \textcolor{stringliteral}{'library'},\ \textcolor{stringliteral}{'auto\_fallback'}:\ \textcolor{keyword}{False},\ \textcolor{stringliteral}{'host'}:\ \textcolor{stringliteral}{'localhost'},\ \textcolor{stringliteral}{'port'}:\ 50000,\ \textcolor{stringliteral}{'name'}:\ \textcolor{stringliteral}{'testdb'}\}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ library\_manager\ =\ ManagerFactory.create\_database\_manager(library\_config,\ \textcolor{keywordtype}{None})}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ method\ \textcolor{keywordflow}{in}\ interface\_methods:}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.assertTrue(}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hasattr(library\_manager,\ method),}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ f\textcolor{stringliteral}{"{}Library\ adapter\ missing\ method:\ \{method\}"{}}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.assertTrue(}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ callable(getattr(library\_manager,\ method)),}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ f\textcolor{stringliteral}{"{}Library\ adapter\ \{method\}\ is\ not\ callable"{}}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00071}00071\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ (ValueError,\ ImportError):}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Library\ implementation\ not\ available}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00075}\mbox{\hyperlink{classtest_1_1test__integration_1_1_test_implementation_consistency_aa4d70d67affc586a5e865f3864dd00a1}{00075}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtest_1_1test__integration_1_1_test_implementation_consistency_aa4d70d67affc586a5e865f3864dd00a1}{test\_messaging\_interface\_consistency}}(self):}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00076}00076\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Test\ that\ both\ MQ\ implementations\ have\ same\ interface\ methods"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00077}00077\ \ \ \ \ \ \ \ \ cli\_config\ =\ \{\textcolor{stringliteral}{'implementation'}:\ \textcolor{stringliteral}{'cli'},\ \textcolor{stringliteral}{'host'}:\ \textcolor{stringliteral}{'localhost'},\ \textcolor{stringliteral}{'port'}:\ 1414,\ \textcolor{stringliteral}{'queue\_manager'}:\ \textcolor{stringliteral}{'QM1'}\}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00079}00079\ \ \ \ \ \ \ \ \ cli\_manager\ =\ ManagerFactory.create\_messaging\_manager(cli\_config,\ self.\mbox{\hyperlink{classtest_1_1test__integration_1_1_test_implementation_consistency_aada941669bf22e231fb4bf7cda98412e}{logger}})}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00081}00081\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Check\ all\ interface\ methods\ exist}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00082}00082\ \ \ \ \ \ \ \ \ interface\_methods\ =\ [}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'connect'},\ \textcolor{stringliteral}{'disconnect'},\ \textcolor{stringliteral}{'is\_connected'},\ \textcolor{stringliteral}{'put\_message'},}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'get\_message'},\ \textcolor{stringliteral}{'browse\_message'},\ \textcolor{stringliteral}{'get\_queue\_depth'},}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'purge\_queue'},\ \textcolor{stringliteral}{'test\_connection'}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00086}00086\ \ \ \ \ \ \ \ \ ]}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00088}00088\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ method\ \textcolor{keywordflow}{in}\ interface\_methods:}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ self.assertTrue(}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hasattr(cli\_manager,\ method),}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ f\textcolor{stringliteral}{"{}CLI\ adapter\ missing\ method:\ \{method\}"{}}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ self.assertTrue(}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ callable(getattr(cli\_manager,\ method)),}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ f\textcolor{stringliteral}{"{}CLI\ adapter\ \{method\}\ is\ not\ callable"{}}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00098}00098\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ If\ library\ implementation\ is\ available,\ test\ it\ too}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00099}00099\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ library\_config\ =\ \{\textcolor{stringliteral}{'implementation'}:\ \textcolor{stringliteral}{'library'},\ \textcolor{stringliteral}{'auto\_fallback'}:\ \textcolor{keyword}{False},\ \textcolor{stringliteral}{'host'}:\ \textcolor{stringliteral}{'localhost'},\ \textcolor{stringliteral}{'port'}:\ 1414,\ \textcolor{stringliteral}{'queue\_manager'}:\ \textcolor{stringliteral}{'QM1'}\}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ library\_manager\ =\ ManagerFactory.create\_messaging\_manager(library\_config,\ \textcolor{keywordtype}{None})}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00102}00102\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ method\ \textcolor{keywordflow}{in}\ interface\_methods:}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.assertTrue(}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hasattr(library\_manager,\ method),}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ f\textcolor{stringliteral}{"{}Library\ adapter\ missing\ method:\ \{method\}"{}}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.assertTrue(}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ callable(getattr(library\_manager,\ method)),}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ f\textcolor{stringliteral}{"{}Library\ adapter\ \{method\}\ is\ not\ callable"{}}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00112}00112\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ (ValueError,\ ImportError):}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Library\ implementation\ not\ available}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00115}00115\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00116}00116\ \ \ \ \ \textcolor{preprocessor}{@patch('commonpython.database.db2\_manager.subprocess.run')}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00117}\mbox{\hyperlink{classtest_1_1test__integration_1_1_test_implementation_consistency_acff62335c976addd0631888d9dc417c2}{00117}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtest_1_1test__integration_1_1_test_implementation_consistency_acff62335c976addd0631888d9dc417c2}{test\_database\_operation\_flow}}(self,\ mock\_run):}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00118}00118\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Test\ complete\ database\ operation\ flow"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00119}00119\ \ \ \ \ \ \ \ \ mock\_run.return\_value\ =\ Mock(returncode=0,\ stdout=\textcolor{stringliteral}{'Connected'},\ stderr=\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00120}00120\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00121}00121\ \ \ \ \ \ \ \ \ config\ =\ \{\textcolor{stringliteral}{'implementation'}:\ \textcolor{stringliteral}{'cli'},\ \textcolor{stringliteral}{'host'}:\ \textcolor{stringliteral}{'localhost'},\ \textcolor{stringliteral}{'port'}:\ 50000,\ \textcolor{stringliteral}{'name'}:\ \textcolor{stringliteral}{'testdb'}\}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00122}00122\ \ \ \ \ \ \ \ \ manager\ =\ ManagerFactory.create\_database\_manager(config,\ self.\mbox{\hyperlink{classtest_1_1test__integration_1_1_test_implementation_consistency_aada941669bf22e231fb4bf7cda98412e}{logger}})}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00123}00123\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00124}00124\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Test\ connection\ flow}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00125}00125\ \ \ \ \ \ \ \ \ self.assertFalse(manager.is\_connected())}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00126}00126\ \ \ \ \ \ \ \ \ manager.connect()}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00127}00127\ \ \ \ \ \ \ \ \ self.assertTrue(manager.is\_connected())}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00128}00128\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00129}00129\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Test\ query\ execution}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00130}00130\ \ \ \ \ \ \ \ \ \textcolor{keyword}{with}\ patch.object(manager,\ \textcolor{stringliteral}{'execute\_query'},\ return\_value=[\{\textcolor{stringliteral}{'id'}:\ 1,\ \textcolor{stringliteral}{'name'}:\ \textcolor{stringliteral}{'test'}\}]):}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ results\ =\ manager.execute\_query(\textcolor{stringliteral}{"{}SELECT\ *\ FROM\ test"{}})}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ self.assertIsNotNone(results)}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ self.assertEqual(len(results),\ 1)}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00134}00134\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00135}00135\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Test\ update\ execution}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00136}00136\ \ \ \ \ \ \ \ \ \textcolor{keyword}{with}\ patch.object(manager,\ \textcolor{stringliteral}{'execute\_update'},\ return\_value=5):}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ rows\ =\ manager.execute\_update(\textcolor{stringliteral}{"{}UPDATE\ test\ SET\ name\ =\ 'updated'"{}})}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ self.assertEqual(rows,\ 5)}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00139}00139\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00140}00140\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Test\ disconnection}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00141}00141\ \ \ \ \ \ \ \ \ manager.disconnect()}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00142}00142\ \ \ \ \ \ \ \ \ self.assertFalse(manager.is\_connected())}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00143}00143\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00144}00144\ \ \ \ \ \textcolor{preprocessor}{@patch('commonpython.messaging.mq\_manager.subprocess.run')}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00145}\mbox{\hyperlink{classtest_1_1test__integration_1_1_test_implementation_consistency_a15f646612da312b3c2a5674faecafa34}{00145}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtest_1_1test__integration_1_1_test_implementation_consistency_a15f646612da312b3c2a5674faecafa34}{test\_messaging\_operation\_flow}}(self,\ mock\_run):}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00146}00146\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Test\ complete\ messaging\ operation\ flow"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00147}00147\ \ \ \ \ \ \ \ \ mock\_run.return\_value\ =\ Mock(returncode=0,\ stdout=\textcolor{stringliteral}{'Connected'},\ stderr=\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00148}00148\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00149}00149\ \ \ \ \ \ \ \ \ config\ =\ \{\textcolor{stringliteral}{'implementation'}:\ \textcolor{stringliteral}{'cli'},\ \textcolor{stringliteral}{'host'}:\ \textcolor{stringliteral}{'localhost'},\ \textcolor{stringliteral}{'port'}:\ 1414,\ \textcolor{stringliteral}{'queue\_manager'}:\ \textcolor{stringliteral}{'QM1'}\}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00150}00150\ \ \ \ \ \ \ \ \ manager\ =\ ManagerFactory.create\_messaging\_manager(config,\ self.\mbox{\hyperlink{classtest_1_1test__integration_1_1_test_implementation_consistency_aada941669bf22e231fb4bf7cda98412e}{logger}})}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00151}00151\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00152}00152\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Test\ connection\ flow}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00153}00153\ \ \ \ \ \ \ \ \ self.assertFalse(manager.is\_connected())}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00154}00154\ \ \ \ \ \ \ \ \ manager.connect()}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00155}00155\ \ \ \ \ \ \ \ \ self.assertTrue(manager.is\_connected())}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00156}00156\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00157}00157\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Test\ message\ operations}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00158}00158\ \ \ \ \ \ \ \ \ \textcolor{keyword}{with}\ patch.object(manager,\ \textcolor{stringliteral}{'put\_message'},\ return\_value=\textcolor{keyword}{True}):}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00159}00159\ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ manager.put\_message(\textcolor{stringliteral}{'TEST.QUEUE'},\ \{\textcolor{stringliteral}{'message'}:\ \textcolor{stringliteral}{'test'}\})}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ self.assertTrue(result)}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00161}00161\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00162}00162\ \ \ \ \ \ \ \ \ \textcolor{keyword}{with}\ patch.object(manager,\ \textcolor{stringliteral}{'get\_message'},\ return\_value=\{\textcolor{stringliteral}{'data'}:\ \{\textcolor{stringliteral}{'message'}:\ \textcolor{stringliteral}{'test'}\}\}):}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ message\ =\ manager.get\_message(\textcolor{stringliteral}{'TEST.QUEUE'})}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ self.assertIsNotNone(message)}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00165}00165\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00166}00166\ \ \ \ \ \ \ \ \ \textcolor{keyword}{with}\ patch.object(manager,\ \textcolor{stringliteral}{'get\_queue\_depth'},\ return\_value=10):}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ depth\ =\ manager.get\_queue\_depth(\textcolor{stringliteral}{'TEST.QUEUE'})}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ self.assertEqual(depth,\ 10)}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00169}00169\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00170}00170\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Test\ disconnection}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00171}00171\ \ \ \ \ \ \ \ \ manager.disconnect()}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00172}00172\ \ \ \ \ \ \ \ \ self.assertFalse(manager.is\_connected())}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00173}00173\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00174}00174\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00175}\mbox{\hyperlink{classtest_1_1test__integration_1_1_test_component_integration}{00175}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtest_1_1test__integration_1_1_test_component_integration}{TestComponentIntegration}}(unittest.TestCase):}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00176}00176\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Test\ integration\ with\ ComponentBase"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00177}00177\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00178}\mbox{\hyperlink{classtest_1_1test__integration_1_1_test_component_integration_acc5bce6d6d8fc8001f781eec49610097}{00178}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtest_1_1test__integration_1_1_test_component_integration_acc5bce6d6d8fc8001f781eec49610097}{setUp}}(self):}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00179}00179\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Set\ up\ test\ fixtures"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00180}\mbox{\hyperlink{classtest_1_1test__integration_1_1_test_component_integration_a34895ca85ba27db60f5fe380968a065f}{00180}}\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classtest_1_1test__integration_1_1_test_component_integration_a34895ca85ba27db60f5fe380968a065f}{logger}}\ =\ Mock()}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00181}00181\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classtest_1_1test__integration_1_1_test_component_integration_a34895ca85ba27db60f5fe380968a065f}{logger}}.logger\ =\ Mock()}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00182}00182\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00183}00183\ \ \ \ \ \textcolor{preprocessor}{@patch('commonpython.framework.component\_base.ConfigManager')}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00184}00184\ \ \ \ \ \textcolor{preprocessor}{@patch('commonpython.framework.component\_base.LoggerManager')}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00185}\mbox{\hyperlink{classtest_1_1test__integration_1_1_test_component_integration_a95d9260086e636c98b28252783009923}{00185}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtest_1_1test__integration_1_1_test_component_integration_a95d9260086e636c98b28252783009923}{test\_component\_uses\_factory}}(self,\ mock\_logger\_manager,\ mock\_config\_manager):}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00186}00186\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Test\ that\ ComponentBase\ uses\ factory\ to\ create\ managers"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00187}00187\ \ \ \ \ \ \ \ \ \textcolor{keyword}{from}\ \mbox{\hyperlink{namespacecommonpython_1_1framework}{commonpython.framework}}\ \textcolor{keyword}{import}\ ComponentBase}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00188}00188\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00189}00189\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Mock\ configuration}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00190}00190\ \ \ \ \ \ \ \ \ mock\_config\ =\ Mock()}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00191}00191\ \ \ \ \ \ \ \ \ mock\_config.get\_database\_config.return\_value\ =\ \{}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'implementation'}:\ \textcolor{stringliteral}{'cli'},}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00193}00193\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'host'}:\ \textcolor{stringliteral}{'localhost'},}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00194}00194\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'port'}:\ 50000,}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'name'}:\ \textcolor{stringliteral}{'testdb'}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00196}00196\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00197}00197\ \ \ \ \ \ \ \ \ mock\_config.get\_messaging\_config.return\_value\ =\ \{}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'implementation'}:\ \textcolor{stringliteral}{'cli'},}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00199}00199\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'host'}:\ \textcolor{stringliteral}{'localhost'},}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'port'}:\ 1414,}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00201}00201\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'queue\_manager'}:\ \textcolor{stringliteral}{'QM1'}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00202}00202\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00203}00203\ \ \ \ \ \ \ \ \ mock\_config.get\_logging\_config.return\_value\ =\ \{}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00204}00204\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'level'}:\ \textcolor{stringliteral}{'INFO'},}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00205}00205\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'file'}:\ \textcolor{stringliteral}{'test.log'},}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00206}00206\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'dir'}:\ \textcolor{stringliteral}{'log'}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00207}00207\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00208}00208\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00209}00209\ \ \ \ \ \ \ \ \ mock\_config\_manager.return\_value\ =\ mock\_config}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00210}00210\ \ \ \ \ \ \ \ \ mock\_logger\_manager.return\_value\ =\ self.\mbox{\hyperlink{classtest_1_1test__integration_1_1_test_component_integration_a34895ca85ba27db60f5fe380968a065f}{logger}}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00211}00211\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00212}00212\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Create\ a\ concrete\ component\ class}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00213}00213\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }TestComponent(ComponentBase):}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00214}00214\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{def\ }initialize(self):}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00215}00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00216}00216\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00217}00217\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{def\ }run(self):}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00218}00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00219}00219\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00220}00220\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{def\ }cleanup(self):}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00221}00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00222}00222\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00223}00223\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Create\ component}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00224}00224\ \ \ \ \ \ \ \ \ component\ =\ TestComponent(\textcolor{stringliteral}{'TestComponent'},\ \textcolor{stringliteral}{'test\_config.yaml'})}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00225}00225\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00226}00226\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Verify\ managers\ were\ created\ via\ factory}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00227}00227\ \ \ \ \ \ \ \ \ self.assertIsInstance(component.db\_manager,\ IDatabaseManager)}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00228}00228\ \ \ \ \ \ \ \ \ self.assertIsInstance(component.mq\_manager,\ IMessagingManager)}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00229}00229\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00230}00230\ \ \ \ \ \textcolor{preprocessor}{@patch('commonpython.framework.component\_base.ConfigManager')}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00231}00231\ \ \ \ \ \textcolor{preprocessor}{@patch('commonpython.framework.component\_base.LoggerManager')}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00232}\mbox{\hyperlink{classtest_1_1test__integration_1_1_test_component_integration_a7aaab237a8f69d7afcca48306d3bce5f}{00232}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtest_1_1test__integration_1_1_test_component_integration_a7aaab237a8f69d7afcca48306d3bce5f}{test\_component\_switches\_implementation}}(self,\ mock\_logger\_manager,\ mock\_config\_manager):}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00233}00233\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Test\ component\ can\ switch\ between\ implementations\ via\ config"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00234}00234\ \ \ \ \ \ \ \ \ \textcolor{keyword}{from}\ \mbox{\hyperlink{namespacecommonpython_1_1framework}{commonpython.framework}}\ \textcolor{keyword}{import}\ ComponentBase}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00235}00235\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00236}00236\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Test\ with\ CLI\ implementation}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00237}00237\ \ \ \ \ \ \ \ \ mock\_config\_cli\ =\ Mock()}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00238}00238\ \ \ \ \ \ \ \ \ mock\_config\_cli.get\_database\_config.return\_value\ =\ \{}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00239}00239\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'implementation'}:\ \textcolor{stringliteral}{'cli'},}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00240}00240\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'host'}:\ \textcolor{stringliteral}{'localhost'},}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00241}00241\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'port'}:\ 50000,}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00242}00242\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'name'}:\ \textcolor{stringliteral}{'testdb'}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00243}00243\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00244}00244\ \ \ \ \ \ \ \ \ mock\_config\_cli.get\_messaging\_config.return\_value\ =\ \{}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00245}00245\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'implementation'}:\ \textcolor{stringliteral}{'cli'},}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00246}00246\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'host'}:\ \textcolor{stringliteral}{'localhost'},}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00247}00247\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'port'}:\ 1414,}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00248}00248\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'queue\_manager'}:\ \textcolor{stringliteral}{'QM1'}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00249}00249\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00250}00250\ \ \ \ \ \ \ \ \ mock\_config\_cli.get\_logging\_config.return\_value\ =\ \{}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00251}00251\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'level'}:\ \textcolor{stringliteral}{'INFO'},}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00252}00252\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'file'}:\ \textcolor{stringliteral}{'test.log'},}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00253}00253\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'dir'}:\ \textcolor{stringliteral}{'log'}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00254}00254\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00255}00255\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00256}00256\ \ \ \ \ \ \ \ \ mock\_config\_manager.return\_value\ =\ mock\_config\_cli}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00257}00257\ \ \ \ \ \ \ \ \ mock\_logger\_manager.return\_value\ =\ self.\mbox{\hyperlink{classtest_1_1test__integration_1_1_test_component_integration_a34895ca85ba27db60f5fe380968a065f}{logger}}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00258}00258\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00259}00259\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }TestComponent(ComponentBase):}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00260}00260\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{def\ }initialize(self):}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00261}00261\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00262}00262\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00263}00263\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{def\ }run(self):}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00264}00264\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00265}00265\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00266}00266\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{def\ }cleanup(self):}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00267}00267\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00268}00268\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00269}00269\ \ \ \ \ \ \ \ \ component\ =\ TestComponent(\textcolor{stringliteral}{'TestComponent'},\ \textcolor{stringliteral}{'test\_config.yaml'})}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00270}00270\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00271}00271\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Should\ use\ CLI\ adapters}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00272}00272\ \ \ \ \ \ \ \ \ self.assertIsInstance(component.db\_manager,\ DB2CLIAdapter)}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00273}00273\ \ \ \ \ \ \ \ \ self.assertIsInstance(component.mq\_manager,\ MQCLIAdapter)}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00274}00274\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00275}00275\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00276}\mbox{\hyperlink{classtest_1_1test__integration_1_1_test_error_handling}{00276}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtest_1_1test__integration_1_1_test_error_handling}{TestErrorHandling}}(unittest.TestCase):}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00277}00277\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Test\ error\ handling\ across\ different\ implementations"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00278}00278\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00279}\mbox{\hyperlink{classtest_1_1test__integration_1_1_test_error_handling_af6d559e132771e3866a2d1d33c4805b2}{00279}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtest_1_1test__integration_1_1_test_error_handling_af6d559e132771e3866a2d1d33c4805b2}{setUp}}(self):}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00280}00280\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Set\ up\ test\ fixtures"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00281}\mbox{\hyperlink{classtest_1_1test__integration_1_1_test_error_handling_a98e12e41ead1649ace9b72df89d485ca}{00281}}\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classtest_1_1test__integration_1_1_test_error_handling_a98e12e41ead1649ace9b72df89d485ca}{logger}}\ =\ Mock()}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00282}00282\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classtest_1_1test__integration_1_1_test_error_handling_a98e12e41ead1649ace9b72df89d485ca}{logger}}.logger\ =\ Mock()}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00283}00283\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00284}\mbox{\hyperlink{classtest_1_1test__integration_1_1_test_error_handling_a58e391a55a75009c237801750161609b}{00284}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtest_1_1test__integration_1_1_test_error_handling_a58e391a55a75009c237801750161609b}{test\_invalid\_config\_handling}}(self):}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00285}00285\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Test\ handling\ of\ invalid\ configuration"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00286}00286\ \ \ \ \ \ \ \ \ invalid\_config\ =\ \{}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00287}00287\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'implementation'}:\ \textcolor{stringliteral}{'invalid\_type'},}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00288}00288\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'host'}:\ \textcolor{stringliteral}{'localhost'}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00289}00289\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00290}00290\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00291}00291\ \ \ \ \ \ \ \ \ \textcolor{keyword}{with}\ self.assertRaises(ValueError):}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00292}00292\ \ \ \ \ \ \ \ \ \ \ \ \ ManagerFactory.create\_database\_manager(invalid\_config,\ self.\mbox{\hyperlink{classtest_1_1test__integration_1_1_test_error_handling_a98e12e41ead1649ace9b72df89d485ca}{logger}})}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00293}00293\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00294}00294\ \ \ \ \ \ \ \ \ \textcolor{keyword}{with}\ self.assertRaises(ValueError):}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00295}00295\ \ \ \ \ \ \ \ \ \ \ \ \ ManagerFactory.create\_messaging\_manager(invalid\_config,\ self.\mbox{\hyperlink{classtest_1_1test__integration_1_1_test_error_handling_a98e12e41ead1649ace9b72df89d485ca}{logger}})}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00296}00296\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00297}\mbox{\hyperlink{classtest_1_1test__integration_1_1_test_error_handling_aafccf15a0d4cbf4568efc296eae0d025}{00297}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtest_1_1test__integration_1_1_test_error_handling_aafccf15a0d4cbf4568efc296eae0d025}{test\_missing\_library\_handling}}(self):}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00298}00298\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Test\ handling\ when\ library\ implementation\ is\ requested\ but\ not\ available"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00299}00299\ \ \ \ \ \ \ \ \ config\ =\ \{}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00300}00300\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'implementation'}:\ \textcolor{stringliteral}{'library'},}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00301}00301\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'auto\_fallback'}:\ \textcolor{keyword}{False},}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00302}00302\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'host'}:\ \textcolor{stringliteral}{'localhost'},}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00303}00303\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'port'}:\ 50000,}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00304}00304\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'name'}:\ \textcolor{stringliteral}{'testdb'}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00305}00305\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00306}00306\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00307}00307\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Mock\ library\ as\ unavailable}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00308}00308\ \ \ \ \ \ \ \ \ ManagerFactory.\_adapter\_cache[\textcolor{stringliteral}{'db2\_library\_available'}]\ =\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00309}00309\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00310}00310\ \ \ \ \ \ \ \ \ \textcolor{keyword}{with}\ self.assertRaises(ValueError):}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00311}00311\ \ \ \ \ \ \ \ \ \ \ \ \ ManagerFactory.create\_database\_manager(config,\ self.\mbox{\hyperlink{classtest_1_1test__integration_1_1_test_error_handling_a98e12e41ead1649ace9b72df89d485ca}{logger}})}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00312}00312\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00313}00313\ \ \ \ \ \ \ \ \ ManagerFactory.reset\_cache()}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00314}00314\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00315}00315\ \ \ \ \ \textcolor{preprocessor}{@patch('commonpython.database.db2\_manager.subprocess.run')}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00316}\mbox{\hyperlink{classtest_1_1test__integration_1_1_test_error_handling_a297e8bfba85194f2690fa437f96f31af}{00316}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtest_1_1test__integration_1_1_test_error_handling_a297e8bfba85194f2690fa437f96f31af}{test\_connection\_failure\_handling}}(self,\ mock\_run):}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00317}00317\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Test\ handling\ of\ connection\ failures"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00318}00318\ \ \ \ \ \ \ \ \ mock\_run.return\_value\ =\ Mock(returncode=1,\ stdout=\textcolor{stringliteral}{''},\ stderr=\textcolor{stringliteral}{'Connection\ failed'})}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00319}00319\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00320}00320\ \ \ \ \ \ \ \ \ config\ =\ \{\textcolor{stringliteral}{'implementation'}:\ \textcolor{stringliteral}{'cli'},\ \textcolor{stringliteral}{'host'}:\ \textcolor{stringliteral}{'localhost'},\ \textcolor{stringliteral}{'port'}:\ 50000,\ \textcolor{stringliteral}{'name'}:\ \textcolor{stringliteral}{'testdb'}\}}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00321}00321\ \ \ \ \ \ \ \ \ manager\ =\ ManagerFactory.create\_database\_manager(config,\ self.\mbox{\hyperlink{classtest_1_1test__integration_1_1_test_error_handling_a98e12e41ead1649ace9b72df89d485ca}{logger}})}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00322}00322\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00323}00323\ \ \ \ \ \ \ \ \ result\ =\ manager.connect()}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00324}00324\ \ \ \ \ \ \ \ \ self.assertFalse(result)}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00325}00325\ \ \ \ \ \ \ \ \ self.assertFalse(manager.is\_connected())}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00326}00326\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00327}00327\ }
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00328}00328\ \textcolor{keywordflow}{if}\ \_\_name\_\_\ ==\ \textcolor{stringliteral}{'\_\_main\_\_'}:}
+\DoxyCodeLine{\Hypertarget{test__integration_8py_source_l00329}00329\ \ \ \ \ unittest.main()}
+
+\end{DoxyCode}

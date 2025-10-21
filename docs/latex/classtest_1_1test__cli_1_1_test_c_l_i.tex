@@ -1,0 +1,986 @@
+\doxysection{test.\+test\+\_\+cli.\+Test\+CLI Class Reference}
+\hypertarget{classtest_1_1test__cli_1_1_test_c_l_i}{}\label{classtest_1_1test__cli_1_1_test_c_l_i}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+Inheritance diagram for test.\+test\+\_\+cli.\+Test\+CLI\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classtest_1_1test__cli_1_1_test_c_l_i}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_a07284c107405cf129106a2c6f0b689d9}{set\+Up}} (self)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_aeaf77acb4626712b03901c4079eb1216}{tear\+Down}} (self)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_af7e9bf0ca5fbf9d4dbaf327dcde3802c}{test\+\_\+init}} (self)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_a732f2dbf5f489dc527b82ac5103d2f7d}{test\+\_\+init\+\_\+with\+\_\+config\+\_\+file}} (self)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_a1e8022a4d983959aff4110dc2a5c68a4}{test\+\_\+init\+\_\+without\+\_\+config\+\_\+file}} (self)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_a63564431be1547a919258b5575a8e8bd}{test\+\_\+initialize\+\_\+components\+\_\+import\+\_\+error}} (self, mock\+\_\+exit)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_a058a38ad678fc80922561a0f90f7d050}{test\+\_\+setup\+\_\+database\+\_\+success}} (self, mock\+\_\+logger\+\_\+manager\+\_\+class, mock\+\_\+config\+\_\+manager\+\_\+class, mock\+\_\+db\+\_\+manager\+\_\+class)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_a9a6af011c0f4df09c8cce10f68381cee}{test\+\_\+setup\+\_\+database\+\_\+failure}} (self, mock\+\_\+logger\+\_\+manager\+\_\+class, mock\+\_\+config\+\_\+manager\+\_\+class, mock\+\_\+db\+\_\+manager\+\_\+class)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_a51ecb2773c56c891ddde2249b4995910}{test\+\_\+setup\+\_\+database\+\_\+connect\+\_\+returns\+\_\+false}} (self)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_ae7f513d6676b852a955b83f4386a4252}{test\+\_\+setup\+\_\+messaging\+\_\+success}} (self, mock\+\_\+logger\+\_\+manager\+\_\+class, mock\+\_\+config\+\_\+manager\+\_\+class, mock\+\_\+mq\+\_\+manager\+\_\+class)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_a6b0a04363aaba34b2aabc9bed30f8106}{test\+\_\+setup\+\_\+messaging\+\_\+failure}} (self, mock\+\_\+logger\+\_\+manager\+\_\+class, mock\+\_\+config\+\_\+manager\+\_\+class, mock\+\_\+mq\+\_\+manager\+\_\+class)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_a079e7bcf3982fedf1494973cdf009454}{test\+\_\+setup\+\_\+messaging\+\_\+connect\+\_\+returns\+\_\+false}} (self)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_ac62b92a931fea24002571decad40f7c0}{test\+\_\+display\+\_\+results\+\_\+empty}} (self)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_a50ed70e0c00cae033af73f27d81b57d3}{test\+\_\+display\+\_\+results\+\_\+none}} (self)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_aed0ba6ba745de7af2c5a8b51d7e5304d}{test\+\_\+display\+\_\+results\+\_\+list\+\_\+of\+\_\+dicts}} (self)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_a3e13f81a5cc34e0c09864c5cdc3ab921}{test\+\_\+display\+\_\+results\+\_\+single\+\_\+dict}} (self)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_a40006ad50320ccce8a252ec37c615c7b}{test\+\_\+display\+\_\+results\+\_\+list\+\_\+with\+\_\+empty\+\_\+dict}} (self)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_a5a8cd51cc5302a80b70a2997308fdadf}{test\+\_\+display\+\_\+results\+\_\+list\+\_\+of\+\_\+strings}} (self)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_ac399725b42d8a3f011ce35d8ee2b76e8}{test\+\_\+test\+\_\+database\+\_\+success}} (self, mock\+\_\+setup)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_aa2080969bc47d84453bfd54835d005df}{test\+\_\+test\+\_\+database\+\_\+failure}} (self, mock\+\_\+setup)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_a57addd57f5d19ec1e3beea38901f3ddc}{test\+\_\+test\+\_\+database\+\_\+setup\+\_\+failure}} (self, mock\+\_\+setup)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_ac07fd8be79a55ecb83a02fd670752c43}{test\+\_\+execute\+\_\+query\+\_\+select}} (self, mock\+\_\+setup)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_a51f44f78b332cfb86cfd520fdd499052}{test\+\_\+execute\+\_\+query\+\_\+select\+\_\+lowercase}} (self, mock\+\_\+setup)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_ac41088b2cad366fb2043c1fd2c765eea}{test\+\_\+execute\+\_\+query\+\_\+update}} (self, mock\+\_\+setup)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_a79313d85f44d391edf75f456e46589bc}{test\+\_\+execute\+\_\+query\+\_\+insert}} (self, mock\+\_\+setup)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_ac9dfa762d2faa8ff5def05b62830f1ff}{test\+\_\+execute\+\_\+query\+\_\+delete}} (self, mock\+\_\+setup)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_aec367f431e16edc1f8c7506a7626b1f4}{test\+\_\+execute\+\_\+query\+\_\+setup\+\_\+failure}} (self, mock\+\_\+setup, mock\+\_\+exit)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_a9617d78181018a2a166d242b545164d9}{test\+\_\+execute\+\_\+query\+\_\+with\+\_\+params}} (self, mock\+\_\+setup)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_a8036f152ccdd29c3f95352079b018122}{test\+\_\+execute\+\_\+query\+\_\+with\+\_\+multiple\+\_\+params}} (self, mock\+\_\+setup)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_a132995bf9587b034a9907b7358c905c5}{test\+\_\+execute\+\_\+query\+\_\+invalid\+\_\+json\+\_\+params}} (self, mock\+\_\+setup, mock\+\_\+exit)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_af67b940df17e86840f7b9d49af295c94}{test\+\_\+execute\+\_\+query\+\_\+exception}} (self, mock\+\_\+exit)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_a2458d7f09b33ea7f9d5e19b50e4c6bcf}{test\+\_\+get\+\_\+table\+\_\+info}} (self, mock\+\_\+setup)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_a34ab42622ae6b250759e9ea99dd1d980}{test\+\_\+get\+\_\+table\+\_\+info\+\_\+setup\+\_\+fail}} (self, mock\+\_\+setup, mock\+\_\+exit)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_a1173386d6de4057a80cd5e008252c2ee}{test\+\_\+get\+\_\+table\+\_\+info\+\_\+exception}} (self, mock\+\_\+exit)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_ac2b615d3ad46cea76b13428c31d949e2}{test\+\_\+test\+\_\+messaging\+\_\+success}} (self, mock\+\_\+setup)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_a996e2b4fe90bb6457f67538a9df990fe}{test\+\_\+test\+\_\+messaging\+\_\+failure}} (self, mock\+\_\+setup)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_a1a4a63a85769bbf998289e1a154e4b0d}{test\+\_\+test\+\_\+messaging\+\_\+setup\+\_\+failure}} (self, mock\+\_\+setup)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_a768accfbddd33e2711bfae005238373a}{test\+\_\+get\+\_\+message\+\_\+success}} (self, mock\+\_\+setup)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_afd9cd27241febad32466e1bc6f7b1f85}{test\+\_\+get\+\_\+message\+\_\+with\+\_\+timeout}} (self, mock\+\_\+setup)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_a96b9aa211fa7c06bef1fba175ea607f3}{test\+\_\+get\+\_\+message\+\_\+no\+\_\+message}} (self, mock\+\_\+setup)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_a1185a26fbc0e2fe00c881f442ee6c94e}{test\+\_\+get\+\_\+message\+\_\+setup\+\_\+fail}} (self, mock\+\_\+setup, mock\+\_\+exit)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_abbb2448b76520e5f1be6b96bc8eb0474}{test\+\_\+get\+\_\+message\+\_\+exception}} (self, mock\+\_\+exit)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_addae1a09f345d30f6c38ac66f4e6c2ca}{test\+\_\+put\+\_\+message\+\_\+success}} (self, mock\+\_\+setup)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_ae9c52748e7fba192871b1d0d0b206e5d}{test\+\_\+put\+\_\+message\+\_\+with\+\_\+json\+\_\+string}} (self, mock\+\_\+setup)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_a92301d471baf42589747d2a3708373b0}{test\+\_\+put\+\_\+message\+\_\+with\+\_\+properties}} (self, mock\+\_\+setup)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_aa3fc76c34a4b423edbca8c01ae7aa198}{test\+\_\+put\+\_\+message\+\_\+with\+\_\+invalid\+\_\+properties\+\_\+json}} (self, mock\+\_\+setup)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_ae5faffcd6a687eb4491b7223da4cc980}{test\+\_\+put\+\_\+message\+\_\+failure}} (self, mock\+\_\+setup, mock\+\_\+exit)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_a97e7301c9c65042dd97c031e7bc7e332}{test\+\_\+put\+\_\+message\+\_\+setup\+\_\+fail}} (self, mock\+\_\+setup, mock\+\_\+exit)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_a7d533b17c34628fd732c6087d0905023}{test\+\_\+put\+\_\+message\+\_\+exception}} (self, mock\+\_\+exit)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_a29d20df01077895b7815dbc05105ff3b}{test\+\_\+get\+\_\+queue\+\_\+depth}} (self, mock\+\_\+setup)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_af9a1de67fa78bc0427be9a652b796443}{test\+\_\+get\+\_\+queue\+\_\+depth\+\_\+zero}} (self, mock\+\_\+setup)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_a81bbce479c450475d696741dd39b8c4d}{test\+\_\+get\+\_\+queue\+\_\+depth\+\_\+negative}} (self, mock\+\_\+setup, mock\+\_\+exit)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_af05a97a6c4b422921033aaf8b0a0130d}{test\+\_\+get\+\_\+queue\+\_\+depth\+\_\+setup\+\_\+fail}} (self, mock\+\_\+setup, mock\+\_\+exit)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_a4a6871398a90ecac040fa4078971c8bd}{test\+\_\+get\+\_\+queue\+\_\+depth\+\_\+exception}} (self, mock\+\_\+exit)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_af5779479a51087be0824ab74281de222}{test\+\_\+show\+\_\+config}} (self)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_ae0521fa89442ffc4aade4cc5673041d1}{test\+\_\+get\+\_\+config}} (self)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_af61fd6449d8f5daf48bcf38fe2077348}{test\+\_\+get\+\_\+config\+\_\+none\+\_\+value}} (self)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_ab18e0367255c1ea56aefefc20b0e7ff6}{test\+\_\+set\+\_\+config}} (self)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_a710578a2c86c9ee03d672ea9abe1ccdb}{test\+\_\+set\+\_\+config\+\_\+numeric\+\_\+value}} (self)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_a74054f32fed27c3053b573ba3a302594}{test\+\_\+test\+\_\+all}} (self)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_ac15e8e3ec570ad617e668ccb721fc0a1}{test\+\_\+test\+\_\+all\+\_\+database\+\_\+fail}} (self)
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_a7c734152aa5b42da3b6286a169596195}{test\+\_\+test\+\_\+all\+\_\+messaging\+\_\+fail}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_a4c2fbc5cb80649821f8a5f85c0f2f8ee}{config\+\_\+file}} = f.\+name
+\item 
+\mbox{\hyperlink{classtest_1_1test__cli_1_1_test_c_l_i_a4b3454c28c5b689ec02fbd1bad080794}{cli}} = \mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i}{CLI}}(self.\+config\+\_\+file)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Test cases for CLI class.
+
+@brief Comprehensive test suite for command-line interface functionality.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00022}{22}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_a07284c107405cf129106a2c6f0b689d9}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!setUp@{setUp}}
+\index{setUp@{setUp}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{setUp()}{setUp()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_a07284c107405cf129106a2c6f0b689d9} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+set\+Up (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Set up test fixtures.
+
+@brief Initialize test environment before each test.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00029}{29}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_aeaf77acb4626712b03901c4079eb1216}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!tearDown@{tearDown}}
+\index{tearDown@{tearDown}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{tearDown()}{tearDown()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_aeaf77acb4626712b03901c4079eb1216} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+tear\+Down (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Clean up test fixtures.
+
+@brief Clean up test environment after each test.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00078}{78}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_ac62b92a931fea24002571decad40f7c0}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_display\_results\_empty@{test\_display\_results\_empty}}
+\index{test\_display\_results\_empty@{test\_display\_results\_empty}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_display\_results\_empty()}{test\_display\_results\_empty()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_ac62b92a931fea24002571decad40f7c0} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+display\+\_\+results\+\_\+empty (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test displaying empty results.
+
+@brief Test that empty results are displayed correctly.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00263}{263}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_aed0ba6ba745de7af2c5a8b51d7e5304d}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_display\_results\_list\_of\_dicts@{test\_display\_results\_list\_of\_dicts}}
+\index{test\_display\_results\_list\_of\_dicts@{test\_display\_results\_list\_of\_dicts}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_display\_results\_list\_of\_dicts()}{test\_display\_results\_list\_of\_dicts()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_aed0ba6ba745de7af2c5a8b51d7e5304d} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+display\+\_\+results\+\_\+list\+\_\+of\+\_\+dicts (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test displaying list of dictionaries.
+
+@brief Test that list of dictionaries is displayed as a table.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00281}{281}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_a5a8cd51cc5302a80b70a2997308fdadf}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_display\_results\_list\_of\_strings@{test\_display\_results\_list\_of\_strings}}
+\index{test\_display\_results\_list\_of\_strings@{test\_display\_results\_list\_of\_strings}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_display\_results\_list\_of\_strings()}{test\_display\_results\_list\_of\_strings()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_a5a8cd51cc5302a80b70a2997308fdadf} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+display\+\_\+results\+\_\+list\+\_\+of\+\_\+strings (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test displaying list of strings.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00318}{318}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_a40006ad50320ccce8a252ec37c615c7b}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_display\_results\_list\_with\_empty\_dict@{test\_display\_results\_list\_with\_empty\_dict}}
+\index{test\_display\_results\_list\_with\_empty\_dict@{test\_display\_results\_list\_with\_empty\_dict}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_display\_results\_list\_with\_empty\_dict()}{test\_display\_results\_list\_with\_empty\_dict()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_a40006ad50320ccce8a252ec37c615c7b} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+display\+\_\+results\+\_\+list\+\_\+with\+\_\+empty\+\_\+dict (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test displaying list containing empty dict.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00308}{308}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_a50ed70e0c00cae033af73f27d81b57d3}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_display\_results\_none@{test\_display\_results\_none}}
+\index{test\_display\_results\_none@{test\_display\_results\_none}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_display\_results\_none()}{test\_display\_results\_none()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_a50ed70e0c00cae033af73f27d81b57d3} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+display\+\_\+results\+\_\+none (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test displaying None results.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00273}{273}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_a3e13f81a5cc34e0c09864c5cdc3ab921}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_display\_results\_single\_dict@{test\_display\_results\_single\_dict}}
+\index{test\_display\_results\_single\_dict@{test\_display\_results\_single\_dict}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_display\_results\_single\_dict()}{test\_display\_results\_single\_dict()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_a3e13f81a5cc34e0c09864c5cdc3ab921} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+display\+\_\+results\+\_\+single\+\_\+dict (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test displaying single dictionary (not in list).
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00298}{298}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_ac9dfa762d2faa8ff5def05b62830f1ff}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_execute\_query\_delete@{test\_execute\_query\_delete}}
+\index{test\_execute\_query\_delete@{test\_execute\_query\_delete}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_execute\_query\_delete()}{test\_execute\_query\_delete()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_ac9dfa762d2faa8ff5def05b62830f1ff} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+execute\+\_\+query\+\_\+delete (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{mock\+\_\+setup}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test executing DELETE query.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00434}{434}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_af67b940df17e86840f7b9d49af295c94}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_execute\_query\_exception@{test\_execute\_query\_exception}}
+\index{test\_execute\_query\_exception@{test\_execute\_query\_exception}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_execute\_query\_exception()}{test\_execute\_query\_exception()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_af67b940df17e86840f7b9d49af295c94} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+execute\+\_\+query\+\_\+exception (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{mock\+\_\+exit}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test execute_query exits on exception.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00506}{506}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_a79313d85f44d391edf75f456e46589bc}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_execute\_query\_insert@{test\_execute\_query\_insert}}
+\index{test\_execute\_query\_insert@{test\_execute\_query\_insert}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_execute\_query\_insert()}{test\_execute\_query\_insert()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_a79313d85f44d391edf75f456e46589bc} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+execute\+\_\+query\+\_\+insert (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{mock\+\_\+setup}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test executing INSERT query.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00420}{420}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_a132995bf9587b034a9907b7358c905c5}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_execute\_query\_invalid\_json\_params@{test\_execute\_query\_invalid\_json\_params}}
+\index{test\_execute\_query\_invalid\_json\_params@{test\_execute\_query\_invalid\_json\_params}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_execute\_query\_invalid\_json\_params()}{test\_execute\_query\_invalid\_json\_params()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_a132995bf9587b034a9907b7358c905c5} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+execute\+\_\+query\+\_\+invalid\+\_\+json\+\_\+params (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{mock\+\_\+setup}{, }\item[{}]{mock\+\_\+exit}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test executing query with invalid JSON parameters.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00494}{494}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_ac07fd8be79a55ecb83a02fd670752c43}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_execute\_query\_select@{test\_execute\_query\_select}}
+\index{test\_execute\_query\_select@{test\_execute\_query\_select}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_execute\_query\_select()}{test\_execute\_query\_select()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_ac07fd8be79a55ecb83a02fd670752c43} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+execute\+\_\+query\+\_\+select (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{mock\+\_\+setup}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test executing SELECT query.
+
+@brief Test that SELECT queries are executed correctly.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00374}{374}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_a51f44f78b332cfb86cfd520fdd499052}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_execute\_query\_select\_lowercase@{test\_execute\_query\_select\_lowercase}}
+\index{test\_execute\_query\_select\_lowercase@{test\_execute\_query\_select\_lowercase}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_execute\_query\_select\_lowercase()}{test\_execute\_query\_select\_lowercase()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_a51f44f78b332cfb86cfd520fdd499052} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+execute\+\_\+query\+\_\+select\+\_\+lowercase (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{mock\+\_\+setup}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test executing select query in lowercase.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00390}{390}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_aec367f431e16edc1f8c7506a7626b1f4}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_execute\_query\_setup\_failure@{test\_execute\_query\_setup\_failure}}
+\index{test\_execute\_query\_setup\_failure@{test\_execute\_query\_setup\_failure}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_execute\_query\_setup\_failure()}{test\_execute\_query\_setup\_failure()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_aec367f431e16edc1f8c7506a7626b1f4} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+execute\+\_\+query\+\_\+setup\+\_\+failure (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{mock\+\_\+setup}{, }\item[{}]{mock\+\_\+exit}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test query execution with setup failure.
+
+@brief Test that query execution handles setup failures correctly.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00449}{449}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_ac41088b2cad366fb2043c1fd2c765eea}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_execute\_query\_update@{test\_execute\_query\_update}}
+\index{test\_execute\_query\_update@{test\_execute\_query\_update}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_execute\_query\_update()}{test\_execute\_query\_update()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_ac41088b2cad366fb2043c1fd2c765eea} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+execute\+\_\+query\+\_\+update (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{mock\+\_\+setup}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test executing UPDATE query.
+
+@brief Test that UPDATE queries are executed correctly.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00404}{404}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_a8036f152ccdd29c3f95352079b018122}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_execute\_query\_with\_multiple\_params@{test\_execute\_query\_with\_multiple\_params}}
+\index{test\_execute\_query\_with\_multiple\_params@{test\_execute\_query\_with\_multiple\_params}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_execute\_query\_with\_multiple\_params()}{test\_execute\_query\_with\_multiple\_params()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_a8036f152ccdd29c3f95352079b018122} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+execute\+\_\+query\+\_\+with\+\_\+multiple\+\_\+params (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{mock\+\_\+setup}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test executing query with multiple parameters.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00477}{477}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_a9617d78181018a2a166d242b545164d9}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_execute\_query\_with\_params@{test\_execute\_query\_with\_params}}
+\index{test\_execute\_query\_with\_params@{test\_execute\_query\_with\_params}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_execute\_query\_with\_params()}{test\_execute\_query\_with\_params()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_a9617d78181018a2a166d242b545164d9} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+execute\+\_\+query\+\_\+with\+\_\+params (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{mock\+\_\+setup}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test executing query with parameters.
+
+@brief Test that queries with parameters are executed correctly.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00462}{462}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_ae0521fa89442ffc4aade4cc5673041d1}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_get\_config@{test\_get\_config}}
+\index{test\_get\_config@{test\_get\_config}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_get\_config()}{test\_get\_config()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_ae0521fa89442ffc4aade4cc5673041d1} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+get\+\_\+config (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test getting configuration value.
+
+@brief Test that configuration values are retrieved correctly.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00857}{857}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_af61fd6449d8f5daf48bcf38fe2077348}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_get\_config\_none\_value@{test\_get\_config\_none\_value}}
+\index{test\_get\_config\_none\_value@{test\_get\_config\_none\_value}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_get\_config\_none\_value()}{test\_get\_config\_none\_value()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_af61fd6449d8f5daf48bcf38fe2077348} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+get\+\_\+config\+\_\+none\+\_\+value (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test getting configuration value that returns None.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00871}{871}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_abbb2448b76520e5f1be6b96bc8eb0474}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_get\_message\_exception@{test\_get\_message\_exception}}
+\index{test\_get\_message\_exception@{test\_get\_message\_exception}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_get\_message\_exception()}{test\_get\_message\_exception()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_abbb2448b76520e5f1be6b96bc8eb0474} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+get\+\_\+message\+\_\+exception (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{mock\+\_\+exit}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test get_message exits on exception.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00659}{659}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_a96b9aa211fa7c06bef1fba175ea607f3}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_get\_message\_no\_message@{test\_get\_message\_no\_message}}
+\index{test\_get\_message\_no\_message@{test\_get\_message\_no\_message}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_get\_message\_no\_message()}{test\_get\_message\_no\_message()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_a96b9aa211fa7c06bef1fba175ea607f3} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+get\+\_\+message\+\_\+no\+\_\+message (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{mock\+\_\+setup}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test message retrieval when no message available.
+
+@brief Test that no message case is handled correctly.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00632}{632}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_a1185a26fbc0e2fe00c881f442ee6c94e}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_get\_message\_setup\_fail@{test\_get\_message\_setup\_fail}}
+\index{test\_get\_message\_setup\_fail@{test\_get\_message\_setup\_fail}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_get\_message\_setup\_fail()}{test\_get\_message\_setup\_fail()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_a1185a26fbc0e2fe00c881f442ee6c94e} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+get\+\_\+message\+\_\+setup\+\_\+fail (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{mock\+\_\+setup}{, }\item[{}]{mock\+\_\+exit}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Test get_message exits if setup fails.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00648}{648}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_a768accfbddd33e2711bfae005238373a}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_get\_message\_success@{test\_get\_message\_success}}
+\index{test\_get\_message\_success@{test\_get\_message\_success}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_get\_message\_success()}{test\_get\_message\_success()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_a768accfbddd33e2711bfae005238373a} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+get\+\_\+message\+\_\+success (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{mock\+\_\+setup}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test successful message retrieval.
+
+@brief Test that messages are retrieved successfully.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00603}{603}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_afd9cd27241febad32466e1bc6f7b1f85}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_get\_message\_with\_timeout@{test\_get\_message\_with\_timeout}}
+\index{test\_get\_message\_with\_timeout@{test\_get\_message\_with\_timeout}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_get\_message\_with\_timeout()}{test\_get\_message\_with\_timeout()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_afd9cd27241febad32466e1bc6f7b1f85} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+get\+\_\+message\+\_\+with\+\_\+timeout (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{mock\+\_\+setup}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test message retrieval with timeout.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00619}{619}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_a29d20df01077895b7815dbc05105ff3b}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_get\_queue\_depth@{test\_get\_queue\_depth}}
+\index{test\_get\_queue\_depth@{test\_get\_queue\_depth}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_get\_queue\_depth()}{test\_get\_queue\_depth()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_a29d20df01077895b7815dbc05105ff3b} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+get\+\_\+queue\+\_\+depth (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{mock\+\_\+setup}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test getting queue depth.
+
+@brief Test that queue depth is retrieved correctly.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00774}{774}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_a4a6871398a90ecac040fa4078971c8bd}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_get\_queue\_depth\_exception@{test\_get\_queue\_depth\_exception}}
+\index{test\_get\_queue\_depth\_exception@{test\_get\_queue\_depth\_exception}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_get\_queue\_depth\_exception()}{test\_get\_queue\_depth\_exception()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_a4a6871398a90ecac040fa4078971c8bd} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+get\+\_\+queue\+\_\+depth\+\_\+exception (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{mock\+\_\+exit}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test get_queue_depth exits on exception.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00830}{830}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_a81bbce479c450475d696741dd39b8c4d}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_get\_queue\_depth\_negative@{test\_get\_queue\_depth\_negative}}
+\index{test\_get\_queue\_depth\_negative@{test\_get\_queue\_depth\_negative}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_get\_queue\_depth\_negative()}{test\_get\_queue\_depth\_negative()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_a81bbce479c450475d696741dd39b8c4d} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+get\+\_\+queue\+\_\+depth\+\_\+negative (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{mock\+\_\+setup}{, }\item[{}]{mock\+\_\+exit}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test getting queue depth when negative (error).
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00804}{804}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_af05a97a6c4b422921033aaf8b0a0130d}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_get\_queue\_depth\_setup\_fail@{test\_get\_queue\_depth\_setup\_fail}}
+\index{test\_get\_queue\_depth\_setup\_fail@{test\_get\_queue\_depth\_setup\_fail}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_get\_queue\_depth\_setup\_fail()}{test\_get\_queue\_depth\_setup\_fail()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_af05a97a6c4b422921033aaf8b0a0130d} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+get\+\_\+queue\+\_\+depth\+\_\+setup\+\_\+fail (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{mock\+\_\+setup}{, }\item[{}]{mock\+\_\+exit}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Test get_queue_depth exits if setup fails.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00819}{819}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_af9a1de67fa78bc0427be9a652b796443}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_get\_queue\_depth\_zero@{test\_get\_queue\_depth\_zero}}
+\index{test\_get\_queue\_depth\_zero@{test\_get\_queue\_depth\_zero}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_get\_queue\_depth\_zero()}{test\_get\_queue\_depth\_zero()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_af9a1de67fa78bc0427be9a652b796443} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+get\+\_\+queue\+\_\+depth\+\_\+zero (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{mock\+\_\+setup}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test getting queue depth when zero.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00790}{790}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_a2458d7f09b33ea7f9d5e19b50e4c6bcf}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_get\_table\_info@{test\_get\_table\_info}}
+\index{test\_get\_table\_info@{test\_get\_table\_info}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_get\_table\_info()}{test\_get\_table\_info()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_a2458d7f09b33ea7f9d5e19b50e4c6bcf} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+get\+\_\+table\+\_\+info (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{mock\+\_\+setup}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test getting table information.
+
+@brief Test that table information is retrieved correctly.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00520}{520}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_a1173386d6de4057a80cd5e008252c2ee}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_get\_table\_info\_exception@{test\_get\_table\_info\_exception}}
+\index{test\_get\_table\_info\_exception@{test\_get\_table\_info\_exception}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_get\_table\_info\_exception()}{test\_get\_table\_info\_exception()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_a1173386d6de4057a80cd5e008252c2ee} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+get\+\_\+table\+\_\+info\+\_\+exception (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{mock\+\_\+exit}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test get_table_info exits on exception.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00548}{548}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_a34ab42622ae6b250759e9ea99dd1d980}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_get\_table\_info\_setup\_fail@{test\_get\_table\_info\_setup\_fail}}
+\index{test\_get\_table\_info\_setup\_fail@{test\_get\_table\_info\_setup\_fail}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_get\_table\_info\_setup\_fail()}{test\_get\_table\_info\_setup\_fail()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_a34ab42622ae6b250759e9ea99dd1d980} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+get\+\_\+table\+\_\+info\+\_\+setup\+\_\+fail (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{mock\+\_\+setup}{, }\item[{}]{mock\+\_\+exit}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Test get_table_info exits if setup fails.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00537}{537}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_af7e9bf0ca5fbf9d4dbaf327dcde3802c}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_init@{test\_init}}
+\index{test\_init@{test\_init}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_init()}{test\_init()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_af7e9bf0ca5fbf9d4dbaf327dcde3802c} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+init (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test CLI initialization.
+
+@brief Test that CLI initializes correctly.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00087}{87}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_a732f2dbf5f489dc527b82ac5103d2f7d}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_init\_with\_config\_file@{test\_init\_with\_config\_file}}
+\index{test\_init\_with\_config\_file@{test\_init\_with\_config\_file}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_init\_with\_config\_file()}{test\_init\_with\_config\_file()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_a732f2dbf5f489dc527b82ac5103d2f7d} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+init\+\_\+with\+\_\+config\+\_\+file (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test CLI initialization with config file.
+
+@brief Test CLI initialization with configuration file.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00098}{98}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_a1e8022a4d983959aff4110dc2a5c68a4}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_init\_without\_config\_file@{test\_init\_without\_config\_file}}
+\index{test\_init\_without\_config\_file@{test\_init\_without\_config\_file}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_init\_without\_config\_file()}{test\_init\_without\_config\_file()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_a1e8022a4d983959aff4110dc2a5c68a4} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+init\+\_\+without\+\_\+config\+\_\+file (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test CLI initialization without config file.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00115}{115}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_a63564431be1547a919258b5575a8e8bd}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_initialize\_components\_import\_error@{test\_initialize\_components\_import\_error}}
+\index{test\_initialize\_components\_import\_error@{test\_initialize\_components\_import\_error}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_initialize\_components\_import\_error()}{test\_initialize\_components\_import\_error()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_a63564431be1547a919258b5575a8e8bd} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+initialize\+\_\+components\+\_\+import\+\_\+error (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{mock\+\_\+exit}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test _initialize_components with import error.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00124}{124}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_a7d533b17c34628fd732c6087d0905023}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_put\_message\_exception@{test\_put\_message\_exception}}
+\index{test\_put\_message\_exception@{test\_put\_message\_exception}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_put\_message\_exception()}{test\_put\_message\_exception()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_a7d533b17c34628fd732c6087d0905023} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+put\+\_\+message\+\_\+exception (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{mock\+\_\+exit}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test put_message exits on exception.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00760}{760}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_ae5faffcd6a687eb4491b7223da4cc980}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_put\_message\_failure@{test\_put\_message\_failure}}
+\index{test\_put\_message\_failure@{test\_put\_message\_failure}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_put\_message\_failure()}{test\_put\_message\_failure()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_ae5faffcd6a687eb4491b7223da4cc980} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+put\+\_\+message\+\_\+failure (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{mock\+\_\+setup}{, }\item[{}]{mock\+\_\+exit}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test failed message sending.
+
+@brief Test that message sending failures are handled correctly.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00732}{732}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_a97e7301c9c65042dd97c031e7bc7e332}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_put\_message\_setup\_fail@{test\_put\_message\_setup\_fail}}
+\index{test\_put\_message\_setup\_fail@{test\_put\_message\_setup\_fail}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_put\_message\_setup\_fail()}{test\_put\_message\_setup\_fail()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_a97e7301c9c65042dd97c031e7bc7e332} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+put\+\_\+message\+\_\+setup\+\_\+fail (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{mock\+\_\+setup}{, }\item[{}]{mock\+\_\+exit}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Test put_message exits if setup fails.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00749}{749}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_addae1a09f345d30f6c38ac66f4e6c2ca}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_put\_message\_success@{test\_put\_message\_success}}
+\index{test\_put\_message\_success@{test\_put\_message\_success}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_put\_message\_success()}{test\_put\_message\_success()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_addae1a09f345d30f6c38ac66f4e6c2ca} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+put\+\_\+message\+\_\+success (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{mock\+\_\+setup}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test successful message sending.
+
+@brief Test that messages are sent successfully.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00673}{673}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_aa3fc76c34a4b423edbca8c01ae7aa198}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_put\_message\_with\_invalid\_properties\_json@{test\_put\_message\_with\_invalid\_properties\_json}}
+\index{test\_put\_message\_with\_invalid\_properties\_json@{test\_put\_message\_with\_invalid\_properties\_json}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_put\_message\_with\_invalid\_properties\_json()}{test\_put\_message\_with\_invalid\_properties\_json()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_aa3fc76c34a4b423edbca8c01ae7aa198} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+put\+\_\+message\+\_\+with\+\_\+invalid\+\_\+properties\+\_\+json (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{mock\+\_\+setup}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test sending message with invalid properties JSON.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00717}{717}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_ae9c52748e7fba192871b1d0d0b206e5d}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_put\_message\_with\_json\_string@{test\_put\_message\_with\_json\_string}}
+\index{test\_put\_message\_with\_json\_string@{test\_put\_message\_with\_json\_string}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_put\_message\_with\_json\_string()}{test\_put\_message\_with\_json\_string()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_ae9c52748e7fba192871b1d0d0b206e5d} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+put\+\_\+message\+\_\+with\+\_\+json\+\_\+string (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{mock\+\_\+setup}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test sending message with JSON string.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00689}{689}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_a92301d471baf42589747d2a3708373b0}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_put\_message\_with\_properties@{test\_put\_message\_with\_properties}}
+\index{test\_put\_message\_with\_properties@{test\_put\_message\_with\_properties}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_put\_message\_with\_properties()}{test\_put\_message\_with\_properties()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_a92301d471baf42589747d2a3708373b0} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+put\+\_\+message\+\_\+with\+\_\+properties (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{mock\+\_\+setup}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test sending message with properties.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00704}{704}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_ab18e0367255c1ea56aefefc20b0e7ff6}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_set\_config@{test\_set\_config}}
+\index{test\_set\_config@{test\_set\_config}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_set\_config()}{test\_set\_config()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_ab18e0367255c1ea56aefefc20b0e7ff6} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+set\+\_\+config (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test setting configuration value.
+
+@brief Test that configuration values are set correctly.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00882}{882}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_a710578a2c86c9ee03d672ea9abe1ccdb}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_set\_config\_numeric\_value@{test\_set\_config\_numeric\_value}}
+\index{test\_set\_config\_numeric\_value@{test\_set\_config\_numeric\_value}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_set\_config\_numeric\_value()}{test\_set\_config\_numeric\_value()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_a710578a2c86c9ee03d672ea9abe1ccdb} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+set\+\_\+config\+\_\+numeric\+\_\+value (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test setting configuration with numeric value.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00894}{894}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_a51ecb2773c56c891ddde2249b4995910}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_setup\_database\_connect\_returns\_false@{test\_setup\_database\_connect\_returns\_false}}
+\index{test\_setup\_database\_connect\_returns\_false@{test\_setup\_database\_connect\_returns\_false}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_setup\_database\_connect\_returns\_false()}{test\_setup\_database\_connect\_returns\_false()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_a51ecb2773c56c891ddde2249b4995910} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+setup\+\_\+database\+\_\+connect\+\_\+returns\+\_\+false (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test setup database when connect returns False.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00191}{191}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_a9a6af011c0f4df09c8cce10f68381cee}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_setup\_database\_failure@{test\_setup\_database\_failure}}
+\index{test\_setup\_database\_failure@{test\_setup\_database\_failure}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_setup\_database\_failure()}{test\_setup\_database\_failure()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_a9a6af011c0f4df09c8cce10f68381cee} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+setup\+\_\+database\+\_\+failure (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{mock\+\_\+logger\+\_\+manager\+\_\+class}{, }\item[{}]{mock\+\_\+config\+\_\+manager\+\_\+class}{, }\item[{}]{mock\+\_\+db\+\_\+manager\+\_\+class}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test failed database setup.
+
+@brief Test that database setup failures are handled correctly.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00166}{166}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_a058a38ad678fc80922561a0f90f7d050}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_setup\_database\_success@{test\_setup\_database\_success}}
+\index{test\_setup\_database\_success@{test\_setup\_database\_success}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_setup\_database\_success()}{test\_setup\_database\_success()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_a058a38ad678fc80922561a0f90f7d050} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+setup\+\_\+database\+\_\+success (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{mock\+\_\+logger\+\_\+manager\+\_\+class}{, }\item[{}]{mock\+\_\+config\+\_\+manager\+\_\+class}{, }\item[{}]{mock\+\_\+db\+\_\+manager\+\_\+class}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test successful database setup.
+
+@brief Test that database setup succeeds.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00138}{138}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_a079e7bcf3982fedf1494973cdf009454}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_setup\_messaging\_connect\_returns\_false@{test\_setup\_messaging\_connect\_returns\_false}}
+\index{test\_setup\_messaging\_connect\_returns\_false@{test\_setup\_messaging\_connect\_returns\_false}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_setup\_messaging\_connect\_returns\_false()}{test\_setup\_messaging\_connect\_returns\_false()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_a079e7bcf3982fedf1494973cdf009454} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+setup\+\_\+messaging\+\_\+connect\+\_\+returns\+\_\+false (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test setup messaging when connect returns False.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00255}{255}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_a6b0a04363aaba34b2aabc9bed30f8106}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_setup\_messaging\_failure@{test\_setup\_messaging\_failure}}
+\index{test\_setup\_messaging\_failure@{test\_setup\_messaging\_failure}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_setup\_messaging\_failure()}{test\_setup\_messaging\_failure()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_a6b0a04363aaba34b2aabc9bed30f8106} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+setup\+\_\+messaging\+\_\+failure (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{mock\+\_\+logger\+\_\+manager\+\_\+class}{, }\item[{}]{mock\+\_\+config\+\_\+manager\+\_\+class}{, }\item[{}]{mock\+\_\+mq\+\_\+manager\+\_\+class}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test failed messaging setup.
+
+@brief Test that messaging setup failures are handled correctly.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00230}{230}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_ae7f513d6676b852a955b83f4386a4252}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_setup\_messaging\_success@{test\_setup\_messaging\_success}}
+\index{test\_setup\_messaging\_success@{test\_setup\_messaging\_success}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_setup\_messaging\_success()}{test\_setup\_messaging\_success()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_ae7f513d6676b852a955b83f4386a4252} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+setup\+\_\+messaging\+\_\+success (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{mock\+\_\+logger\+\_\+manager\+\_\+class}{, }\item[{}]{mock\+\_\+config\+\_\+manager\+\_\+class}{, }\item[{}]{mock\+\_\+mq\+\_\+manager\+\_\+class}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test successful messaging setup.
+
+@brief Test that messaging setup succeeds.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00202}{202}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_af5779479a51087be0824ab74281de222}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_show\_config@{test\_show\_config}}
+\index{test\_show\_config@{test\_show\_config}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_show\_config()}{test\_show\_config()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_af5779479a51087be0824ab74281de222} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+show\+\_\+config (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test showing configuration.
+
+@brief Test that configuration is displayed correctly.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00843}{843}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_a74054f32fed27c3053b573ba3a302594}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_test\_all@{test\_test\_all}}
+\index{test\_test\_all@{test\_test\_all}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_test\_all()}{test\_test\_all()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_a74054f32fed27c3053b573ba3a302594} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+test\+\_\+all (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test test_all method.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00903}{903}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_ac15e8e3ec570ad617e668ccb721fc0a1}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_test\_all\_database\_fail@{test\_test\_all\_database\_fail}}
+\index{test\_test\_all\_database\_fail@{test\_test\_all\_database\_fail}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_test\_all\_database\_fail()}{test\_test\_all\_database\_fail()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_ac15e8e3ec570ad617e668ccb721fc0a1} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+test\+\_\+all\+\_\+database\+\_\+fail (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test test_all when database fails.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00921}{921}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_a7c734152aa5b42da3b6286a169596195}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_test\_all\_messaging\_fail@{test\_test\_all\_messaging\_fail}}
+\index{test\_test\_all\_messaging\_fail@{test\_test\_all\_messaging\_fail}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_test\_all\_messaging\_fail()}{test\_test\_all\_messaging\_fail()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_a7c734152aa5b42da3b6286a169596195} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+test\+\_\+all\+\_\+messaging\+\_\+fail (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test test_all when messaging fails.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00935}{935}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_aa2080969bc47d84453bfd54835d005df}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_test\_database\_failure@{test\_test\_database\_failure}}
+\index{test\_test\_database\_failure@{test\_test\_database\_failure}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_test\_database\_failure()}{test\_test\_database\_failure()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_aa2080969bc47d84453bfd54835d005df} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+test\+\_\+database\+\_\+failure (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{mock\+\_\+setup}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test failed database testing.
+
+@brief Test that database testing failures are handled correctly.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00345}{345}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_a57addd57f5d19ec1e3beea38901f3ddc}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_test\_database\_setup\_failure@{test\_test\_database\_setup\_failure}}
+\index{test\_test\_database\_setup\_failure@{test\_test\_database\_setup\_failure}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_test\_database\_setup\_failure()}{test\_test\_database\_setup\_failure()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_a57addd57f5d19ec1e3beea38901f3ddc} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+test\+\_\+database\+\_\+setup\+\_\+failure (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{mock\+\_\+setup}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test database testing with setup failure.
+
+@brief Test that database testing handles setup failures correctly.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00360}{360}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_ac399725b42d8a3f011ce35d8ee2b76e8}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_test\_database\_success@{test\_test\_database\_success}}
+\index{test\_test\_database\_success@{test\_test\_database\_success}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_test\_database\_success()}{test\_test\_database\_success()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_ac399725b42d8a3f011ce35d8ee2b76e8} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+test\+\_\+database\+\_\+success (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{mock\+\_\+setup}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test successful database testing.
+
+@brief Test that database testing succeeds.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00329}{329}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_a996e2b4fe90bb6457f67538a9df990fe}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_test\_messaging\_failure@{test\_test\_messaging\_failure}}
+\index{test\_test\_messaging\_failure@{test\_test\_messaging\_failure}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_test\_messaging\_failure()}{test\_test\_messaging\_failure()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_a996e2b4fe90bb6457f67538a9df990fe} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+test\+\_\+messaging\+\_\+failure (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{mock\+\_\+setup}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test failed messaging testing.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00578}{578}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_a1a4a63a85769bbf998289e1a154e4b0d}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_test\_messaging\_setup\_failure@{test\_test\_messaging\_setup\_failure}}
+\index{test\_test\_messaging\_setup\_failure@{test\_test\_messaging\_setup\_failure}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_test\_messaging\_setup\_failure()}{test\_test\_messaging\_setup\_failure()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_a1a4a63a85769bbf998289e1a154e4b0d} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+test\+\_\+messaging\+\_\+setup\+\_\+failure (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{mock\+\_\+setup}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test messaging testing with setup failure.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00591}{591}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_ac2b615d3ad46cea76b13428c31d949e2}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!test\_test\_messaging\_success@{test\_test\_messaging\_success}}
+\index{test\_test\_messaging\_success@{test\_test\_messaging\_success}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{test\_test\_messaging\_success()}{test\_test\_messaging\_success()}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_ac2b615d3ad46cea76b13428c31d949e2} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+test\+\_\+test\+\_\+messaging\+\_\+success (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{mock\+\_\+setup}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test successful messaging testing.
+
+@brief Test that messaging testing succeeds.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00562}{562}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_a4b3454c28c5b689ec02fbd1bad080794}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!cli@{cli}}
+\index{cli@{cli}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{cli}{cli}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_a4b3454c28c5b689ec02fbd1bad080794} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+cli = \mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i}{CLI}}(self.\+config\+\_\+file)}
+
+
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00071}{71}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+\Hypertarget{classtest_1_1test__cli_1_1_test_c_l_i_a4c2fbc5cb80649821f8a5f85c0f2f8ee}\index{test.test\_cli.TestCLI@{test.test\_cli.TestCLI}!config\_file@{config\_file}}
+\index{config\_file@{config\_file}!test.test\_cli.TestCLI@{test.test\_cli.TestCLI}}
+\doxysubsubsection{\texorpdfstring{config\_file}{config\_file}}
+{\footnotesize\ttfamily \label{classtest_1_1test__cli_1_1_test_c_l_i_a4c2fbc5cb80649821f8a5f85c0f2f8ee} 
+test.\+test\+\_\+cli.\+Test\+CLI.\+config\+\_\+file = f.\+name}
+
+
+
+Definition at line \mbox{\hyperlink{test__cli_8py_source_l00069}{69}} of file \mbox{\hyperlink{test__cli_8py_source}{test\+\_\+cli.\+py}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+test/\mbox{\hyperlink{test__cli_8py}{test\+\_\+cli.\+py}}\end{DoxyCompactItemize}

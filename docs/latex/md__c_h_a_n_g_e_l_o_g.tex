@@ -1,0 +1,143 @@
+\chapter{Changelog }
+\hypertarget{md__c_h_a_n_g_e_l_o_g}{}\label{md__c_h_a_n_g_e_l_o_g}\index{Changelog@{Changelog}}
+\label{md__c_h_a_n_g_e_l_o_g_autotoc_md0}%
+\Hypertarget{md__c_h_a_n_g_e_l_o_g_autotoc_md0}%
+
+
+All notable changes to this project will be documented in this file.
+
+The format is based on \href{https://keepachangelog.com/en/1.0.0/}{\texttt{Keep a Changelog}}, and this project adheres to \href{https://semver.org/spec/v2.0.0.html}{\texttt{Semantic Versioning}}.\hypertarget{md__c_h_a_n_g_e_l_o_g_autotoc_md1}{}\doxysection{\texorpdfstring{\mbox{[}Unreleased\mbox{]}}{\mbox{[}Unreleased\mbox{]}}}\label{md__c_h_a_n_g_e_l_o_g_autotoc_md1}
+\hypertarget{md__c_h_a_n_g_e_l_o_g_autotoc_md2}{}\doxysubsection{\texorpdfstring{Added}{Added}}\label{md__c_h_a_n_g_e_l_o_g_autotoc_md2}
+
+\begin{DoxyItemize}
+\item Modern Python packaging with {\ttfamily pyproject.\+toml} (PEP 517/518)
+\item Pre-\/commit hooks configuration for automated code quality checks
+\item Comprehensive {\ttfamily \doxylink{_c_o_n_t_r_i_b_u_t_i_n_g_8md}{CONTRIBUTING.\+md}} guide for contributors
+\item {\ttfamily \doxylink{_c_h_a_n_g_e_l_o_g_8md}{CHANGELOG.\+md}} for tracking version changes
+\item Git\+Hub Actions CI/\+CD workflows for automated testing
+\item Custom exceptions module for better error handling
+\item Development dependencies\+: pytest, black, ruff, mypy
+\item MIT {\ttfamily LICENSE} file
+\item Enhanced development tooling configuration
+\end{DoxyItemize}\hypertarget{md__c_h_a_n_g_e_l_o_g_autotoc_md3}{}\doxysubsection{\texorpdfstring{Changed}{Changed}}\label{md__c_h_a_n_g_e_l_o_g_autotoc_md3}
+
+\begin{DoxyItemize}
+\item Migrated from {\ttfamily \doxylink{setup_8py}{setup.\+py}} to {\ttfamily pyproject.\+toml} for modern packaging
+\item Improved error messages with more context
+\item Updated documentation with contribution guidelines
+\end{DoxyItemize}\hypertarget{md__c_h_a_n_g_e_l_o_g_autotoc_md4}{}\doxysubsection{\texorpdfstring{Security}{Security}}\label{md__c_h_a_n_g_e_l_o_g_autotoc_md4}
+
+\begin{DoxyItemize}
+\item Added bandit security scanning in pre-\/commit hooks
+\item Added private key detection in pre-\/commit hooks
+\end{DoxyItemize}\hypertarget{md__c_h_a_n_g_e_l_o_g_autotoc_md5}{}\doxysection{\texorpdfstring{\mbox{[}2.\+0.\+0\mbox{]} -\/ 2024-\/10-\/21}{\mbox{[}2.\+0.\+0\mbox{]} -\/ 2024-\/10-\/21}}\label{md__c_h_a_n_g_e_l_o_g_autotoc_md5}
+\hypertarget{md__c_h_a_n_g_e_l_o_g_autotoc_md6}{}\doxysubsection{\texorpdfstring{Added}{Added}}\label{md__c_h_a_n_g_e_l_o_g_autotoc_md6}
+
+\begin{DoxyItemize}
+\item {\bfseries{Adapter Pattern Architecture}}\+: Seamless switching between CLI and library implementations
+\item Database adapters\+: {\ttfamily DB2\+CLIAdapter} and {\ttfamily DB2\+Library\+Adapter}
+\item Messaging adapters\+: {\ttfamily MQCLIAdapter} and {\ttfamily MQLibrary\+Adapter}
+\item Interfaces\+: {\ttfamily IDatabase\+Manager} and {\ttfamily IMessaging\+Manager}
+\item Factory pattern\+: {\ttfamily Manager\+Factory} for creating manager instances
+\item Auto-\/fallback mechanism when library dependencies aren\textquotesingle{}t available
+\item 70 new test cases for adapters, factory, and integration
+\item Comprehensive adapter architecture documentation
+\item Enhanced test runner with categorization and metrics
+\item Implementation summary document
+\item Installation guide with dependency clarification
+\end{DoxyItemize}\hypertarget{md__c_h_a_n_g_e_l_o_g_autotoc_md7}{}\doxysubsection{\texorpdfstring{Changed}{Changed}}\label{md__c_h_a_n_g_e_l_o_g_autotoc_md7}
+
+\begin{DoxyItemize}
+\item {\ttfamily Component\+Base} now uses factory pattern for manager creation
+\item Enhanced test suite organization with 9 categories
+\item Improved documentation structure
+\item Updated README with adapter pattern information
+\item Clarified mandatory vs optional dependencies
+\end{DoxyItemize}\hypertarget{md__c_h_a_n_g_e_l_o_g_autotoc_md8}{}\doxysubsection{\texorpdfstring{Performance}{Performance}}\label{md__c_h_a_n_g_e_l_o_g_autotoc_md8}
+
+\begin{DoxyItemize}
+\item Library adapters provide 10-\/50x performance improvement
+\item Connection pooling support in library adapters
+\item Native prepared statements and parameterized queries
+\end{DoxyItemize}\hypertarget{md__c_h_a_n_g_e_l_o_g_autotoc_md9}{}\doxysubsection{\texorpdfstring{Security}{Security}}\label{md__c_h_a_n_g_e_l_o_g_autotoc_md9}
+
+\begin{DoxyItemize}
+\item Parameterized queries in library adapters prevent SQL injection
+\item Proper input validation and sanitization
+\end{DoxyItemize}\hypertarget{md__c_h_a_n_g_e_l_o_g_autotoc_md10}{}\doxysubsection{\texorpdfstring{Fixed}{Fixed}}\label{md__c_h_a_n_g_e_l_o_g_autotoc_md10}
+
+\begin{DoxyItemize}
+\item Various bug fixes and stability improvements
+\end{DoxyItemize}\hypertarget{md__c_h_a_n_g_e_l_o_g_autotoc_md11}{}\doxysection{\texorpdfstring{\mbox{[}1.\+0.\+0\mbox{]} -\/ 2024-\/10-\/15}{\mbox{[}1.\+0.\+0\mbox{]} -\/ 2024-\/10-\/15}}\label{md__c_h_a_n_g_e_l_o_g_autotoc_md11}
+\hypertarget{md__c_h_a_n_g_e_l_o_g_autotoc_md12}{}\doxysubsection{\texorpdfstring{Added}{Added}}\label{md__c_h_a_n_g_e_l_o_g_autotoc_md12}
+
+\begin{DoxyItemize}
+\item Initial release of Common\+Python Framework
+\item Configuration management with YAML support
+\item Logging with colored console output and JSON format
+\item IBM DB2 database operations via CLI
+\item IBM MQ messaging operations via CLI
+\item Command-\/line interface for all operations
+\item Component framework for building applications
+\item Comprehensive test suite with 225 test cases
+\item Complete Doxygen-\/style documentation
+\item Example components and templates
+\end{DoxyItemize}\hypertarget{md__c_h_a_n_g_e_l_o_g_autotoc_md13}{}\doxysubsection{\texorpdfstring{Features}{Features}}\label{md__c_h_a_n_g_e_l_o_g_autotoc_md13}
+
+\begin{DoxyItemize}
+\item YAML-\/based configuration with environment variable support
+\item Human-\/readable and JSON logging
+\item DB2 connectivity using CLI tools
+\item MQ operations using CLI tools
+\item Full-\/featured CLI for database and messaging operations
+\item Component base class with shared functionality
+\item Comprehensive test coverage
+\end{DoxyItemize}\hypertarget{md__c_h_a_n_g_e_l_o_g_autotoc_md14}{}\doxysubsection{\texorpdfstring{Documentation}{Documentation}}\label{md__c_h_a_n_g_e_l_o_g_autotoc_md14}
+
+\begin{DoxyItemize}
+\item Complete README with usage examples
+\item Development guide
+\item Configuration examples
+\item Component templates
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md__c_h_a_n_g_e_l_o_g_autotoc_md16}{}\doxysection{\texorpdfstring{Version History Summary}{Version History Summary}}\label{md__c_h_a_n_g_e_l_o_g_autotoc_md16}
+
+\begin{DoxyItemize}
+\item {\bfseries{2.\+0.\+0}}\+: Adapter pattern architecture, library support, enhanced testing
+\item {\bfseries{1.\+0.\+0}}\+: Initial release with CLI-\/based implementations
+\end{DoxyItemize}\hypertarget{md__c_h_a_n_g_e_l_o_g_autotoc_md17}{}\doxysection{\texorpdfstring{Migration Guides}{Migration Guides}}\label{md__c_h_a_n_g_e_l_o_g_autotoc_md17}
+\hypertarget{md__c_h_a_n_g_e_l_o_g_autotoc_md18}{}\doxysubsection{\texorpdfstring{Migrating to 2.\+0.\+0}{Migrating to 2.\+0.\+0}}\label{md__c_h_a_n_g_e_l_o_g_autotoc_md18}
+The 2.\+0.\+0 release maintains full backward compatibility. To take advantage of new library adapters\+:
+
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Install library dependencies}} (optional)\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{pip\ install\ -\/e\ "{}.[library]"{}}
+
+\end{DoxyCode}
+
+\item {\bfseries{Update configuration}} to use library implementation\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{database:}
+\DoxyCodeLine{\ \ implementation:\ library\ \ \#\ or\ keep\ 'cli'}
+\DoxyCodeLine{\ \ auto\_fallback:\ true}
+
+\end{DoxyCode}
+
+\item {\bfseries{No code changes required}} -\/ existing code continues to work
+\end{DoxyEnumerate}
+
+See \doxysectlink{md_docs_2_a_d_a_p_t_e_r___a_r_c_h_i_t_e_c_t_u_r_e}{docs/\+ADAPTER\+\_\+\+ARCHITECTURE.md}{0} for detailed migration guide.
+
+\DoxyHorRuler{0}
+\hypertarget{md__c_h_a_n_g_e_l_o_g_autotoc_md20}{}\doxysection{\texorpdfstring{Contributing}{Contributing}}\label{md__c_h_a_n_g_e_l_o_g_autotoc_md20}
+See \doxysectlink{md__c_o_n_t_r_i_b_u_t_i_n_g}{CONTRIBUTING.md}{0} for how to contribute to this project.\hypertarget{md__c_h_a_n_g_e_l_o_g_autotoc_md21}{}\doxysection{\texorpdfstring{Links}{Links}}\label{md__c_h_a_n_g_e_l_o_g_autotoc_md21}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/psanodiya94/commonpython}{\texttt{Homepage}}
+\item \href{https://github.com/psanodiya94/commonpython/issues}{\texttt{Issues}}
+\item \href{https://github.com/psanodiya94/commonpython/pulls}{\texttt{Pull Requests}} 
+\end{DoxyItemize}

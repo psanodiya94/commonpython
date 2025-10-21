@@ -1,0 +1,209 @@
+\doxysection{manager\+\_\+factory.\+py}
+\hypertarget{manager__factory_8py_source}{}\label{manager__factory_8py_source}\index{commonpython/factories/manager\_factory.py@{commonpython/factories/manager\_factory.py}}
+\mbox{\hyperlink{manager__factory_8py}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00001}\mbox{\hyperlink{namespacecommonpython_1_1factories_1_1manager__factory}{00001}}\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00002}00002\ \textcolor{stringliteral}{Manager\ Factory\ for\ CommonPython\ Framework}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00003}00003\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00004}00004\ \textcolor{stringliteral}{Factory\ class\ for\ creating\ database\ and\ messaging\ manager\ instances\ based\ on}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00005}00005\ \textcolor{stringliteral}{configuration.\ Supports\ automatic\ selection\ between\ CLI\ and\ library\ implementations}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00006}00006\ \textcolor{stringliteral}{with\ intelligent\ fallback\ mechanisms.}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00007}00007\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00009}00009\ \textcolor{keyword}{from}\ typing\ \textcolor{keyword}{import}\ Any,\ Dict}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00010}00010\ \textcolor{keyword}{from}\ ..interfaces.database\_interface\ \textcolor{keyword}{import}\ IDatabaseManager}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00011}00011\ \textcolor{keyword}{from}\ ..interfaces.messaging\_interface\ \textcolor{keyword}{import}\ IMessagingManager}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00014}\mbox{\hyperlink{classcommonpython_1_1factories_1_1manager__factory_1_1_manager_factory}{00014}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcommonpython_1_1factories_1_1manager__factory_1_1_manager_factory}{ManagerFactory}}:}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00015}00015\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00016}00016\ \textcolor{stringliteral}{\ \ \ \ Factory\ for\ creating\ manager\ instances\ based\ on\ configuration.}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00017}00017\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00018}00018\ \textcolor{stringliteral}{\ \ \ \ Provides\ static\ methods\ to\ create\ database\ and\ messaging\ managers}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00019}00019\ \textcolor{stringliteral}{\ \ \ \ with\ automatic\ selection\ of\ implementation\ type\ (CLI\ or\ library)}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00020}00020\ \textcolor{stringliteral}{\ \ \ \ based\ on\ configuration\ and\ availability.}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00021}00021\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00023}00023\ \ \ \ \ \textcolor{comment}{\#\ Cache\ for\ adapter\ availability\ checks}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00024}\mbox{\hyperlink{classcommonpython_1_1factories_1_1manager__factory_1_1_manager_factory_a3debb557011e0dfb5dd7c98f9549b479}{00024}}\ \ \ \ \ \_adapter\_cache\ =\ \{}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00025}00025\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'db2\_library\_available'}:\ \textcolor{keywordtype}{None},}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00026}00026\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'mq\_library\_available'}:\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00027}00027\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00029}00029\ \ \ \ \ \textcolor{preprocessor}{@staticmethod}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00030}\mbox{\hyperlink{classcommonpython_1_1factories_1_1manager__factory_1_1_manager_factory_a11cbb0ff92f45a7ed90d0563145cf5e2}{00030}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcommonpython_1_1factories_1_1manager__factory_1_1_manager_factory_a11cbb0ff92f45a7ed90d0563145cf5e2}{create\_database\_manager}}(config:\ Dict[str,\ Any],\ logger=\textcolor{keywordtype}{None})\ -\/>\ IDatabaseManager:}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00031}00031\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00032}00032\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Create\ database\ manager\ based\ on\ configuration.}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00033}00033\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00034}00034\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Create\ database\ manager\ with\ automatic\ implementation\ selection.}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00035}00035\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @param\ config\ Database\ configuration\ dictionary}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00036}00036\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @param\ logger\ Logger\ manager\ instance\ (optional)}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00037}00037\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @return\ IDatabaseManager\ implementation\ instance}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00038}00038\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @throws\ ValueError\ If\ specified\ implementation\ is\ not\ available}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00039}00039\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @throws\ ImportError\ If\ required\ dependencies\ are\ missing}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00040}00040\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00041}00041\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Configuration\ keys:}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00042}00042\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ -\/\ implementation:\ 'cli'\ or\ 'library'\ (default:\ 'cli')}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00043}00043\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ -\/\ auto\_fallback:\ True\ to\ automatically\ fallback\ to\ CLI\ if\ library\ unavailable\ (default:\ True)}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00044}00044\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00045}00045\ \ \ \ \ \ \ \ \ impl\_type\ =\ config.get(\textcolor{stringliteral}{'implementation'},\ \textcolor{stringliteral}{'cli'}).lower()}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00046}00046\ \ \ \ \ \ \ \ \ auto\_fallback\ =\ config.get(\textcolor{stringliteral}{'auto\_fallback'},\ \textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00048}00048\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Check\ library\ adapter\ availability\ (cached)}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00049}00049\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ManagerFactory.\_adapter\_cache[\textcolor{stringliteral}{'db2\_library\_available'}]\ \textcolor{keywordflow}{is}\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{from}\ ..adapters.db2\_library\_adapter\ \textcolor{keyword}{import}\ DB2LibraryAdapter,\ HAS\_IBM\_DB}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ManagerFactory.\_adapter\_cache[\textcolor{stringliteral}{'db2\_library\_available'}]\ =\ HAS\_IBM\_DB}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ ImportError:}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ManagerFactory.\_adapter\_cache[\textcolor{stringliteral}{'db2\_library\_available'}]\ =\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00056}00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ impl\_type\ ==\ \textcolor{stringliteral}{'library'}:}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ManagerFactory.\_adapter\_cache[\textcolor{stringliteral}{'db2\_library\_available'}]:}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{from}\ ..adapters.db2\_library\_adapter\ \textcolor{keyword}{import}\ DB2LibraryAdapter}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ logger:}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ logger.logger.info(\textcolor{stringliteral}{"{}Using\ DB2\ library\ adapter\ (ibm\_db)"{}})}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ DB2LibraryAdapter(config,\ logger)}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ auto\_fallback:}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ logger:}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ logger.logger.warning(}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}DB2\ library\ adapter\ not\ available\ (ibm\_db\ not\ installed),\ "{}}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}falling\ back\ to\ CLI\ adapter"{}}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{from}\ ..adapters.db2\_cli\_adapter\ \textcolor{keyword}{import}\ DB2CLIAdapter}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ DB2CLIAdapter(config,\ logger)}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ ValueError(}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}DB2\ library\ implementation\ requested\ but\ ibm\_db\ is\ not\ installed.\ "{}}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Install\ with:\ pip\ install\ ibm\_db"{}}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00075}00075\ }
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00076}00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ impl\_type\ ==\ \textcolor{stringliteral}{'cli'}:}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{from}\ ..adapters.db2\_cli\_adapter\ \textcolor{keyword}{import}\ DB2CLIAdapter}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ logger:}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ logger.logger.info(\textcolor{stringliteral}{"{}Using\ DB2\ CLI\ adapter"{}})}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ DB2CLIAdapter(config,\ logger)}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00082}00082\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ ValueError(}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ f\textcolor{stringliteral}{"{}Unknown\ database\ implementation\ type:\ '\{impl\_type\}'.\ "{}}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ f\textcolor{stringliteral}{"{}Valid\ options\ are\ 'cli'\ or\ 'library'"{}}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00088}00088\ \ \ \ \ \textcolor{preprocessor}{@staticmethod}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00089}\mbox{\hyperlink{classcommonpython_1_1factories_1_1manager__factory_1_1_manager_factory_a066774d37ceab875e991f7f8b28b373c}{00089}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcommonpython_1_1factories_1_1manager__factory_1_1_manager_factory_a066774d37ceab875e991f7f8b28b373c}{create\_messaging\_manager}}(config:\ Dict[str,\ Any],\ logger=\textcolor{keywordtype}{None})\ -\/>\ IMessagingManager:}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00090}00090\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00091}00091\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Create\ messaging\ manager\ based\ on\ configuration.}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00092}00092\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00093}00093\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Create\ messaging\ manager\ with\ automatic\ implementation\ selection.}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00094}00094\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @param\ config\ Messaging\ configuration\ dictionary}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00095}00095\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @param\ logger\ Logger\ manager\ instance\ (optional)}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00096}00096\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @return\ IMessagingManager\ implementation\ instance}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00097}00097\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @throws\ ValueError\ If\ specified\ implementation\ is\ not\ available}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00098}00098\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @throws\ ImportError\ If\ required\ dependencies\ are\ missing}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00099}00099\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00100}00100\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Configuration\ keys:}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00101}00101\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ -\/\ implementation:\ 'cli'\ or\ 'library'\ (default:\ 'cli')}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00102}00102\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ -\/\ auto\_fallback:\ True\ to\ automatically\ fallback\ to\ CLI\ if\ library\ unavailable\ (default:\ True)}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00103}00103\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00104}00104\ \ \ \ \ \ \ \ \ impl\_type\ =\ config.get(\textcolor{stringliteral}{'implementation'},\ \textcolor{stringliteral}{'cli'}).lower()}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00105}00105\ \ \ \ \ \ \ \ \ auto\_fallback\ =\ config.get(\textcolor{stringliteral}{'auto\_fallback'},\ \textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00107}00107\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Check\ library\ adapter\ availability\ (cached)}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00108}00108\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ManagerFactory.\_adapter\_cache[\textcolor{stringliteral}{'mq\_library\_available'}]\ \textcolor{keywordflow}{is}\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{from}\ ..adapters.mq\_library\_adapter\ \textcolor{keyword}{import}\ MQLibraryAdapter,\ HAS\_PYMQI}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ManagerFactory.\_adapter\_cache[\textcolor{stringliteral}{'mq\_library\_available'}]\ =\ HAS\_PYMQI}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ ImportError:}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ManagerFactory.\_adapter\_cache[\textcolor{stringliteral}{'mq\_library\_available'}]\ =\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00115}00115\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ impl\_type\ ==\ \textcolor{stringliteral}{'library'}:}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ManagerFactory.\_adapter\_cache[\textcolor{stringliteral}{'mq\_library\_available'}]:}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{from}\ ..adapters.mq\_library\_adapter\ \textcolor{keyword}{import}\ MQLibraryAdapter}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ logger:}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ logger.logger.info(\textcolor{stringliteral}{"{}Using\ MQ\ library\ adapter\ (pymqi)"{}})}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ MQLibraryAdapter(config,\ logger)}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ auto\_fallback:}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ logger:}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ logger.logger.warning(}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}MQ\ library\ adapter\ not\ available\ (pymqi\ not\ installed),\ "{}}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}falling\ back\ to\ CLI\ adapter"{}}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{from}\ ..adapters.mq\_cli\_adapter\ \textcolor{keyword}{import}\ MQCLIAdapter}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ MQCLIAdapter(config,\ logger)}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ ValueError(}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}MQ\ library\ implementation\ requested\ but\ pymqi\ is\ not\ installed.\ "{}}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Install\ with:\ pip\ install\ pymqi"{}}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00134}00134\ }
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00135}00135\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ impl\_type\ ==\ \textcolor{stringliteral}{'cli'}:}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{from}\ ..adapters.mq\_cli\_adapter\ \textcolor{keyword}{import}\ MQCLIAdapter}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ logger:}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ logger.logger.info(\textcolor{stringliteral}{"{}Using\ MQ\ CLI\ adapter"{}})}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ MQCLIAdapter(config,\ logger)}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00140}00140\ }
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00141}00141\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ ValueError(}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ f\textcolor{stringliteral}{"{}Unknown\ messaging\ implementation\ type:\ '\{impl\_type\}'.\ "{}}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ f\textcolor{stringliteral}{"{}Valid\ options\ are\ 'cli'\ or\ 'library'"{}}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00146}00146\ }
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00147}00147\ \ \ \ \ \textcolor{preprocessor}{@staticmethod}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00148}\mbox{\hyperlink{classcommonpython_1_1factories_1_1manager__factory_1_1_manager_factory_a7672f19678c74f5bfdbef46ecaf9e37e}{00148}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcommonpython_1_1factories_1_1manager__factory_1_1_manager_factory_a7672f19678c74f5bfdbef46ecaf9e37e}{get\_available\_implementations}}()\ -\/>\ Dict[str,\ Dict[str,\ bool]]:}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00149}00149\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00150}00150\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Get\ information\ about\ available\ implementations.}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00151}00151\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00152}00152\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Check\ which\ implementations\ are\ available.}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00153}00153\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @return\ Dictionary\ with\ availability\ information\ for\ each\ manager\ type}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00154}00154\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00155}00155\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Example\ return:}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00156}00156\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \{}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00157}00157\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ 'database':\ \{}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00158}00158\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 'cli':\ True,}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00159}00159\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 'library':\ False\ \ \#\ ibm\_db\ not\ installed}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00160}00160\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \},}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00161}00161\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ 'messaging':\ \{}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00162}00162\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 'cli':\ True,}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00163}00163\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 'library':\ True}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00164}00164\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00165}00165\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00166}00166\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00167}00167\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Check\ DB2\ library}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00168}00168\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{from}\ ..adapters.db2\_library\_adapter\ \textcolor{keyword}{import}\ DB2LibraryAdapter,\ HAS\_IBM\_DB}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ db2\_library\_available\ =\ HAS\_IBM\_DB}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00171}00171\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ ImportError:}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ db2\_library\_available\ =\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00173}00173\ }
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00174}00174\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Check\ MQ\ library}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00175}00175\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{from}\ ..adapters.mq\_library\_adapter\ \textcolor{keyword}{import}\ MQLibraryAdapter,\ HAS\_PYMQI}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ mq\_library\_available\ =\ HAS\_PYMQI}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00178}00178\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ ImportError:}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ mq\_library\_available\ =\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00180}00180\ }
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00181}00181\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'database'}:\ \{}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'cli'}:\ \textcolor{keyword}{True},\ \ \textcolor{comment}{\#\ CLI\ adapter\ is\ always\ available}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'library'}:\ db2\_library\_available}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'messaging'}:\ \{}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'cli'}:\ \textcolor{keyword}{True},\ \ \textcolor{comment}{\#\ CLI\ adapter\ is\ always\ available}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'library'}:\ mq\_library\_available}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00189}00189\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00190}00190\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00191}00191\ }
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00192}00192\ \ \ \ \ \textcolor{preprocessor}{@staticmethod}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00193}\mbox{\hyperlink{classcommonpython_1_1factories_1_1manager__factory_1_1_manager_factory_a2f1c08e2bccc369edfe3553d57218c98}{00193}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcommonpython_1_1factories_1_1manager__factory_1_1_manager_factory_a2f1c08e2bccc369edfe3553d57218c98}{reset\_cache}}():}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00194}00194\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00195}00195\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Reset\ the\ adapter\ availability\ cache.}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00196}00196\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00197}00197\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Reset\ cached\ availability\ information.}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00198}00198\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Useful\ for\ testing\ or\ when\ dependencies\ are\ installed\ at\ runtime.}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00199}00199\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00200}00200\ \ \ \ \ \ \ \ \ ManagerFactory.\_adapter\_cache\ =\ \{}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00201}00201\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'db2\_library\_available'}:\ \textcolor{keywordtype}{None},}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00202}00202\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'mq\_library\_available'}:\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{manager__factory_8py_source_l00203}00203\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}

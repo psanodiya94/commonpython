@@ -1,0 +1,182 @@
+\doxysection{component\+\_\+runner.\+py}
+\hypertarget{component__runner_8py_source}{}\label{component__runner_8py_source}\index{commonpython/framework/component\_runner.py@{commonpython/framework/component\_runner.py}}
+\mbox{\hyperlink{component__runner_8py}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00001}\mbox{\hyperlink{namespacecommonpython_1_1framework_1_1component__runner}{00001}}\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00002}00002\ \textcolor{stringliteral}{Component\ Runner\ for\ CommonPython\ Framework}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00003}00003\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00004}00004\ \textcolor{stringliteral}{Provides\ a\ common\ way\ to\ run\ components\ with\ shared\ functionality.}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00005}00005\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00007}00007\ \textcolor{keyword}{import}\ sys}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00008}00008\ \textcolor{keyword}{import}\ argparse}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00009}00009\ \textcolor{keyword}{from}\ typing\ \textcolor{keyword}{import}\ Dict,\ Any,\ Optional,\ Type}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00010}00010\ \textcolor{keyword}{from}\ pathlib\ \textcolor{keyword}{import}\ Path}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00012}00012\ \textcolor{keyword}{from}\ .component\_base\ \textcolor{keyword}{import}\ ComponentBase}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00015}\mbox{\hyperlink{classcommonpython_1_1framework_1_1component__runner_1_1_component_runner}{00015}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcommonpython_1_1framework_1_1component__runner_1_1_component_runner}{ComponentRunner}}:}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00016}00016\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00017}00017\ \textcolor{stringliteral}{\ \ \ \ Component\ runner\ for\ CommonPython\ framework.}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00018}00018\ \textcolor{stringliteral}{\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00019}00019\ \textcolor{stringliteral}{\ \ \ \ Provides\ a\ common\ way\ to\ run\ components\ with\ shared\ functionality}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00020}00020\ \textcolor{stringliteral}{\ \ \ \ including\ configuration,\ logging,\ database,\ and\ messaging\ capabilities.}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00021}00021\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00022}00022\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00023}\mbox{\hyperlink{classcommonpython_1_1framework_1_1component__runner_1_1_component_runner_ac15f5a20bee3dda20d3485f031a8dbd1}{00023}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcommonpython_1_1framework_1_1component__runner_1_1_component_runner_ac15f5a20bee3dda20d3485f031a8dbd1}{\_\_init\_\_}}(self,\ component\_class:\ Type[ComponentBase],\ component\_name:\ str):}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00024}00024\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00025}00025\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Initialize\ the\ component\ runner.}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00026}00026\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00027}00027\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Initialize\ component\ runner\ with\ component\ class\ and\ name.}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00028}00028\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @param\ component\_class\ Component\ class\ that\ inherits\ from\ ComponentBase}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00029}00029\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @param\ component\_name\ Name\ of\ the\ component}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00030}00030\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00031}\mbox{\hyperlink{classcommonpython_1_1framework_1_1component__runner_1_1_component_runner_a096b5065db185bd3b662165772f3a7c4}{00031}}\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcommonpython_1_1framework_1_1component__runner_1_1_component_runner_a096b5065db185bd3b662165772f3a7c4}{component\_class}}\ =\ component\_class}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00032}\mbox{\hyperlink{classcommonpython_1_1framework_1_1component__runner_1_1_component_runner_a89cf0ffcf4c93d07b008e099a9454348}{00032}}\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcommonpython_1_1framework_1_1component__runner_1_1_component_runner_a89cf0ffcf4c93d07b008e099a9454348}{component\_name}}\ =\ component\_name}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00033}\mbox{\hyperlink{classcommonpython_1_1framework_1_1component__runner_1_1_component_runner_a7dd978747d89d0ae9e75d9bbbaa288aa}{00033}}\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcommonpython_1_1framework_1_1component__runner_1_1_component_runner_a7dd978747d89d0ae9e75d9bbbaa288aa}{component\_instance}}\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00034}00034\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00035}\mbox{\hyperlink{classcommonpython_1_1framework_1_1component__runner_1_1_component_runner_a672e94b6b94adcd9ded0c1cfb3da89ea}{00035}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcommonpython_1_1framework_1_1component__runner_1_1_component_runner_a672e94b6b94adcd9ded0c1cfb3da89ea}{create\_parser}}(self)\ -\/>\ argparse.ArgumentParser:}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00036}00036\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00037}00037\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Create\ command-\/line\ argument\ parser.}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00038}00038\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00039}00039\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Create\ argument\ parser\ for\ component\ execution.}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00040}00040\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @return\ Configured\ ArgumentParser\ instance}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00041}00041\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00042}00042\ \ \ \ \ \ \ \ \ parser\ =\ argparse.ArgumentParser(}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ description=f\textcolor{stringliteral}{'\{self.component\_name\}\ -\/\ CommonPython\ Component'},}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ formatter\_class=argparse.RawDescriptionHelpFormatter}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00045}00045\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00046}00046\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00047}00047\ \ \ \ \ \ \ \ \ parser.add\_argument(}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'-\/-\/config'},\ \textcolor{stringliteral}{'-\/c'},}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ help=\textcolor{stringliteral}{'Configuration\ file\ path'},}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ default=\textcolor{stringliteral}{'config/config.yaml'}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00051}00051\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00052}00052\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00053}00053\ \ \ \ \ \ \ \ \ parser.add\_argument(}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'-\/-\/log-\/level'},}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ choices=[\textcolor{stringliteral}{'DEBUG'},\ \textcolor{stringliteral}{'INFO'},\ \textcolor{stringliteral}{'WARNING'},\ \textcolor{stringliteral}{'ERROR'},\ \textcolor{stringliteral}{'CRITICAL'}],}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ help=\textcolor{stringliteral}{'Set\ logging\ level'},}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ default=\textcolor{stringliteral}{'INFO'}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00058}00058\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00059}00059\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00060}00060\ \ \ \ \ \ \ \ \ parser.add\_argument(}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'-\/-\/verbose'},\ \textcolor{stringliteral}{'-\/v'},}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ action=\textcolor{stringliteral}{'store\_true'},}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ help=\textcolor{stringliteral}{'Enable\ verbose\ logging'}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00064}00064\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00065}00065\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00066}00066\ \ \ \ \ \ \ \ \ parser.add\_argument(}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'-\/-\/dry-\/run'},}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ action=\textcolor{stringliteral}{'store\_true'},}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ help=\textcolor{stringliteral}{'Run\ in\ dry-\/run\ mode\ (no\ actual\ operations)'}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00070}00070\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00071}00071\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00072}00072\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ parser}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00073}00073\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00074}\mbox{\hyperlink{classcommonpython_1_1framework_1_1component__runner_1_1_component_runner_a3531400b93232ec4e63efb3fe82fb48d}{00074}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcommonpython_1_1framework_1_1component__runner_1_1_component_runner_a3531400b93232ec4e63efb3fe82fb48d}{run}}(self,\ args:\ Optional[list]\ =\ \textcolor{keywordtype}{None})\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00075}00075\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00076}00076\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Run\ the\ component.}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00077}00077\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00078}00078\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Execute\ component\ with\ command-\/line\ arguments.}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00079}00079\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @param\ args\ Command-\/line\ arguments\ (None\ to\ use\ sys.argv)}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00080}00080\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @return\ True\ if\ component\ executed\ successfully,\ False\ otherwise}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00081}00081\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00082}00082\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Parse\ arguments}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ parser\ =\ self.\mbox{\hyperlink{classcommonpython_1_1framework_1_1component__runner_1_1_component_runner_a672e94b6b94adcd9ded0c1cfb3da89ea}{create\_parser}}()}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ parsed\_args\ =\ parser.parse\_args(args)}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Create\ component\ instance}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcommonpython_1_1framework_1_1component__runner_1_1_component_runner_a7dd978747d89d0ae9e75d9bbbaa288aa}{component\_instance}}\ =\ self.\mbox{\hyperlink{classcommonpython_1_1framework_1_1component__runner_1_1_component_runner_a096b5065db185bd3b662165772f3a7c4}{component\_class}}(}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ parsed\_args.config}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Set\ log\ level\ if\ specified}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ parsed\_args.log\_level:}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcommonpython_1_1framework_1_1component__runner_1_1_component_runner_a7dd978747d89d0ae9e75d9bbbaa288aa}{component\_instance}}.logger\_manager.set\_level(parsed\_args.log\_level)}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Set\ verbose\ mode}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ parsed\_args.verbose:}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcommonpython_1_1framework_1_1component__runner_1_1_component_runner_a7dd978747d89d0ae9e75d9bbbaa288aa}{component\_instance}}.logger\_manager.set\_level(\textcolor{stringliteral}{'DEBUG'})}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Set\ dry-\/run\ mode}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ parsed\_args.dry\_run:}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcommonpython_1_1framework_1_1component__runner_1_1_component_runner_a7dd978747d89d0ae9e75d9bbbaa288aa}{component\_instance}}.set\_config(\textcolor{stringliteral}{'dry\_run'},\ \textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcommonpython_1_1framework_1_1component__runner_1_1_component_runner_a7dd978747d89d0ae9e75d9bbbaa288aa}{component\_instance}}.log\_info(\textcolor{stringliteral}{"{}Running\ in\ dry-\/run\ mode"{}})}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Start\ component}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\mbox{\hyperlink{classcommonpython_1_1framework_1_1component__runner_1_1_component_runner_a7dd978747d89d0ae9e75d9bbbaa288aa}{component\_instance}}.start()}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00108}00108\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ KeyboardInterrupt:}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\mbox{\hyperlink{classcommonpython_1_1framework_1_1component__runner_1_1_component_runner_a7dd978747d89d0ae9e75d9bbbaa288aa}{component\_instance}}:}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcommonpython_1_1framework_1_1component__runner_1_1_component_runner_a7dd978747d89d0ae9e75d9bbbaa288aa}{component\_instance}}.log\_info(\textcolor{stringliteral}{"{}Component\ interrupted\ by\ user"{}})}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00112}00112\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00113}00113\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\mbox{\hyperlink{classcommonpython_1_1framework_1_1component__runner_1_1_component_runner_a7dd978747d89d0ae9e75d9bbbaa288aa}{component\_instance}}:}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcommonpython_1_1framework_1_1component__runner_1_1_component_runner_a7dd978747d89d0ae9e75d9bbbaa288aa}{component\_instance}}.log\_error(f\textcolor{stringliteral}{"{}Component\ runner\ error:\ \{str(e)\}"{}})}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}Component\ runner\ error:\ \{str(e)\}"{}})}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00119}00119\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00120}\mbox{\hyperlink{classcommonpython_1_1framework_1_1component__runner_1_1_component_runner_acdb6fd0467441a3afa3adf25d2582344}{00120}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcommonpython_1_1framework_1_1component__runner_1_1_component_runner_acdb6fd0467441a3afa3adf25d2582344}{run\_with\_config}}(self,\ config:\ Dict[str,\ Any])\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00121}00121\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00122}00122\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Run\ component\ with\ configuration\ dictionary.}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00123}00123\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00124}00124\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Execute\ component\ with\ provided\ configuration.}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00125}00125\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @param\ config\ Configuration\ dictionary}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00126}00126\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @return\ True\ if\ component\ executed\ successfully,\ False\ otherwise}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00127}00127\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00128}00128\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Create\ component\ instance}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcommonpython_1_1framework_1_1component__runner_1_1_component_runner_a7dd978747d89d0ae9e75d9bbbaa288aa}{component\_instance}}\ =\ self.\mbox{\hyperlink{classcommonpython_1_1framework_1_1component__runner_1_1_component_runner_a096b5065db185bd3b662165772f3a7c4}{component\_class}}(}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{None}\ \ \textcolor{comment}{\#\ No\ config\ file,\ will\ use\ provided\ config}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Apply\ configuration}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ key,\ value\ \textcolor{keywordflow}{in}\ config.items():}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcommonpython_1_1framework_1_1component__runner_1_1_component_runner_a7dd978747d89d0ae9e75d9bbbaa288aa}{component\_instance}}.set\_config(key,\ value)}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Start\ component}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\mbox{\hyperlink{classcommonpython_1_1framework_1_1component__runner_1_1_component_runner_a7dd978747d89d0ae9e75d9bbbaa288aa}{component\_instance}}.start()}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00141}00141\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\mbox{\hyperlink{classcommonpython_1_1framework_1_1component__runner_1_1_component_runner_a7dd978747d89d0ae9e75d9bbbaa288aa}{component\_instance}}:}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcommonpython_1_1framework_1_1component__runner_1_1_component_runner_a7dd978747d89d0ae9e75d9bbbaa288aa}{component\_instance}}.log\_error(f\textcolor{stringliteral}{"{}Component\ runner\ error:\ \{str(e)\}"{}})}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}Component\ runner\ error:\ \{str(e)\}"{}})}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00147}00147\ }
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00148}00148\ }
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00149}\mbox{\hyperlink{namespacecommonpython_1_1framework_1_1component__runner_a87870fbf1ff39ca2b6dfb3ad2a743de1}{00149}}\ \textcolor{keyword}{def\ }\mbox{\hyperlink{namespacecommonpython_1_1framework_1_1component__runner_a87870fbf1ff39ca2b6dfb3ad2a743de1}{run\_component}}(component\_class:\ Type[ComponentBase],\ component\_name:\ str,\ }
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ args:\ Optional[list]\ =\ \textcolor{keywordtype}{None})\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00151}00151\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00152}00152\ \textcolor{stringliteral}{\ \ \ \ Run\ a\ component\ with\ CommonPython\ framework.}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00153}00153\ \textcolor{stringliteral}{\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00154}00154\ \textcolor{stringliteral}{\ \ \ \ @brief\ Convenience\ function\ to\ run\ a\ component.}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00155}00155\ \textcolor{stringliteral}{\ \ \ \ @param\ component\_class\ Component\ class\ that\ inherits\ from\ ComponentBase}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00156}00156\ \textcolor{stringliteral}{\ \ \ \ @param\ component\_name\ Name\ of\ the\ component}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00157}00157\ \textcolor{stringliteral}{\ \ \ \ @param\ args\ Command-\/line\ arguments\ (None\ to\ use\ sys.argv)}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00158}00158\ \textcolor{stringliteral}{\ \ \ \ @return\ True\ if\ component\ executed\ successfully,\ False\ otherwise}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00159}00159\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00160}00160\ \ \ \ \ runner\ =\ \mbox{\hyperlink{classcommonpython_1_1framework_1_1component__runner_1_1_component_runner}{ComponentRunner}}(component\_class,\ component\_name)}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00161}00161\ \ \ \ \ \textcolor{keywordflow}{return}\ runner.run(args)}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00162}00162\ }
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00163}00163\ }
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00164}\mbox{\hyperlink{namespacecommonpython_1_1framework_1_1component__runner_ab8f414e53faac50503326d68ae523e97}{00164}}\ \textcolor{keyword}{def\ }\mbox{\hyperlink{namespacecommonpython_1_1framework_1_1component__runner_ab8f414e53faac50503326d68ae523e97}{run\_component\_with\_config}}(component\_class:\ Type[ComponentBase],\ component\_name:\ str,}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ config:\ Dict[str,\ Any])\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00166}00166\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00167}00167\ \textcolor{stringliteral}{\ \ \ \ Run\ a\ component\ with\ configuration\ dictionary.}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00168}00168\ \textcolor{stringliteral}{\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00169}00169\ \textcolor{stringliteral}{\ \ \ \ @brief\ Convenience\ function\ to\ run\ a\ component\ with\ config.}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00170}00170\ \textcolor{stringliteral}{\ \ \ \ @param\ component\_class\ Component\ class\ that\ inherits\ from\ ComponentBase}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00171}00171\ \textcolor{stringliteral}{\ \ \ \ @param\ component\_name\ Name\ of\ the\ component}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00172}00172\ \textcolor{stringliteral}{\ \ \ \ @param\ config\ Configuration\ dictionary}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00173}00173\ \textcolor{stringliteral}{\ \ \ \ @return\ True\ if\ component\ executed\ successfully,\ False\ otherwise}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00174}00174\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00175}00175\ \ \ \ \ runner\ =\ \mbox{\hyperlink{classcommonpython_1_1framework_1_1component__runner_1_1_component_runner}{ComponentRunner}}(component\_class,\ component\_name)}
+\DoxyCodeLine{\Hypertarget{component__runner_8py_source_l00176}00176\ \ \ \ \ \textcolor{keywordflow}{return}\ runner.run\_with\_config(config)}
+
+\end{DoxyCode}

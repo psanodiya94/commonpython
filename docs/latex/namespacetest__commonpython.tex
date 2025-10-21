@@ -1,0 +1,148 @@
+\doxysection{test\+\_\+commonpython Namespace Reference}
+\hypertarget{namespacetest__commonpython}{}\label{namespacetest__commonpython}\index{test\_commonpython@{test\_commonpython}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classtest__commonpython_1_1_colored_output}{Colored\+Output}}
+\item 
+class \mbox{\hyperlink{classtest__commonpython_1_1_detailed_test_result}{Detailed\+Test\+Result}}
+\item 
+class \mbox{\hyperlink{classtest__commonpython_1_1_detailed_test_runner}{Detailed\+Test\+Runner}}
+\item 
+class \mbox{\hyperlink{classtest__commonpython_1_1_test_categories}{Test\+Categories}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+str \mbox{\hyperlink{namespacetest__commonpython_a4c063932479fdc0df93e32e580ccb573}{categorize\+\_\+test}} (str test\+\_\+name)
+\item 
+\mbox{\hyperlink{namespacetest__commonpython_aa9b38b6427188c14b3f6f7e4619257dd}{check\+\_\+adapter\+\_\+availability}} ()
+\item 
+\mbox{\hyperlink{namespacetest__commonpython_a6779b4c00e82ea630fb919a3362ee301}{print\+\_\+section}} (str title, str char="{}="{}, int width=80)
+\item 
+\mbox{\hyperlink{namespacetest__commonpython_a3fa0f7d7c404d55228ec6b385cb68b59}{print\+\_\+subsection}} (str title, str char="{}-\/"{}, int width=80)
+\item 
+List\mbox{[}str\mbox{]} \mbox{\hyperlink{namespacetest__commonpython_a5ebabc815f7ed9d6c74bf84c20e60635}{discover\+\_\+tests}} (Path test\+\_\+dir)
+\item 
+\mbox{\hyperlink{namespacetest__commonpython_a3861cd2bfc60221d07d90b880943ecc2}{run\+\_\+comprehensive\+\_\+tests}} (Optional\mbox{[}str\mbox{]} suite\+\_\+filter=None, int verbosity=2)
+\item 
+\mbox{\hyperlink{namespacetest__commonpython_a33ba9478ff451166ab8b57ea7b86d3d9}{run\+\_\+tests\+\_\+with\+\_\+coverage}} (Optional\mbox{[}str\mbox{]} suite\+\_\+filter=None, int verbosity=2)
+\item 
+\mbox{\hyperlink{namespacetest__commonpython_a134a7bfc9598c55135d4b0f4e9c410f7}{main}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Comprehensive Test Framework for CommonPython
+
+Runs all test cases with detailed reporting, coverage analysis, and categorization.
+Supports testing of both CLI and library-based adapter implementations.
+\end{DoxyVerb}
+ 
+
+\label{doc-func-members}
+\Hypertarget{namespacetest__commonpython_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacetest__commonpython_a4c063932479fdc0df93e32e580ccb573}\index{test\_commonpython@{test\_commonpython}!categorize\_test@{categorize\_test}}
+\index{categorize\_test@{categorize\_test}!test\_commonpython@{test\_commonpython}}
+\doxysubsubsection{\texorpdfstring{categorize\_test()}{categorize\_test()}}
+{\footnotesize\ttfamily \label{namespacetest__commonpython_a4c063932479fdc0df93e32e580ccb573} 
+ str test\+\_\+commonpython.\+categorize\+\_\+test (\begin{DoxyParamCaption}\item[{str}]{test\+\_\+name}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Categorize test based on its name\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__commonpython_8py_source_l00059}{59}} of file \mbox{\hyperlink{test__commonpython_8py_source}{test\+\_\+commonpython.\+py}}.
+
+\Hypertarget{namespacetest__commonpython_aa9b38b6427188c14b3f6f7e4619257dd}\index{test\_commonpython@{test\_commonpython}!check\_adapter\_availability@{check\_adapter\_availability}}
+\index{check\_adapter\_availability@{check\_adapter\_availability}!test\_commonpython@{test\_commonpython}}
+\doxysubsubsection{\texorpdfstring{check\_adapter\_availability()}{check\_adapter\_availability()}}
+{\footnotesize\ttfamily \label{namespacetest__commonpython_aa9b38b6427188c14b3f6f7e4619257dd} 
+test\+\_\+commonpython.\+check\+\_\+adapter\+\_\+availability (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Check which adapter implementations are available\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__commonpython_8py_source_l00081}{81}} of file \mbox{\hyperlink{test__commonpython_8py_source}{test\+\_\+commonpython.\+py}}.
+
+\Hypertarget{namespacetest__commonpython_a5ebabc815f7ed9d6c74bf84c20e60635}\index{test\_commonpython@{test\_commonpython}!discover\_tests@{discover\_tests}}
+\index{discover\_tests@{discover\_tests}!test\_commonpython@{test\_commonpython}}
+\doxysubsubsection{\texorpdfstring{discover\_tests()}{discover\_tests()}}
+{\footnotesize\ttfamily \label{namespacetest__commonpython_a5ebabc815f7ed9d6c74bf84c20e60635} 
+ List\mbox{[}str\mbox{]} test\+\_\+commonpython.\+discover\+\_\+tests (\begin{DoxyParamCaption}\item[{Path}]{test\+\_\+dir}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Discover all test files\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__commonpython_8py_source_l00110}{110}} of file \mbox{\hyperlink{test__commonpython_8py_source}{test\+\_\+commonpython.\+py}}.
+
+\Hypertarget{namespacetest__commonpython_a134a7bfc9598c55135d4b0f4e9c410f7}\index{test\_commonpython@{test\_commonpython}!main@{main}}
+\index{main@{main}!test\_commonpython@{test\_commonpython}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{namespacetest__commonpython_a134a7bfc9598c55135d4b0f4e9c410f7} 
+test\+\_\+commonpython.\+main (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Main test runner function.
+
+@brief Main entry point for comprehensive test framework.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__commonpython_8py_source_l00389}{389}} of file \mbox{\hyperlink{test__commonpython_8py_source}{test\+\_\+commonpython.\+py}}.
+
+\Hypertarget{namespacetest__commonpython_a6779b4c00e82ea630fb919a3362ee301}\index{test\_commonpython@{test\_commonpython}!print\_section@{print\_section}}
+\index{print\_section@{print\_section}!test\_commonpython@{test\_commonpython}}
+\doxysubsubsection{\texorpdfstring{print\_section()}{print\_section()}}
+{\footnotesize\ttfamily \label{namespacetest__commonpython_a6779b4c00e82ea630fb919a3362ee301} 
+test\+\_\+commonpython.\+print\+\_\+section (\begin{DoxyParamCaption}\item[{str}]{title}{, }\item[{str }]{char}{ = {\ttfamily "{}="{}}, }\item[{int }]{width}{ = {\ttfamily 80}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Print a formatted section header\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__commonpython_8py_source_l00095}{95}} of file \mbox{\hyperlink{test__commonpython_8py_source}{test\+\_\+commonpython.\+py}}.
+
+\Hypertarget{namespacetest__commonpython_a3fa0f7d7c404d55228ec6b385cb68b59}\index{test\_commonpython@{test\_commonpython}!print\_subsection@{print\_subsection}}
+\index{print\_subsection@{print\_subsection}!test\_commonpython@{test\_commonpython}}
+\doxysubsubsection{\texorpdfstring{print\_subsection()}{print\_subsection()}}
+{\footnotesize\ttfamily \label{namespacetest__commonpython_a3fa0f7d7c404d55228ec6b385cb68b59} 
+test\+\_\+commonpython.\+print\+\_\+subsection (\begin{DoxyParamCaption}\item[{str}]{title}{, }\item[{str }]{char}{ = {\ttfamily "{}-\/"{}}, }\item[{int }]{width}{ = {\ttfamily 80}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Print a formatted subsection header\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__commonpython_8py_source_l00103}{103}} of file \mbox{\hyperlink{test__commonpython_8py_source}{test\+\_\+commonpython.\+py}}.
+
+\Hypertarget{namespacetest__commonpython_a3861cd2bfc60221d07d90b880943ecc2}\index{test\_commonpython@{test\_commonpython}!run\_comprehensive\_tests@{run\_comprehensive\_tests}}
+\index{run\_comprehensive\_tests@{run\_comprehensive\_tests}!test\_commonpython@{test\_commonpython}}
+\doxysubsubsection{\texorpdfstring{run\_comprehensive\_tests()}{run\_comprehensive\_tests()}}
+{\footnotesize\ttfamily \label{namespacetest__commonpython_a3861cd2bfc60221d07d90b880943ecc2} 
+test\+\_\+commonpython.\+run\+\_\+comprehensive\+\_\+tests (\begin{DoxyParamCaption}\item[{Optional\mbox{[}str\mbox{]} }]{suite\+\_\+filter}{ = {\ttfamily None}, }\item[{int }]{verbosity}{ = {\ttfamily 2}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Run comprehensive test suite with detailed reporting.
+
+@brief Execute all test cases with comprehensive reporting.
+@param suite_filter Optional filter for specific test suites
+@param verbosity Verbosity level for test output
+@return Test result object
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__commonpython_8py_source_l00169}{169}} of file \mbox{\hyperlink{test__commonpython_8py_source}{test\+\_\+commonpython.\+py}}.
+
+\Hypertarget{namespacetest__commonpython_a33ba9478ff451166ab8b57ea7b86d3d9}\index{test\_commonpython@{test\_commonpython}!run\_tests\_with\_coverage@{run\_tests\_with\_coverage}}
+\index{run\_tests\_with\_coverage@{run\_tests\_with\_coverage}!test\_commonpython@{test\_commonpython}}
+\doxysubsubsection{\texorpdfstring{run\_tests\_with\_coverage()}{run\_tests\_with\_coverage()}}
+{\footnotesize\ttfamily \label{namespacetest__commonpython_a33ba9478ff451166ab8b57ea7b86d3d9} 
+test\+\_\+commonpython.\+run\+\_\+tests\+\_\+with\+\_\+coverage (\begin{DoxyParamCaption}\item[{Optional\mbox{[}str\mbox{]} }]{suite\+\_\+filter}{ = {\ttfamily None}, }\item[{int }]{verbosity}{ = {\ttfamily 2}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Run tests with coverage analysis.
+
+@brief Execute tests with coverage reporting if available.
+@param suite_filter Optional filter for specific test suites
+@param verbosity Verbosity level for test output
+@return Test result object
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{test__commonpython_8py_source_l00312}{312}} of file \mbox{\hyperlink{test__commonpython_8py_source}{test\+\_\+commonpython.\+py}}.
+

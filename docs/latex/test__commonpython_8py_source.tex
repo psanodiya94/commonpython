@@ -1,0 +1,472 @@
+\doxysection{test\+\_\+commonpython.\+py}
+\hypertarget{test__commonpython_8py_source}{}\label{test__commonpython_8py_source}\index{scripts/test\_commonpython.py@{scripts/test\_commonpython.py}}
+\mbox{\hyperlink{test__commonpython_8py}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00001}\mbox{\hyperlink{namespacetest__commonpython}{00001}}\ \textcolor{comment}{\#!/usr/bin/env\ python3}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00002}00002\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00003}00003\ \textcolor{stringliteral}{Comprehensive\ Test\ Framework\ for\ CommonPython}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00004}00004\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00005}00005\ \textcolor{stringliteral}{Runs\ all\ test\ cases\ with\ detailed\ reporting,\ coverage\ analysis,\ and\ categorization.}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00006}00006\ \textcolor{stringliteral}{Supports\ testing\ of\ both\ CLI\ and\ library-\/based\ adapter\ implementations.}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00007}00007\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00009}00009\ \textcolor{keyword}{import}\ unittest}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00010}00010\ \textcolor{keyword}{import}\ sys}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00011}00011\ \textcolor{keyword}{import}\ os}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00012}00012\ \textcolor{keyword}{import}\ time}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00013}00013\ \textcolor{keyword}{from}\ pathlib\ \textcolor{keyword}{import}\ Path}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00014}00014\ \textcolor{keyword}{from}\ typing\ \textcolor{keyword}{import}\ Dict,\ List,\ Tuple,\ Optional}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00015}00015\ \textcolor{keyword}{from}\ collections\ \textcolor{keyword}{import}\ defaultdict}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00017}00017\ \textcolor{comment}{\#\ Add\ the\ parent\ directory\ to\ the\ path}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00018}00018\ sys.path.insert(0,\ str(Path(\_\_file\_\_).parent.parent))}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00021}\mbox{\hyperlink{classtest__commonpython_1_1_test_categories}{00021}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtest__commonpython_1_1_test_categories}{TestCategories}}:}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00022}00022\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Test\ suite\ categories\ for\ organized\ reporting"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00023}\mbox{\hyperlink{classtest__commonpython_1_1_test_categories_ab75e1cc61d56a79c31e544570fa05d21}{00023}}\ \ \ \ \ CORE\ =\ \textcolor{stringliteral}{"{}Core\ Framework"{}}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00024}\mbox{\hyperlink{classtest__commonpython_1_1_test_categories_aecd951ea32cdab51b9a157f8f2a73506}{00024}}\ \ \ \ \ ADAPTERS\ =\ \textcolor{stringliteral}{"{}Adapter\ Pattern"{}}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00025}\mbox{\hyperlink{classtest__commonpython_1_1_test_categories_a85c36494d822cf4f3d0599dbf0962357}{00025}}\ \ \ \ \ INTEGRATION\ =\ \textcolor{stringliteral}{"{}Integration\ Tests"{}}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00026}\mbox{\hyperlink{classtest__commonpython_1_1_test_categories_a5c98fe12292d1c4ce40f9b1075f9c213}{00026}}\ \ \ \ \ CLI\ =\ \textcolor{stringliteral}{"{}CLI\ Interface"{}}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00027}\mbox{\hyperlink{classtest__commonpython_1_1_test_categories_a6ed782711e1e314b160a4200bd331f69}{00027}}\ \ \ \ \ DATABASE\ =\ \textcolor{stringliteral}{"{}Database\ Operations"{}}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00028}\mbox{\hyperlink{classtest__commonpython_1_1_test_categories_ae82cdd98c81cbc99646ae7b440fdeada}{00028}}\ \ \ \ \ MESSAGING\ =\ \textcolor{stringliteral}{"{}Messaging\ Operations"{}}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00029}\mbox{\hyperlink{classtest__commonpython_1_1_test_categories_a31fcb77825b380149e59c7e32608c68d}{00029}}\ \ \ \ \ CONFIG\ =\ \textcolor{stringliteral}{"{}Configuration"{}}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00030}\mbox{\hyperlink{classtest__commonpython_1_1_test_categories_a2928c6b13a0b0ca4470dacc1aa804f7e}{00030}}\ \ \ \ \ LOGGING\ =\ \textcolor{stringliteral}{"{}Logging"{}}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00031}\mbox{\hyperlink{classtest__commonpython_1_1_test_categories_ab06970b95ee45aaf638be3c0c9798c43}{00031}}\ \ \ \ \ COMPONENTS\ =\ \textcolor{stringliteral}{"{}Components"{}}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00034}\mbox{\hyperlink{classtest__commonpython_1_1_colored_output}{00034}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtest__commonpython_1_1_colored_output}{ColoredOutput}}:}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00035}00035\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}ANSI\ color\ codes\ for\ terminal\ output"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00036}\mbox{\hyperlink{classtest__commonpython_1_1_colored_output_ab9355644b1198ae126123ad2ced7228c}{00036}}\ \ \ \ \ HEADER\ =\ \textcolor{stringliteral}{'\(\backslash\)033[95m'}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00037}\mbox{\hyperlink{classtest__commonpython_1_1_colored_output_ae08cb7ee963517ab0b6f551149834e81}{00037}}\ \ \ \ \ OKBLUE\ =\ \textcolor{stringliteral}{'\(\backslash\)033[94m'}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00038}\mbox{\hyperlink{classtest__commonpython_1_1_colored_output_a1b7ea8cfdccae979756aefda2be264d2}{00038}}\ \ \ \ \ OKCYAN\ =\ \textcolor{stringliteral}{'\(\backslash\)033[96m'}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00039}\mbox{\hyperlink{classtest__commonpython_1_1_colored_output_a2f1e419d0424bc4dc1991745a37cb087}{00039}}\ \ \ \ \ OKGREEN\ =\ \textcolor{stringliteral}{'\(\backslash\)033[92m'}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00040}\mbox{\hyperlink{classtest__commonpython_1_1_colored_output_a8ac9f7669988986b5cba4d142d34f0c7}{00040}}\ \ \ \ \ WARNING\ =\ \textcolor{stringliteral}{'\(\backslash\)033[93m'}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00041}\mbox{\hyperlink{classtest__commonpython_1_1_colored_output_a626edcdb19db8335ea3fc716103f37eb}{00041}}\ \ \ \ \ FAIL\ =\ \textcolor{stringliteral}{'\(\backslash\)033[91m'}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00042}\mbox{\hyperlink{classtest__commonpython_1_1_colored_output_a5a4a4d03d95a434f49374bb38e1c8adf}{00042}}\ \ \ \ \ ENDC\ =\ \textcolor{stringliteral}{'\(\backslash\)033[0m'}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00043}\mbox{\hyperlink{classtest__commonpython_1_1_colored_output_a2f9c7e25e15709c4c8d31de82947c922}{00043}}\ \ \ \ \ BOLD\ =\ \textcolor{stringliteral}{'\(\backslash\)033[1m'}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00044}\mbox{\hyperlink{classtest__commonpython_1_1_colored_output_aaf8c6f5132fe9f131c97690d8a27d533}{00044}}\ \ \ \ \ UNDERLINE\ =\ \textcolor{stringliteral}{'\(\backslash\)033[4m'}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00046}00046\ \ \ \ \ \textcolor{preprocessor}{@staticmethod}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00047}\mbox{\hyperlink{classtest__commonpython_1_1_colored_output_aced8e7135cc4b482248831a878dca31b}{00047}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtest__commonpython_1_1_colored_output_aced8e7135cc4b482248831a878dca31b}{supports\_color}}():}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00048}00048\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Check\ if\ terminal\ supports\ colors"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00049}00049\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ hasattr(sys.stdout,\ \textcolor{stringliteral}{'isatty'})\ \textcolor{keywordflow}{and}\ sys.stdout.isatty()}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00051}00051\ \ \ \ \ \textcolor{preprocessor}{@classmethod}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00052}\mbox{\hyperlink{classtest__commonpython_1_1_colored_output_a0157202177d3138bc881d3e295cf3ab4}{00052}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtest__commonpython_1_1_colored_output_a0157202177d3138bc881d3e295cf3ab4}{colorize}}(cls,\ text:\ str,\ color:\ str)\ -\/>\ str:}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00053}00053\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Add\ color\ to\ text\ if\ supported"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00054}00054\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ cls.\mbox{\hyperlink{classtest__commonpython_1_1_colored_output_aced8e7135cc4b482248831a878dca31b}{supports\_color}}():}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ f\textcolor{stringliteral}{"{}\{color\}\{text\}\{cls.ENDC\}"{}}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00056}00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ text}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00059}\mbox{\hyperlink{namespacetest__commonpython_a4c063932479fdc0df93e32e580ccb573}{00059}}\ \textcolor{keyword}{def\ }\mbox{\hyperlink{namespacetest__commonpython_a4c063932479fdc0df93e32e580ccb573}{categorize\_test}}(test\_name:\ str)\ -\/>\ str:}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00060}00060\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Categorize\ test\ based\ on\ its\ name"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00061}00061\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{stringliteral}{'adapter'}\ \textcolor{keywordflow}{in}\ test\_name.lower():}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00062}00062\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TestCategories.ADAPTERS}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00063}00063\ \ \ \ \ \textcolor{keywordflow}{elif}\ \textcolor{stringliteral}{'integration'}\ \textcolor{keywordflow}{in}\ test\_name.lower():}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00064}00064\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TestCategories.INTEGRATION}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00065}00065\ \ \ \ \ \textcolor{keywordflow}{elif}\ \textcolor{stringliteral}{'cli'}\ \textcolor{keywordflow}{in}\ test\_name.lower():}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00066}00066\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TestCategories.CLI}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00067}00067\ \ \ \ \ \textcolor{keywordflow}{elif}\ \textcolor{stringliteral}{'db2'}\ \textcolor{keywordflow}{in}\ test\_name.lower()\ \textcolor{keywordflow}{or}\ \textcolor{stringliteral}{'database'}\ \textcolor{keywordflow}{in}\ test\_name.lower():}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00068}00068\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TestCategories.DATABASE}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00069}00069\ \ \ \ \ \textcolor{keywordflow}{elif}\ \textcolor{stringliteral}{'mq'}\ \textcolor{keywordflow}{in}\ test\_name.lower()\ \textcolor{keywordflow}{or}\ \textcolor{stringliteral}{'messaging'}\ \textcolor{keywordflow}{in}\ test\_name.lower():}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00070}00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TestCategories.MESSAGING}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00071}00071\ \ \ \ \ \textcolor{keywordflow}{elif}\ \textcolor{stringliteral}{'config'}\ \textcolor{keywordflow}{in}\ test\_name.lower():}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00072}00072\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TestCategories.CONFIG}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00073}00073\ \ \ \ \ \textcolor{keywordflow}{elif}\ \textcolor{stringliteral}{'logger'}\ \textcolor{keywordflow}{in}\ test\_name.lower()\ \textcolor{keywordflow}{or}\ \textcolor{stringliteral}{'logging'}\ \textcolor{keywordflow}{in}\ test\_name.lower():}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00074}00074\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TestCategories.LOGGING}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00075}00075\ \ \ \ \ \textcolor{keywordflow}{elif}\ \textcolor{stringliteral}{'component'}\ \textcolor{keywordflow}{in}\ test\_name.lower():}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00076}00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TestCategories.COMPONENTS}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00077}00077\ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00078}00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TestCategories.CORE}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00079}00079\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00081}\mbox{\hyperlink{namespacetest__commonpython_aa9b38b6427188c14b3f6f7e4619257dd}{00081}}\ \textcolor{keyword}{def\ }\mbox{\hyperlink{namespacetest__commonpython_aa9b38b6427188c14b3f6f7e4619257dd}{check\_adapter\_availability}}():}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00082}00082\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Check\ which\ adapter\ implementations\ are\ available"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00083}00083\ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00084}00084\ \ \ \ \ \ \ \ \ \textcolor{keyword}{from}\ \mbox{\hyperlink{namespacecommonpython_1_1factories}{commonpython.factories}}\ \textcolor{keyword}{import}\ ManagerFactory}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00085}00085\ \ \ \ \ \ \ \ \ available\ =\ ManagerFactory.get\_available\_implementations()}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00086}00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ available}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00087}00087\ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00088}00088\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'database'}:\ \{\textcolor{stringliteral}{'cli'}:\ \textcolor{keyword}{True},\ \textcolor{stringliteral}{'library'}:\ \textcolor{keyword}{False}\},}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'messaging'}:\ \{\textcolor{stringliteral}{'cli'}:\ \textcolor{keyword}{True},\ \textcolor{stringliteral}{'library'}:\ \textcolor{keyword}{False}\},}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'error'}:\ str(e)}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00092}00092\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00094}00094\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00095}\mbox{\hyperlink{namespacetest__commonpython_a6779b4c00e82ea630fb919a3362ee301}{00095}}\ \textcolor{keyword}{def\ }\mbox{\hyperlink{namespacetest__commonpython_a6779b4c00e82ea630fb919a3362ee301}{print\_section}}(title:\ str,\ char:\ str\ =\ \textcolor{stringliteral}{"{}="{}},\ width:\ int\ =\ 80):}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00096}00096\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Print\ a\ formatted\ section\ header"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00097}00097\ \textcolor{stringliteral}{\ \ \ \ print()}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00098}00098\ \textcolor{stringliteral}{\ \ \ \ print(ColoredOutput.colorize(char\ *\ width,\ ColoredOutput.HEADER))}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00099}00099\ \textcolor{stringliteral}{\ \ \ \ print(ColoredOutput.colorize(title.center(width),\ ColoredOutput.BOLD))}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00100}00100\ \textcolor{stringliteral}{\ \ \ \ print(ColoredOutput.colorize(char\ *\ width,\ ColoredOutput.HEADER))}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00101}00101\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00102}00102\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00103}\mbox{\hyperlink{namespacetest__commonpython_a3fa0f7d7c404d55228ec6b385cb68b59}{00103}}\ \textcolor{stringliteral}{def\ print\_subsection(title:\ str,\ char:\ str\ =\ "{}-\/"{},\ width:\ int\ =\ 80):}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00104}00104\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}Print\ a\ formatted\ subsection\ heade\textcolor{stringliteral}{r"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00105}00105\ \textcolor{stringliteral}{\ \ \ \ print()}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00106}00106\ \textcolor{stringliteral}{\ \ \ \ print(ColoredOutput.colorize(f"{}\{title\}"{},\ ColoredOutput.OKBLUE))}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00107}00107\ \textcolor{stringliteral}{\ \ \ \ print(ColoredOutput.colorize(char\ *\ width,\ ColoredOutput.OKBLUE))}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00108}00108\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00109}00109\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00110}\mbox{\hyperlink{namespacetest__commonpython_a5ebabc815f7ed9d6c74bf84c20e60635}{00110}}\ \textcolor{stringliteral}{def\ discover\_tests(test\_dir:\ Path)\ -\/>\ List[str]:}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00111}00111\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}Discover\ all\ test\ files"{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00112}00112\ \ \ \ \ test\_files\ =\ []}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00113}00113\ \ \ \ \ for\ test\_file\ in\ sorted(test\_dir.glob("{}test\_*.py"{})):}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00114}00114\ \ \ \ \ \ \ \ \ test\_files.append(test\_file.stem)}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00115}00115\ \ \ \ \ return\ test\_files}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00116}00116\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00118}\mbox{\hyperlink{classtest__commonpython_1_1_detailed_test_result}{00118}}\ class\ DetailedTestResult(unittest.TextTestResult):}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00119}00119\ \ \ \ \ "{}"{}"{}Enhanced\ test\ result\ with\ categorization"{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00120}00120\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00121}\mbox{\hyperlink{classtest__commonpython_1_1_detailed_test_result_ad41997e942cced3105a7346146804e88}{00121}}\ \ \ \ \ def\ \_\_init\_\_(self,\ stream,\ descriptions,\ verbosity):}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00122}00122\ \ \ \ \ \ \ \ \ super().\_\_init\_\_(stream,\ descriptions,\ verbosity)}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00123}\mbox{\hyperlink{classtest__commonpython_1_1_detailed_test_result_a5be0d5400b8a7d225d6651fc95ddf5a8}{00123}}\ \ \ \ \ \ \ \ \ self.test\_times:\ Dict[str,\ float]\ =\ \{\}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00124}\mbox{\hyperlink{classtest__commonpython_1_1_detailed_test_result_a648ac86512ec5ac2858d384878b03324}{00124}}\ \ \ \ \ \ \ \ \ self.category\_stats:\ Dict[str,\ Dict[str,\ int]]\ =\ defaultdict(}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ lambda:\ \{'total':\ 0,\ 'passed':\ 0,\ 'failed':\ 0,\ 'errors':\ 0,\ 'skipped':\ 0\}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00126}00126\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00127}\mbox{\hyperlink{classtest__commonpython_1_1_detailed_test_result_a9f36a374e5136eff6382bba6428438cf}{00127}}\ \ \ \ \ \ \ \ \ self.start\_time:\ Optional[float]\ =\ None}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00128}00128\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00129}\mbox{\hyperlink{classtest__commonpython_1_1_detailed_test_result_aea662e05b9fa3837f57badc93ab233e6}{00129}}\ \ \ \ \ def\ startTest(self,\ test):}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00130}00130\ \ \ \ \ \ \ \ \ super().startTest(test)}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00131}00131\ \ \ \ \ \ \ \ \ self.start\_time\ =\ time.time()}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00132}00132\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00133}\mbox{\hyperlink{classtest__commonpython_1_1_detailed_test_result_a9b76511cc32265bcb6455fd768765a9d}{00133}}\ \ \ \ \ def\ stopTest(self,\ test):}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00134}00134\ \ \ \ \ \ \ \ \ super().stopTest(test)}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00135}00135\ \ \ \ \ \ \ \ \ if\ self.start\_time:}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ duration\ =\ time.time()\ -\/\ self.start\_time}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ self.test\_times[str(test)]\ =\ duration}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00138}00138\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Categorize\ test}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ category\ =\ categorize\_test(str(test))}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ self.category\_stats[category]['total']\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00142}00142\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00143}\mbox{\hyperlink{classtest__commonpython_1_1_detailed_test_result_a8b676d690fc3172552e1a7aa0a73755d}{00143}}\ \ \ \ \ def\ addSuccess(self,\ test):}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00144}00144\ \ \ \ \ \ \ \ \ super().addSuccess(test)}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00145}00145\ \ \ \ \ \ \ \ \ category\ =\ categorize\_test(str(test))}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00146}00146\ \ \ \ \ \ \ \ \ self.category\_stats[category]['passed']\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00147}00147\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00148}\mbox{\hyperlink{classtest__commonpython_1_1_detailed_test_result_a2aa0f5937a0b556a808ab0844d70a25e}{00148}}\ \ \ \ \ def\ addFailure(self,\ test,\ err):}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00149}00149\ \ \ \ \ \ \ \ \ super().addFailure(test,\ err)}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00150}00150\ \ \ \ \ \ \ \ \ category\ =\ categorize\_test(str(test))}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00151}00151\ \ \ \ \ \ \ \ \ self.category\_stats[category]['failed']\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00152}00152\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00153}\mbox{\hyperlink{classtest__commonpython_1_1_detailed_test_result_a0ed8c8bbdeadd8ae3e2dbdb3a9da45b9}{00153}}\ \ \ \ \ def\ addError(self,\ test,\ err):}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00154}00154\ \ \ \ \ \ \ \ \ super().addError(test,\ err)}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00155}00155\ \ \ \ \ \ \ \ \ category\ =\ categorize\_test(str(test))}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00156}00156\ \ \ \ \ \ \ \ \ self.category\_stats[category]['errors']\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00157}00157\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00158}\mbox{\hyperlink{classtest__commonpython_1_1_detailed_test_result_a2417add0b5e809e89f67b420ab16af39}{00158}}\ \ \ \ \ def\ addSkip(self,\ test,\ reason):}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00159}00159\ \ \ \ \ \ \ \ \ super().addSkip(test,\ reason)}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00160}00160\ \ \ \ \ \ \ \ \ category\ =\ categorize\_test(str(test))}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00161}00161\ \ \ \ \ \ \ \ \ self.category\_stats[category]['skipped']\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00162}00162\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00163}00163\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00164}\mbox{\hyperlink{classtest__commonpython_1_1_detailed_test_runner}{00164}}\ class\ DetailedTestRunner(unittest.TextTestRunner):}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00165}00165\ \ \ \ \ "{}"{}"{}Enhanced\ test\ runner\ with\ detailed\ reporting"{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00166}\mbox{\hyperlink{classtest__commonpython_1_1_detailed_test_runner_a0bd5eadcdd4ee2c3a3bf2aec7e3c844f}{00166}}\ \ \ \ \ resultclass\ =\ DetailedTestResult}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00167}00167\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00168}00168\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00169}\mbox{\hyperlink{namespacetest__commonpython_a3861cd2bfc60221d07d90b880943ecc2}{00169}}\ def\ run\_comprehensive\_tests(suite\_filter:\ Optional[str]\ =\ None,\ verbosity:\ int\ =\ 2):}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00170}00170\ \ \ \ \ "{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00171}00171\ \ \ \ \ Run\ comprehensive\ test\ suite\ with\ detailed\ reporting.}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00172}00172\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00173}00173\ \ \ \ \ @brief\ Execute\ all\ test\ cases\ with\ comprehensive\ reporting.}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00174}00174\ \ \ \ \ @param\ suite\_filter\ Optional\ filter\ for\ specific\ test\ suites}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00175}00175\ \ \ \ \ @param\ verbosity\ Verbosity\ level\ for\ test\ output}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00176}00176\ \ \ \ \ @return\ Test\ result\ object}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00177}00177\ \ \ \ \ "{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00178}00178\ \ \ \ \ print\_section("{}CommonPython\ Framework\ -\/\ Comprehensive\ Test\ Suite"{})}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00179}00179\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00180}00180\ \ \ \ \ print(f"{}Python\ Version:\ \{sys.version\}"{})}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00181}00181\ \ \ \ \ print(f"{}Working\ Directory:\ \{os.getcwd()\}"{})}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00182}00182\ \ \ \ \ print(f"{}Test\ Filter:\ \{suite\_filter\ or\ 'All\ Tests'\}"{})}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00183}00183\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00184}00184\ \ \ \ \ \#\ Check\ adapter\ availability}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00185}00185\ \ \ \ \ print()}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00186}00186\ \ \ \ \ print(ColoredOutput.colorize("{}Adapter\ Implementation\ Availability:"{},\ ColoredOutput.OKBLUE))}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00187}00187\ \ \ \ \ available\ =\ check\_adapter\_availability()}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00188}00188\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00189}00189\ \ \ \ \ if\ 'error'\ not\ in\ available:}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00190}00190\ \ \ \ \ \ \ \ \ db\_cli\ =\ "{}✓"{}\ if\ available['database']['cli']\ else\ "{}✗"{}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00191}00191\ \ \ \ \ \ \ \ \ db\_lib\ =\ "{}✓"{}\ if\ available['database']['library']\ else\ "{}✗"{}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00192}00192\ \ \ \ \ \ \ \ \ mq\_cli\ =\ "{}✓"{}\ if\ available['messaging']['cli']\ else\ "{}✗"{}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00193}00193\ \ \ \ \ \ \ \ \ mq\_lib\ =\ "{}✓"{}\ if\ available['messaging']['library']\ else\ "{}✗"{}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00194}00194\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00195}00195\ \ \ \ \ \ \ \ \ print(f"{}\ \ Database:\ CLI\ \{db\_cli\}\ \ Library\ (ibm\_db)\ \{db\_lib\}"{})}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00196}00196\ \ \ \ \ \ \ \ \ print(f"{}\ \ Messaging:\ CLI\ \{mq\_cli\}\ \ Library\ (pymqi)\ \{mq\_lib\}"{})}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00197}00197\ \ \ \ \ else:}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00198}00198\ \ \ \ \ \ \ \ \ print(f"{}\ \ Warning:\ Could\ not\ check\ adapter\ availability:\ \{available.get('error')\}"{})}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00199}00199\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00200}00200\ \ \ \ \ \#\ Discover\ tests}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00201}00201\ \ \ \ \ test\_dir\ =\ Path(\_\_file\_\_).parent.parent\ /\ "{}test"{}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00202}00202\ \ \ \ \ test\_files\ =\ discover\_tests(test\_dir)}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00203}00203\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00204}00204\ \ \ \ \ print()}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00205}00205\ \ \ \ \ print(ColoredOutput.colorize("{}Discovered\ Test\ Suites:"{},\ ColoredOutput.OKBLUE))}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00206}00206\ \ \ \ \ for\ test\_file\ in\ test\_files:}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00207}00207\ \ \ \ \ \ \ \ \ print(f"{}\ \ •\ \{test\_file\}"{})}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00208}00208\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00209}00209\ \ \ \ \ \#\ Discover\ and\ run\ tests}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00210}00210\ \ \ \ \ print\_subsection("{}Running\ Tests"{})}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00211}00211\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00212}00212\ \ \ \ \ loader\ =\ unittest.TestLoader()}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00213}00213\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00214}00214\ \ \ \ \ if\ suite\_filter:}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00215}00215\ \ \ \ \ \ \ \ \ \#\ Run\ specific\ test\ suite}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00216}00216\ \ \ \ \ \ \ \ \ pattern\ =\ f"{}test\_\{suite\_filter\}*.py"{}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00217}00217\ \ \ \ \ \ \ \ \ suite\ =\ loader.discover(test\_dir,\ pattern=pattern)}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00218}00218\ \ \ \ \ else:}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00219}00219\ \ \ \ \ \ \ \ \ \#\ Run\ all\ tests}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00220}00220\ \ \ \ \ \ \ \ \ suite\ =\ loader.discover(test\_dir,\ pattern='test\_*.py')}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00221}00221\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00222}00222\ \ \ \ \ \#\ Create\ detailed\ test\ runner}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00223}00223\ \ \ \ \ runner\ =\ DetailedTestRunner(}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00224}00224\ \ \ \ \ \ \ \ \ verbosity=verbosity,}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00225}00225\ \ \ \ \ \ \ \ \ stream=sys.stdout,}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00226}00226\ \ \ \ \ \ \ \ \ descriptions=True,}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00227}00227\ \ \ \ \ \ \ \ \ failfast=False}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00228}00228\ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00229}00229\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00230}00230\ \ \ \ \ \#\ Run\ tests\ with\ timing}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00231}00231\ \ \ \ \ start\_time\ =\ time.time()}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00232}00232\ \ \ \ \ result\ =\ runner.run(suite)}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00233}00233\ \ \ \ \ end\_time\ =\ time.time()}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00234}00234\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00235}00235\ \ \ \ \ \#\ Print\ detailed\ summary}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00236}00236\ \ \ \ \ print\_section("{}TEST\ EXECUTION\ SUMMARY"{})}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00237}00237\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00238}00238\ \ \ \ \ \#\ Overall\ statistics}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00239}00239\ \ \ \ \ total\_tests\ =\ result.testsRun}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00240}00240\ \ \ \ \ failures\ =\ len(result.failures)}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00241}00241\ \ \ \ \ errors\ =\ len(result.errors)}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00242}00242\ \ \ \ \ skipped\ =\ len(result.skipped)\ if\ hasattr(result,\ 'skipped')\ else\ 0}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00243}00243\ \ \ \ \ passed\ =\ total\_tests\ -\/\ failures\ -\/\ errors\ -\/\ skipped}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00244}00244\ \ \ \ \ success\_rate\ =\ (passed\ /\ total\_tests\ *\ 100)\ if\ total\_tests\ >\ 0\ else\ 0}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00245}00245\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00246}00246\ \ \ \ \ print(f"{}Total\ Tests:\ \{ColoredOutput.colorize(str(total\_tests),\ ColoredOutput.BOLD)\}"{})}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00247}00247\ \ \ \ \ print(f"{}Passed:\ \{ColoredOutput.colorize(str(passed),\ ColoredOutput.OKGREEN)\}"{})}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00248}00248\ \ \ \ \ print(f"{}Failed:\ \{ColoredOutput.colorize(str(failures),\ ColoredOutput.FAIL\ if\ failures\ >\ 0\ else\ ColoredOutput.OKGREEN)\}"{})}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00249}00249\ \ \ \ \ print(f"{}Errors:\ \{ColoredOutput.colorize(str(errors),\ ColoredOutput.FAIL\ if\ errors\ >\ 0\ else\ ColoredOutput.OKGREEN)\}"{})}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00250}00250\ \ \ \ \ print(f"{}Skipped:\ \{ColoredOutput.colorize(str(skipped),\ ColoredOutput.WARNING\ if\ skipped\ >\ 0\ else\ ColoredOutput.OKGREEN)\}"{})}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00251}00251\ \ \ \ \ print(f"{}Success\ Rate:\ \{ColoredOutput.colorize(f'\{success\_rate:.1f\}\%',\ ColoredOutput.OKGREEN\ if\ success\_rate\ ==\ 100\ else\ ColoredOutput.WARNING)\}"{})}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00252}00252\ \ \ \ \ print(f"{}Execution\ Time:\ \{ColoredOutput.colorize(f'\{end\_time\ -\/\ start\_time:.2f\}s',\ ColoredOutput.OKCYAN)\}"{})}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00253}00253\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00254}00254\ \ \ \ \ \#\ Category\ breakdown}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00255}00255\ \ \ \ \ if\ hasattr(result,\ 'category\_stats')\ and\ result.category\_stats:}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00256}00256\ \ \ \ \ \ \ \ \ print\_subsection("{}Tests\ by\ Category"{})}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00257}00257\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00258}00258\ \ \ \ \ \ \ \ \ for\ category\ in\ sorted(result.category\_stats.keys()):}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00259}00259\ \ \ \ \ \ \ \ \ \ \ \ \ stats\ =\ result.category\_stats[category]}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00260}00260\ \ \ \ \ \ \ \ \ \ \ \ \ total\ =\ stats['total']}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00261}00261\ \ \ \ \ \ \ \ \ \ \ \ \ passed\ =\ stats['passed']}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00262}00262\ \ \ \ \ \ \ \ \ \ \ \ \ failed\ =\ stats['failed']}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00263}00263\ \ \ \ \ \ \ \ \ \ \ \ \ errors\ =\ stats['errors']}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00264}00264\ \ \ \ \ \ \ \ \ \ \ \ \ skipped\ =\ stats['skipped']}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00265}00265\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00266}00266\ \ \ \ \ \ \ \ \ \ \ \ \ status\_color\ =\ ColoredOutput.OKGREEN}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00267}00267\ \ \ \ \ \ \ \ \ \ \ \ \ if\ failed\ >\ 0\ or\ errors\ >\ 0:}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00268}00268\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ status\_color\ =\ ColoredOutput.FAIL}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00269}00269\ \ \ \ \ \ \ \ \ \ \ \ \ elif\ skipped\ >\ 0:}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00270}00270\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ status\_color\ =\ ColoredOutput.WARNING}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00271}00271\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00272}00272\ \ \ \ \ \ \ \ \ \ \ \ \ print(f"{}\(\backslash\)n\{ColoredOutput.colorize(category,\ ColoredOutput.BOLD)\}"{})}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00273}00273\ \ \ \ \ \ \ \ \ \ \ \ \ print(f"{}\ \ Total:\ \{total\}\ |\ Passed:\ \{passed\}\ |\ Failed:\ \{failed\}\ |\ Errors:\ \{errors\}\ |\ Skipped:\ \{skipped\}"{})}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00274}00274\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00275}00275\ \ \ \ \ \#\ Performance\ metrics}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00276}00276\ \ \ \ \ if\ hasattr(result,\ 'test\_times')\ and\ result.test\_times:}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00277}00277\ \ \ \ \ \ \ \ \ print\_subsection("{}Performance\ Metrics"{})}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00278}00278\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00279}00279\ \ \ \ \ \ \ \ \ avg\_time\ =\ sum(result.test\_times.values())\ /\ len(result.test\_times)}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00280}00280\ \ \ \ \ \ \ \ \ slowest\_tests\ =\ sorted(result.test\_times.items(),\ key=lambda\ x:\ x[1],\ reverse=True)[:5]}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00281}00281\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00282}00282\ \ \ \ \ \ \ \ \ print(f"{}Average\ Test\ Time:\ \{avg\_time:.3f\}s"{})}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00283}00283\ \ \ \ \ \ \ \ \ print(f"{}\(\backslash\)nSlowest\ Tests:"{})}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00284}00284\ \ \ \ \ \ \ \ \ for\ test\_name,\ duration\ in\ slowest\_tests:}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00285}00285\ \ \ \ \ \ \ \ \ \ \ \ \ print(f"{}\ \ \{duration:.3f\}s\ -\/\ \{test\_name\}"{})}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00286}00286\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00287}00287\ \ \ \ \ \#\ Print\ failure\ details}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00288}00288\ \ \ \ \ if\ result.failures:}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00289}00289\ \ \ \ \ \ \ \ \ print\_section("{}FAILURE\ DETAILS"{},\ "{}="{})}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00290}00290\ \ \ \ \ \ \ \ \ for\ i,\ (test,\ traceback)\ in\ enumerate(result.failures,\ 1):}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00291}00291\ \ \ \ \ \ \ \ \ \ \ \ \ print(f"{}\(\backslash\)n\{ColoredOutput.colorize(f'\{i\}.\ \{test\}',\ ColoredOutput.FAIL)\}"{})}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00292}00292\ \ \ \ \ \ \ \ \ \ \ \ \ print("{}-\/"{}\ *\ 80)}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00293}00293\ \ \ \ \ \ \ \ \ \ \ \ \ print(traceback)}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00294}00294\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00295}00295\ \ \ \ \ \#\ Print\ error\ details}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00296}00296\ \ \ \ \ if\ result.errors:}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00297}00297\ \ \ \ \ \ \ \ \ print\_section("{}ERROR\ DETAILS"{},\ "{}="{})}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00298}00298\ \ \ \ \ \ \ \ \ for\ i,\ (test,\ traceback)\ in\ enumerate(result.errors,\ 1):}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00299}00299\ \ \ \ \ \ \ \ \ \ \ \ \ print(f"{}\(\backslash\)n\{ColoredOutput.colorize(f'\{i\}.\ \{test\}',\ ColoredOutput.FAIL)\}"{})}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00300}00300\ \ \ \ \ \ \ \ \ \ \ \ \ print("{}-\/"{}\ *\ 80)}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00301}00301\ \ \ \ \ \ \ \ \ \ \ \ \ print(traceback)}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00302}00302\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00303}00303\ \ \ \ \ \#\ Print\ skipped\ test\ details}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00304}00304\ \ \ \ \ if\ hasattr(result,\ 'skipped')\ and\ result.skipped:}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00305}00305\ \ \ \ \ \ \ \ \ print\_section("{}SKIPPED\ TESTS"{},\ "{}="{})}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00306}00306\ \ \ \ \ \ \ \ \ for\ i,\ (test,\ reason)\ in\ enumerate(result.skipped,\ 1):}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00307}00307\ \ \ \ \ \ \ \ \ \ \ \ \ print(f"{}\{i\}.\ \{test\}:\ \{ColoredOutput.colorize(reason,\ ColoredOutput.WARNING)\}"{})}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00308}00308\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00309}00309\ \ \ \ \ return\ result}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00310}00310\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00311}00311\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00312}\mbox{\hyperlink{namespacetest__commonpython_a33ba9478ff451166ab8b57ea7b86d3d9}{00312}}\ def\ run\_tests\_with\_coverage(suite\_filter:\ Optional[str]\ =\ None,\ verbosity:\ int\ =\ 2):}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00313}00313\ \ \ \ \ "{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00314}00314\ \ \ \ \ Run\ tests\ with\ coverage\ analysis.}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00315}00315\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00316}00316\ \ \ \ \ @brief\ Execute\ tests\ with\ coverage\ reporting\ if\ available.}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00317}00317\ \ \ \ \ @param\ suite\_filter\ Optional\ filter\ for\ specific\ test\ suites}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00318}00318\ \ \ \ \ @param\ verbosity\ Verbosity\ level\ for\ test\ output}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00319}00319\ \ \ \ \ @return\ Test\ result\ object}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00320}00320\ \ \ \ \ "{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00321}00321\ \ \ \ \ try:}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00322}00322\ \ \ \ \ \ \ \ \ import\ coverage}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00323}00323\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00324}00324\ \ \ \ \ \ \ \ \ print(ColoredOutput.colorize("{}Running\ tests\ with\ coverage\ analysis..."{},\ ColoredOutput.OKBLUE))}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00325}00325\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00326}00326\ \ \ \ \ \ \ \ \ \#\ Start\ coverage}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00327}00327\ \ \ \ \ \ \ \ \ cov\ =\ coverage.Coverage(}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00328}00328\ \ \ \ \ \ \ \ \ \ \ \ \ source=['commonpython'],}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00329}00329\ \ \ \ \ \ \ \ \ \ \ \ \ omit=[}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00330}00330\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 'test/*',}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00331}00331\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ '*/test\_*.py',}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00332}00332\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ '*/\_\_init\_\_.py',}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00333}00333\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ '*/cli.py'\ \ \#\ CLI\ has\ its\ own\ tests}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00334}00334\ \ \ \ \ \ \ \ \ \ \ \ \ ]}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00335}00335\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00336}00336\ \ \ \ \ \ \ \ \ cov.start()}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00337}00337\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00338}00338\ \ \ \ \ \ \ \ \ \#\ Run\ tests}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00339}00339\ \ \ \ \ \ \ \ \ result\ =\ run\_comprehensive\_tests(suite\_filter,\ verbosity)}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00340}00340\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00341}00341\ \ \ \ \ \ \ \ \ \#\ Stop\ coverage}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00342}00342\ \ \ \ \ \ \ \ \ cov.stop()}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00343}00343\ \ \ \ \ \ \ \ \ cov.save()}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00344}00344\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00345}00345\ \ \ \ \ \ \ \ \ \#\ Generate\ coverage\ report}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00346}00346\ \ \ \ \ \ \ \ \ print\_section("{}COVERAGE\ REPORT"{})}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00347}00347\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00348}00348\ \ \ \ \ \ \ \ \ total\_coverage\ =\ cov.report(show\_missing=True)}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00349}00349\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00350}00350\ \ \ \ \ \ \ \ \ \#\ Coverage\ by\ module}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00351}00351\ \ \ \ \ \ \ \ \ print\_subsection("{}Coverage\ by\ Module"{})}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00352}00352\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00353}00353\ \ \ \ \ \ \ \ \ \#\ Get\ coverage\ data}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00354}00354\ \ \ \ \ \ \ \ \ data\ =\ cov.get\_data()}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00355}00355\ \ \ \ \ \ \ \ \ files\ =\ data.measured\_files()}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00356}00356\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00357}00357\ \ \ \ \ \ \ \ \ module\_coverage\ =\ \{\}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00358}00358\ \ \ \ \ \ \ \ \ for\ filename\ in\ sorted(files):}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00359}00359\ \ \ \ \ \ \ \ \ \ \ \ \ if\ 'commonpython'\ in\ filename:}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00360}00360\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ analysis\ =\ cov.analysis(filename)}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00361}00361\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ executed\ =\ len(analysis[1])}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00362}00362\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ missing\ =\ len(analysis[2])}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00363}00363\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ total\ =\ executed\ +\ missing}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00364}00364\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ total\ >\ 0:}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00365}00365\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ coverage\_pct\ =\ (executed\ /\ total)\ *\ 100}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00366}00366\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ module\_name\ =\ Path(filename).stem}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00367}00367\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ module\_coverage[module\_name]\ =\ coverage\_pct}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00368}00368\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00369}00369\ \ \ \ \ \ \ \ \ for\ module,\ pct\ in\ sorted(module\_coverage.items()):}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00370}00370\ \ \ \ \ \ \ \ \ \ \ \ \ color\ =\ ColoredOutput.OKGREEN\ if\ pct\ >=\ 80\ else\ ColoredOutput.WARNING\ if\ pct\ >=\ 60\ else\ ColoredOutput.FAIL}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00371}00371\ \ \ \ \ \ \ \ \ \ \ \ \ print(f"{}\ \ \{module:30s\}\ \{ColoredOutput.colorize(f'\{pct:5.1f\}\%',\ color)\}"{})}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00372}00372\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00373}00373\ \ \ \ \ \ \ \ \ \#\ Generate\ HTML\ coverage\ report}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00374}00374\ \ \ \ \ \ \ \ \ try:}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00375}00375\ \ \ \ \ \ \ \ \ \ \ \ \ html\_dir\ =\ Path(\_\_file\_\_).parent.parent\ /\ 'htmlcov'}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00376}00376\ \ \ \ \ \ \ \ \ \ \ \ \ cov.html\_report(directory=str(html\_dir),\ title='CommonPython\ Framework\ Coverage')}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00377}00377\ \ \ \ \ \ \ \ \ \ \ \ \ print(f"{}\(\backslash\)n\{ColoredOutput.colorize('✓',\ ColoredOutput.OKGREEN)\}\ HTML\ coverage\ report:\ \{html\_dir\}/index.html"{})}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00378}00378\ \ \ \ \ \ \ \ \ except\ Exception\ as\ e:}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00379}00379\ \ \ \ \ \ \ \ \ \ \ \ \ print(f"{}\{ColoredOutput.colorize('✗',\ ColoredOutput.FAIL)\}\ Could\ not\ generate\ HTML\ report:\ \{e\}"{})}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00380}00380\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00381}00381\ \ \ \ \ \ \ \ \ return\ result}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00382}00382\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00383}00383\ \ \ \ \ except\ ImportError:}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00384}00384\ \ \ \ \ \ \ \ \ print(ColoredOutput.colorize("{}Warning:\ Coverage\ module\ not\ available.\ Running\ tests\ without\ coverage."{},\ ColoredOutput.WARNING))}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00385}00385\ \ \ \ \ \ \ \ \ print("{}Install\ with:\ pip\ install\ coverage"{})}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00386}00386\ \ \ \ \ \ \ \ \ return\ run\_comprehensive\_tests(suite\_filter,\ verbosity)}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00387}00387\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00388}00388\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00389}\mbox{\hyperlink{namespacetest__commonpython_a134a7bfc9598c55135d4b0f4e9c410f7}{00389}}\ def\ main():}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00390}00390\ \ \ \ \ "{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00391}00391\ \ \ \ \ Main\ test\ runner\ function.}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00392}00392\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00393}00393\ \ \ \ \ @brief\ Main\ entry\ point\ for\ comprehensive\ test\ framework.}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00394}00394\ \ \ \ \ "{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00395}00395\ \ \ \ \ \#\ Parse\ command\ line\ arguments}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00396}00396\ \ \ \ \ args\ =\ sys.argv[1:]}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00397}00397\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00398}00398\ \ \ \ \ run\_coverage\ =\ '-\/-\/coverage'\ in\ args\ or\ '-\/-\/cov'\ in\ args}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00399}00399\ \ \ \ \ verbose\ =\ '-\/-\/verbose'\ in\ args\ or\ '-\/v'\ in\ args}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00400}00400\ \ \ \ \ quiet\ =\ '-\/-\/quiet'\ in\ args\ or\ '-\/q'\ in\ args}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00401}00401\ \ \ \ \ list\_tests\ =\ '-\/-\/list'\ in\ args}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00402}00402\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00403}00403\ \ \ \ \ \#\ Extract\ suite\ filter\ if\ provided}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00404}00404\ \ \ \ \ suite\_filter\ =\ None}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00405}00405\ \ \ \ \ for\ arg\ in\ args:}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00406}00406\ \ \ \ \ \ \ \ \ if\ not\ arg.startswith('-\/-\/')\ and\ not\ arg.startswith('-\/'):}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00407}00407\ \ \ \ \ \ \ \ \ \ \ \ \ suite\_filter\ =\ arg}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00408}00408\ \ \ \ \ \ \ \ \ \ \ \ \ break}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00409}00409\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00410}00410\ \ \ \ \ \#\ Set\ verbosity}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00411}00411\ \ \ \ \ verbosity\ =\ 2}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00412}00412\ \ \ \ \ if\ verbose:}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00413}00413\ \ \ \ \ \ \ \ \ verbosity\ =\ 3}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00414}00414\ \ \ \ \ elif\ quiet:}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00415}00415\ \ \ \ \ \ \ \ \ verbosity\ =\ 1}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00416}00416\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00417}00417\ \ \ \ \ \#\ List\ tests\ and\ exit}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00418}00418\ \ \ \ \ if\ list\_tests:}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00419}00419\ \ \ \ \ \ \ \ \ test\_dir\ =\ Path(\_\_file\_\_).parent.parent\ /\ "{}test"{}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00420}00420\ \ \ \ \ \ \ \ \ test\_files\ =\ discover\_tests(test\_dir)}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00421}00421\ \ \ \ \ \ \ \ \ print("{}Available\ Test\ Suites:"{})}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00422}00422\ \ \ \ \ \ \ \ \ for\ test\_file\ in\ test\_files:}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00423}00423\ \ \ \ \ \ \ \ \ \ \ \ \ print(f"{}\ \ •\ \{test\_file\}"{})}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00424}00424\ \ \ \ \ \ \ \ \ print(f"{}\(\backslash\)nTotal:\ \{len(test\_files)\}\ test\ suites"{})}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00425}00425\ \ \ \ \ \ \ \ \ print("{}\(\backslash\)nRun\ specific\ suite:\ python\ test\_commonpython.py\ <suite\_name>"{})}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00426}00426\ \ \ \ \ \ \ \ \ print("{}Example:\ python\ test\_commonpython.py\ adapters"{})}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00427}00427\ \ \ \ \ \ \ \ \ return}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00428}00428\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00429}00429\ \ \ \ \ \#\ Print\ header}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00430}00430\ \ \ \ \ print()}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00431}00431\ \ \ \ \ print(ColoredOutput.colorize("{}╔"{}\ +\ "{}═"{}\ *\ 78\ +\ "{}╗"{},\ ColoredOutput.HEADER))}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00432}00432\ \ \ \ \ print(ColoredOutput.colorize("{}║"{}\ +\ "{}CommonPython\ Framework\ -\/\ Test\ Runner"{}.center(78)\ +\ "{}║"{},\ ColoredOutput.HEADER))}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00433}00433\ \ \ \ \ print(ColoredOutput.colorize("{}╚"{}\ +\ "{}═"{}\ *\ 78\ +\ "{}╝"{},\ ColoredOutput.HEADER))}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00434}00434\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00435}00435\ \ \ \ \ \#\ Run\ tests}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00436}00436\ \ \ \ \ try:}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00437}00437\ \ \ \ \ \ \ \ \ if\ run\_coverage:}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00438}00438\ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ run\_tests\_with\_coverage(suite\_filter,\ verbosity)}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00439}00439\ \ \ \ \ \ \ \ \ else:}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00440}00440\ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ run\_comprehensive\_tests(suite\_filter,\ verbosity)}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00441}00441\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00442}00442\ \ \ \ \ \ \ \ \ \#\ Print\ final\ status}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00443}00443\ \ \ \ \ \ \ \ \ print()}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00444}00444\ \ \ \ \ \ \ \ \ print("{}="{}\ *\ 80)}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00445}00445\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00446}00446\ \ \ \ \ \ \ \ \ if\ result.failures\ or\ result.errors:}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00447}00447\ \ \ \ \ \ \ \ \ \ \ \ \ msg\ =\ f"{}❌\ Tests\ completed\ with\ \{len(result.failures)\}\ failures\ and\ \{len(result.errors)\}\ errors"{}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00448}00448\ \ \ \ \ \ \ \ \ \ \ \ \ print(ColoredOutput.colorize(msg,\ ColoredOutput.FAIL))}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00449}00449\ \ \ \ \ \ \ \ \ \ \ \ \ sys.exit(1)}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00450}00450\ \ \ \ \ \ \ \ \ else:}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00451}00451\ \ \ \ \ \ \ \ \ \ \ \ \ msg\ =\ f"{}✅\ All\ \{result.testsRun\}\ tests\ passed\ successfully!"{}}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00452}00452\ \ \ \ \ \ \ \ \ \ \ \ \ print(ColoredOutput.colorize(msg,\ ColoredOutput.OKGREEN))}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00453}00453\ \ \ \ \ \ \ \ \ \ \ \ \ sys.exit(0)}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00454}00454\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00455}00455\ \ \ \ \ except\ KeyboardInterrupt:}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00456}00456\ \ \ \ \ \ \ \ \ print("{}\(\backslash\)n\(\backslash\)n"{}\ +\ ColoredOutput.colorize("{}Tests\ interrupted\ by\ user"{},\ ColoredOutput.WARNING))}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00457}00457\ \ \ \ \ \ \ \ \ sys.exit(130)}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00458}00458\ \ \ \ \ except\ Exception\ as\ e:}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00459}00459\ \ \ \ \ \ \ \ \ print("{}\(\backslash\)n\(\backslash\)n"{}\ +\ ColoredOutput.colorize(f"{}Error\ running\ tests:\ \{e\}"{},\ ColoredOutput.FAIL))}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00460}00460\ \ \ \ \ \ \ \ \ import\ traceback}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00461}00461\ \ \ \ \ \ \ \ \ traceback.print\_exc()}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00462}00462\ \ \ \ \ \ \ \ \ sys.exit(1)}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00463}00463\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00464}00464\ }
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00465}00465\ if\ \_\_name\_\_\ ==\ '\_\_main\_\_':}
+\DoxyCodeLine{\Hypertarget{test__commonpython_8py_source_l00466}00466\ \ \ \ \ main()}
+
+\end{DoxyCode}

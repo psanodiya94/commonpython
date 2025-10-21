@@ -1,0 +1,328 @@
+\doxysection{test\+\_\+config\+\_\+manager.\+py}
+\hypertarget{test__config__manager_8py_source}{}\label{test__config__manager_8py_source}\index{test/test\_config\_manager.py@{test/test\_config\_manager.py}}
+\mbox{\hyperlink{test__config__manager_8py}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00001}\mbox{\hyperlink{namespacetest_1_1test__config__manager}{00001}}\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00002}00002\ \textcolor{stringliteral}{Test\ cases\ for\ ConfigManager}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00003}00003\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00004}00004\ \textcolor{stringliteral}{Tests\ configuration\ management\ functionality\ using\ only\ standard\ Python\ modules.}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00005}00005\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00007}00007\ \textcolor{keyword}{import}\ unittest}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00008}00008\ \textcolor{keyword}{import}\ tempfile}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00009}00009\ \textcolor{keyword}{import}\ os}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00010}00010\ \textcolor{keyword}{import}\ yaml}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00011}00011\ \textcolor{keyword}{from}\ unittest.mock\ \textcolor{keyword}{import}\ patch,\ mock\_open}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00012}00012\ \textcolor{keyword}{import}\ sys}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00013}00013\ \textcolor{keyword}{from}\ pathlib\ \textcolor{keyword}{import}\ Path}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00015}00015\ \textcolor{comment}{\#\ Add\ the\ parent\ directory\ to\ the\ path\ to\ import\ the\ module}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00016}00016\ sys.path.insert(0,\ str(Path(\_\_file\_\_).parent.parent))}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00018}00018\ \textcolor{keyword}{from}\ \mbox{\hyperlink{namespacecommonpython_1_1config_1_1config__manager}{commonpython.config.config\_manager}}\ \textcolor{keyword}{import}\ ConfigManager}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00021}\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager}{00021}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager}{TestConfigManager}}(unittest.TestCase):}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00022}00022\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00023}00023\ \textcolor{stringliteral}{\ \ \ \ Test\ cases\ for\ ConfigManager\ class.}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00024}00024\ \textcolor{stringliteral}{\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00025}00025\ \textcolor{stringliteral}{\ \ \ \ @brief\ Comprehensive\ test\ suite\ for\ configuration\ management\ functionality.}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00026}00026\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00027}00027\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00028}\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_acb84f78bd3788045fb49e6358bc3d26a}{00028}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_acb84f78bd3788045fb49e6358bc3d26a}{setUp}}(self):}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00029}00029\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00030}00030\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Set\ up\ test\ fixtures.}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00031}00031\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00032}00032\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Initialize\ test\ environment\ before\ each\ test.}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00033}00033\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00034}\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ad1820d3a1c7da77267cca91a7777ef0f}{00034}}\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ad1820d3a1c7da77267cca91a7777ef0f}{config\_manager}}\ =\ \mbox{\hyperlink{classcommonpython_1_1config_1_1config__manager_1_1_config_manager}{ConfigManager}}()}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00035}00035\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00036}\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ae1583eacb90c5cbcf25588825b808ffa}{00036}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ae1583eacb90c5cbcf25588825b808ffa}{test\_init\_default}}(self):}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00037}00037\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00038}00038\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Test\ ConfigManager\ initialization\ with\ default\ parameters.}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00039}00039\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00040}00040\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Test\ that\ ConfigManager\ initializes\ correctly\ with\ default\ settings.}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00041}00041\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00042}00042\ \ \ \ \ \ \ \ \ self.assertIsInstance(self.\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ad1820d3a1c7da77267cca91a7777ef0f}{config\_manager}},\ ConfigManager)}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00043}00043\ \ \ \ \ \ \ \ \ self.assertEqual(self.\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ad1820d3a1c7da77267cca91a7777ef0f}{config\_manager}}.\_config,\ \{\})}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00044}00044\ \ \ \ \ \ \ \ \ self.assertIsNone(self.\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ad1820d3a1c7da77267cca91a7777ef0f}{config\_manager}}.\_config\_file)}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00045}00045\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00046}\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_a13aa7314ddcae03fccfaede72e8c7dcc}{00046}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_a13aa7314ddcae03fccfaede72e8c7dcc}{test\_init\_with\_config\_file}}(self):}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00047}00047\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00048}00048\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Test\ ConfigManager\ initialization\ with\ config\ file.}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00049}00049\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00050}00050\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Test\ ConfigManager\ initialization\ with\ configuration\ file.}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00051}00051\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00052}00052\ \ \ \ \ \ \ \ \ \textcolor{keyword}{with}\ tempfile.NamedTemporaryFile(mode=\textcolor{stringliteral}{'w'},\ suffix=\textcolor{stringliteral}{'.yaml'},\ delete=\textcolor{keyword}{False})\ \textcolor{keyword}{as}\ f:}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ test\_config\ =\ \{\textcolor{stringliteral}{'database'}:\ \{\textcolor{stringliteral}{'host'}:\ \textcolor{stringliteral}{'testhost'}\}\}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ yaml.dump(test\_config,\ f)}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ config\_file\ =\ f.name}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00056}00056\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00057}00057\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ config\_manager\ =\ \mbox{\hyperlink{classcommonpython_1_1config_1_1config__manager_1_1_config_manager}{ConfigManager}}(config\_file)}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ self.assertEqual(config\_manager.\_config\_file,\ config\_file)}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00060}00060\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{finally}:}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ os.unlink(config\_file)}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00062}00062\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00063}\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_af8db66c9c0f0642a934ae85fa5cf8c91}{00063}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_af8db66c9c0f0642a934ae85fa5cf8c91}{test\_set\_nested\_value}}(self):}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00064}00064\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00065}00065\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Test\ setting\ nested\ configuration\ values.}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00066}00066\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00067}00067\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Test\ that\ nested\ values\ can\ be\ set\ using\ dot\ notation.}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00068}00068\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00069}00069\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ad1820d3a1c7da77267cca91a7777ef0f}{config\_manager}}.\_set\_nested\_value(\textcolor{stringliteral}{'database.host'},\ \textcolor{stringliteral}{'localhost'})}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00070}00070\ \ \ \ \ \ \ \ \ self.assertEqual(self.\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ad1820d3a1c7da77267cca91a7777ef0f}{config\_manager}}.\_config[\textcolor{stringliteral}{'database'}][\textcolor{stringliteral}{'host'}],\ \textcolor{stringliteral}{'localhost'})}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00071}00071\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00072}00072\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ad1820d3a1c7da77267cca91a7777ef0f}{config\_manager}}.\_set\_nested\_value(\textcolor{stringliteral}{'logging.level'},\ \textcolor{stringliteral}{'DEBUG'})}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00073}00073\ \ \ \ \ \ \ \ \ self.assertEqual(self.\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ad1820d3a1c7da77267cca91a7777ef0f}{config\_manager}}.\_config[\textcolor{stringliteral}{'logging'}][\textcolor{stringliteral}{'level'}],\ \textcolor{stringliteral}{'DEBUG'})}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00074}00074\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00075}\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_a869d6cbcc3ce5761051371888ed4bae5}{00075}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_a869d6cbcc3ce5761051371888ed4bae5}{test\_set\_nested\_value\_deep}}(self):}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00076}00076\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00077}00077\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Test\ setting\ deeply\ nested\ configuration\ values.}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00078}00078\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00079}00079\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Test\ that\ deeply\ nested\ values\ can\ be\ set.}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00080}00080\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00081}00081\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ad1820d3a1c7da77267cca91a7777ef0f}{config\_manager}}.\_set\_nested\_value(\textcolor{stringliteral}{'database.connection.pool.size'},\ 10)}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00082}00082\ \ \ \ \ \ \ \ \ expected\ =\ \{\textcolor{stringliteral}{'database'}:\ \{\textcolor{stringliteral}{'connection'}:\ \{\textcolor{stringliteral}{'pool'}:\ \{\textcolor{stringliteral}{'size'}:\ 10\}\}\}\}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00083}00083\ \ \ \ \ \ \ \ \ self.assertEqual(self.\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ad1820d3a1c7da77267cca91a7777ef0f}{config\_manager}}.\_config,\ expected)}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00084}00084\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00085}\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_a55c1aa11deee63928d64f1440975320b}{00085}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_a55c1aa11deee63928d64f1440975320b}{test\_get\_existing\_value}}(self):}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00086}00086\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00087}00087\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Test\ getting\ existing\ configuration\ values.}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00088}00088\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00089}00089\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Test\ retrieval\ of\ existing\ configuration\ values.}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00090}00090\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00091}00091\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ad1820d3a1c7da77267cca91a7777ef0f}{config\_manager}}.\_config\ =\ \{\textcolor{stringliteral}{'database'}:\ \{\textcolor{stringliteral}{'host'}:\ \textcolor{stringliteral}{'localhost'},\ \textcolor{stringliteral}{'port'}:\ 5432\}\}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00092}00092\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00093}00093\ \ \ \ \ \ \ \ \ self.assertEqual(self.\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ad1820d3a1c7da77267cca91a7777ef0f}{config\_manager}}.get(\textcolor{stringliteral}{'database.host'}),\ \textcolor{stringliteral}{'localhost'})}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00094}00094\ \ \ \ \ \ \ \ \ self.assertEqual(self.\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ad1820d3a1c7da77267cca91a7777ef0f}{config\_manager}}.get(\textcolor{stringliteral}{'database.port'}),\ 5432)}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00095}00095\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00096}\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ae32be225bfc50feb2fe165b0a5cb7076}{00096}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ae32be225bfc50feb2fe165b0a5cb7076}{test\_get\_nonexistent\_value}}(self):}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00097}00097\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00098}00098\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Test\ getting\ non-\/existent\ configuration\ values.}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00099}00099\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00100}00100\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Test\ retrieval\ of\ non-\/existent\ values\ returns\ default.}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00101}00101\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00102}00102\ \ \ \ \ \ \ \ \ self.assertEqual(self.\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ad1820d3a1c7da77267cca91a7777ef0f}{config\_manager}}.get(\textcolor{stringliteral}{'nonexistent.key'}),\ \textcolor{keywordtype}{None})}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00103}00103\ \ \ \ \ \ \ \ \ self.assertEqual(self.\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ad1820d3a1c7da77267cca91a7777ef0f}{config\_manager}}.get(\textcolor{stringliteral}{'nonexistent.key'},\ \textcolor{stringliteral}{'default'}),\ \textcolor{stringliteral}{'default'})}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00104}00104\ }
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00105}\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_a642a6f2de4b0218530f91634ec2fd02d}{00105}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_a642a6f2de4b0218530f91634ec2fd02d}{test\_load\_config\_file\_error}}(self):}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00106}00106\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00107}00107\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Test\ error\ branch\ when\ loading\ a\ bad\ config\ file.}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00108}00108\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00109}00109\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Test\ retrieval\ of\ existing\ configuration\ file\ will\ lead\ to\ error.}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00110}00110\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00111}00111\ \ \ \ \ \ \ \ \ \textcolor{keyword}{with}\ tempfile.NamedTemporaryFile(mode=\textcolor{stringliteral}{'w'},\ suffix=\textcolor{stringliteral}{'.yaml'},\ delete=\textcolor{keyword}{False})\ \textcolor{keyword}{as}\ f:}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ f.write(\textcolor{stringliteral}{"{}bad:\ [unclosed"{}})}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ config\_file\ =\ f.name}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00114}00114\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{with}\ self.assertRaises(Exception):}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcommonpython_1_1config_1_1config__manager_1_1_config_manager}{ConfigManager}}(config\_file)}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00117}00117\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{finally}:}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ os.unlink(config\_file)}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00119}00119\ }
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00120}\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ac650a7dcf447376b0063862dbeedb756}{00120}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ac650a7dcf447376b0063862dbeedb756}{test\_set\_nested\_value\_error}}(self):}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00121}00121\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00122}00122\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Test\ error\ branch\ for\ \_set\_nested\_value\ with\ bad\ key\ (should\ not\ raise).}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00123}00123\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @return\ Should\ set\ config\ with\ empty\ string\ key.}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00124}00124\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00125}00125\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ad1820d3a1c7da77267cca91a7777ef0f}{config\_manager}}.\_set\_nested\_value(\textcolor{stringliteral}{''},\ \textcolor{stringliteral}{'value'})}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00126}00126\ \ \ \ \ \ \ \ \ self.assertEqual(self.\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ad1820d3a1c7da77267cca91a7777ef0f}{config\_manager}}.\_config,\ \{\textcolor{stringliteral}{''}:\ \textcolor{stringliteral}{'value'}\})}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00127}00127\ }
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00128}\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_a056789071b32c3b53859fed453736fb2}{00128}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_a056789071b32c3b53859fed453736fb2}{test\_save\_to\_file\_error}}(self):}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00129}00129\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00130}00130\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Test\ error\ branch\ for\ save\_to\_file\ with\ bad\ file.}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00131}00131\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00132}00132\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ad1820d3a1c7da77267cca91a7777ef0f}{config\_manager}}.\_config\ =\ \{\textcolor{stringliteral}{'a'}:\ 1\}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00133}00133\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Simulate\ IOError}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00134}00134\ \ \ \ \ \ \ \ \ \textcolor{keyword}{with}\ patch(\textcolor{stringliteral}{'builtins.open'},\ side\_effect=IOError):}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{with}\ self.assertRaises(IOError):}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ad1820d3a1c7da77267cca91a7777ef0f}{config\_manager}}.save\_to\_file(\textcolor{stringliteral}{'badfile.yaml'})}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00137}00137\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00138}\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_a257b8c241391270d030a51efda722057}{00138}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_a257b8c241391270d030a51efda722057}{test\_get\_nested\_value}}(self):}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00139}00139\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00140}00140\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Test\ getting\ nested\ configuration\ values.}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00141}00141\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00142}00142\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Test\ retrieval\ of\ nested\ configuration\ values.}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00143}00143\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00144}00144\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ad1820d3a1c7da77267cca91a7777ef0f}{config\_manager}}.\_config\ =\ \{}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'database'}:\ \{}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'host'}:\ \textcolor{stringliteral}{'localhost'},}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'connection'}:\ \{}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'timeout'}:\ 30}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00151}00151\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00152}00152\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00153}00153\ \ \ \ \ \ \ \ \ self.assertEqual(self.\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ad1820d3a1c7da77267cca91a7777ef0f}{config\_manager}}.get(\textcolor{stringliteral}{'database.host'}),\ \textcolor{stringliteral}{'localhost'})}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00154}00154\ \ \ \ \ \ \ \ \ self.assertEqual(self.\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ad1820d3a1c7da77267cca91a7777ef0f}{config\_manager}}.get(\textcolor{stringliteral}{'database.connection.timeout'}),\ 30)}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00155}00155\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00156}\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_a905d909f7f7b33d97b0fc53639198826}{00156}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_a905d909f7f7b33d97b0fc53639198826}{test\_set\_value}}(self):}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00157}00157\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00158}00158\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Test\ setting\ configuration\ values.}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00159}00159\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00160}00160\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Test\ setting\ configuration\ values\ using\ dot\ notation.}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00161}00161\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00162}00162\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ad1820d3a1c7da77267cca91a7777ef0f}{config\_manager}}.set(\textcolor{stringliteral}{'database.host'},\ \textcolor{stringliteral}{'testhost'})}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00163}00163\ \ \ \ \ \ \ \ \ self.assertEqual(self.\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ad1820d3a1c7da77267cca91a7777ef0f}{config\_manager}}.get(\textcolor{stringliteral}{'database.host'}),\ \textcolor{stringliteral}{'testhost'})}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00164}00164\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00165}00165\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ad1820d3a1c7da77267cca91a7777ef0f}{config\_manager}}.set(\textcolor{stringliteral}{'logging.level'},\ \textcolor{stringliteral}{'DEBUG'})}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00166}00166\ \ \ \ \ \ \ \ \ self.assertEqual(self.\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ad1820d3a1c7da77267cca91a7777ef0f}{config\_manager}}.get(\textcolor{stringliteral}{'logging.level'}),\ \textcolor{stringliteral}{'DEBUG'})}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00167}00167\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00168}\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_a2248153b37f9748d6743c2a42e123953}{00168}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_a2248153b37f9748d6743c2a42e123953}{test\_get\_database\_config}}(self):}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00169}00169\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00170}00170\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Test\ getting\ database\ configuration.}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00171}00171\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00172}00172\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Test\ retrieval\ of\ database\ configuration\ with\ defaults.}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00173}00173\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00174}00174\ \ \ \ \ \ \ \ \ config\ =\ self.\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ad1820d3a1c7da77267cca91a7777ef0f}{config\_manager}}.get\_database\_config()}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00175}00175\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00176}00176\ \ \ \ \ \ \ \ \ expected\ =\ \{}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'host'}:\ \textcolor{stringliteral}{'localhost'},}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'port'}:\ 50000,}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'name'}:\ \textcolor{stringliteral}{'testdb'},}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'user'}:\ \textcolor{stringliteral}{'db2inst1'},}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'password'}:\ \textcolor{stringliteral}{''},}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'schema'}:\ \textcolor{stringliteral}{''},}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'timeout'}:\ 30}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00184}00184\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00185}00185\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00186}00186\ \ \ \ \ \ \ \ \ self.assertEqual(config,\ expected)}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00187}00187\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00188}\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_a1a61163fb7dcc3552b9ee2b7c8f23adc}{00188}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_a1a61163fb7dcc3552b9ee2b7c8f23adc}{test\_get\_database\_config\_custom}}(self):}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00189}00189\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00190}00190\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Test\ getting\ database\ configuration\ with\ custom\ values.}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00191}00191\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00192}00192\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Test\ retrieval\ of\ database\ configuration\ with\ custom\ values.}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00193}00193\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00194}00194\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ad1820d3a1c7da77267cca91a7777ef0f}{config\_manager}}.set(\textcolor{stringliteral}{'database.host'},\ \textcolor{stringliteral}{'customhost'})}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00195}00195\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ad1820d3a1c7da77267cca91a7777ef0f}{config\_manager}}.set(\textcolor{stringliteral}{'database.port'},\ 3306)}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00196}00196\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ad1820d3a1c7da77267cca91a7777ef0f}{config\_manager}}.set(\textcolor{stringliteral}{'database.name'},\ \textcolor{stringliteral}{'customdb'})}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00197}00197\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00198}00198\ \ \ \ \ \ \ \ \ config\ =\ self.\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ad1820d3a1c7da77267cca91a7777ef0f}{config\_manager}}.get\_database\_config()}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00199}00199\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00200}00200\ \ \ \ \ \ \ \ \ self.assertEqual(config[\textcolor{stringliteral}{'host'}],\ \textcolor{stringliteral}{'customhost'})}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00201}00201\ \ \ \ \ \ \ \ \ self.assertEqual(config[\textcolor{stringliteral}{'port'}],\ 3306)}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00202}00202\ \ \ \ \ \ \ \ \ self.assertEqual(config[\textcolor{stringliteral}{'name'}],\ \textcolor{stringliteral}{'customdb'})}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00203}00203\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00204}\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_a349a07dce5c9a3a9356cc423808fdc76}{00204}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_a349a07dce5c9a3a9356cc423808fdc76}{test\_get\_messaging\_config}}(self):}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00205}00205\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00206}00206\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Test\ getting\ messaging\ configuration.}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00207}00207\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00208}00208\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Test\ retrieval\ of\ messaging\ configuration\ with\ defaults.}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00209}00209\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00210}00210\ \ \ \ \ \ \ \ \ config\ =\ self.\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ad1820d3a1c7da77267cca91a7777ef0f}{config\_manager}}.get\_messaging\_config()}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00211}00211\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00212}00212\ \ \ \ \ \ \ \ \ expected\ =\ \{}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00213}00213\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'host'}:\ \textcolor{stringliteral}{'localhost'},}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00214}00214\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'port'}:\ 1414,}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00215}00215\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'queue\_manager'}:\ \textcolor{stringliteral}{'QM1'},}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00216}00216\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'channel'}:\ \textcolor{stringliteral}{'SYSTEM.DEF.SVRCONN'},}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00217}00217\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'user'}:\ \textcolor{stringliteral}{'mquser'},}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00218}00218\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'password'}:\ \textcolor{stringliteral}{''},}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00219}00219\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'timeout'}:\ 30}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00220}00220\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00221}00221\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00222}00222\ \ \ \ \ \ \ \ \ self.assertEqual(config,\ expected)}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00223}00223\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00224}\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_a44ecfceeb1e92df7b9b3508874e225b2}{00224}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_a44ecfceeb1e92df7b9b3508874e225b2}{test\_get\_logging\_config}}(self):}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00225}00225\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00226}00226\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Test\ getting\ logging\ configuration.}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00227}00227\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00228}00228\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Test\ retrieval\ of\ logging\ configuration\ with\ defaults.}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00229}00229\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00230}00230\ \ \ \ \ \ \ \ \ config\ =\ self.\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ad1820d3a1c7da77267cca91a7777ef0f}{config\_manager}}.get\_logging\_config()}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00231}00231\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00232}00232\ \ \ \ \ \ \ \ \ expected\ =\ \{}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00233}00233\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'level'}:\ \textcolor{stringliteral}{'INFO'},}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00234}00234\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'file'}:\ \textcolor{stringliteral}{'app.log'},}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00235}00235\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'format'}:\ \textcolor{stringliteral}{'\%(asctime)s\ -\/\ \%(name)s\ -\/\ \%(levelname)s\ -\/\ \%(message)s'},}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00236}00236\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'max\_size'}:\ 10485760,}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00237}00237\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'backup\_count'}:\ 5,}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00238}00238\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'dir'}:\ \textcolor{stringliteral}{'log'},}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00239}00239\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'colored'}:\ \textcolor{keyword}{True},}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00240}00240\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'json\_format'}:\ \textcolor{keyword}{False},}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00241}00241\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'console'}:\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00242}00242\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00243}00243\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00244}00244\ \ \ \ \ \ \ \ \ self.assertEqual(config,\ expected)}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00245}00245\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00246}00246\ \ \ \ \ \textcolor{preprocessor}{@patch.dict(os.environ,\ \{'DB2\_HOST':\ 'envhost',\ 'DB2\_PORT':\ '5432',\ 'LOG\_LEVEL':\ 'DEBUG'\})}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00247}\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_a219e27b55a503503e1ca7d6bb97620dd}{00247}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_a219e27b55a503503e1ca7d6bb97620dd}{test\_load\_from\_env}}(self):}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00248}00248\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00249}00249\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Test\ loading\ configuration\ from\ environment\ variables.}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00250}00250\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00251}00251\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Test\ that\ environment\ variables\ override\ configuration.}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00252}00252\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00253}00253\ \ \ \ \ \ \ \ \ config\_manager\ =\ \mbox{\hyperlink{classcommonpython_1_1config_1_1config__manager_1_1_config_manager}{ConfigManager}}()}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00254}00254\ \ \ \ \ \ \ \ \ config\_manager.\_load\_from\_env()}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00255}00255\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00256}00256\ \ \ \ \ \ \ \ \ self.assertEqual(config\_manager.get(\textcolor{stringliteral}{'database.host'}),\ \textcolor{stringliteral}{'envhost'})}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00257}00257\ \ \ \ \ \ \ \ \ self.assertEqual(config\_manager.get(\textcolor{stringliteral}{'database.port'}),\ 5432)}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00258}00258\ \ \ \ \ \ \ \ \ self.assertEqual(config\_manager.get(\textcolor{stringliteral}{'logging.level'}),\ \textcolor{stringliteral}{'DEBUG'})}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00259}00259\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00260}\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_a8aaed77be2f6123a732fd086aa154237}{00260}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_a8aaed77be2f6123a732fd086aa154237}{test\_to\_dict}}(self):}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00261}00261\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00262}00262\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Test\ getting\ configuration\ as\ dictionary.}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00263}00263\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00264}00264\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Test\ that\ to\_dict\ returns\ a\ copy\ of\ the\ configuration.}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00265}00265\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00266}00266\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ad1820d3a1c7da77267cca91a7777ef0f}{config\_manager}}.set(\textcolor{stringliteral}{'test.key'},\ \textcolor{stringliteral}{'value'})}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00267}00267\ \ \ \ \ \ \ \ \ config\_dict\ =\ self.\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ad1820d3a1c7da77267cca91a7777ef0f}{config\_manager}}.to\_dict()}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00268}00268\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00269}00269\ \ \ \ \ \ \ \ \ self.assertEqual(config\_dict[\textcolor{stringliteral}{'test'}][\textcolor{stringliteral}{'key'}],\ \textcolor{stringliteral}{'value'})}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00270}00270\ \ \ \ \ \ \ \ \ self.assertIsNot(config\_dict,\ self.\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ad1820d3a1c7da77267cca91a7777ef0f}{config\_manager}}.\_config)\ \ \textcolor{comment}{\#\ Should\ be\ a\ copy}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00271}00271\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00272}\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_a7c6d33763d389e2f824cca7d51c5d880}{00272}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_a7c6d33763d389e2f824cca7d51c5d880}{test\_save\_to\_file}}(self):}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00273}00273\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00274}00274\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Test\ saving\ configuration\ to\ file.}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00275}00275\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00276}00276\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Test\ saving\ configuration\ to\ YAML\ file.}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00277}00277\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00278}00278\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ad1820d3a1c7da77267cca91a7777ef0f}{config\_manager}}.set(\textcolor{stringliteral}{'test.key'},\ \textcolor{stringliteral}{'value'})}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00279}00279\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00280}00280\ \ \ \ \ \ \ \ \ \textcolor{keyword}{with}\ tempfile.NamedTemporaryFile(mode=\textcolor{stringliteral}{'w'},\ suffix=\textcolor{stringliteral}{'.yaml'},\ delete=\textcolor{keyword}{False})\ \textcolor{keyword}{as}\ f:}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00281}00281\ \ \ \ \ \ \ \ \ \ \ \ \ temp\_file\ =\ f.name}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00282}00282\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00283}00283\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00284}00284\ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ad1820d3a1c7da77267cca91a7777ef0f}{config\_manager}}.save\_to\_file(temp\_file)}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00285}00285\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00286}00286\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{with}\ open(temp\_file,\ \textcolor{stringliteral}{'r'})\ \textcolor{keyword}{as}\ f:}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00287}00287\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ saved\_config\ =\ yaml.safe\_load(f)}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00288}00288\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00289}00289\ \ \ \ \ \ \ \ \ \ \ \ \ self.assertEqual(saved\_config[\textcolor{stringliteral}{'test'}][\textcolor{stringliteral}{'key'}],\ \textcolor{stringliteral}{'value'})}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00290}00290\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{finally}:}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00291}00291\ \ \ \ \ \ \ \ \ \ \ \ \ os.unlink(temp\_file)}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00292}00292\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00293}\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_a7df81f39754b5a8451763acbb66364f7}{00293}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_a7df81f39754b5a8451763acbb66364f7}{test\_reload}}(self):}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00294}00294\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00295}00295\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Test\ reloading\ configuration.}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00296}00296\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00297}00297\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Test\ that\ reload\ clears\ and\ reloads\ configuration.}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00298}00298\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00299}00299\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ad1820d3a1c7da77267cca91a7777ef0f}{config\_manager}}.set(\textcolor{stringliteral}{'test.key'},\ \textcolor{stringliteral}{'value'})}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00300}00300\ \ \ \ \ \ \ \ \ self.assertEqual(self.\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ad1820d3a1c7da77267cca91a7777ef0f}{config\_manager}}.get(\textcolor{stringliteral}{'test.key'}),\ \textcolor{stringliteral}{'value'})}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00301}00301\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00302}00302\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ad1820d3a1c7da77267cca91a7777ef0f}{config\_manager}}.reload()}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00303}00303\ \ \ \ \ \ \ \ \ self.assertEqual(self.\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ad1820d3a1c7da77267cca91a7777ef0f}{config\_manager}}.get(\textcolor{stringliteral}{'test.key'}),\ \textcolor{keywordtype}{None})}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00304}00304\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00305}\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_a66f2534e70fe2e6f60feda974c2cd17c}{00305}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_a66f2534e70fe2e6f60feda974c2cd17c}{test\_type\_conversion}}(self):}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00306}00306\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00307}00307\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Test\ automatic\ type\ conversion\ for\ configuration\ values.}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00308}00308\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00309}00309\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Test\ that\ string\ values\ are\ converted\ to\ appropriate\ types.}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00310}00310\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00311}00311\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ad1820d3a1c7da77267cca91a7777ef0f}{config\_manager}}.\_set\_nested\_value(\textcolor{stringliteral}{'test.bool'},\ \textcolor{stringliteral}{'true'})}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00312}00312\ \ \ \ \ \ \ \ \ self.assertEqual(self.\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ad1820d3a1c7da77267cca91a7777ef0f}{config\_manager}}.get(\textcolor{stringliteral}{'test.bool'}),\ \textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00313}00313\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00314}00314\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ad1820d3a1c7da77267cca91a7777ef0f}{config\_manager}}.\_set\_nested\_value(\textcolor{stringliteral}{'test.int'},\ \textcolor{stringliteral}{'123'})}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00315}00315\ \ \ \ \ \ \ \ \ self.assertEqual(self.\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ad1820d3a1c7da77267cca91a7777ef0f}{config\_manager}}.get(\textcolor{stringliteral}{'test.int'}),\ 123)}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00316}00316\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00317}00317\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ad1820d3a1c7da77267cca91a7777ef0f}{config\_manager}}.\_set\_nested\_value(\textcolor{stringliteral}{'test.float'},\ \textcolor{stringliteral}{'123.45'})}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00318}00318\ \ \ \ \ \ \ \ \ self.assertEqual(self.\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ad1820d3a1c7da77267cca91a7777ef0f}{config\_manager}}.get(\textcolor{stringliteral}{'test.float'}),\ 123.45)}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00319}00319\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00320}00320\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ad1820d3a1c7da77267cca91a7777ef0f}{config\_manager}}.\_set\_nested\_value(\textcolor{stringliteral}{'test.string'},\ \textcolor{stringliteral}{'hello'})}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00321}00321\ \ \ \ \ \ \ \ \ self.assertEqual(self.\mbox{\hyperlink{classtest_1_1test__config__manager_1_1_test_config_manager_ad1820d3a1c7da77267cca91a7777ef0f}{config\_manager}}.get(\textcolor{stringliteral}{'test.string'}),\ \textcolor{stringliteral}{'hello'})}
+\DoxyCodeLine{\Hypertarget{test__config__manager_8py_source_l00322}00322\ }
+
+\end{DoxyCode}

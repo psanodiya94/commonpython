@@ -1,0 +1,623 @@
+\chapter{Common\+Python Framework }
+\hypertarget{md__r_e_a_d_m_e}{}\label{md__r_e_a_d_m_e}\index{CommonPython Framework@{CommonPython Framework}}
+\label{md__r_e_a_d_m_e_autotoc_md307}%
+\Hypertarget{md__r_e_a_d_m_e_autotoc_md307}%
+
+
+A comprehensive Python framework providing configuration management, logging, database connectivity, message queue operations, and command-\/line interface functionality. Features a {\bfseries{flexible adapter architecture}} that supports both CLI-\/based and library-\/based implementations.
+
+\href{https://www.python.org/downloads/}{\texttt{}} \href{test/}{\texttt{}} \href{test/}{\texttt{}} \doxysectlink{md_docs_2_a_d_a_p_t_e_r___a_r_c_h_i_t_e_c_t_u_r_e}{}{0}\hypertarget{md__r_e_a_d_m_e_autotoc_md308}{}\doxysection{\texorpdfstring{🚀 Quick Start}{🚀 Quick Start}}\label{md__r_e_a_d_m_e_autotoc_md308}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md309}{}\doxysubsection{\texorpdfstring{1. Installation}{1. Installation}}\label{md__r_e_a_d_m_e_autotoc_md309}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md310}{}\doxysubsubsection{\texorpdfstring{Option A\+: Minimal Install (Mandatory Only)}{Option A\+: Minimal Install (Mandatory Only)}}\label{md__r_e_a_d_m_e_autotoc_md310}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Clone\ the\ repository}
+\DoxyCodeLine{git\ clone\ <repository-\/url>}
+\DoxyCodeLine{cd\ commonpython}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Install\ core\ framework\ only}
+\DoxyCodeLine{pip\ install\ -\/e\ .}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md311}{}\doxysubsubsection{\texorpdfstring{Option B\+: High Performance (Recommended)}{Option B\+: High Performance (Recommended)}}\label{md__r_e_a_d_m_e_autotoc_md311}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Install\ with\ library\ adapters\ for\ 10-\/50x\ better\ performance}
+\DoxyCodeLine{pip\ install\ -\/e\ "{}.[library]"{}}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md312}{}\doxysubsubsection{\texorpdfstring{Option C\+: Full Development Setup}{Option C\+: Full Development Setup}}\label{md__r_e_a_d_m_e_autotoc_md312}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Install\ everything\ (libraries\ +\ testing\ tools)}
+\DoxyCodeLine{pip\ install\ -\/e\ "{}.[all]"{}}
+
+\end{DoxyCode}
+
+
+\begin{quote}
+📖 {\bfseries{\doxysectlink{md__i_n_s_t_a_l_l_a_t_i_o_n}{Complete Installation Guide}{0}}} -\/ Detailed instructions for all scenarios \end{quote}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md313}{}\doxysubsection{\texorpdfstring{2. Create Your First Component}{2. Create Your First Component}}\label{md__r_e_a_d_m_e_autotoc_md313}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Copy\ the\ template}
+\DoxyCodeLine{cp\ examples/component\_template.py\ my\_component.py}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Edit\ the\ template\ with\ your\ logic}
+\DoxyCodeLine{\#\ Run\ your\ component}
+\DoxyCodeLine{python\ my\_component.py\ -\/-\/config\ config/config.yaml\ -\/-\/verbose}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md314}{}\doxysubsection{\texorpdfstring{3. Test the Framework}{3. Test the Framework}}\label{md__r_e_a_d_m_e_autotoc_md314}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Run\ all\ tests}
+\DoxyCodeLine{python\ scripts/test\_commonpython.py}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Or\ run\ the\ quick\ start\ script\ for\ guided\ setup}
+\DoxyCodeLine{python\ examples/quick\_start.py}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md315}{}\doxysection{\texorpdfstring{✨ Features}{✨ Features}}\label{md__r_e_a_d_m_e_autotoc_md315}
+
+\begin{DoxyItemize}
+\item {\bfseries{🔧 Configuration Management}}\+: YAML-\/based configuration with environment variable support
+\item {\bfseries{📝 Logging}}\+: Human-\/readable and JSON logging with colored console output
+\item {\bfseries{🗄️ Database Operations}}\+: IBM DB2 connectivity with {\bfseries{both CLI and library implementations}}
+\item {\bfseries{📨 Message Queue}}\+: IBM MQ operations with {\bfseries{both CLI and library implementations}}
+\item {\bfseries{🔄 Adapter Pattern}}\+: Seamlessly switch between CLI and library implementations via configuration
+\item {\bfseries{💻 Command Line Interface}}\+: Full-\/featured CLI for all operations
+\item {\bfseries{🧩 Component Framework}}\+: Common framework for building components with shared functionality
+\item {\bfseries{🧪 Testing}}\+: Comprehensive test suite with 295+ tests and coverage reporting
+\item {\bfseries{📚 Documentation}}\+: Complete Doxygen-\/style documentation and architecture guides
+\item {\bfseries{🚀 Zero Migration Cost}}\+: Switch implementations without changing application code
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md316}{}\doxysection{\texorpdfstring{📋 Requirements}{📋 Requirements}}\label{md__r_e_a_d_m_e_autotoc_md316}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md317}{}\doxysubsection{\texorpdfstring{✅ Mandatory (Always Required)}{✅ Mandatory (Always Required)}}\label{md__r_e_a_d_m_e_autotoc_md317}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{4}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Requirement  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Version  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Purpose  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Install  }\\\cline{1-4}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Requirement  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Version  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Purpose  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Install  }\\\cline{1-4}
+\endhead
+{\bfseries{Python}}  &3.\+12+  &Core runtime  &\href{https://www.python.org/downloads/}{\texttt{Download}}  \\\cline{1-4}
+{\bfseries{Py\+YAML}}  &Latest  &Configuration parsing  &{\ttfamily pip install pyyaml}  \\\cline{1-4}
+\end{longtabu}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md318}{}\doxysubsection{\texorpdfstring{⚙️ Optional -\/ For CLI Implementation (Default)}{⚙️ Optional -\/ For CLI Implementation (Default)}}\label{md__r_e_a_d_m_e_autotoc_md318}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Requirement  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Purpose  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Status  }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Requirement  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Purpose  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Status  }\\\cline{1-3}
+\endhead
+{\bfseries{IBM DB2 CLI tools}}  &Database operations via CLI  &Optional -\/ Only if using database  \\\cline{1-3}
+{\bfseries{IBM MQ CLI tools}}  &Messaging operations via CLI  &Optional -\/ Only if using messaging  \\\cline{1-3}
+\end{longtabu}
+
+
+\begin{quote}
+💡 {\bfseries{Note}}\+: CLI implementation works without Python libraries but requires IBM CLI tools installed and in PATH. \end{quote}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md319}{}\doxysubsection{\texorpdfstring{🚀 Optional -\/ For Library Implementation (Better Performance)}{🚀 Optional -\/ For Library Implementation (Better Performance)}}\label{md__r_e_a_d_m_e_autotoc_md319}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{4}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Package  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Purpose  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Performance Gain  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Install  }\\\cline{1-4}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Package  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Purpose  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Performance Gain  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Install  }\\\cline{1-4}
+\endhead
+{\bfseries{ibm\+\_\+db}}  &Native DB2 operations  &10-\/50x faster  &{\ttfamily pip install ibm\+\_\+db}  \\\cline{1-4}
+{\bfseries{pymqi}}  &Native MQ operations  &10-\/50x faster  &{\ttfamily pip install pymqi}  \\\cline{1-4}
+\end{longtabu}
+
+
+Install all library dependencies\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{pip\ install\ ibm\_db\ pymqi}
+
+\end{DoxyCode}
+
+
+\begin{quote}
+💡 {\bfseries{Note}}\+: Library implementations are {\bfseries{optional}}. The framework automatically falls back to CLI if libraries aren\textquotesingle{}t installed. \end{quote}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md320}{}\doxysubsection{\texorpdfstring{🧪 Optional -\/ For Development \& Testing}{🧪 Optional -\/ For Development \& Testing}}\label{md__r_e_a_d_m_e_autotoc_md320}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{4}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Package  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Version  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Purpose  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Install  }\\\cline{1-4}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Package  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Version  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Purpose  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Install  }\\\cline{1-4}
+\endhead
+{\bfseries{coverage}}  &7.\+0.\+0+  &Code coverage analysis  &{\ttfamily pip install coverage}  \\\cline{1-4}
+\end{longtabu}
+
+
+\DoxyHorRuler{0}
+
+
+{\bfseries{Compatibility Notes\+:}}
+\begin{DoxyItemize}
+\item ✅ Framework tested with Python 3.\+12.\+3
+\item ⚠️ May work with Python 3.\+8+ (untested)
+\item 🔄 Auto-\/fallback\+: Library → CLI if dependencies missing
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md322}{}\doxysection{\texorpdfstring{🏗️ Architecture\+: Adapter Pattern}{🏗️ Architecture\+: Adapter Pattern}}\label{md__r_e_a_d_m_e_autotoc_md322}
+{\bfseries{NEW!}} The framework now features a flexible adapter architecture that allows you to switch between CLI-\/based and library-\/based implementations {\bfseries{without changing your code}}.\hypertarget{md__r_e_a_d_m_e_autotoc_md323}{}\doxysubsection{\texorpdfstring{Why Use the Adapter Pattern?}{Why Use the Adapter Pattern?}}\label{md__r_e_a_d_m_e_autotoc_md323}
+✅ {\bfseries{Zero Code Changes}}\+: Switch implementations via configuration ✅ {\bfseries{Better Performance}}\+: Library adapters are 10-\/50x faster ✅ {\bfseries{Improved Security}}\+: Native parameterized queries prevent SQL injection ✅ {\bfseries{Gradual Migration}}\+: Migrate database and messaging independently ✅ {\bfseries{Auto-\/\+Fallback}}\+: Automatically use CLI if libraries aren\textquotesingle{}t installed\hypertarget{md__r_e_a_d_m_e_autotoc_md324}{}\doxysubsection{\texorpdfstring{Quick Example}{Quick Example}}\label{md__r_e_a_d_m_e_autotoc_md324}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ config.yaml\ -\/\ Switch\ from\ CLI\ to\ library\ implementation}
+\DoxyCodeLine{database:}
+\DoxyCodeLine{\ \ implementation:\ library\ \ \#\ Was:\ cli}
+\DoxyCodeLine{\ \ auto\_fallback:\ true\ \ \ \ \ \#\ Fallback\ to\ CLI\ if\ library\ not\ available}
+\DoxyCodeLine{\ \ host:\ localhost}
+\DoxyCodeLine{\ \ \#\ ...\ rest\ of\ config\ unchanged}
+
+\end{DoxyCode}
+
+
+{\bfseries{That\textquotesingle{}s it!}} No application code changes needed.
+
+📚 {\bfseries{\doxysectlink{md_docs_2_a_d_a_p_t_e_r___a_r_c_h_i_t_e_c_t_u_r_e}{Read the complete Adapter Architecture Guide}{0}}} for migration steps, performance comparisons, and best practices.\hypertarget{md__r_e_a_d_m_e_autotoc_md325}{}\doxysection{\texorpdfstring{🎯 For New Users}{🎯 For New Users}}\label{md__r_e_a_d_m_e_autotoc_md325}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md326}{}\doxysubsection{\texorpdfstring{What is Common\+Python Framework?}{What is Common\+Python Framework?}}\label{md__r_e_a_d_m_e_autotoc_md326}
+Common\+Python is a framework that provides common functionality for building Python applications that need to interact with IBM DB2 databases and IBM MQ messaging systems. It\textquotesingle{}s designed to\+:
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Simplify Development}}\+: Provides ready-\/to-\/use components for common tasks
+\item {\bfseries{Standardize Operations}}\+: Ensures consistent configuration, logging, and error handling
+\item {\bfseries{Reduce Boilerplate}}\+: Eliminates repetitive code for database and messaging operations
+\item {\bfseries{Enable Testing}}\+: Built-\/in testing support with mocked services
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md327}{}\doxysubsection{\texorpdfstring{When to Use This Framework}{When to Use This Framework}}\label{md__r_e_a_d_m_e_autotoc_md327}
+Use Common\+Python when you need to build applications that\+:
+
+
+\begin{DoxyItemize}
+\item Connect to IBM DB2 databases
+\item Send/receive messages via IBM MQ
+\item Require structured logging and configuration management
+\item Need consistent error handling and resource management
+\item Want to follow enterprise development patterns
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md328}{}\doxysubsection{\texorpdfstring{Getting Started as a New User}{Getting Started as a New User}}\label{md__r_e_a_d_m_e_autotoc_md328}
+
+\begin{DoxyEnumerate}
+\item {\bfseries{📖 Read the Documentation}}\+: Start with this README and the \doxysectlink{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e}{Development Guide}{0}
+\item {\bfseries{🔧 Set Up Your Environment}}\+: Install Python 3.\+8+ and IBM CLI tools
+\item {\bfseries{📝 Use the Template}}\+: Copy {\ttfamily \doxylink{component__template_8py}{examples/component\+\_\+template.\+py}} to start your first component
+\item {\bfseries{⚙️ Configure}}\+: Copy {\ttfamily config/config.\+yaml} and modify it for your environment
+\item {\bfseries{🧪 Test}}\+: Run the test suite to verify everything works
+\item {\bfseries{🚀 Build}}\+: Create your component using the framework\textquotesingle{}s services
+\end{DoxyEnumerate}
+
+{\bfseries{💡 Pro Tip}}\+: Run {\ttfamily python \doxylink{quick__start_8py}{examples/quick\+\_\+start.\+py}} for an interactive guided setup!\hypertarget{md__r_e_a_d_m_e_autotoc_md329}{}\doxysubsection{\texorpdfstring{Example\+: Your First Component}{Example\+: Your First Component}}\label{md__r_e_a_d_m_e_autotoc_md329}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{from}\ \mbox{\hyperlink{namespacecommonpython_1_1framework}{commonpython.framework}}\ \textcolor{keyword}{import}\ ComponentBase,\ run\_component}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{class\ }MyFirstComponent(ComponentBase):}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{def\ }\_\_init\_\_(self,\ config\_file=None):}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ super().\_\_init\_\_(\textcolor{stringliteral}{"{}MyFirstComponent"{}},\ config\_file)}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{def\ }initialize(self)\ -\/>\ bool:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ self.log\_info(\textcolor{stringliteral}{"{}My\ first\ component\ is\ initializing!"{}})}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{def\ }run(self)\ -\/>\ bool:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ self.log\_info(\textcolor{stringliteral}{"{}My\ first\ component\ is\ running!"{}})}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Connect\ to\ database}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.connect\_database():}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ results\ =\ self.execute\_query(\textcolor{stringliteral}{"{}SELECT\ COUNT(*)\ FROM\ users"{}})}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ self.log\_info(f\textcolor{stringliteral}{"{}Found\ \{results[0][0]\}\ users\ in\ database"{}})}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Send\ a\ message}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.connect\_messaging():}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ self.send\_message(\textcolor{stringliteral}{"{}MY.QUEUE"{}},\ \{\textcolor{stringliteral}{"{}message"{}}:\ \textcolor{stringliteral}{"{}Hello\ from\ my\ component!"{}}\})}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{def\ }cleanup(self)\ -\/>\ None:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ self.log\_info(\textcolor{stringliteral}{"{}My\ first\ component\ is\ cleaning\ up!"{}})}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ \_\_name\_\_\ ==\ \textcolor{stringliteral}{'\_\_main\_\_'}:}
+\DoxyCodeLine{\ \ \ \ sys.exit(0\ \textcolor{keywordflow}{if}\ run\_component(MyFirstComponent,\ \textcolor{stringliteral}{"{}MyFirstComponent"{}})\ \textcolor{keywordflow}{else}\ 1)}
+
+\end{DoxyCode}
+
+
+Run it\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{python\ my\_first\_component.py\ -\/-\/config\ config/config.yaml\ -\/-\/verbose}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md330}{}\doxysection{\texorpdfstring{Installation}{Installation}}\label{md__r_e_a_d_m_e_autotoc_md330}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Clone\ the\ repository}
+\DoxyCodeLine{git\ clone\ <repository-\/url>}
+\DoxyCodeLine{cd\ commonpython}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Install\ in\ development\ mode}
+\DoxyCodeLine{pip\ install\ -\/e\ .}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md331}{}\doxysubsection{\texorpdfstring{Dependencies}{Dependencies}}\label{md__r_e_a_d_m_e_autotoc_md331}
+The framework uses only standard Python modules with the following optional dependencies\+:
+
+
+\begin{DoxyItemize}
+\item {\ttfamily coverage\texorpdfstring{$>$}{>}=7.\+0.\+0} (for testing only)
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md332}{}\doxysection{\texorpdfstring{Configuration}{Configuration}}\label{md__r_e_a_d_m_e_autotoc_md332}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md333}{}\doxysubsection{\texorpdfstring{Configuration File}{Configuration File}}\label{md__r_e_a_d_m_e_autotoc_md333}
+The project includes an example configuration file {\ttfamily config/config.\+yaml}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{database:}
+\DoxyCodeLine{\ \ host:\ localhost}
+\DoxyCodeLine{\ \ port:\ 50000}
+\DoxyCodeLine{\ \ name:\ testdb}
+\DoxyCodeLine{\ \ user:\ db2inst1}
+\DoxyCodeLine{\ \ password:\ password}
+\DoxyCodeLine{\ \ schema:\ myschema}
+\DoxyCodeLine{\ \ timeout:\ 30}
+\DoxyCodeLine{}
+\DoxyCodeLine{messaging:}
+\DoxyCodeLine{\ \ host:\ localhost}
+\DoxyCodeLine{\ \ port:\ 1414}
+\DoxyCodeLine{\ \ queue\_manager:\ QM1}
+\DoxyCodeLine{\ \ channel:\ SYSTEM.DEF.SVRCONN}
+\DoxyCodeLine{\ \ user:\ mquser}
+\DoxyCodeLine{\ \ password:\ mqpass}
+\DoxyCodeLine{\ \ timeout:\ 30}
+\DoxyCodeLine{}
+\DoxyCodeLine{logging:}
+\DoxyCodeLine{\ \ level:\ INFO}
+\DoxyCodeLine{\ \ file:\ app.log}
+\DoxyCodeLine{\ \ format:\ "{}\%(asctime)s\ -\/\ \%(name)s\ -\/\ \%(levelname)s\ -\/\ \%(message)s"{}}
+\DoxyCodeLine{\ \ max\_size:\ 10485760}
+\DoxyCodeLine{\ \ backup\_count:\ 5}
+\DoxyCodeLine{\ \ colored:\ true}
+\DoxyCodeLine{\ \ json\_format:\ false\ \ \#\ Set\ to\ true\ for\ JSON\ format}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md334}{}\doxysubsection{\texorpdfstring{Environment Variables}{Environment Variables}}\label{md__r_e_a_d_m_e_autotoc_md334}
+You can override configuration using environment variables\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{export\ DB2\_HOST=localhost}
+\DoxyCodeLine{export\ DB2\_PORT=50000}
+\DoxyCodeLine{export\ DB2\_DATABASE=testdb}
+\DoxyCodeLine{export\ DB2\_USER=db2inst1}
+\DoxyCodeLine{export\ DB2\_PASSWORD=password}
+\DoxyCodeLine{}
+\DoxyCodeLine{export\ MQ\_HOST=localhost}
+\DoxyCodeLine{export\ MQ\_PORT=1414}
+\DoxyCodeLine{export\ MQ\_QUEUE\_MANAGER=QM1}
+\DoxyCodeLine{export\ MQ\_CHANNEL=SYSTEM.DEF.SVRCONN}
+\DoxyCodeLine{}
+\DoxyCodeLine{export\ LOG\_LEVEL=DEBUG}
+\DoxyCodeLine{export\ LOG\_FILE=app.log}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md335}{}\doxysection{\texorpdfstring{Usage}{Usage}}\label{md__r_e_a_d_m_e_autotoc_md335}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md336}{}\doxysubsection{\texorpdfstring{Command Line Interface}{Command Line Interface}}\label{md__r_e_a_d_m_e_autotoc_md336}
+The framework provides a comprehensive CLI for all operations\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Test\ database\ connection}
+\DoxyCodeLine{commonpython\ database\ test}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Execute\ database\ query}
+\DoxyCodeLine{commonpython\ database\ execute\ "{}SELECT\ *\ FROM\ users"{}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Test\ MQ\ connection}
+\DoxyCodeLine{commonpython\ messaging\ test}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Get\ message\ from\ queue}
+\DoxyCodeLine{commonpython\ messaging\ get\ TEST.QUEUE}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Put\ message\ to\ queue}
+\DoxyCodeLine{commonpython\ messaging\ put\ TEST.QUEUE\ "{}Hello\ World"{}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Show\ configuration}
+\DoxyCodeLine{commonpython\ config\ show}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Test\ all\ components}
+\DoxyCodeLine{commonpython\ test-\/all}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md337}{}\doxysubsection{\texorpdfstring{Programmatic Usage}{Programmatic Usage}}\label{md__r_e_a_d_m_e_autotoc_md337}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{from}\ \mbox{\hyperlink{namespacecommonpython_1_1config}{commonpython.config}}\ \textcolor{keyword}{import}\ ConfigManager}
+\DoxyCodeLine{\textcolor{keyword}{from}\ \mbox{\hyperlink{namespacecommonpython_1_1logging}{commonpython.logging}}\ \textcolor{keyword}{import}\ LoggerManager}
+\DoxyCodeLine{\textcolor{keyword}{from}\ \mbox{\hyperlink{namespacecommonpython_1_1database}{commonpython.database}}\ \textcolor{keyword}{import}\ DB2Manager}
+\DoxyCodeLine{\textcolor{keyword}{from}\ \mbox{\hyperlink{namespacecommonpython_1_1messaging}{commonpython.messaging}}\ \textcolor{keyword}{import}\ MQManager}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{\#\ Initialize\ configuration}}
+\DoxyCodeLine{config\_manager\ =\ ConfigManager(\textcolor{stringliteral}{'config.yaml'})}
+\DoxyCodeLine{logger\_manager\ =\ LoggerManager(\textcolor{stringliteral}{'myapp'},\ config\_manager.get\_logging\_config())}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{\#\ Database\ operations}}
+\DoxyCodeLine{db\_config\ =\ config\_manager.get\_database\_config()}
+\DoxyCodeLine{db\_manager\ =\ DB2Manager(db\_config,\ logger\_manager)}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ db\_manager.connect():}
+\DoxyCodeLine{\ \ \ \ results\ =\ db\_manager.execute\_query(\textcolor{stringliteral}{"{}SELECT\ *\ FROM\ users"{}})}
+\DoxyCodeLine{\ \ \ \ print(f\textcolor{stringliteral}{"{}Found\ \{len(results)\}\ users"{}})}
+\DoxyCodeLine{\ \ \ \ db\_manager.disconnect()}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{\#\ Message\ queue\ operations}}
+\DoxyCodeLine{mq\_config\ =\ config\_manager.get\_messaging\_config()}
+\DoxyCodeLine{mq\_manager\ =\ MQManager(mq\_config,\ logger\_manager)}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ mq\_manager.connect():}
+\DoxyCodeLine{\ \ \ \ mq\_manager.put\_message(\textcolor{stringliteral}{"{}TEST.QUEUE"{}},\ \{\textcolor{stringliteral}{"{}message"{}}:\ \textcolor{stringliteral}{"{}Hello\ World"{}}\})}
+\DoxyCodeLine{\ \ \ \ message\ =\ mq\_manager.get\_message(\textcolor{stringliteral}{"{}TEST.QUEUE"{}})}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ message:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}Received:\ \{message['data']\}"{}})}
+\DoxyCodeLine{\ \ \ \ mq\_manager.disconnect()}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md338}{}\doxysubsection{\texorpdfstring{Component Framework Usage}{Component Framework Usage}}\label{md__r_e_a_d_m_e_autotoc_md338}
+Create components that use the framework\textquotesingle{}s shared functionality\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{from}\ \mbox{\hyperlink{namespacecommonpython_1_1framework}{commonpython.framework}}\ \textcolor{keyword}{import}\ ComponentBase,\ run\_component}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{class\ }MyComponent(ComponentBase):}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{def\ }\_\_init\_\_(self,\ config\_file=None):}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ super().\_\_init\_\_(\textcolor{stringliteral}{"{}MyComponent"{}},\ config\_file)}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{def\ }initialize(self)\ -\/>\ bool:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Your\ initialization\ logic}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ self.log\_info(\textcolor{stringliteral}{"{}Component\ initialized"{}})}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{def\ }run(self)\ -\/>\ bool:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Your\ main\ logic}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.connect\_database():}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ results\ =\ self.execute\_query(\textcolor{stringliteral}{"{}SELECT\ *\ FROM\ my\_table"{}})}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ self.log\_info(f\textcolor{stringliteral}{"{}Found\ \{len(results)\}\ records"{}})}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.connect\_messaging():}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ self.send\_message(\textcolor{stringliteral}{"{}MY.QUEUE"{}},\ \{\textcolor{stringliteral}{"{}data"{}}:\ \textcolor{stringliteral}{"{}message"{}}\})}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{def\ }cleanup(self)\ -\/>\ None:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Your\ cleanup\ logic}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ self.log\_info(\textcolor{stringliteral}{"{}Component\ cleanup\ completed"{}})}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{\#\ Run\ the\ component}}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ \_\_name\_\_\ ==\ \textcolor{stringliteral}{'\_\_main\_\_'}:}
+\DoxyCodeLine{\ \ \ \ sys.exit(0\ \textcolor{keywordflow}{if}\ run\_component(MyComponent,\ \textcolor{stringliteral}{"{}MyComponent"{}})\ \textcolor{keywordflow}{else}\ 1)}
+
+\end{DoxyCode}
+
+
+{\bfseries{Run your component\+:}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{python\ my\_component.py\ -\/-\/config\ config/component\_config.yaml\ -\/-\/verbose}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md339}{}\doxysection{\texorpdfstring{Testing}{Testing}}\label{md__r_e_a_d_m_e_autotoc_md339}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md340}{}\doxysubsection{\texorpdfstring{Run Basic Tests}{Run Basic Tests}}\label{md__r_e_a_d_m_e_autotoc_md340}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Run\ basic\ test\ suite}
+\DoxyCodeLine{python\ test\_framework\_basic.py}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Or\ use\ the\ test\ runner}
+\DoxyCodeLine{python\ test/run\_tests.py}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md341}{}\doxysubsection{\texorpdfstring{Run Comprehensive Tests}{Run Comprehensive Tests}}\label{md__r_e_a_d_m_e_autotoc_md341}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Run\ comprehensive\ test\ suite}
+\DoxyCodeLine{python\ test\_framework.py}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Run\ with\ coverage}
+\DoxyCodeLine{python\ test\_framework.py\ -\/-\/coverage}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md342}{}\doxysubsection{\texorpdfstring{Individual Test Modules}{Individual Test Modules}}\label{md__r_e_a_d_m_e_autotoc_md342}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Run\ specific\ test\ modules}
+\DoxyCodeLine{python\ -\/m\ unittest\ test.test\_config\_manager}
+\DoxyCodeLine{python\ -\/m\ unittest\ test.test\_logger\_manager}
+\DoxyCodeLine{python\ -\/m\ unittest\ test.test\_db2\_manager}
+\DoxyCodeLine{python\ -\/m\ unittest\ test.test\_mq\_manager}
+\DoxyCodeLine{python\ -\/m\ unittest\ test.test\_cli}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md343}{}\doxysection{\texorpdfstring{Architecture}{Architecture}}\label{md__r_e_a_d_m_e_autotoc_md343}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md344}{}\doxysubsection{\texorpdfstring{Module Structure}{Module Structure}}\label{md__r_e_a_d_m_e_autotoc_md344}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{commonpython/}
+\DoxyCodeLine{├──\ commonpython/}
+\DoxyCodeLine{│\ \ \ ├──\ \_\_init\_\_.py\ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Main\ package}
+\DoxyCodeLine{│\ \ \ ├──\ config/}
+\DoxyCodeLine{│\ \ \ │\ \ \ ├──\ \_\_init\_\_.py\ \ \ \ \ \ \ \ \ \ \#\ Config\ module}
+\DoxyCodeLine{│\ \ \ │\ \ \ └──\ config\_manager.py\ \ \ \#\ Configuration\ management}
+\DoxyCodeLine{│\ \ \ ├──\ logging/}
+\DoxyCodeLine{│\ \ \ │\ \ \ ├──\ \_\_init\_\_.py\ \ \ \ \ \ \ \ \ \ \#\ Logging\ module}
+\DoxyCodeLine{│\ \ \ │\ \ \ └──\ logger\_manager.py\ \ \ \#\ Logging\ functionality}
+\DoxyCodeLine{│\ \ \ ├──\ database/}
+\DoxyCodeLine{│\ \ \ │\ \ \ ├──\ \_\_init\_\_.py\ \ \ \ \ \ \ \ \ \ \#\ Database\ module}
+\DoxyCodeLine{│\ \ \ │\ \ \ └──\ db2\_manager.py\ \ \ \ \ \ \ \#\ DB2\ operations\ via\ CLI}
+\DoxyCodeLine{│\ \ \ ├──\ messaging/}
+\DoxyCodeLine{│\ \ \ │\ \ \ ├──\ \_\_init\_\_.py\ \ \ \ \ \ \ \ \ \ \#\ Messaging\ module}
+\DoxyCodeLine{│\ \ \ │\ \ \ └──\ mq\_manager.py\ \ \ \ \ \ \ \ \#\ MQ\ operations\ via\ CLI}
+\DoxyCodeLine{│\ \ \ └──\ cli/}
+\DoxyCodeLine{│\ \ \ \ \ \ \ ├──\ \_\_init\_\_.py\ \ \ \ \ \ \ \ \ \ \#\ CLI\ module}
+\DoxyCodeLine{│\ \ \ \ \ \ \ └──\ cli.py\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Command-\/line\ interface}
+\DoxyCodeLine{├──\ test/}
+\DoxyCodeLine{│\ \ \ ├──\ \_\_init\_\_.py\ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Test\ package}
+\DoxyCodeLine{│\ \ \ ├──\ test\_config\_manager.py\ \ \ \#\ Configuration\ tests}
+\DoxyCodeLine{│\ \ \ ├──\ test\_logger\_manager.py\ \ \ \#\ Logging\ tests}
+\DoxyCodeLine{│\ \ \ ├──\ test\_db2\_manager.py\ \ \ \ \ \ \#\ Database\ tests}
+\DoxyCodeLine{│\ \ \ ├──\ test\_mq\_manager.py\ \ \ \ \ \ \ \#\ Messaging\ tests}
+\DoxyCodeLine{│\ \ \ ├──\ test\_cli.py\ \ \ \ \ \ \ \ \ \ \ \ \ \#\ CLI\ tests}
+\DoxyCodeLine{│\ \ \ └──\ run\_tests.py\ \ \ \ \ \ \ \ \ \ \ \ \#\ Test\ runner}
+\DoxyCodeLine{├──\ config.yaml\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Example\ configuration}
+\DoxyCodeLine{├──\ requirements.txt\ \ \ \ \ \ \ \ \ \ \ \ \#\ Dependencies}
+\DoxyCodeLine{├──\ setup.py\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Setup\ script}
+\DoxyCodeLine{├──\ test\_framework.py\ \ \ \ \ \ \ \ \ \ \#\ Test\ framework}
+\DoxyCodeLine{└──\ README.md\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Documentation}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md345}{}\doxysubsection{\texorpdfstring{Key Design Principles}{Key Design Principles}}\label{md__r_e_a_d_m_e_autotoc_md345}
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Standard Library Only}}\+: Uses only Python standard library modules
+\item {\bfseries{CLI Interface}}\+: Uses IBM CLI tools instead of SDK modules
+\item {\bfseries{Comprehensive Testing}}\+: Full test coverage with detailed reporting
+\item {\bfseries{Documentation}}\+: Complete Doxygen-\/style documentation
+\item {\bfseries{Configuration}}\+: Flexible configuration management
+\item {\bfseries{Logging}}\+: Structured logging with multiple output formats
+\end{DoxyEnumerate}\hypertarget{md__r_e_a_d_m_e_autotoc_md346}{}\doxysection{\texorpdfstring{IBM CLI Requirements}{IBM CLI Requirements}}\label{md__r_e_a_d_m_e_autotoc_md346}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md347}{}\doxysubsection{\texorpdfstring{DB2 CLI Tools}{DB2 CLI Tools}}\label{md__r_e_a_d_m_e_autotoc_md347}
+The framework requires IBM DB2 CLI tools to be installed and available in the system PATH\+:
+
+
+\begin{DoxyItemize}
+\item {\ttfamily db2} command-\/line tool
+\item DB2 client libraries
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md348}{}\doxysubsection{\texorpdfstring{MQ CLI Tools}{MQ CLI Tools}}\label{md__r_e_a_d_m_e_autotoc_md348}
+The framework requires IBM MQ CLI tools to be installed and available in the system PATH\+:
+
+
+\begin{DoxyItemize}
+\item {\ttfamily runmqsc} command-\/line tool
+\item {\ttfamily amqsput} and {\ttfamily amqsget} utilities
+\item MQ client libraries
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md349}{}\doxysection{\texorpdfstring{Development}{Development}}\label{md__r_e_a_d_m_e_autotoc_md349}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md350}{}\doxysubsection{\texorpdfstring{Adding New Features}{Adding New Features}}\label{md__r_e_a_d_m_e_autotoc_md350}
+
+\begin{DoxyEnumerate}
+\item Create new modules in appropriate directories
+\item Add comprehensive test cases
+\item Update CLI interface if needed
+\item Update documentation
+\item Ensure all tests pass
+\end{DoxyEnumerate}\hypertarget{md__r_e_a_d_m_e_autotoc_md351}{}\doxysubsection{\texorpdfstring{Code Style}{Code Style}}\label{md__r_e_a_d_m_e_autotoc_md351}
+
+\begin{DoxyItemize}
+\item Follow PEP 8 guidelines
+\item Use Doxygen-\/style documentation
+\item Write comprehensive test cases
+\item Maintain backward compatibility
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md352}{}\doxysection{\texorpdfstring{License}{License}}\label{md__r_e_a_d_m_e_autotoc_md352}
+MIT License -\/ see LICENSE file for details.
+
+\DoxyHorRuler{0}
+
+
+\begin{quote}
+{\bfseries{Note\+:}} This tool was developed with help from Cursor AI. \end{quote}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md354}{}\doxysection{\texorpdfstring{Contributing}{Contributing}}\label{md__r_e_a_d_m_e_autotoc_md354}
+
+\begin{DoxyEnumerate}
+\item Fork the repository
+\item Create a feature branch
+\item Make your changes
+\item Add tests for new functionality
+\item Ensure all tests pass
+\item Submit a pull request
+\end{DoxyEnumerate}\hypertarget{md__r_e_a_d_m_e_autotoc_md355}{}\doxysection{\texorpdfstring{🔧 Troubleshooting}{🔧 Troubleshooting}}\label{md__r_e_a_d_m_e_autotoc_md355}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md356}{}\doxysubsection{\texorpdfstring{Common Issues}{Common Issues}}\label{md__r_e_a_d_m_e_autotoc_md356}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md357}{}\doxysubsubsection{\texorpdfstring{Configuration File Not Found}{Configuration File Not Found}}\label{md__r_e_a_d_m_e_autotoc_md357}
+{\bfseries{Error}}\+: `Configuration file \textquotesingle{}config.\+yaml' not found\`{} {\bfseries{Solution}}\+:
+
+
+\begin{DoxyItemize}
+\item Copy {\ttfamily config.\+yaml} to your project directory
+\item Use absolute paths\+: {\ttfamily -\/-\/config /path/to/config.yaml}
+\item Check file permissions
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md358}{}\doxysubsubsection{\texorpdfstring{Database Connection Failed}{Database Connection Failed}}\label{md__r_e_a_d_m_e_autotoc_md358}
+{\bfseries{Error}}\+: `DB2 command error\+: \mbox{[}Errno 2\mbox{]} No such file or directory\+: \textquotesingle{}db2'\`{} {\bfseries{Solution}}\+:
+
+
+\begin{DoxyItemize}
+\item Install IBM DB2 CLI tools
+\item Add DB2 tools to system PATH\+: {\ttfamily export PATH=\$PATH\+:/opt/ibm/db2/\+V11.5/bin}
+\item Verify installation\+: {\ttfamily db2 -\/v}
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md359}{}\doxysubsubsection{\texorpdfstring{Messaging Connection Failed}{Messaging Connection Failed}}\label{md__r_e_a_d_m_e_autotoc_md359}
+{\bfseries{Error}}\+: `MQ command error\+: \mbox{[}Errno 2\mbox{]} No such file or directory\+: \textquotesingle{}runmqsc'\`{} {\bfseries{Solution}}\+:
+
+
+\begin{DoxyItemize}
+\item Install IBM MQ CLI tools
+\item Add MQ tools to system PATH\+: {\ttfamily export PATH=\$PATH\+:/opt/mqm/bin}
+\item Verify installation\+: {\ttfamily runmqsc -\/v}
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md360}{}\doxysubsubsection{\texorpdfstring{Permission Denied}{Permission Denied}}\label{md__r_e_a_d_m_e_autotoc_md360}
+{\bfseries{Error}}\+: {\ttfamily Permission denied} when accessing log files {\bfseries{Solution}}\+:
+
+
+\begin{DoxyItemize}
+\item Check file permissions\+: {\ttfamily chmod 755 log/}
+\item Ensure log directory exists\+: {\ttfamily mkdir -\/p log}
+\item Run with appropriate permissions
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md361}{}\doxysubsection{\texorpdfstring{Debug Mode}{Debug Mode}}\label{md__r_e_a_d_m_e_autotoc_md361}
+Enable debug logging for troubleshooting\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Using\ environment\ variable}
+\DoxyCodeLine{export\ LOG\_LEVEL=DEBUG}
+\DoxyCodeLine{python\ my\_component.py}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Using\ configuration\ file}
+\DoxyCodeLine{logging:}
+\DoxyCodeLine{\ \ level:\ DEBUG}
+\DoxyCodeLine{\ \ console:\ true}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md362}{}\doxysubsection{\texorpdfstring{Getting Help}{Getting Help}}\label{md__r_e_a_d_m_e_autotoc_md362}
+
+\begin{DoxyEnumerate}
+\item {\bfseries{📚 Check Documentation}}\+: Read this README and \doxysectlink{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e}{Development Guide}{0}
+\item {\bfseries{🧪 Run Tests}}\+: Verify framework functionality with {\ttfamily python \doxylink{test__commonpython_8py}{scripts/test\+\_\+commonpython.\+py}}
+\item {\bfseries{📝 Check Logs}}\+: Look for detailed error information in log files
+\item {\bfseries{🔍 Review Examples}}\+: Study the examples in the {\ttfamily examples/} directory
+\item {\bfseries{🐛 Report Issues}}\+: Create an issue with detailed information and logs
+\end{DoxyEnumerate}\hypertarget{md__r_e_a_d_m_e_autotoc_md363}{}\doxysection{\texorpdfstring{📚 Additional Resources}{📚 Additional Resources}}\label{md__r_e_a_d_m_e_autotoc_md363}
+
+\begin{DoxyItemize}
+\item {\bfseries{\doxysectlink{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e}{Development Guide}{0}}}\+: Comprehensive guide for developers
+\item {\bfseries{\href{examples/}{\texttt{Examples}}}}\+: Working examples of components
+\item {\bfseries{\href{examples/}{\texttt{Templates}}}}\+: Component templates for quick start
+\item {\bfseries{\href{scripts/test_commonpython.py}{\texttt{Test Suite}}}}\+: Comprehensive test framework
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md364}{}\doxysection{\texorpdfstring{Support}{Support}}\label{md__r_e_a_d_m_e_autotoc_md364}
+For issues and questions\+:
+
+
+\begin{DoxyEnumerate}
+\item Check the documentation and troubleshooting section above
+\item Run the test suite to verify framework functionality
+\item Review the examples and templates
+\item Create an issue with detailed information and error logs 
+\end{DoxyEnumerate}

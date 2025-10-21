@@ -1,0 +1,312 @@
+\doxysection{commonpython.\+messaging.\+mq\+\_\+manager.\+MQManager Class Reference}
+\hypertarget{classcommonpython_1_1messaging_1_1mq__manager_1_1_m_q_manager}{}\label{classcommonpython_1_1messaging_1_1mq__manager_1_1_m_q_manager}\index{commonpython.messaging.mq\_manager.MQManager@{commonpython.messaging.mq\_manager.MQManager}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcommonpython_1_1messaging_1_1mq__manager_1_1_m_q_manager_ad4fbd6f5d6334839d0de37c87a105223}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, Dict\mbox{[}str, Any\mbox{]} \mbox{\hyperlink{classcommonpython_1_1messaging_1_1mq__manager_1_1_m_q_manager_a88aee3a92f16c1d0a6c0d69e54731618}{config}}, \mbox{\hyperlink{classcommonpython_1_1messaging_1_1mq__manager_1_1_m_q_manager_a372e5111930011d380f44be0929d7c08}{logger}}=None)
+\item 
+bool \mbox{\hyperlink{classcommonpython_1_1messaging_1_1mq__manager_1_1_m_q_manager_a89724f927b5cb779158242d29f9a325b}{connect}} (self)
+\item 
+None \mbox{\hyperlink{classcommonpython_1_1messaging_1_1mq__manager_1_1_m_q_manager_a9eeb3e41e8d450c3ce945ce08fad50aa}{disconnect}} (self)
+\item 
+bool \mbox{\hyperlink{classcommonpython_1_1messaging_1_1mq__manager_1_1_m_q_manager_a65be5e8c672869dfb55aee2f08e56395}{is\+\_\+connected}} (self)
+\item 
+bool \mbox{\hyperlink{classcommonpython_1_1messaging_1_1mq__manager_1_1_m_q_manager_a7ebf18c3bf61946366a302d19508710d}{put\+\_\+message}} (self, str queue\+\_\+name, Union\mbox{[}str, bytes, Dict\mbox{]} message, Optional\mbox{[}Dict\mbox{[}str, Any\mbox{]}\mbox{]} message\+\_\+properties=None)
+\item 
+Optional\mbox{[}Dict\mbox{[}str, Any\mbox{]}\mbox{]} \mbox{\hyperlink{classcommonpython_1_1messaging_1_1mq__manager_1_1_m_q_manager_aa20f4e808bd10e87110c2815c7172988}{get\+\_\+message}} (self, str queue\+\_\+name, Optional\mbox{[}int\mbox{]} timeout=None)
+\item 
+Optional\mbox{[}Dict\mbox{[}str, Any\mbox{]}\mbox{]} \mbox{\hyperlink{classcommonpython_1_1messaging_1_1mq__manager_1_1_m_q_manager_a89310d92ccfe7cd1ddbbf39d6467ecfa}{browse\+\_\+message}} (self, str queue\+\_\+name, Optional\mbox{[}bytes\mbox{]} message\+\_\+id=None)
+\item 
+int \mbox{\hyperlink{classcommonpython_1_1messaging_1_1mq__manager_1_1_m_q_manager_a36139cfca3b302ab3c930087a4b17d65}{get\+\_\+queue\+\_\+depth}} (self, str queue\+\_\+name)
+\item 
+int \mbox{\hyperlink{classcommonpython_1_1messaging_1_1mq__manager_1_1_m_q_manager_ade7c79ee9d81b4d72cddf7403adf1ffc}{purge\+\_\+queue}} (self, str queue\+\_\+name)
+\item 
+bool \mbox{\hyperlink{classcommonpython_1_1messaging_1_1mq__manager_1_1_m_q_manager_a1f21d3750f6e188f0746fd1f6cbcdb11}{test\+\_\+connection}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcommonpython_1_1messaging_1_1mq__manager_1_1_m_q_manager_a88aee3a92f16c1d0a6c0d69e54731618}{config}} = config
+\item 
+\mbox{\hyperlink{classcommonpython_1_1messaging_1_1mq__manager_1_1_m_q_manager_a372e5111930011d380f44be0929d7c08}{logger}} = logger
+\item 
+Dict\mbox{[}str, Any\mbox{]} \mbox{\hyperlink{classcommonpython_1_1messaging_1_1mq__manager_1_1_m_q_manager_a3b1c5721ebc6ed31a2c90a19de3867f6}{connection\+\_\+info}} = self.\+\_\+build\+\_\+connection\+\_\+info()
+\item 
+bool \mbox{\hyperlink{classcommonpython_1_1messaging_1_1mq__manager_1_1_m_q_manager_a23d938f427d76f61f9c4c68f2f8e4be7}{connected}} = False
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Dict\mbox{[}str, Any\mbox{]} \mbox{\hyperlink{classcommonpython_1_1messaging_1_1mq__manager_1_1_m_q_manager_a2c9c1c676e5f6bf31fecb5bfad59efec}{\+\_\+build\+\_\+connection\+\_\+info}} (self)
+\item 
+Dict\mbox{[}str, Any\mbox{]} \mbox{\hyperlink{classcommonpython_1_1messaging_1_1mq__manager_1_1_m_q_manager_a36c0f541209d8e3aecc1f6ae7f9b56cb}{\+\_\+execute\+\_\+mq\+\_\+command}} (self, str command, Optional\mbox{[}List\mbox{[}str\mbox{]}\mbox{]} params=None)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}IBM MQ manager for the CommonPython framework using CLI interface.
+
+Provides connection management, message operations, and queue handling
+using IBM MQ command-line tools instead of SDK modules.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{mq__manager_8py_source_l00021}{21}} of file \mbox{\hyperlink{mq__manager_8py_source}{mq\+\_\+manager.\+py}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classcommonpython_1_1messaging_1_1mq__manager_1_1_m_q_manager_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcommonpython_1_1messaging_1_1mq__manager_1_1_m_q_manager_ad4fbd6f5d6334839d0de37c87a105223}\index{commonpython.messaging.mq\_manager.MQManager@{commonpython.messaging.mq\_manager.MQManager}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!commonpython.messaging.mq\_manager.MQManager@{commonpython.messaging.mq\_manager.MQManager}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1messaging_1_1mq__manager_1_1_m_q_manager_ad4fbd6f5d6334839d0de37c87a105223} 
+commonpython.\+messaging.\+mq\+\_\+manager.\+MQManager.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Dict\mbox{[}str, Any\mbox{]}}]{config}{, }\item[{}]{logger}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Initialize the MQ manager.
+
+@brief Initialize the MQ manager with configuration and logger.
+@param config MQ configuration dictionary
+@param logger Logger manager instance (optional)
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{mq__manager_8py_source_l00029}{29}} of file \mbox{\hyperlink{mq__manager_8py_source}{mq\+\_\+manager.\+py}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcommonpython_1_1messaging_1_1mq__manager_1_1_m_q_manager_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcommonpython_1_1messaging_1_1mq__manager_1_1_m_q_manager_a2c9c1c676e5f6bf31fecb5bfad59efec}\index{commonpython.messaging.mq\_manager.MQManager@{commonpython.messaging.mq\_manager.MQManager}!\_build\_connection\_info@{\_build\_connection\_info}}
+\index{\_build\_connection\_info@{\_build\_connection\_info}!commonpython.messaging.mq\_manager.MQManager@{commonpython.messaging.mq\_manager.MQManager}}
+\doxysubsubsection{\texorpdfstring{\_build\_connection\_info()}{\_build\_connection\_info()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1messaging_1_1mq__manager_1_1_m_q_manager_a2c9c1c676e5f6bf31fecb5bfad59efec} 
+ Dict\mbox{[}str, Any\mbox{]} commonpython.\+messaging.\+mq\+\_\+manager.\+MQManager.\+\_\+build\+\_\+connection\+\_\+info (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Build MQ connection information from configuration.
+
+@brief Create connection information for MQ CLI commands.
+@return Dictionary containing connection parameters
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{mq__manager_8py_source_l00042}{42}} of file \mbox{\hyperlink{mq__manager_8py_source}{mq\+\_\+manager.\+py}}.
+
+\Hypertarget{classcommonpython_1_1messaging_1_1mq__manager_1_1_m_q_manager_a36c0f541209d8e3aecc1f6ae7f9b56cb}\index{commonpython.messaging.mq\_manager.MQManager@{commonpython.messaging.mq\_manager.MQManager}!\_execute\_mq\_command@{\_execute\_mq\_command}}
+\index{\_execute\_mq\_command@{\_execute\_mq\_command}!commonpython.messaging.mq\_manager.MQManager@{commonpython.messaging.mq\_manager.MQManager}}
+\doxysubsubsection{\texorpdfstring{\_execute\_mq\_command()}{\_execute\_mq\_command()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1messaging_1_1mq__manager_1_1_m_q_manager_a36c0f541209d8e3aecc1f6ae7f9b56cb} 
+ Dict\mbox{[}str, Any\mbox{]} commonpython.\+messaging.\+mq\+\_\+manager.\+MQManager.\+\_\+execute\+\_\+mq\+\_\+command (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{command}{, }\item[{Optional\mbox{[}List\mbox{[}str\mbox{]}\mbox{]} }]{params}{ = {\ttfamily None}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Execute an MQ CLI command.
+
+@brief Execute MQ CLI command and return results.
+@param command MQ CLI command to execute
+@param params Optional parameters for the command
+@return Dictionary containing command results and metadata
+@throws Exception If command execution fails
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{mq__manager_8py_source_l00059}{59}} of file \mbox{\hyperlink{mq__manager_8py_source}{mq\+\_\+manager.\+py}}.
+
+\Hypertarget{classcommonpython_1_1messaging_1_1mq__manager_1_1_m_q_manager_a89310d92ccfe7cd1ddbbf39d6467ecfa}\index{commonpython.messaging.mq\_manager.MQManager@{commonpython.messaging.mq\_manager.MQManager}!browse\_message@{browse\_message}}
+\index{browse\_message@{browse\_message}!commonpython.messaging.mq\_manager.MQManager@{commonpython.messaging.mq\_manager.MQManager}}
+\doxysubsubsection{\texorpdfstring{browse\_message()}{browse\_message()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1messaging_1_1mq__manager_1_1_m_q_manager_a89310d92ccfe7cd1ddbbf39d6467ecfa} 
+ Optional\mbox{[}Dict\mbox{[}str, Any\mbox{]}\mbox{]} commonpython.\+messaging.\+mq\+\_\+manager.\+MQManager.\+browse\+\_\+message (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{queue\+\_\+name}{, }\item[{Optional\mbox{[}bytes\mbox{]} }]{message\+\_\+id}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Browse a message from a queue without removing it.
+
+@brief Browse message from MQ queue using CLI tools (simplified implementation).
+@param queue_name Name of the queue
+@param message_id Specific message ID to browse (not supported in CLI mode)
+@return Dictionary containing message data and properties, or None if no message
+@throws Exception If message browsing fails
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{mq__manager_8py_source_l00297}{297}} of file \mbox{\hyperlink{mq__manager_8py_source}{mq\+\_\+manager.\+py}}.
+
+\Hypertarget{classcommonpython_1_1messaging_1_1mq__manager_1_1_m_q_manager_a89724f927b5cb779158242d29f9a325b}\index{commonpython.messaging.mq\_manager.MQManager@{commonpython.messaging.mq\_manager.MQManager}!connect@{connect}}
+\index{connect@{connect}!commonpython.messaging.mq\_manager.MQManager@{commonpython.messaging.mq\_manager.MQManager}}
+\doxysubsubsection{\texorpdfstring{connect()}{connect()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1messaging_1_1mq__manager_1_1_m_q_manager_a89724f927b5cb779158242d29f9a325b} 
+ bool commonpython.\+messaging.\+mq\+\_\+manager.\+MQManager.\+connect (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Establish connection to MQ queue manager.
+
+@brief Test connection to MQ queue manager using CLI.
+@return True if connection successful, False otherwise
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{mq__manager_8py_source_l00099}{99}} of file \mbox{\hyperlink{mq__manager_8py_source}{mq\+\_\+manager.\+py}}.
+
+\Hypertarget{classcommonpython_1_1messaging_1_1mq__manager_1_1_m_q_manager_a9eeb3e41e8d450c3ce945ce08fad50aa}\index{commonpython.messaging.mq\_manager.MQManager@{commonpython.messaging.mq\_manager.MQManager}!disconnect@{disconnect}}
+\index{disconnect@{disconnect}!commonpython.messaging.mq\_manager.MQManager@{commonpython.messaging.mq\_manager.MQManager}}
+\doxysubsubsection{\texorpdfstring{disconnect()}{disconnect()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1messaging_1_1mq__manager_1_1_m_q_manager_a9eeb3e41e8d450c3ce945ce08fad50aa} 
+ None commonpython.\+messaging.\+mq\+\_\+manager.\+MQManager.\+disconnect (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Close the MQ connection.
+
+@brief Disconnect from MQ queue manager using CLI.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{mq__manager_8py_source_l00125}{125}} of file \mbox{\hyperlink{mq__manager_8py_source}{mq\+\_\+manager.\+py}}.
+
+\Hypertarget{classcommonpython_1_1messaging_1_1mq__manager_1_1_m_q_manager_aa20f4e808bd10e87110c2815c7172988}\index{commonpython.messaging.mq\_manager.MQManager@{commonpython.messaging.mq\_manager.MQManager}!get\_message@{get\_message}}
+\index{get\_message@{get\_message}!commonpython.messaging.mq\_manager.MQManager@{commonpython.messaging.mq\_manager.MQManager}}
+\doxysubsubsection{\texorpdfstring{get\_message()}{get\_message()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1messaging_1_1mq__manager_1_1_m_q_manager_aa20f4e808bd10e87110c2815c7172988} 
+ Optional\mbox{[}Dict\mbox{[}str, Any\mbox{]}\mbox{]} commonpython.\+messaging.\+mq\+\_\+manager.\+MQManager.\+get\+\_\+message (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{queue\+\_\+name}{, }\item[{Optional\mbox{[}int\mbox{]} }]{timeout}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get a message from a queue.
+
+@brief Receive message from MQ queue using CLI tools.
+@param queue_name Name of the queue
+@param timeout Timeout in seconds (None for no timeout)
+@return Dictionary containing message data and properties, or None if no message
+@throws Exception If message retrieval fails
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{mq__manager_8py_source_l00218}{218}} of file \mbox{\hyperlink{mq__manager_8py_source}{mq\+\_\+manager.\+py}}.
+
+\Hypertarget{classcommonpython_1_1messaging_1_1mq__manager_1_1_m_q_manager_a36139cfca3b302ab3c930087a4b17d65}\index{commonpython.messaging.mq\_manager.MQManager@{commonpython.messaging.mq\_manager.MQManager}!get\_queue\_depth@{get\_queue\_depth}}
+\index{get\_queue\_depth@{get\_queue\_depth}!commonpython.messaging.mq\_manager.MQManager@{commonpython.messaging.mq\_manager.MQManager}}
+\doxysubsubsection{\texorpdfstring{get\_queue\_depth()}{get\_queue\_depth()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1messaging_1_1mq__manager_1_1_m_q_manager_a36139cfca3b302ab3c930087a4b17d65} 
+ int commonpython.\+messaging.\+mq\+\_\+manager.\+MQManager.\+get\+\_\+queue\+\_\+depth (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{queue\+\_\+name}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get the depth (number of messages) in a queue.
+
+@brief Get queue depth using MQ CLI commands.
+@param queue_name Name of the queue
+@return Number of messages in the queue
+@throws Exception If queue depth retrieval fails
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{mq__manager_8py_source_l00346}{346}} of file \mbox{\hyperlink{mq__manager_8py_source}{mq\+\_\+manager.\+py}}.
+
+\Hypertarget{classcommonpython_1_1messaging_1_1mq__manager_1_1_m_q_manager_a65be5e8c672869dfb55aee2f08e56395}\index{commonpython.messaging.mq\_manager.MQManager@{commonpython.messaging.mq\_manager.MQManager}!is\_connected@{is\_connected}}
+\index{is\_connected@{is\_connected}!commonpython.messaging.mq\_manager.MQManager@{commonpython.messaging.mq\_manager.MQManager}}
+\doxysubsubsection{\texorpdfstring{is\_connected()}{is\_connected()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1messaging_1_1mq__manager_1_1_m_q_manager_a65be5e8c672869dfb55aee2f08e56395} 
+ bool commonpython.\+messaging.\+mq\+\_\+manager.\+MQManager.\+is\+\_\+connected (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Check if MQ connection is active.
+
+@brief Check if MQ connection is established.
+@return True if connected, False otherwise
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{mq__manager_8py_source_l00140}{140}} of file \mbox{\hyperlink{mq__manager_8py_source}{mq\+\_\+manager.\+py}}.
+
+\Hypertarget{classcommonpython_1_1messaging_1_1mq__manager_1_1_m_q_manager_ade7c79ee9d81b4d72cddf7403adf1ffc}\index{commonpython.messaging.mq\_manager.MQManager@{commonpython.messaging.mq\_manager.MQManager}!purge\_queue@{purge\_queue}}
+\index{purge\_queue@{purge\_queue}!commonpython.messaging.mq\_manager.MQManager@{commonpython.messaging.mq\_manager.MQManager}}
+\doxysubsubsection{\texorpdfstring{purge\_queue()}{purge\_queue()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1messaging_1_1mq__manager_1_1_m_q_manager_ade7c79ee9d81b4d72cddf7403adf1ffc} 
+ int commonpython.\+messaging.\+mq\+\_\+manager.\+MQManager.\+purge\+\_\+queue (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{queue\+\_\+name}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Purge all messages from a queue.
+
+@brief Purge queue using MQ CLI commands.
+@param queue_name Name of the queue
+@return Number of messages purged
+@throws Exception If queue purging fails
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{mq__manager_8py_source_l00386}{386}} of file \mbox{\hyperlink{mq__manager_8py_source}{mq\+\_\+manager.\+py}}.
+
+\Hypertarget{classcommonpython_1_1messaging_1_1mq__manager_1_1_m_q_manager_a7ebf18c3bf61946366a302d19508710d}\index{commonpython.messaging.mq\_manager.MQManager@{commonpython.messaging.mq\_manager.MQManager}!put\_message@{put\_message}}
+\index{put\_message@{put\_message}!commonpython.messaging.mq\_manager.MQManager@{commonpython.messaging.mq\_manager.MQManager}}
+\doxysubsubsection{\texorpdfstring{put\_message()}{put\_message()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1messaging_1_1mq__manager_1_1_m_q_manager_a7ebf18c3bf61946366a302d19508710d} 
+ bool commonpython.\+messaging.\+mq\+\_\+manager.\+MQManager.\+put\+\_\+message (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{queue\+\_\+name}{, }\item[{Union\mbox{[}str, bytes, Dict\mbox{]}}]{message}{, }\item[{Optional\mbox{[}Dict\mbox{[}str, Any\mbox{]}\mbox{]} }]{message\+\_\+properties}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Put a message to a queue.
+
+@brief Send message to MQ queue using CLI tools.
+@param queue_name Name of the queue
+@param message Message content (string, bytes, or dictionary)
+@param message_properties Optional message properties
+@return True if message sent successfully, False otherwise
+@throws Exception If message sending fails
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{mq__manager_8py_source_l00149}{149}} of file \mbox{\hyperlink{mq__manager_8py_source}{mq\+\_\+manager.\+py}}.
+
+\Hypertarget{classcommonpython_1_1messaging_1_1mq__manager_1_1_m_q_manager_a1f21d3750f6e188f0746fd1f6cbcdb11}\index{commonpython.messaging.mq\_manager.MQManager@{commonpython.messaging.mq\_manager.MQManager}!test\_connection@{test\_connection}}
+\index{test\_connection@{test\_connection}!commonpython.messaging.mq\_manager.MQManager@{commonpython.messaging.mq\_manager.MQManager}}
+\doxysubsubsection{\texorpdfstring{test\_connection()}{test\_connection()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1messaging_1_1mq__manager_1_1_m_q_manager_a1f21d3750f6e188f0746fd1f6cbcdb11} 
+ bool commonpython.\+messaging.\+mq\+\_\+manager.\+MQManager.\+test\+\_\+connection (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test MQ connection.
+
+@brief Test MQ connection using CLI.
+@return True if connection is working, False otherwise
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{mq__manager_8py_source_l00432}{432}} of file \mbox{\hyperlink{mq__manager_8py_source}{mq\+\_\+manager.\+py}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classcommonpython_1_1messaging_1_1mq__manager_1_1_m_q_manager_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcommonpython_1_1messaging_1_1mq__manager_1_1_m_q_manager_a88aee3a92f16c1d0a6c0d69e54731618}\index{commonpython.messaging.mq\_manager.MQManager@{commonpython.messaging.mq\_manager.MQManager}!config@{config}}
+\index{config@{config}!commonpython.messaging.mq\_manager.MQManager@{commonpython.messaging.mq\_manager.MQManager}}
+\doxysubsubsection{\texorpdfstring{config}{config}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1messaging_1_1mq__manager_1_1_m_q_manager_a88aee3a92f16c1d0a6c0d69e54731618} 
+commonpython.\+messaging.\+mq\+\_\+manager.\+MQManager.\+config = config}
+
+
+
+Definition at line \mbox{\hyperlink{mq__manager_8py_source_l00037}{37}} of file \mbox{\hyperlink{mq__manager_8py_source}{mq\+\_\+manager.\+py}}.
+
+\Hypertarget{classcommonpython_1_1messaging_1_1mq__manager_1_1_m_q_manager_a23d938f427d76f61f9c4c68f2f8e4be7}\index{commonpython.messaging.mq\_manager.MQManager@{commonpython.messaging.mq\_manager.MQManager}!connected@{connected}}
+\index{connected@{connected}!commonpython.messaging.mq\_manager.MQManager@{commonpython.messaging.mq\_manager.MQManager}}
+\doxysubsubsection{\texorpdfstring{connected}{connected}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1messaging_1_1mq__manager_1_1_m_q_manager_a23d938f427d76f61f9c4c68f2f8e4be7} 
+bool commonpython.\+messaging.\+mq\+\_\+manager.\+MQManager.\+connected = False}
+
+
+
+Definition at line \mbox{\hyperlink{mq__manager_8py_source_l00040}{40}} of file \mbox{\hyperlink{mq__manager_8py_source}{mq\+\_\+manager.\+py}}.
+
+\Hypertarget{classcommonpython_1_1messaging_1_1mq__manager_1_1_m_q_manager_a3b1c5721ebc6ed31a2c90a19de3867f6}\index{commonpython.messaging.mq\_manager.MQManager@{commonpython.messaging.mq\_manager.MQManager}!connection\_info@{connection\_info}}
+\index{connection\_info@{connection\_info}!commonpython.messaging.mq\_manager.MQManager@{commonpython.messaging.mq\_manager.MQManager}}
+\doxysubsubsection{\texorpdfstring{connection\_info}{connection\_info}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1messaging_1_1mq__manager_1_1_m_q_manager_a3b1c5721ebc6ed31a2c90a19de3867f6} 
+Dict\mbox{[}str, Any\mbox{]} commonpython.\+messaging.\+mq\+\_\+manager.\+MQManager.\+connection\+\_\+info = self.\+\_\+build\+\_\+connection\+\_\+info()}
+
+
+
+Definition at line \mbox{\hyperlink{mq__manager_8py_source_l00039}{39}} of file \mbox{\hyperlink{mq__manager_8py_source}{mq\+\_\+manager.\+py}}.
+
+\Hypertarget{classcommonpython_1_1messaging_1_1mq__manager_1_1_m_q_manager_a372e5111930011d380f44be0929d7c08}\index{commonpython.messaging.mq\_manager.MQManager@{commonpython.messaging.mq\_manager.MQManager}!logger@{logger}}
+\index{logger@{logger}!commonpython.messaging.mq\_manager.MQManager@{commonpython.messaging.mq\_manager.MQManager}}
+\doxysubsubsection{\texorpdfstring{logger}{logger}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1messaging_1_1mq__manager_1_1_m_q_manager_a372e5111930011d380f44be0929d7c08} 
+commonpython.\+messaging.\+mq\+\_\+manager.\+MQManager.\+logger = logger}
+
+
+
+Definition at line \mbox{\hyperlink{mq__manager_8py_source_l00038}{38}} of file \mbox{\hyperlink{mq__manager_8py_source}{mq\+\_\+manager.\+py}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+commonpython/messaging/\mbox{\hyperlink{mq__manager_8py}{mq\+\_\+manager.\+py}}\end{DoxyCompactItemize}

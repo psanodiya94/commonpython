@@ -1,0 +1,395 @@
+\chapter{Installation Guide }
+\hypertarget{md__i_n_s_t_a_l_l_a_t_i_o_n}{}\label{md__i_n_s_t_a_l_l_a_t_i_o_n}\index{Installation Guide@{Installation Guide}}
+\label{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md262}%
+\Hypertarget{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md262}%
+
+
+This guide provides detailed installation instructions for the Common\+Python framework, clearly indicating which dependencies are mandatory versus optional.\hypertarget{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md263}{}\doxysection{\texorpdfstring{📋 Dependency Overview}{📋 Dependency Overview}}\label{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md263}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Category  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Status  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Purpose  }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Category  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Status  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Purpose  }\\\cline{1-3}
+\endhead
+{\bfseries{Core Framework}}  &✅ Mandatory  &Basic framework functionality  \\\cline{1-3}
+{\bfseries{CLI Tools}}  &⚙️ Optional  &For CLI-\/based database/messaging  \\\cline{1-3}
+{\bfseries{Library Packages}}  &🚀 Optional  &For high-\/performance operations  \\\cline{1-3}
+{\bfseries{Development Tools}}  &🧪 Optional  &For testing and development  \\\cline{1-3}
+\end{longtabu}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md265}{}\doxysection{\texorpdfstring{✅ Step 1\+: Mandatory Installation (Required)}{✅ Step 1\+: Mandatory Installation (Required)}}\label{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md265}
+These dependencies are {\bfseries{always required}} for the framework to function.\hypertarget{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md266}{}\doxysubsection{\texorpdfstring{Install Framework}{Install Framework}}\label{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md266}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Clone\ the\ repository}
+\DoxyCodeLine{git\ clone\ https://github.com/your-\/org/commonpython.git}
+\DoxyCodeLine{cd\ commonpython}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Install\ with\ mandatory\ dependencies\ only}
+\DoxyCodeLine{pip\ install\ -\/e\ .}
+
+\end{DoxyCode}
+
+
+This installs\+:
+\begin{DoxyItemize}
+\item ✅ Python 3.\+8+ (runtime)
+\item ✅ Py\+YAML (configuration parsing)
+\end{DoxyItemize}
+
+{\bfseries{Minimum viable installation}} -\/ The framework will work but you\textquotesingle{}ll need either CLI tools or library packages for actual database/messaging operations.
+
+\DoxyHorRuler{0}
+\hypertarget{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md268}{}\doxysection{\texorpdfstring{⚙️ Step 2\+: CLI Implementation (Optional)}{⚙️ Step 2\+: CLI Implementation (Optional)}}\label{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md268}
+Install these if you want to use {\bfseries{CLI-\/based implementations}} (default).\hypertarget{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md269}{}\doxysubsection{\texorpdfstring{For Database Operations}{For Database Operations}}\label{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md269}
+{\bfseries{Install IBM DB2 CLI Tools\+:}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ On\ Linux\ (Ubuntu/Debian)}
+\DoxyCodeLine{wget\ https://public.dhe.ibm.com/ibmdl/export/pub/software/data/db2/drivers/odbc\_cli/linuxx64\_odbc\_cli.tar.gz}
+\DoxyCodeLine{tar\ -\/xvf\ linuxx64\_odbc\_cli.tar.gz}
+\DoxyCodeLine{cd\ odbc\_cli}
+\DoxyCodeLine{sudo\ ./db2\_install}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Add\ to\ PATH}
+\DoxyCodeLine{export\ PATH=\$PATH:/opt/ibm/db2/V11.5/bin}
+
+\end{DoxyCode}
+
+
+{\bfseries{Verify installation\+:}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{db2\ -\/v}
+\DoxyCodeLine{\#\ Should\ display\ DB2\ CLI\ version}
+
+\end{DoxyCode}
+\hypertarget{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md270}{}\doxysubsection{\texorpdfstring{For Messaging Operations}{For Messaging Operations}}\label{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md270}
+{\bfseries{Install IBM MQ CLI Tools\+:}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ On\ Linux\ (Ubuntu/Debian)}
+\DoxyCodeLine{wget\ https://public.dhe.ibm.com/ibmdl/export/pub/software/websphere/messaging/mqdev/redist/9.3.0.0-\/IBM-\/MQC-\/Redist-\/LinuxX64.tar.gz}
+\DoxyCodeLine{tar\ -\/xvf\ 9.3.0.0-\/IBM-\/MQC-\/Redist-\/LinuxX64.tar.gz}
+\DoxyCodeLine{cd\ MQServer}
+\DoxyCodeLine{sudo\ ./mqlicense.sh\ -\/accept}
+\DoxyCodeLine{sudo\ rpm\ -\/ivh\ MQSeriesRuntime-\/*.rpm\ MQSeriesClient-\/*.rpm}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Add\ to\ PATH}
+\DoxyCodeLine{export\ PATH=\$PATH:/opt/mqm/bin}
+
+\end{DoxyCode}
+
+
+{\bfseries{Verify installation\+:}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{dspmqver}
+\DoxyCodeLine{\#\ Should\ display\ IBM\ MQ\ version}
+
+\end{DoxyCode}
+
+
+\begin{quote}
+💡 {\bfseries{Note}}\+: Only install CLI tools if you plan to use CLI implementation. You can skip this if using library implementations. \end{quote}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md272}{}\doxysection{\texorpdfstring{🚀 Step 3\+: Library Implementation (Optional -\/ Recommended)}{🚀 Step 3\+: Library Implementation (Optional -\/ Recommended)}}\label{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md272}
+Install these for {\bfseries{10-\/50x better performance}} with native Python libraries.\hypertarget{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md273}{}\doxysubsection{\texorpdfstring{Option A\+: Install All Library Dependencies}{Option A\+: Install All Library Dependencies}}\label{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md273}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Install\ all\ library\ adapters\ (recommended)}
+\DoxyCodeLine{pip\ install\ -\/e\ "{}.[library]"{}}
+
+\end{DoxyCode}
+
+
+This installs\+:
+\begin{DoxyItemize}
+\item 🚀 ibm\+\_\+db \texorpdfstring{$>$}{>}= 3.\+0.\+0 (native DB2 operations)
+\item 🚀 pymqi \texorpdfstring{$>$}{>}= 1.\+12.\+0 (native MQ operations)
+\end{DoxyItemize}\hypertarget{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md274}{}\doxysubsection{\texorpdfstring{Option B\+: Install Selectively}{Option B\+: Install Selectively}}\label{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md274}
+{\bfseries{Database library only\+:}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{pip\ install\ -\/e\ "{}.[db-\/library]"{}}
+\DoxyCodeLine{\#\ Installs:\ ibm\_db\ >=\ 3.0.0}
+
+\end{DoxyCode}
+
+
+{\bfseries{Messaging library only\+:}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{pip\ install\ -\/e\ "{}.[mq-\/library]"{}}
+\DoxyCodeLine{\#\ Installs:\ pymqi\ >=\ 1.12.0}
+
+\end{DoxyCode}
+
+
+{\bfseries{Verify installation\+:}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{python\ -\/c\ "{}import\ ibm\_db;\ print('ibm\_db\ installed')"{}}
+\DoxyCodeLine{python\ -\/c\ "{}import\ pymqi;\ print('pymqi\ installed')"{}}
+
+\end{DoxyCode}
+
+
+\begin{quote}
+💡 {\bfseries{Note}}\+: Library implementations are {\bfseries{optional}}. The framework auto-\/falls back to CLI if not installed. \end{quote}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md276}{}\doxysection{\texorpdfstring{🧪 Step 4\+: Development Dependencies (Optional)}{🧪 Step 4\+: Development Dependencies (Optional)}}\label{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md276}
+Install these if you\textquotesingle{}re {\bfseries{developing or testing}} the framework.\hypertarget{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md277}{}\doxysubsection{\texorpdfstring{For Testing}{For Testing}}\label{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md277}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Install\ test\ dependencies}
+\DoxyCodeLine{pip\ install\ -\/e\ "{}.[test]"{}}
+
+\end{DoxyCode}
+
+
+This installs\+:
+\begin{DoxyItemize}
+\item 🧪 coverage \texorpdfstring{$>$}{>}= 7.\+0.\+0 (code coverage analysis)
+\end{DoxyItemize}\hypertarget{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md278}{}\doxysubsection{\texorpdfstring{For Development}{For Development}}\label{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md278}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Install\ development\ dependencies}
+\DoxyCodeLine{pip\ install\ -\/e\ "{}.[dev]"{}}
+
+\end{DoxyCode}
+
+
+This installs\+:
+\begin{DoxyItemize}
+\item 🧪 coverage \texorpdfstring{$>$}{>}= 7.\+0.\+0 (code coverage)
+\end{DoxyItemize}\hypertarget{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md279}{}\doxysubsection{\texorpdfstring{Install Everything}{Install Everything}}\label{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md279}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Install\ all\ dependencies\ (mandatory\ +\ all\ optional)}
+\DoxyCodeLine{pip\ install\ -\/e\ "{}.[all]"{}}
+
+\end{DoxyCode}
+
+
+This installs\+:
+\begin{DoxyItemize}
+\item ✅ Py\+YAML (mandatory)
+\item 🚀 ibm\+\_\+db \texorpdfstring{$>$}{>}= 3.\+0.\+0 (optional library)
+\item 🚀 pymqi \texorpdfstring{$>$}{>}= 1.\+12.\+0 (optional library)
+\item 🧪 coverage \texorpdfstring{$>$}{>}= 7.\+0.\+0 (optional testing)
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md281}{}\doxysection{\texorpdfstring{📊 Installation Scenarios}{📊 Installation Scenarios}}\label{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md281}
+\hypertarget{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md282}{}\doxysubsection{\texorpdfstring{Scenario 1\+: Minimal Installation (CLI-\/based)}{Scenario 1\+: Minimal Installation (CLI-\/based)}}\label{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md282}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Install\ framework\ only}
+\DoxyCodeLine{pip\ install\ -\/e\ .}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Install\ IBM\ CLI\ tools\ separately\ (see\ Step\ 2)}
+\DoxyCodeLine{\#\ Configure\ for\ CLI\ implementation\ (default)}
+
+\end{DoxyCode}
+
+
+{\bfseries{Use case}}\+: Quick setup, existing CLI tools infrastructure\hypertarget{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md283}{}\doxysubsection{\texorpdfstring{Scenario 2\+: High-\/\+Performance Setup (Library-\/based)}{Scenario 2\+: High-\/\+Performance Setup (Library-\/based)}}\label{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md283}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Install\ framework\ with\ library\ adapters}
+\DoxyCodeLine{pip\ install\ -\/e\ "{}.[library]"{}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Configure\ for\ library\ implementation}
+
+\end{DoxyCode}
+
+
+{\bfseries{Use case}}\+: Production deployments, performance-\/critical applications\hypertarget{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md284}{}\doxysubsection{\texorpdfstring{Scenario 3\+: Development Setup (Full)}{Scenario 3\+: Development Setup (Full)}}\label{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md284}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Install\ everything}
+\DoxyCodeLine{pip\ install\ -\/e\ "{}.[all]"{}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Run\ tests}
+\DoxyCodeLine{python\ scripts/test\_commonpython.py\ -\/-\/coverage}
+
+\end{DoxyCode}
+
+
+{\bfseries{Use case}}\+: Framework development, testing both implementations\hypertarget{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md285}{}\doxysubsection{\texorpdfstring{Scenario 4\+: Database-\/\+Only Setup}{Scenario 4\+: Database-\/\+Only Setup}}\label{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md285}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Install\ framework\ with\ DB\ library}
+\DoxyCodeLine{pip\ install\ -\/e\ "{}.[db-\/library]"{}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Configure\ database\ for\ library\ implementation}
+\DoxyCodeLine{\#\ Messaging\ will\ use\ CLI\ (if\ tools\ installed)\ or\ error\ if\ not}
+
+\end{DoxyCode}
+
+
+{\bfseries{Use case}}\+: Database-\/only applications
+
+\DoxyHorRuler{0}
+\hypertarget{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md287}{}\doxysection{\texorpdfstring{✅ Verification}{✅ Verification}}\label{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md287}
+\hypertarget{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md288}{}\doxysubsection{\texorpdfstring{Check What\textquotesingle{}s Installed}{Check What\textquotesingle{}s Installed}}\label{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md288}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Check\ adapter\ availability}
+\DoxyCodeLine{python\ -\/c\ "{}}
+\DoxyCodeLine{from\ commonpython.factories\ import\ ManagerFactory}
+\DoxyCodeLine{available\ =\ ManagerFactory.get\_available\_implementations()}
+\DoxyCodeLine{print('Database\ -\/\ CLI:',\ available['database']['cli'])}
+\DoxyCodeLine{print('Database\ -\/\ Library:',\ available['database']['library'])}
+\DoxyCodeLine{print('Messaging\ -\/\ CLI:',\ available['messaging']['cli'])}
+\DoxyCodeLine{print('Messaging\ -\/\ Library:',\ available['messaging']['library'])}
+\DoxyCodeLine{"{}}
+
+\end{DoxyCode}
+\hypertarget{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md289}{}\doxysubsection{\texorpdfstring{Run Tests}{Run Tests}}\label{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md289}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Run\ test\ suite\ to\ verify\ installation}
+\DoxyCodeLine{python\ scripts/test\_commonpython.py}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Run\ with\ coverage\ (if\ installed)}
+\DoxyCodeLine{python\ scripts/test\_commonpython.py\ -\/-\/coverage}
+
+\end{DoxyCode}
+\hypertarget{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md290}{}\doxysubsection{\texorpdfstring{Check Specific Components}{Check Specific Components}}\label{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md290}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Test\ database\ connectivity}
+\DoxyCodeLine{python\ -\/c\ "{}}
+\DoxyCodeLine{from\ commonpython.config\ import\ ConfigManager}
+\DoxyCodeLine{from\ commonpython.factories\ import\ ManagerFactory}
+\DoxyCodeLine{}
+\DoxyCodeLine{config\ =\ ConfigManager('config/config.yaml')}
+\DoxyCodeLine{db\_config\ =\ config.get\_database\_config()}
+\DoxyCodeLine{db\_manager\ =\ ManagerFactory.create\_database\_manager(db\_config)}
+\DoxyCodeLine{print('Database\ manager\ created:',\ type(db\_manager).\_\_name\_\_)}
+\DoxyCodeLine{"{}}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md292}{}\doxysection{\texorpdfstring{🔧 Configuration}{🔧 Configuration}}\label{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md292}
+After installation, configure the framework to use your preferred implementation\+:\hypertarget{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md293}{}\doxysubsection{\texorpdfstring{For CLI Implementation (Default)}{For CLI Implementation (Default)}}\label{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md293}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ config/config.yaml}
+\DoxyCodeLine{database:}
+\DoxyCodeLine{\ \ implementation:\ cli\ \ \#\ Use\ CLI\ tools}
+\DoxyCodeLine{\ \ auto\_fallback:\ true}
+\DoxyCodeLine{\ \ \#\ ...\ connection\ details}
+\DoxyCodeLine{}
+\DoxyCodeLine{messaging:}
+\DoxyCodeLine{\ \ implementation:\ cli\ \ \#\ Use\ CLI\ tools}
+\DoxyCodeLine{\ \ auto\_fallback:\ true}
+\DoxyCodeLine{\ \ \#\ ...\ connection\ details}
+
+\end{DoxyCode}
+\hypertarget{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md294}{}\doxysubsection{\texorpdfstring{For Library Implementation}{For Library Implementation}}\label{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md294}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ config/config.yaml}
+\DoxyCodeLine{database:}
+\DoxyCodeLine{\ \ implementation:\ library\ \ \#\ Use\ ibm\_db}
+\DoxyCodeLine{\ \ auto\_fallback:\ true\ \ \ \ \ \ \#\ Fallback\ to\ CLI\ if\ library\ unavailable}
+\DoxyCodeLine{\ \ \#\ ...\ connection\ details}
+\DoxyCodeLine{}
+\DoxyCodeLine{messaging:}
+\DoxyCodeLine{\ \ implementation:\ library\ \ \#\ Use\ pymqi}
+\DoxyCodeLine{\ \ auto\_fallback:\ true\ \ \ \ \ \ \#\ Fallback\ to\ CLI\ if\ library\ unavailable}
+\DoxyCodeLine{\ \ \#\ ...\ connection\ details}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md296}{}\doxysection{\texorpdfstring{🐛 Troubleshooting}{🐛 Troubleshooting}}\label{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md296}
+\hypertarget{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md297}{}\doxysubsection{\texorpdfstring{"{}\+Module\+Not\+Found\+Error\+: No module named \textquotesingle{}ibm\+\_\+db\textquotesingle{}"{}}{"{}\+Module\+Not\+Found\+Error\+: No module named \textquotesingle{}ibm\+\_\+db\textquotesingle{}"{}}}\label{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md297}
+{\bfseries{Cause}}\+: Library implementation requested but ibm\+\_\+db not installed.
+
+{\bfseries{Solutions}}\+:
+\begin{DoxyEnumerate}
+\item Install library\+: {\ttfamily pip install ibm\+\_\+db}
+\item Enable auto-\/fallback in config\+: {\ttfamily auto\+\_\+fallback\+: true}
+\item Switch to CLI\+: {\ttfamily implementation\+: cli}
+\end{DoxyEnumerate}\hypertarget{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md298}{}\doxysubsection{\texorpdfstring{"{}\+Module\+Not\+Found\+Error\+: No module named \textquotesingle{}pymqi\textquotesingle{}"{}}{"{}\+Module\+Not\+Found\+Error\+: No module named \textquotesingle{}pymqi\textquotesingle{}"{}}}\label{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md298}
+{\bfseries{Cause}}\+: Library implementation requested but pymqi not installed.
+
+{\bfseries{Solutions}}\+:
+\begin{DoxyEnumerate}
+\item Install library\+: {\ttfamily pip install pymqi}
+\item Enable auto-\/fallback in config\+: {\ttfamily auto\+\_\+fallback\+: true}
+\item Switch to CLI\+: {\ttfamily implementation\+: cli}
+\end{DoxyEnumerate}\hypertarget{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md299}{}\doxysubsection{\texorpdfstring{"{}\+DB2 command not found"{}}{"{}\+DB2 command not found"{}}}\label{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md299}
+{\bfseries{Cause}}\+: CLI implementation requested but DB2 CLI tools not in PATH.
+
+{\bfseries{Solutions}}\+:
+\begin{DoxyEnumerate}
+\item Install DB2 CLI tools (see Step 2)
+\item Add to PATH\+: {\ttfamily export PATH=\$PATH\+:/opt/ibm/db2/\+V11.5/bin}
+\item Switch to library\+: {\ttfamily implementation\+: library} (if ibm\+\_\+db installed)
+\end{DoxyEnumerate}\hypertarget{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md300}{}\doxysubsection{\texorpdfstring{"{}\+MQ command not found"{}}{"{}\+MQ command not found"{}}}\label{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md300}
+{\bfseries{Cause}}\+: CLI implementation requested but MQ CLI tools not in PATH.
+
+{\bfseries{Solutions}}\+:
+\begin{DoxyEnumerate}
+\item Install MQ CLI tools (see Step 2)
+\item Add to PATH\+: {\ttfamily export PATH=\$PATH\+:/opt/mqm/bin}
+\item Switch to library\+: {\ttfamily implementation\+: library} (if pymqi installed)
+\end{DoxyEnumerate}
+
+\DoxyHorRuler{0}
+\hypertarget{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md302}{}\doxysection{\texorpdfstring{📚 Next Steps}{📚 Next Steps}}\label{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md302}
+After installation\+:
+
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Read the Architecture Guide}}\+: \doxysectlink{md_docs_2_a_d_a_p_t_e_r___a_r_c_h_i_t_e_c_t_u_r_e}{docs/\+ADAPTER\+\_\+\+ARCHITECTURE.md}{0}
+\item {\bfseries{Try the Quick Start}}\+: \href{examples/quick_start.py}{\texttt{examples/quick\+\_\+start.\+py}}
+\item {\bfseries{Review Configuration}}\+: \href{config/config.yaml}{\texttt{config/config.\+yaml}}
+\item {\bfseries{Run Tests}}\+: {\ttfamily python \doxylink{test__commonpython_8py}{scripts/test\+\_\+commonpython.\+py}}
+\item {\bfseries{Build Your First Component}}\+: Copy \href{examples/component_template.py}{\texttt{examples/component\+\_\+template.\+py}}
+\end{DoxyEnumerate}
+
+\DoxyHorRuler{0}
+\hypertarget{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md304}{}\doxysection{\texorpdfstring{💡 Recommendations}{💡 Recommendations}}\label{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md304}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Scenario  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Recommended Installation  }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Scenario  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Recommended Installation  }\\\cline{1-2}
+\endhead
+{\bfseries{Production}}  &{\ttfamily pip install -\/e "{}.\mbox{[}library\mbox{]}"{}} -\/ Best performance  \\\cline{1-2}
+{\bfseries{Development}}  &{\ttfamily pip install -\/e "{}.\mbox{[}all\mbox{]}"{}} -\/ Full testing capability  \\\cline{1-2}
+{\bfseries{Quick Testing}}  &{\ttfamily pip install -\/e .} -\/ Minimal setup  \\\cline{1-2}
+{\bfseries{CI/\+CD}}  &{\ttfamily pip install -\/e "{}.\mbox{[}test\mbox{]}"{}} -\/ Testing only  \\\cline{1-2}
+{\bfseries{Legacy Systems}}  &{\ttfamily pip install -\/e .} + CLI tools -\/ Existing infrastructure  \\\cline{1-2}
+\end{longtabu}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md306}{}\doxysection{\texorpdfstring{📞 Support}{📞 Support}}\label{md__i_n_s_t_a_l_l_a_t_i_o_n_autotoc_md306}
+For installation issues\+:
+\begin{DoxyEnumerate}
+\item Check the Troubleshooting section
+\item Review test output\+: {\ttfamily python \doxylink{test__commonpython_8py}{scripts/test\+\_\+commonpython.\+py}}
+\item Check adapter availability (see Verification)
+\item Consult \doxysectlink{md_docs_2_a_d_a_p_t_e_r___a_r_c_h_i_t_e_c_t_u_r_e}{ADAPTER\+\_\+\+ARCHITECTURE.md}{0} 
+\end{DoxyEnumerate}

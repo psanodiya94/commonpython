@@ -1,0 +1,129 @@
+\doxysection{messaging\+\_\+interface.\+py}
+\hypertarget{messaging__interface_8py_source}{}\label{messaging__interface_8py_source}\index{commonpython/interfaces/messaging\_interface.py@{commonpython/interfaces/messaging\_interface.py}}
+\mbox{\hyperlink{messaging__interface_8py}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00001}\mbox{\hyperlink{namespacecommonpython_1_1interfaces_1_1messaging__interface}{00001}}\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00002}00002\ \textcolor{stringliteral}{Messaging\ Interface\ for\ CommonPython\ Framework}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00003}00003\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00004}00004\ \textcolor{stringliteral}{Defines\ the\ abstract\ interface\ for\ messaging\ operations\ that\ all\ messaging}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00005}00005\ \textcolor{stringliteral}{adapters\ must\ implement.\ This\ allows\ switching\ between\ CLI-\/based\ and}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00006}00006\ \textcolor{stringliteral}{library-\/based\ implementations\ without\ changing\ client\ code.}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00007}00007\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00009}00009\ \textcolor{keyword}{from}\ abc\ \textcolor{keyword}{import}\ ABC,\ abstractmethod}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00010}00010\ \textcolor{keyword}{from}\ typing\ \textcolor{keyword}{import}\ Any,\ Dict,\ List,\ Optional,\ Union}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00013}\mbox{\hyperlink{classcommonpython_1_1interfaces_1_1messaging__interface_1_1_i_messaging_manager}{00013}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcommonpython_1_1interfaces_1_1messaging__interface_1_1_i_messaging_manager}{IMessagingManager}}(ABC):}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00014}00014\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00015}00015\ \textcolor{stringliteral}{\ \ \ \ Abstract\ interface\ for\ messaging\ management\ operations.}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00016}00016\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00017}00017\ \textcolor{stringliteral}{\ \ \ \ All\ messaging\ adapters\ (CLI-\/based,\ library-\/based)\ must\ implement\ this\ interface}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00018}00018\ \textcolor{stringliteral}{\ \ \ \ to\ ensure\ compatibility\ with\ the\ CommonPython\ framework.}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00019}00019\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00021}00021\ \ \ \ \ \textcolor{preprocessor}{@abstractmethod}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00022}\mbox{\hyperlink{classcommonpython_1_1interfaces_1_1messaging__interface_1_1_i_messaging_manager_a310a573b2e7c62f2c222c24817684df9}{00022}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcommonpython_1_1interfaces_1_1messaging__interface_1_1_i_messaging_manager_a310a573b2e7c62f2c222c24817684df9}{connect}}(self)\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00023}00023\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00024}00024\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Establish\ connection\ to\ the\ message\ queue\ manager.}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00025}00025\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00026}00026\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Connect\ to\ messaging\ server.}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00027}00027\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @return\ True\ if\ connection\ successful,\ False\ otherwise}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00028}00028\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00029}00029\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00031}00031\ \ \ \ \ \textcolor{preprocessor}{@abstractmethod}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00032}\mbox{\hyperlink{classcommonpython_1_1interfaces_1_1messaging__interface_1_1_i_messaging_manager_adbd0163eea7c71949ad1953796dd5522}{00032}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcommonpython_1_1interfaces_1_1messaging__interface_1_1_i_messaging_manager_adbd0163eea7c71949ad1953796dd5522}{disconnect}}(self)\ -\/>\ None:}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00033}00033\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00034}00034\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Close\ the\ messaging\ connection.}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00035}00035\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00036}00036\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Disconnect\ from\ messaging\ server.}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00037}00037\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00038}00038\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00040}00040\ \ \ \ \ \textcolor{preprocessor}{@abstractmethod}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00041}\mbox{\hyperlink{classcommonpython_1_1interfaces_1_1messaging__interface_1_1_i_messaging_manager_a3dfd690d4f489c476191ca50ceabd95f}{00041}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcommonpython_1_1interfaces_1_1messaging__interface_1_1_i_messaging_manager_a3dfd690d4f489c476191ca50ceabd95f}{is\_connected}}(self)\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00042}00042\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00043}00043\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Check\ if\ messaging\ connection\ is\ active.}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00044}00044\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00045}00045\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Check\ connection\ status.}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00046}00046\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @return\ True\ if\ connected,\ False\ otherwise}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00047}00047\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00048}00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00050}00050\ \ \ \ \ \textcolor{preprocessor}{@abstractmethod}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00051}\mbox{\hyperlink{classcommonpython_1_1interfaces_1_1messaging__interface_1_1_i_messaging_manager_a93d2a32835632e9f2ac4a4679f9744e6}{00051}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcommonpython_1_1interfaces_1_1messaging__interface_1_1_i_messaging_manager_a93d2a32835632e9f2ac4a4679f9744e6}{put\_message}}(self,\ queue\_name:\ str,\ message:\ Union[str,\ bytes,\ Dict],}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ message\_properties:\ Optional[Dict[str,\ Any]]\ =\ \textcolor{keywordtype}{None})\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00053}00053\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00054}00054\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Put\ a\ message\ to\ a\ queue.}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00055}00055\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00056}00056\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Send\ message\ to\ message\ queue.}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00057}00057\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @param\ queue\_name\ Name\ of\ the\ queue}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00058}00058\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @param\ message\ Message\ content\ (string,\ bytes,\ or\ dictionary)}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00059}00059\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @param\ message\_properties\ Optional\ message\ properties}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00060}00060\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @return\ True\ if\ message\ sent\ successfully,\ False\ otherwise}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00061}00061\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @throws\ Exception\ If\ message\ sending\ fails}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00062}00062\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00063}00063\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00065}00065\ \ \ \ \ \textcolor{preprocessor}{@abstractmethod}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00066}\mbox{\hyperlink{classcommonpython_1_1interfaces_1_1messaging__interface_1_1_i_messaging_manager_a8cfeac42ee46fd6b3b8342cb84dff0a2}{00066}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcommonpython_1_1interfaces_1_1messaging__interface_1_1_i_messaging_manager_a8cfeac42ee46fd6b3b8342cb84dff0a2}{get\_message}}(self,\ queue\_name:\ str,\ timeout:\ Optional[int]\ =\ \textcolor{keywordtype}{None})\ -\/>\ Optional[Dict[str,\ Any]]:}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00067}00067\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00068}00068\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Get\ a\ message\ from\ a\ queue.}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00069}00069\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00070}00070\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Receive\ message\ from\ message\ queue.}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00071}00071\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @param\ queue\_name\ Name\ of\ the\ queue}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00072}00072\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @param\ timeout\ Timeout\ in\ seconds\ (None\ for\ default\ timeout)}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00073}00073\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @return\ Dictionary\ containing\ message\ data\ and\ properties,\ or\ None\ if\ no\ message}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00074}00074\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @throws\ Exception\ If\ message\ retrieval\ fails}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00075}00075\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00076}00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00078}00078\ \ \ \ \ \textcolor{preprocessor}{@abstractmethod}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00079}\mbox{\hyperlink{classcommonpython_1_1interfaces_1_1messaging__interface_1_1_i_messaging_manager_aae23b3ed3ac56e572c7c8682cc819164}{00079}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcommonpython_1_1interfaces_1_1messaging__interface_1_1_i_messaging_manager_aae23b3ed3ac56e572c7c8682cc819164}{browse\_message}}(self,\ queue\_name:\ str,\ message\_id:\ Optional[bytes]\ =\ \textcolor{keywordtype}{None})\ -\/>\ Optional[Dict[str,\ Any]]:}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00080}00080\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00081}00081\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Browse\ a\ message\ from\ a\ queue\ without\ removing\ it.}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00082}00082\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00083}00083\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Browse\ message\ without\ consuming\ it.}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00084}00084\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @param\ queue\_name\ Name\ of\ the\ queue}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00085}00085\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @param\ message\_id\ Specific\ message\ ID\ to\ browse\ (optional)}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00086}00086\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @return\ Dictionary\ containing\ message\ data\ and\ properties,\ or\ None\ if\ no\ message}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00087}00087\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @throws\ Exception\ If\ message\ browsing\ fails}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00088}00088\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00089}00089\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00091}00091\ \ \ \ \ \textcolor{preprocessor}{@abstractmethod}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00092}\mbox{\hyperlink{classcommonpython_1_1interfaces_1_1messaging__interface_1_1_i_messaging_manager_a348e36cc640c21851586939d66210f5d}{00092}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcommonpython_1_1interfaces_1_1messaging__interface_1_1_i_messaging_manager_a348e36cc640c21851586939d66210f5d}{get\_queue\_depth}}(self,\ queue\_name:\ str)\ -\/>\ int:}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00093}00093\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00094}00094\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Get\ the\ depth\ (number\ of\ messages)\ in\ a\ queue.}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00095}00095\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00096}00096\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Get\ current\ queue\ depth.}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00097}00097\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @param\ queue\_name\ Name\ of\ the\ queue}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00098}00098\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @return\ Number\ of\ messages\ in\ the\ queue,\ -\/1\ if\ error}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00099}00099\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @throws\ Exception\ If\ queue\ depth\ retrieval\ fails}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00100}00100\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00101}00101\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00102}00102\ }
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00103}00103\ \ \ \ \ \textcolor{preprocessor}{@abstractmethod}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00104}\mbox{\hyperlink{classcommonpython_1_1interfaces_1_1messaging__interface_1_1_i_messaging_manager_a3dd9e96be91715bc515284da2d002e0a}{00104}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcommonpython_1_1interfaces_1_1messaging__interface_1_1_i_messaging_manager_a3dd9e96be91715bc515284da2d002e0a}{purge\_queue}}(self,\ queue\_name:\ str)\ -\/>\ int:}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00105}00105\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00106}00106\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Purge\ all\ messages\ from\ a\ queue.}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00107}00107\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00108}00108\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Clear\ all\ messages\ from\ queue.}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00109}00109\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @param\ queue\_name\ Name\ of\ the\ queue}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00110}00110\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @return\ Number\ of\ messages\ purged}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00111}00111\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @throws\ Exception\ If\ queue\ purging\ fails}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00112}00112\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00113}00113\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00115}00115\ \ \ \ \ \textcolor{preprocessor}{@abstractmethod}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00116}\mbox{\hyperlink{classcommonpython_1_1interfaces_1_1messaging__interface_1_1_i_messaging_manager_a990919bced40bba5a0a8869707be9b40}{00116}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcommonpython_1_1interfaces_1_1messaging__interface_1_1_i_messaging_manager_a990919bced40bba5a0a8869707be9b40}{test\_connection}}(self)\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00117}00117\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00118}00118\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Test\ messaging\ connection.}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00119}00119\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00120}00120\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Test\ if\ messaging\ connection\ is\ working\ properly.}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00121}00121\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @return\ True\ if\ connection\ is\ working,\ False\ otherwise}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00122}00122\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{messaging__interface_8py_source_l00123}00123\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{pass}}
+
+\end{DoxyCode}

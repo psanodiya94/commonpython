@@ -1,0 +1,470 @@
+\chapter{Contributing to Common\+Python Framework }
+\hypertarget{md__c_o_n_t_r_i_b_u_t_i_n_g}{}\label{md__c_o_n_t_r_i_b_u_t_i_n_g}\index{Contributing to CommonPython Framework@{Contributing to CommonPython Framework}}
+\label{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md22}%
+\Hypertarget{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md22}%
+
+
+Thank you for your interest in contributing to Common\+Python! This document provides guidelines and instructions for contributing to the project.\hypertarget{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md23}{}\doxysection{\texorpdfstring{Table of Contents}{Table of Contents}}\label{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md23}
+
+\begin{DoxyItemize}
+\item Code of Conduct
+\item Getting Started
+\item Development Setup
+\item Development Workflow
+\item Coding Standards
+\item Testing Guidelines
+\item Documentation
+\item Submitting Changes
+\item Release Process
+\end{DoxyItemize}\hypertarget{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md24}{}\doxysection{\texorpdfstring{Code of Conduct}{Code of Conduct}}\label{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md24}
+\hypertarget{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md25}{}\doxysubsection{\texorpdfstring{Our Pledge}{Our Pledge}}\label{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md25}
+We are committed to providing a welcoming and inspiring community for all. Please be respectful and constructive in your interactions.\hypertarget{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md26}{}\doxysubsection{\texorpdfstring{Expected Behavior}{Expected Behavior}}\label{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md26}
+
+\begin{DoxyItemize}
+\item Use welcoming and inclusive language
+\item Be respectful of differing viewpoints and experiences
+\item Gracefully accept constructive criticism
+\item Focus on what is best for the community
+\item Show empathy towards other community members
+\end{DoxyItemize}\hypertarget{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md27}{}\doxysubsection{\texorpdfstring{Unacceptable Behavior}{Unacceptable Behavior}}\label{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md27}
+
+\begin{DoxyItemize}
+\item Harassment, trolling, or discriminatory comments
+\item Personal or political attacks
+\item Publishing others\textquotesingle{} private information without permission
+\item Other conduct which could reasonably be considered inappropriate
+\end{DoxyItemize}\hypertarget{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md28}{}\doxysection{\texorpdfstring{Getting Started}{Getting Started}}\label{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md28}
+\hypertarget{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md29}{}\doxysubsection{\texorpdfstring{Prerequisites}{Prerequisites}}\label{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md29}
+
+\begin{DoxyItemize}
+\item Python 3.\+8 or higher
+\item Git
+\item Basic knowledge of IBM DB2 and IBM MQ (for relevant contributions)
+\end{DoxyItemize}\hypertarget{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md30}{}\doxysubsection{\texorpdfstring{Finding Ways to Contribute}{Finding Ways to Contribute}}\label{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md30}
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Bug Reports}}\+: Check the \href{https://github.com/psanodiya94/commonpython/issues}{\texttt{Issues}} page
+\item {\bfseries{Feature Requests}}\+: Propose new features by opening an issue
+\item {\bfseries{Documentation}}\+: Improve or add documentation
+\item {\bfseries{Code}}\+: Fix bugs or implement features
+\end{DoxyEnumerate}\hypertarget{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md31}{}\doxysection{\texorpdfstring{Development Setup}{Development Setup}}\label{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md31}
+\hypertarget{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md32}{}\doxysubsection{\texorpdfstring{1. Fork and Clone}{1. Fork and Clone}}\label{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md32}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Fork\ the\ repository\ on\ GitHub,\ then\ clone\ your\ fork}
+\DoxyCodeLine{git\ clone\ https://github.com/YOUR\_USERNAME/commonpython.git}
+\DoxyCodeLine{cd\ commonpython}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Add\ upstream\ remote}
+\DoxyCodeLine{git\ remote\ add\ upstream\ https://github.com/psanodiya94/commonpython.git}
+
+\end{DoxyCode}
+\hypertarget{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md33}{}\doxysubsection{\texorpdfstring{2. Create Virtual Environment}{2. Create Virtual Environment}}\label{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md33}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Create\ virtual\ environment}
+\DoxyCodeLine{python\ -\/m\ venv\ venv}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Activate\ virtual\ environment}
+\DoxyCodeLine{\#\ On\ Linux/Mac:}
+\DoxyCodeLine{source\ venv/bin/activate}
+\DoxyCodeLine{\#\ On\ Windows:}
+\DoxyCodeLine{venv\(\backslash\)Scripts\(\backslash\)activate}
+
+\end{DoxyCode}
+\hypertarget{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md34}{}\doxysubsection{\texorpdfstring{3. Install Development Dependencies}{3. Install Development Dependencies}}\label{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md34}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Install\ the\ package\ in\ development\ mode\ with\ all\ dependencies}
+\DoxyCodeLine{pip\ install\ -\/e\ "{}.[all]"{}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Or\ just\ development\ dependencies}
+\DoxyCodeLine{pip\ install\ -\/e\ "{}.[dev]"{}}
+
+\end{DoxyCode}
+\hypertarget{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md35}{}\doxysubsection{\texorpdfstring{4. Install Pre-\/commit Hooks}{4. Install Pre-\/commit Hooks}}\label{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md35}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Install\ pre-\/commit\ hooks}
+\DoxyCodeLine{pre-\/commit\ install}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Run\ hooks\ on\ all\ files\ (optional)}
+\DoxyCodeLine{pre-\/commit\ run\ -\/-\/all-\/files}
+
+\end{DoxyCode}
+\hypertarget{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md36}{}\doxysubsection{\texorpdfstring{5. Verify Setup}{5. Verify Setup}}\label{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md36}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Run\ tests\ to\ verify\ everything\ works}
+\DoxyCodeLine{python\ scripts/test\_commonpython.py}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Or\ using\ pytest}
+\DoxyCodeLine{pytest}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Check\ code\ formatting}
+\DoxyCodeLine{black\ -\/-\/check\ .}
+\DoxyCodeLine{ruff\ check\ .}
+\DoxyCodeLine{mypy\ commonpython/}
+
+\end{DoxyCode}
+\hypertarget{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md37}{}\doxysection{\texorpdfstring{Development Workflow}{Development Workflow}}\label{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md37}
+\hypertarget{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md38}{}\doxysubsection{\texorpdfstring{1. Create a Feature Branch}{1. Create a Feature Branch}}\label{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md38}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Make\ sure\ you're\ on\ main\ and\ up\ to\ date}
+\DoxyCodeLine{git\ checkout\ main}
+\DoxyCodeLine{git\ pull\ upstream\ main}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Create\ a\ feature\ branch}
+\DoxyCodeLine{git\ checkout\ -\/b\ feature/your-\/feature-\/name}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Or\ for\ bug\ fixes}
+\DoxyCodeLine{git\ checkout\ -\/b\ fix/bug-\/description}
+
+\end{DoxyCode}
+\hypertarget{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md39}{}\doxysubsection{\texorpdfstring{2. Make Your Changes}{2. Make Your Changes}}\label{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md39}
+
+\begin{DoxyItemize}
+\item Write code following the Coding Standards
+\item Add or update tests as needed
+\item Update documentation if applicable
+\item Ensure pre-\/commit hooks pass
+\end{DoxyItemize}\hypertarget{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md40}{}\doxysubsection{\texorpdfstring{3. Test Your Changes}{3. Test Your Changes}}\label{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md40}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Run\ all\ tests}
+\DoxyCodeLine{python\ scripts/test\_commonpython.py}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Run\ specific\ test\ module}
+\DoxyCodeLine{python\ -\/m\ pytest\ test/test\_config\_manager.py}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Run\ with\ coverage}
+\DoxyCodeLine{python\ scripts/test\_commonpython.py\ -\/-\/coverage}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Check\ code\ formatting}
+\DoxyCodeLine{black\ .}
+\DoxyCodeLine{ruff\ check\ .\ -\/-\/fix}
+
+\end{DoxyCode}
+\hypertarget{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md41}{}\doxysubsection{\texorpdfstring{4. Commit Your Changes}{4. Commit Your Changes}}\label{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md41}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Stage\ your\ changes}
+\DoxyCodeLine{git\ add\ .}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Commit\ with\ a\ descriptive\ message}
+\DoxyCodeLine{git\ commit\ -\/m\ "{}feat:\ add\ new\ feature\ X"{}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Pre-\/commit\ hooks\ will\ run\ automatically}
+
+\end{DoxyCode}
+\hypertarget{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md42}{}\doxysubsection{\texorpdfstring{Commit Message Format}{Commit Message Format}}\label{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md42}
+Follow the \href{https://www.conventionalcommits.org/}{\texttt{Conventional Commits}} specification\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{<type>(<scope>):\ <description>}
+\DoxyCodeLine{}
+\DoxyCodeLine{[optional\ body]}
+\DoxyCodeLine{}
+\DoxyCodeLine{[optional\ footer]}
+
+\end{DoxyCode}
+
+
+{\bfseries{Types\+:}}
+\begin{DoxyItemize}
+\item {\ttfamily feat}\+: New feature
+\item {\ttfamily fix}\+: Bug fix
+\item {\ttfamily docs}\+: Documentation changes
+\item {\ttfamily style}\+: Code style changes (formatting, etc.)
+\item {\ttfamily refactor}\+: Code refactoring
+\item {\ttfamily test}\+: Adding or updating tests
+\item {\ttfamily chore}\+: Maintenance tasks
+\item {\ttfamily perf}\+: Performance improvements
+\end{DoxyItemize}
+
+{\bfseries{Examples\+:}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{git\ commit\ -\/m\ "{}feat(database):\ add\ connection\ pooling\ support"{}}
+\DoxyCodeLine{git\ commit\ -\/m\ "{}fix(logging):\ correct\ JSON\ format\ output"{}}
+\DoxyCodeLine{git\ commit\ -\/m\ "{}docs(readme):\ update\ installation\ instructions"{}}
+\DoxyCodeLine{git\ commit\ -\/m\ "{}test(adapters):\ add\ integration\ tests\ for\ library\ adapters"{}}
+
+\end{DoxyCode}
+\hypertarget{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md43}{}\doxysubsection{\texorpdfstring{5. Push and Create Pull Request}{5. Push and Create Pull Request}}\label{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md43}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Push\ to\ your\ fork}
+\DoxyCodeLine{git\ push\ origin\ feature/your-\/feature-\/name}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Create\ a\ pull\ request\ on\ GitHub}
+
+\end{DoxyCode}
+\hypertarget{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md44}{}\doxysection{\texorpdfstring{Coding Standards}{Coding Standards}}\label{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md44}
+\hypertarget{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md45}{}\doxysubsection{\texorpdfstring{Python Style Guide}{Python Style Guide}}\label{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md45}
+We follow \href{https://www.python.org/dev/peps/pep-0008/}{\texttt{PEP 8}} with some modifications\+:
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Line length}}\+: 100 characters (enforced by Black)
+\item {\bfseries{Quotes}}\+: Double quotes for strings (enforced by Black)
+\item {\bfseries{Type hints}}\+: Required for all public functions and methods
+\item {\bfseries{Docstrings}}\+: Required for all modules, classes, and public methods
+\end{DoxyItemize}\hypertarget{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md46}{}\doxysubsection{\texorpdfstring{Code Formatting}{Code Formatting}}\label{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md46}
+We use automated tools for code formatting\+:
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Black}}\+: Code formatting
+\item {\bfseries{Ruff}}\+: Linting and import sorting
+\item {\bfseries{My\+Py}}\+: Type checking
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Format\ code\ with\ black}
+\DoxyCodeLine{black\ .}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Check\ and\ fix\ linting\ issues}
+\DoxyCodeLine{ruff\ check\ .\ -\/-\/fix}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Type\ checking}
+\DoxyCodeLine{mypy\ commonpython/}
+
+\end{DoxyCode}
+\hypertarget{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md47}{}\doxysubsection{\texorpdfstring{Naming Conventions}{Naming Conventions}}\label{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md47}
+
+\begin{DoxyItemize}
+\item {\bfseries{Classes}}\+: {\ttfamily Pascal\+Case} (e.\+g., {\ttfamily Config\+Manager})
+\item {\bfseries{Functions/\+Methods}}\+: {\ttfamily snake\+\_\+case} (e.\+g., {\ttfamily get\+\_\+config\+\_\+value})
+\item {\bfseries{Constants}}\+: {\ttfamily UPPER\+\_\+\+SNAKE\+\_\+\+CASE} (e.\+g., {\ttfamily DEFAULT\+\_\+\+TIMEOUT})
+\item {\bfseries{Private methods}}\+: {\ttfamily \+\_\+leading\+\_\+underscore} (e.\+g., {\ttfamily \+\_\+internal\+\_\+method})
+\end{DoxyItemize}\hypertarget{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md48}{}\doxysubsection{\texorpdfstring{Documentation Style}{Documentation Style}}\label{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md48}
+We use Doxygen-\/style docstrings\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{def\ }execute\_query(self,\ query:\ str,\ params:\ Optional[Tuple]\ =\ \textcolor{keywordtype}{None})\ -\/>\ List[Dict[str,\ Any]]:}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ Execute\ a\ SELECT\ query\ and\ return\ results.}}
+\DoxyCodeLine{\textcolor{stringliteral}{}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ @brief\ Execute\ SELECT\ query\ with\ optional\ parameters.}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ @param\ query\ SQL\ query\ string\ (use\ ?\ for\ parameters)}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ @param\ params\ Query\ parameters\ tuple\ (optional)}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ @return\ List\ of\ dictionaries\ containing\ query\ results}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ @throws\ DatabaseError\ If\ query\ execution\ fails}}
+\DoxyCodeLine{\textcolor{stringliteral}{}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ Example:}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ >>>\ results\ =\ manager.execute\_query("{}SELECT\ *\ FROM\ users\ WHERE\ id\ =\ ?"{},\ (123,))}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ >>>\ print(results[0]['name'])}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+
+\end{DoxyCode}
+\hypertarget{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md49}{}\doxysubsection{\texorpdfstring{Type Hints}{Type Hints}}\label{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md49}
+Always include type hints\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{from}\ typing\ \textcolor{keyword}{import}\ Any,\ Dict,\ List,\ Optional,\ Tuple}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{def\ }process\_data(}
+\DoxyCodeLine{\ \ \ \ data:\ List[Dict[str,\ Any]],}
+\DoxyCodeLine{\ \ \ \ config:\ Optional[Dict[str,\ str]]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{)\ -\/>\ Tuple[bool,\ str]:}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Process\ data\ and\ return\ status."{}"{}"{}}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{pass}}
+
+\end{DoxyCode}
+\hypertarget{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md50}{}\doxysection{\texorpdfstring{Testing Guidelines}{Testing Guidelines}}\label{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md50}
+\hypertarget{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md51}{}\doxysubsection{\texorpdfstring{Test Organization}{Test Organization}}\label{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md51}
+Tests are organized in the {\ttfamily test/} directory\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{test/}
+\DoxyCodeLine{├──\ test\_config\_manager.py\ \ \ \ \ \ \#\ Configuration\ tests}
+\DoxyCodeLine{├──\ test\_logger\_manager.py\ \ \ \ \ \ \#\ Logging\ tests}
+\DoxyCodeLine{├──\ test\_db2\_manager.py\ \ \ \ \ \ \ \ \ \ \#\ Database\ tests}
+\DoxyCodeLine{├──\ test\_mq\_manager.py\ \ \ \ \ \ \ \ \ \ \ \#\ Messaging\ tests}
+\DoxyCodeLine{├──\ test\_adapters.py\ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Adapter\ tests}
+\DoxyCodeLine{├──\ test\_factory.py\ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Factory\ pattern\ tests}
+\DoxyCodeLine{├──\ test\_integration.py\ \ \ \ \ \ \ \ \ \ \#\ Integration\ tests}
+\DoxyCodeLine{└──\ test\_cli.py\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ CLI\ tests}
+
+\end{DoxyCode}
+\hypertarget{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md52}{}\doxysubsection{\texorpdfstring{Writing Tests}{Writing Tests}}\label{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md52}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{import}\ unittest}
+\DoxyCodeLine{\textcolor{keyword}{from}\ \mbox{\hyperlink{namespacecommonpython_1_1config}{commonpython.config}}\ \textcolor{keyword}{import}\ ConfigManager}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{class\ }TestConfigManager(unittest.TestCase):}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Test\ suite\ for\ ConfigManager."{}"{}"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{def\ }setUp(self):}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Set\ up\ test\ fixtures."{}"{}"{}}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ self.config\_manager\ =\ ConfigManager()}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{def\ }test\_get\_config\_value(self):}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Test\ retrieving\ configuration\ value."{}"{}"{}}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Arrange}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ self.config\_manager.set(\textcolor{stringliteral}{'test.key'},\ \textcolor{stringliteral}{'value'})}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Act}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ result\ =\ self.config\_manager.get(\textcolor{stringliteral}{'test.key'})}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Assert}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ self.assertEqual(result,\ \textcolor{stringliteral}{'value'})}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{def\ }tearDown(self):}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Clean\ up\ after\ tests."{}"{}"{}}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{pass}}
+
+\end{DoxyCode}
+\hypertarget{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md53}{}\doxysubsection{\texorpdfstring{Test Coverage}{Test Coverage}}\label{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md53}
+
+\begin{DoxyItemize}
+\item Aim for {\bfseries{\texorpdfstring{$>$}{>}80\% code coverage}}
+\item Write tests for\+:
+\begin{DoxyItemize}
+\item Happy path scenarios
+\item Error conditions
+\item Edge cases
+\item Integration points
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Run\ tests\ with\ coverage}
+\DoxyCodeLine{python\ scripts/test\_commonpython.py\ -\/-\/coverage}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ View\ detailed\ coverage\ report}
+\DoxyCodeLine{coverage\ report\ -\/m}
+
+\end{DoxyCode}
+\hypertarget{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md54}{}\doxysubsection{\texorpdfstring{Mocking}{Mocking}}\label{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md54}
+Use mocks for external dependencies\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{from}\ unittest.mock\ \textcolor{keyword}{import}\ Mock,\ patch}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{@patch('commonpython.database.db2\_manager.subprocess.run')}}
+\DoxyCodeLine{\textcolor{keyword}{def\ }test\_database\_query(self,\ mock\_run):}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Test\ database\ query\ with\ mocked\ subprocess."{}"{}"{}}}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{\#\ Setup\ mock}}
+\DoxyCodeLine{\ \ \ \ mock\_run.return\_value\ =\ Mock(returncode=0,\ stdout=\textcolor{stringliteral}{'result'})}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{\#\ Test\ your\ code}}
+\DoxyCodeLine{\ \ \ \ result\ =\ manager.execute\_query(\textcolor{stringliteral}{"{}SELECT\ *\ FROM\ test"{}})}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{\#\ Verify}}
+\DoxyCodeLine{\ \ \ \ mock\_run.assert\_called\_once()}
+
+\end{DoxyCode}
+\hypertarget{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md55}{}\doxysection{\texorpdfstring{Documentation}{Documentation}}\label{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md55}
+\hypertarget{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md56}{}\doxysubsection{\texorpdfstring{Code Documentation}{Code Documentation}}\label{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md56}
+
+\begin{DoxyItemize}
+\item {\bfseries{All public APIs}} must have docstrings
+\item {\bfseries{Complex logic}} should have inline comments
+\item {\bfseries{Examples}} should be included in docstrings
+\end{DoxyItemize}\hypertarget{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md57}{}\doxysubsection{\texorpdfstring{README Updates}{README Updates}}\label{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md57}
+Update the README.\+md when\+:
+\begin{DoxyItemize}
+\item Adding new features
+\item Changing installation steps
+\item Modifying configuration options
+\item Adding new examples
+\end{DoxyItemize}\hypertarget{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md58}{}\doxysubsection{\texorpdfstring{Architecture Documentation}{Architecture Documentation}}\label{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md58}
+Update {\ttfamily docs/} when\+:
+\begin{DoxyItemize}
+\item Changing system architecture
+\item Adding new design patterns
+\item Modifying core components
+\end{DoxyItemize}\hypertarget{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md59}{}\doxysection{\texorpdfstring{Submitting Changes}{Submitting Changes}}\label{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md59}
+\hypertarget{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md60}{}\doxysubsection{\texorpdfstring{Pull Request Process}{Pull Request Process}}\label{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md60}
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Update Documentation}}\+: Ensure all documentation is current
+\item {\bfseries{Add Tests}}\+: Include tests for new features or bug fixes
+\item {\bfseries{Pass All Checks}}\+: Ensure all tests and linting pass
+\item {\bfseries{Update CHANGELOG}}\+: Add entry to \doxylink{_c_h_a_n_g_e_l_o_g_8md}{CHANGELOG.\+md}
+\item {\bfseries{Create PR}}\+: Use the pull request template
+\end{DoxyEnumerate}\hypertarget{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md61}{}\doxysubsection{\texorpdfstring{Pull Request Template}{Pull Request Template}}\label{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md61}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\#\ Description}
+\DoxyCodeLine{Brief\ description\ of\ changes}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\#\ Type\ of\ Change}
+\DoxyCodeLine{-\/\ [\ ]\ Bug\ fix}
+\DoxyCodeLine{-\/\ [\ ]\ New\ feature}
+\DoxyCodeLine{-\/\ [\ ]\ Breaking\ change}
+\DoxyCodeLine{-\/\ [\ ]\ Documentation\ update}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\#\ Testing}
+\DoxyCodeLine{-\/\ [\ ]\ All\ existing\ tests\ pass}
+\DoxyCodeLine{-\/\ [\ ]\ New\ tests\ added}
+\DoxyCodeLine{-\/\ [\ ]\ Manual\ testing\ completed}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\#\ Checklist}
+\DoxyCodeLine{-\/\ [\ ]\ Code\ follows\ style\ guidelines}
+\DoxyCodeLine{-\/\ [\ ]\ Documentation\ updated}
+\DoxyCodeLine{-\/\ [\ ]\ CHANGELOG.md\ updated}
+\DoxyCodeLine{-\/\ [\ ]\ No\ breaking\ changes\ (or\ documented)}
+
+\end{DoxyCode}
+\hypertarget{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md62}{}\doxysubsection{\texorpdfstring{Review Process}{Review Process}}\label{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md62}
+
+\begin{DoxyEnumerate}
+\item Automated checks must pass (tests, linting, formatting)
+\item At least one maintainer must review
+\item Address all review comments
+\item Maintainer will merge when approved
+\end{DoxyEnumerate}\hypertarget{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md63}{}\doxysection{\texorpdfstring{Release Process}{Release Process}}\label{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md63}
+\hypertarget{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md64}{}\doxysubsection{\texorpdfstring{Version Numbers}{Version Numbers}}\label{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md64}
+We follow \href{https://semver.org/}{\texttt{Semantic Versioning}}\+:
+
+
+\begin{DoxyItemize}
+\item {\bfseries{MAJOR}}\+: Breaking changes
+\item {\bfseries{MINOR}}\+: New features (backward compatible)
+\item {\bfseries{PATCH}}\+: Bug fixes (backward compatible)
+\end{DoxyItemize}\hypertarget{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md65}{}\doxysubsection{\texorpdfstring{Release Checklist}{Release Checklist}}\label{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md65}
+
+\begin{DoxyEnumerate}
+\item Update version in {\ttfamily pyproject.\+toml} and {\ttfamily \doxylink{commonpython_2____init_____8py}{commonpython/\+\_\+\+\_\+init\+\_\+\+\_\+.\+py}}
+\item Update \doxylink{_c_h_a_n_g_e_l_o_g_8md}{CHANGELOG.\+md}
+\item Create release commit\+: {\ttfamily git commit -\/m "{}chore\+: release v2.\+1.\+0"{}}
+\item Create tag\+: {\ttfamily git tag -\/a v2.\+1.\+0 -\/m "{}\+Release v2.\+1.\+0"{}}
+\item Push\+: {\ttfamily git push origin main -\/-\/tags}
+\item Create Git\+Hub release with notes
+\end{DoxyEnumerate}\hypertarget{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md66}{}\doxysection{\texorpdfstring{Getting Help}{Getting Help}}\label{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md66}
+\hypertarget{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md67}{}\doxysubsection{\texorpdfstring{Resources}{Resources}}\label{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md67}
+
+\begin{DoxyItemize}
+\item {\bfseries{Documentation}}\+: \doxysectlink{md__r_e_a_d_m_e}{README.md}{0}, \href{docs/}{\texttt{docs/}}
+\item {\bfseries{Issues}}\+: \href{https://github.com/psanodiya94/commonpython/issues}{\texttt{Git\+Hub Issues}}
+\item {\bfseries{Examples}}\+: \href{examples/}{\texttt{examples/}}
+\end{DoxyItemize}\hypertarget{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md68}{}\doxysubsection{\texorpdfstring{Questions?}{Questions?}}\label{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md68}
+
+\begin{DoxyItemize}
+\item Open a \href{https://github.com/psanodiya94/commonpython/discussions}{\texttt{Git\+Hub Discussion}}
+\item Or create an issue with the {\ttfamily question} label
+\end{DoxyItemize}\hypertarget{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md69}{}\doxysection{\texorpdfstring{Recognition}{Recognition}}\label{md__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md69}
+Contributors will be recognized in\+:
+\begin{DoxyItemize}
+\item \doxylink{_c_h_a_n_g_e_l_o_g_8md}{CHANGELOG.\+md} for each release
+\item Git\+Hub contributors page
+\item Project README (for significant contributions)
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+
+
+Thank you for contributing to Common\+Python! Your efforts help make this framework better for everyone. 

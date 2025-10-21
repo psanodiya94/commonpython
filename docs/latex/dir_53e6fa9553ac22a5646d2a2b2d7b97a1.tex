@@ -1,0 +1,214 @@
+\doxysection{scripts Directory Reference}
+\hypertarget{dir_53e6fa9553ac22a5646d2a2b2d7b97a1}{}\label{dir_53e6fa9553ac22a5646d2a2b2d7b97a1}\index{scripts Directory Reference@{scripts Directory Reference}}
+\doxysubsubsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{test__commonpython_8py}{test\+\_\+commonpython.\+py}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{README.md_autotoc_md365}{}\doxysubsection{\texorpdfstring{Common\+Python Test Scripts}{Common\+Python Test Scripts}}\label{README.md_autotoc_md365}
+This directory contains test and utility scripts for the Common\+Python framework.\hypertarget{README.md_autotoc_md366}{}\doxysubsection{\texorpdfstring{test\+\_\+commonpython.\+py}{test\+\_\+commonpython.\+py}}\label{README.md_autotoc_md366}
+Enhanced comprehensive test runner with categorization, performance metrics, and coverage analysis.\hypertarget{README.md_autotoc_md367}{}\doxysubsubsection{\texorpdfstring{Features}{Features}}\label{README.md_autotoc_md367}
+
+\begin{DoxyItemize}
+\item ✅ {\bfseries{Category-\/based Reporting}}\+: Tests grouped by functionality (Adapters, CLI, Database, etc.)
+\item ✅ {\bfseries{Performance Metrics}}\+: Identifies slowest tests and average execution time
+\item ✅ {\bfseries{Adapter Availability Check}}\+: Shows which implementations (CLI/\+Library) are available
+\item ✅ {\bfseries{Colored Output}}\+: Beautiful terminal output with color coding
+\item ✅ {\bfseries{Coverage Analysis}}\+: Generate HTML coverage reports
+\item ✅ {\bfseries{Selective Test Execution}}\+: Run specific test suites
+\item ✅ {\bfseries{Detailed Summaries}}\+: Category breakdown, failure details, skipped tests
+\end{DoxyItemize}\hypertarget{README.md_autotoc_md368}{}\doxysubsubsection{\texorpdfstring{Usage}{Usage}}\label{README.md_autotoc_md368}
+\hypertarget{README.md_autotoc_md369}{}\doxysubsubsubsection{\texorpdfstring{Run All Tests}{Run All Tests}}\label{README.md_autotoc_md369}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{python\ scripts/test\_commonpython.py}
+
+\end{DoxyCode}
+\hypertarget{README.md_autotoc_md370}{}\doxysubsubsubsection{\texorpdfstring{Run with Coverage}{Run with Coverage}}\label{README.md_autotoc_md370}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{python\ scripts/test\_commonpython.py\ -\/-\/coverage}
+
+\end{DoxyCode}
+
+
+This generates\+:
+\begin{DoxyItemize}
+\item Console coverage report
+\item HTML coverage report in {\ttfamily htmlcov/} directory
+\end{DoxyItemize}\hypertarget{README.md_autotoc_md371}{}\doxysubsubsubsection{\texorpdfstring{Run Specific Test Suite}{Run Specific Test Suite}}\label{README.md_autotoc_md371}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Run\ only\ adapter\ tests}
+\DoxyCodeLine{python\ scripts/test\_commonpython.py\ adapters}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Run\ only\ integration\ tests}
+\DoxyCodeLine{python\ scripts/test\_commonpython.py\ integration}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Run\ only\ CLI\ tests}
+\DoxyCodeLine{python\ scripts/test\_commonpython.py\ cli}
+
+\end{DoxyCode}
+\hypertarget{README.md_autotoc_md372}{}\doxysubsubsubsection{\texorpdfstring{List Available Test Suites}{List Available Test Suites}}\label{README.md_autotoc_md372}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{python\ scripts/test\_commonpython.py\ -\/-\/list}
+
+\end{DoxyCode}
+\hypertarget{README.md_autotoc_md373}{}\doxysubsubsubsection{\texorpdfstring{Verbosity Options}{Verbosity Options}}\label{README.md_autotoc_md373}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Verbose\ mode\ (more\ details)}
+\DoxyCodeLine{python\ scripts/test\_commonpython.py\ -\/v}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Quiet\ mode\ (less\ output)}
+\DoxyCodeLine{python\ scripts/test\_commonpython.py\ -\/q}
+
+\end{DoxyCode}
+\hypertarget{README.md_autotoc_md374}{}\doxysubsubsection{\texorpdfstring{Command Line Options}{Command Line Options}}\label{README.md_autotoc_md374}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Option  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description  }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Option  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description  }\\\cline{1-2}
+\endhead
+{\ttfamily -\/-\/coverage}, {\ttfamily -\/-\/cov}  &Run tests with coverage analysis  \\\cline{1-2}
+{\ttfamily -\/-\/verbose}, {\ttfamily -\/v}  &Increase output verbosity  \\\cline{1-2}
+{\ttfamily -\/-\/quiet}, {\ttfamily -\/q}  &Decrease output verbosity  \\\cline{1-2}
+{\ttfamily -\/-\/list}  &List all available test suites  \\\cline{1-2}
+{\ttfamily \texorpdfstring{$<$}{<}suite\+\_\+name\texorpdfstring{$>$}{>}}  &Run specific test suite (e.\+g., {\ttfamily adapters}, {\ttfamily factory})  \\\cline{1-2}
+\end{longtabu}
+\hypertarget{README.md_autotoc_md375}{}\doxysubsubsection{\texorpdfstring{Examples}{Examples}}\label{README.md_autotoc_md375}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Run\ all\ tests\ with\ coverage\ in\ verbose\ mode}
+\DoxyCodeLine{python\ scripts/test\_commonpython.py\ -\/-\/coverage\ -\/v}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Run\ only\ factory\ tests\ quietly}
+\DoxyCodeLine{python\ scripts/test\_commonpython.py\ factory\ -\/q}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ List\ all\ available\ test\ suites}
+\DoxyCodeLine{python\ scripts/test\_commonpython.py\ -\/-\/list}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Run\ integration\ tests\ with\ coverage}
+\DoxyCodeLine{python\ scripts/test\_commonpython.py\ integration\ -\/-\/cov}
+
+\end{DoxyCode}
+\hypertarget{README.md_autotoc_md376}{}\doxysubsubsection{\texorpdfstring{Output Categories}{Output Categories}}\label{README.md_autotoc_md376}
+Tests are automatically categorized\+:
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Adapter Pattern}}\+: Tests for CLI and library adapters
+\item {\bfseries{Integration Tests}}\+: Cross-\/component integration tests
+\item {\bfseries{CLI Interface}}\+: Command-\/line interface tests
+\item {\bfseries{Database Operations}}\+: DB2 manager tests
+\item {\bfseries{Messaging Operations}}\+: MQ manager tests
+\item {\bfseries{Configuration}}\+: Config manager tests
+\item {\bfseries{Logging}}\+: Logger manager tests
+\item {\bfseries{Components}}\+: Component framework tests
+\item {\bfseries{Core Framework}}\+: Factory and other core tests
+\end{DoxyItemize}\hypertarget{README.md_autotoc_md377}{}\doxysubsubsection{\texorpdfstring{Exit Codes}{Exit Codes}}\label{README.md_autotoc_md377}
+
+\begin{DoxyItemize}
+\item {\ttfamily 0}\+: All tests passed
+\item {\ttfamily 1}\+: Tests failed or had errors
+\item {\ttfamily 130}\+: Tests interrupted by user (Ctrl+C)
+\end{DoxyItemize}\hypertarget{README.md_autotoc_md378}{}\doxysubsubsection{\texorpdfstring{Sample Output}{Sample Output}}\label{README.md_autotoc_md378}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{╔══════════════════════════════════════════════════════════════════════════════╗}
+\DoxyCodeLine{║\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CommonPython\ Framework\ -\/\ Test\ Runner\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ║}
+\DoxyCodeLine{╚══════════════════════════════════════════════════════════════════════════════╝}
+\DoxyCodeLine{}
+\DoxyCodeLine{================================================================================}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CommonPython\ Framework\ -\/\ Comprehensive\ Test\ Suite}
+\DoxyCodeLine{================================================================================}
+\DoxyCodeLine{}
+\DoxyCodeLine{Adapter\ Implementation\ Availability:}
+\DoxyCodeLine{\ \ Database:\ CLI\ ✓\ \ Library\ (ibm\_db)\ ✗}
+\DoxyCodeLine{\ \ Messaging:\ CLI\ ✓\ \ Library\ (pymqi)\ ✗}
+\DoxyCodeLine{}
+\DoxyCodeLine{Discovered\ Test\ Suites:}
+\DoxyCodeLine{\ \ •\ test\_adapters}
+\DoxyCodeLine{\ \ •\ test\_cli}
+\DoxyCodeLine{\ \ •\ test\_component}
+\DoxyCodeLine{\ \ ...}
+\DoxyCodeLine{}
+\DoxyCodeLine{================================================================================}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TEST\ EXECUTION\ SUMMARY}
+\DoxyCodeLine{================================================================================}
+\DoxyCodeLine{Total\ Tests:\ 295}
+\DoxyCodeLine{Passed:\ 295}
+\DoxyCodeLine{Failed:\ 0}
+\DoxyCodeLine{Errors:\ 0}
+\DoxyCodeLine{Skipped:\ 0}
+\DoxyCodeLine{Success\ Rate:\ 100.0\%}
+\DoxyCodeLine{Execution\ Time:\ 0.42s}
+\DoxyCodeLine{}
+\DoxyCodeLine{Tests\ by\ Category}
+\DoxyCodeLine{-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}
+\DoxyCodeLine{}
+\DoxyCodeLine{Adapter\ Pattern}
+\DoxyCodeLine{\ \ Total:\ 19\ |\ Passed:\ 19\ |\ Failed:\ 0\ |\ Errors:\ 0\ |\ Skipped:\ 0}
+\DoxyCodeLine{}
+\DoxyCodeLine{Database\ Operations}
+\DoxyCodeLine{\ \ Total:\ 44\ |\ Passed:\ 44\ |\ Failed:\ 0\ |\ Errors:\ 0\ |\ Skipped:\ 0}
+\DoxyCodeLine{}
+\DoxyCodeLine{...}
+\DoxyCodeLine{}
+\DoxyCodeLine{Performance\ Metrics}
+\DoxyCodeLine{-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}
+\DoxyCodeLine{Average\ Test\ Time:\ 0.001s}
+\DoxyCodeLine{}
+\DoxyCodeLine{Slowest\ Tests:}
+\DoxyCodeLine{\ \ 0.008s\ -\/\ test\_main\_database\_execute}
+\DoxyCodeLine{\ \ 0.006s\ -\/\ test\_setup\_database\_failure}
+\DoxyCodeLine{\ \ ...}
+\DoxyCodeLine{}
+\DoxyCodeLine{✅\ All\ 295\ tests\ passed\ successfully!}
+
+\end{DoxyCode}
+\hypertarget{README.md_autotoc_md379}{}\doxysubsection{\texorpdfstring{Tips}{Tips}}\label{README.md_autotoc_md379}
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Use Coverage Regularly}}\+: Run with {\ttfamily -\/-\/coverage} to identify untested code
+\item {\bfseries{Test Specific Suites}}\+: Speed up development by testing only what you changed
+\item {\bfseries{Check Adapter Availability}}\+: The runner shows which implementations are available
+\item {\bfseries{View HTML Coverage}}\+: Open {\ttfamily htmlcov/index.\+html} in your browser for detailed coverage
+\item {\bfseries{Monitor Performance}}\+: Check slowest tests to identify optimization opportunities
+\end{DoxyEnumerate}\hypertarget{README.md_autotoc_md380}{}\doxysubsection{\texorpdfstring{Continuous Integration}{Continuous Integration}}\label{README.md_autotoc_md380}
+For CI/\+CD pipelines\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Run\ tests\ with\ coverage\ and\ fail\ on\ any\ error}
+\DoxyCodeLine{python\ scripts/test\_commonpython.py\ -\/-\/coverage\ ||\ exit\ 1}
+
+\end{DoxyCode}
+\hypertarget{README.md_autotoc_md381}{}\doxysubsection{\texorpdfstring{Troubleshooting}{Troubleshooting}}\label{README.md_autotoc_md381}
+\hypertarget{README.md_autotoc_md382}{}\doxysubsubsection{\texorpdfstring{Colors Not Showing}{Colors Not Showing}}\label{README.md_autotoc_md382}
+The script automatically detects terminal color support. If colors aren\textquotesingle{}t showing\+:
+\begin{DoxyItemize}
+\item Ensure your terminal supports ANSI colors
+\item Try a different terminal emulator
+\end{DoxyItemize}\hypertarget{README.md_autotoc_md383}{}\doxysubsubsection{\texorpdfstring{Coverage Module Not Found}{Coverage Module Not Found}}\label{README.md_autotoc_md383}
+Install coverage\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{pip\ install\ coverage}
+
+\end{DoxyCode}
+\hypertarget{README.md_autotoc_md384}{}\doxysubsubsection{\texorpdfstring{Tests Not Discovered}{Tests Not Discovered}}\label{README.md_autotoc_md384}
+Ensure\+:
+\begin{DoxyItemize}
+\item Test files are in {\ttfamily test/} directory
+\item Test files follow naming pattern {\ttfamily test\+\_\+\texorpdfstring{$\ast$}{*}.py}
+\item Test classes inherit from {\ttfamily unittest.\+Test\+Case} 
+\end{DoxyItemize}

@@ -1,0 +1,194 @@
+\doxysection{component\+\_\+template.\+py}
+\hypertarget{component__template_8py_source}{}\label{component__template_8py_source}\index{examples/component\_template.py@{examples/component\_template.py}}
+\mbox{\hyperlink{component__template_8py}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00001}\mbox{\hyperlink{namespacecomponent__template}{00001}}\ \textcolor{comment}{\#!/usr/bin/env\ python3}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00002}00002\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00003}00003\ \textcolor{stringliteral}{Component\ Template\ for\ CommonPython\ Framework}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00004}00004\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00005}00005\ \textcolor{stringliteral}{This\ template\ provides\ a\ starting\ point\ for\ creating\ new\ components\ using\ the\ CommonPython\ framework.}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00006}00006\ \textcolor{stringliteral}{Copy\ this\ file\ and\ modify\ it\ according\ to\ your\ needs.}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00007}00007\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00008}00008\ \textcolor{stringliteral}{@brief\ Template\ for\ creating\ CommonPython\ components}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00009}00009\ \textcolor{stringliteral}{@author\ Your\ Name}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00010}00010\ \textcolor{stringliteral}{@version\ 1.0.0}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00011}00011\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00013}00013\ \textcolor{keyword}{import}\ sys}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00014}00014\ \textcolor{keyword}{import}\ time}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00015}00015\ \textcolor{keyword}{from}\ pathlib\ \textcolor{keyword}{import}\ Path}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00017}00017\ \textcolor{comment}{\#\ Add\ the\ parent\ directory\ to\ the\ path\ to\ import\ the\ module}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00018}00018\ sys.path.insert(0,\ str(Path(\_\_file\_\_).parent.parent))}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00020}00020\ \textcolor{keyword}{from}\ \mbox{\hyperlink{namespacecommonpython_1_1framework}{commonpython.framework}}\ \textcolor{keyword}{import}\ ComponentBase,\ run\_component}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00023}\mbox{\hyperlink{classcomponent__template_1_1_my_component}{00023}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcomponent__template_1_1_my_component}{MyComponent}}(ComponentBase):}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00024}00024\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00025}00025\ \textcolor{stringliteral}{\ \ \ \ My\ Component\ -\/\ Template\ for\ CommonPython\ Framework}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00026}00026\ \textcolor{stringliteral}{\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00027}00027\ \textcolor{stringliteral}{\ \ \ \ This\ is\ a\ template\ component\ that\ demonstrates\ how\ to\ use\ the\ CommonPython\ framework.}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00028}00028\ \textcolor{stringliteral}{\ \ \ \ Replace\ this\ class\ name\ and\ implementation\ with\ your\ own\ component\ logic.}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00029}00029\ \textcolor{stringliteral}{\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00030}00030\ \textcolor{stringliteral}{\ \ \ \ @brief\ Template\ component\ demonstrating\ CommonPython\ framework\ usage}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00031}00031\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00032}00032\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00033}\mbox{\hyperlink{classcomponent__template_1_1_my_component_af4335a4667c834245be3463adb78370a}{00033}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcomponent__template_1_1_my_component_af4335a4667c834245be3463adb78370a}{\_\_init\_\_}}(self,\ config\_file:\ str\ =\ \textcolor{keywordtype}{None}):}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00034}00034\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00035}00035\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Initialize\ the\ component.}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00036}00036\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00037}00037\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Initialize\ component\ with\ configuration.}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00038}00038\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @param\ config\_file\ Path\ to\ configuration\ file\ (optional)}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00039}00039\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00040}00040\ \ \ \ \ \ \ \ \ super().\mbox{\hyperlink{classcomponent__template_1_1_my_component_af4335a4667c834245be3463adb78370a}{\_\_init\_\_}}(\textcolor{stringliteral}{"{}MyComponent"{}},\ config\_file)}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00041}00041\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00042}\mbox{\hyperlink{classcomponent__template_1_1_my_component_af9f4bf8ce6fab88ea3a9ebc39d83f2f3}{00042}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcomponent__template_1_1_my_component_af9f4bf8ce6fab88ea3a9ebc39d83f2f3}{initialize}}(self)\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00043}00043\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00044}00044\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Initialize\ the\ component.}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00045}00045\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00046}00046\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Component-\/specific\ initialization\ logic.}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00047}00047\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @return\ True\ if\ initialization\ successful,\ False\ otherwise}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00048}00048\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00049}00049\ \ \ \ \ \ \ \ \ self.log\_info(\textcolor{stringliteral}{"{}Initializing\ MyComponent"{}})}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00050}00050\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00051}00051\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Get\ component-\/specific\ configuration}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00053}\mbox{\hyperlink{classcomponent__template_1_1_my_component_ac4aa6cfeac8c7298fbeacc1e457f273b}{00053}}\ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcomponent__template_1_1_my_component_ac4aa6cfeac8c7298fbeacc1e457f273b}{operation\_count}}\ =\ self.get\_config(\textcolor{stringliteral}{'component.operation\_count'},\ 5)}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00054}\mbox{\hyperlink{classcomponent__template_1_1_my_component_a181c5c191868ec018cbc2f3d8010b0f7}{00054}}\ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcomponent__template_1_1_my_component_a181c5c191868ec018cbc2f3d8010b0f7}{delay\_seconds}}\ =\ self.get\_config(\textcolor{stringliteral}{'component.delay\_seconds'},\ 1)}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00055}\mbox{\hyperlink{classcomponent__template_1_1_my_component_a18f8b50b6b69b00ab64d7cb757099202}{00055}}\ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcomponent__template_1_1_my_component_a18f8b50b6b69b00ab64d7cb757099202}{table\_name}}\ =\ self.get\_config(\textcolor{stringliteral}{'component.table\_name'},\ \textcolor{stringliteral}{'my\_table'})}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00056}\mbox{\hyperlink{classcomponent__template_1_1_my_component_a01d8182f9bcfd8286b102a28bb9240c1}{00056}}\ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcomponent__template_1_1_my_component_a01d8182f9bcfd8286b102a28bb9240c1}{queue\_name}}\ =\ self.get\_config(\textcolor{stringliteral}{'component.queue\_name'},\ \textcolor{stringliteral}{'MY.QUEUE'})}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ self.log\_info(f\textcolor{stringliteral}{"{}Configuration\ loaded:"{}})}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ self.log\_info(f\textcolor{stringliteral}{"{}\ \ -\/\ Operation\ count:\ \{self.operation\_count\}"{}})}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ self.log\_info(f\textcolor{stringliteral}{"{}\ \ -\/\ Delay\ seconds:\ \{self.delay\_seconds\}"{}})}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ self.log\_info(f\textcolor{stringliteral}{"{}\ \ -\/\ Table\ name:\ \{self.table\_name\}"{}})}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ self.log\_info(f\textcolor{stringliteral}{"{}\ \ -\/\ Queue\ name:\ \{self.queue\_name\}"{}})}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Initialize\ any\ component-\/specific\ resources\ here}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Example:\ Load\ data,\ connect\ to\ external\ services,\ etc.}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ self.log\_info(\textcolor{stringliteral}{"{}MyComponent\ initialization\ completed\ successfully"{}})}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00070}00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ self.log\_error(f\textcolor{stringliteral}{"{}MyComponent\ initialization\ failed:\ \{str(e)\}"{}})}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00073}00073\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00074}\mbox{\hyperlink{classcomponent__template_1_1_my_component_a1ecb2cb8333aea8b2d7dea2fc840c602}{00074}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcomponent__template_1_1_my_component_a1ecb2cb8333aea8b2d7dea2fc840c602}{run}}(self)\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00075}00075\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00076}00076\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Run\ the\ component.}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00077}00077\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00078}00078\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Main\ component\ execution\ logic.}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00079}00079\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @return\ True\ if\ execution\ successful,\ False\ otherwise}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00080}00080\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00081}00081\ \ \ \ \ \ \ \ \ self.log\_info(\textcolor{stringliteral}{"{}Starting\ MyComponent\ execution"{}})}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00082}00082\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00083}00083\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Connect\ to\ services\ if\ needed}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ db\_connected\ =\ self.connect\_database()}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ mq\_connected\ =\ self.connect\_messaging()}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ db\_connected:}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.log\_info(\textcolor{stringliteral}{"{}Database\ connection\ established"{}})}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.log\_warning(\textcolor{stringliteral}{"{}Database\ connection\ failed\ -\/\ continuing\ without\ database"{}})}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ mq\_connected:}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.log\_info(\textcolor{stringliteral}{"{}Messaging\ connection\ established"{}})}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.log\_warning(\textcolor{stringliteral}{"{}Messaging\ connection\ failed\ -\/\ continuing\ without\ messaging"{}})}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Perform\ main\ operations}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(self.\mbox{\hyperlink{classcomponent__template_1_1_my_component_ac4aa6cfeac8c7298fbeacc1e457f273b}{operation\_count}}):}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.log\_info(f\textcolor{stringliteral}{"{}Performing\ operation\ \{i\ +\ 1\}/\{self.operation\_count\}"{}})}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Example:\ Database\ operations}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ db\_connected:}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Example\ query\ -\/\ replace\ with\ your\ actual\ queries}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ results\ =\ self.execute\_query(f\textcolor{stringliteral}{"{}SELECT\ COUNT(*)\ FROM\ \{self.table\_name\}"{}})}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ results:}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.log\_info(f\textcolor{stringliteral}{"{}Table\ \{self.table\_name\}\ has\ \{results[0][0]\}\ records"{}})}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Example:\ Messaging\ operations}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ mq\_connected:}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Example\ message\ -\/\ replace\ with\ your\ actual\ messages}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ message\_data\ =\ \{}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}operation\_id"{}}:\ i\ +\ 1,}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}timestamp"{}}:\ time.time(),}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}data"{}}:\ f\textcolor{stringliteral}{"{}Operation\ \{i\ +\ 1\}\ completed"{}}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.send\_message(self.\mbox{\hyperlink{classcomponent__template_1_1_my_component_a01d8182f9bcfd8286b102a28bb9240c1}{queue\_name}},\ message\_data)}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.log\_info(f\textcolor{stringliteral}{"{}Message\ sent\ to\ \{self.queue\_name\}"{}})}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Simulate\ some\ work}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ time.sleep(self.\mbox{\hyperlink{classcomponent__template_1_1_my_component_a181c5c191868ec018cbc2f3d8010b0f7}{delay\_seconds}})}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.log\_info(f\textcolor{stringliteral}{"{}Operation\ \{i\ +\ 1\}\ completed\ successfully"{}})}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.log\_error(f\textcolor{stringliteral}{"{}Operation\ \{i\ +\ 1\}\ failed:\ \{str(e)\}"{}})}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Decide\ whether\ to\ continue\ or\ stop}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ For\ this\ template,\ we'll\ continue\ with\ the\ next\ operation}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Disconnect\ from\ services}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ db\_connected:}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.disconnect\_database()}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.log\_info(\textcolor{stringliteral}{"{}Database\ connection\ closed"{}})}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ mq\_connected:}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.disconnect\_messaging()}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.log\_info(\textcolor{stringliteral}{"{}Messaging\ connection\ closed"{}})}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ self.log\_info(\textcolor{stringliteral}{"{}MyComponent\ execution\ completed\ successfully"{}})}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00144}00144\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ self.log\_error(f\textcolor{stringliteral}{"{}MyComponent\ execution\ failed:\ \{str(e)\}"{}})}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00147}00147\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00148}\mbox{\hyperlink{classcomponent__template_1_1_my_component_aa12e664c14dae81bc9fda17b4812ff82}{00148}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcomponent__template_1_1_my_component_aa12e664c14dae81bc9fda17b4812ff82}{cleanup}}(self)\ -\/>\ None:}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00149}00149\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00150}00150\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Cleanup\ the\ component.}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00151}00151\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00152}00152\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Component-\/specific\ cleanup\ logic.}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00153}00153\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00154}00154\ \ \ \ \ \ \ \ \ self.log\_info(\textcolor{stringliteral}{"{}Cleaning\ up\ MyComponent"{}})}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00155}00155\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00156}00156\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Cleanup\ any\ component-\/specific\ resources\ here}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00158}00158\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Example:\ Close\ files,\ release\ locks,\ etc.}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00159}00159\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Ensure\ services\ are\ disconnected}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.disconnect\_database()}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}:}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.disconnect\_messaging()}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}:}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ self.log\_info(\textcolor{stringliteral}{"{}MyComponent\ cleanup\ completed"{}})}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00173}00173\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ self.log\_error(f\textcolor{stringliteral}{"{}MyComponent\ cleanup\ error:\ \{str(e)\}"{}})}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00175}00175\ }
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00176}00176\ }
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00177}\mbox{\hyperlink{namespacecomponent__template_ada6eeed516e1991bb03b5f3cdb121a4f}{00177}}\ \textcolor{keyword}{def\ }\mbox{\hyperlink{namespacecomponent__template_ada6eeed516e1991bb03b5f3cdb121a4f}{main}}():}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00178}00178\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00179}00179\ \textcolor{stringliteral}{\ \ \ \ Main\ entry\ point\ for\ the\ component.}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00180}00180\ \textcolor{stringliteral}{\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00181}00181\ \textcolor{stringliteral}{\ \ \ \ @brief\ Run\ the\ component\ with\ command-\/line\ arguments.}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00182}00182\ \textcolor{stringliteral}{\ \ \ \ @return\ True\ if\ component\ executed\ successfully,\ False\ otherwise}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00183}00183\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00184}00184\ \ \ \ \ \textcolor{keywordflow}{return}\ run\_component(MyComponent,\ \textcolor{stringliteral}{"{}MyComponent"{}})}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00185}00185\ }
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00186}00186\ }
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00187}00187\ \textcolor{keywordflow}{if}\ \_\_name\_\_\ ==\ \textcolor{stringliteral}{'\_\_main\_\_'}:}
+\DoxyCodeLine{\Hypertarget{component__template_8py_source_l00188}00188\ \ \ \ \ sys.exit(0\ \textcolor{keywordflow}{if}\ \mbox{\hyperlink{namespacecomponent__template_ada6eeed516e1991bb03b5f3cdb121a4f}{main}}()\ \textcolor{keywordflow}{else}\ 1)}
+
+\end{DoxyCode}

@@ -1,0 +1,235 @@
+\doxysection{commonpython.\+interfaces.\+messaging\+\_\+interface.\+IMessaging\+Manager Class Reference}
+\hypertarget{classcommonpython_1_1interfaces_1_1messaging__interface_1_1_i_messaging_manager}{}\label{classcommonpython_1_1interfaces_1_1messaging__interface_1_1_i_messaging_manager}\index{commonpython.interfaces.messaging\_interface.IMessagingManager@{commonpython.interfaces.messaging\_interface.IMessagingManager}}
+Inheritance diagram for commonpython.\+interfaces.\+messaging\+\_\+interface.\+IMessaging\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.084367cm]{classcommonpython_1_1interfaces_1_1messaging__interface_1_1_i_messaging_manager}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classcommonpython_1_1interfaces_1_1messaging__interface_1_1_i_messaging_manager_a310a573b2e7c62f2c222c24817684df9}{connect}} (self)
+\item 
+None \mbox{\hyperlink{classcommonpython_1_1interfaces_1_1messaging__interface_1_1_i_messaging_manager_adbd0163eea7c71949ad1953796dd5522}{disconnect}} (self)
+\item 
+bool \mbox{\hyperlink{classcommonpython_1_1interfaces_1_1messaging__interface_1_1_i_messaging_manager_a3dfd690d4f489c476191ca50ceabd95f}{is\+\_\+connected}} (self)
+\item 
+bool \mbox{\hyperlink{classcommonpython_1_1interfaces_1_1messaging__interface_1_1_i_messaging_manager_a93d2a32835632e9f2ac4a4679f9744e6}{put\+\_\+message}} (self, str queue\+\_\+name, Union\mbox{[}str, bytes, Dict\mbox{]} message, Optional\mbox{[}Dict\mbox{[}str, Any\mbox{]}\mbox{]} message\+\_\+properties=None)
+\item 
+Optional\mbox{[}Dict\mbox{[}str, Any\mbox{]}\mbox{]} \mbox{\hyperlink{classcommonpython_1_1interfaces_1_1messaging__interface_1_1_i_messaging_manager_a8cfeac42ee46fd6b3b8342cb84dff0a2}{get\+\_\+message}} (self, str queue\+\_\+name, Optional\mbox{[}int\mbox{]} timeout=None)
+\item 
+Optional\mbox{[}Dict\mbox{[}str, Any\mbox{]}\mbox{]} \mbox{\hyperlink{classcommonpython_1_1interfaces_1_1messaging__interface_1_1_i_messaging_manager_aae23b3ed3ac56e572c7c8682cc819164}{browse\+\_\+message}} (self, str queue\+\_\+name, Optional\mbox{[}bytes\mbox{]} message\+\_\+id=None)
+\item 
+int \mbox{\hyperlink{classcommonpython_1_1interfaces_1_1messaging__interface_1_1_i_messaging_manager_a348e36cc640c21851586939d66210f5d}{get\+\_\+queue\+\_\+depth}} (self, str queue\+\_\+name)
+\item 
+int \mbox{\hyperlink{classcommonpython_1_1interfaces_1_1messaging__interface_1_1_i_messaging_manager_a3dd9e96be91715bc515284da2d002e0a}{purge\+\_\+queue}} (self, str queue\+\_\+name)
+\item 
+bool \mbox{\hyperlink{classcommonpython_1_1interfaces_1_1messaging__interface_1_1_i_messaging_manager_a990919bced40bba5a0a8869707be9b40}{test\+\_\+connection}} (self)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Abstract interface for messaging management operations.
+
+All messaging adapters (CLI-based, library-based) must implement this interface
+to ensure compatibility with the CommonPython framework.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{messaging__interface_8py_source_l00013}{13}} of file \mbox{\hyperlink{messaging__interface_8py_source}{messaging\+\_\+interface.\+py}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcommonpython_1_1interfaces_1_1messaging__interface_1_1_i_messaging_manager_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcommonpython_1_1interfaces_1_1messaging__interface_1_1_i_messaging_manager_aae23b3ed3ac56e572c7c8682cc819164}\index{commonpython.interfaces.messaging\_interface.IMessagingManager@{commonpython.interfaces.messaging\_interface.IMessagingManager}!browse\_message@{browse\_message}}
+\index{browse\_message@{browse\_message}!commonpython.interfaces.messaging\_interface.IMessagingManager@{commonpython.interfaces.messaging\_interface.IMessagingManager}}
+\doxysubsubsection{\texorpdfstring{browse\_message()}{browse\_message()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1interfaces_1_1messaging__interface_1_1_i_messaging_manager_aae23b3ed3ac56e572c7c8682cc819164} 
+ Optional\mbox{[}Dict\mbox{[}str, Any\mbox{]}\mbox{]} commonpython.\+interfaces.\+messaging\+\_\+interface.\+IMessaging\+Manager.\+browse\+\_\+message (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{queue\+\_\+name}{, }\item[{Optional\mbox{[}bytes\mbox{]} }]{message\+\_\+id}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Browse a message from a queue without removing it.
+
+@brief Browse message without consuming it.
+@param queue_name Name of the queue
+@param message_id Specific message ID to browse (optional)
+@return Dictionary containing message data and properties, or None if no message
+@throws Exception If message browsing fails
+\end{DoxyVerb}
+ 
+
+Reimplemented in \mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__cli__adapter_1_1_m_q_c_l_i_adapter_a971cbff1ede6f4a515c1fe4f8f9a05fa}{commonpython.\+adapters.\+mq\+\_\+cli\+\_\+adapter.\+MQCLIAdapter}}, and \mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__library__adapter_1_1_m_q_library_adapter_a7dc57e54fe14a6554cd84cb8361e1e19}{commonpython.\+adapters.\+mq\+\_\+library\+\_\+adapter.\+MQLibrary\+Adapter}}.
+
+
+
+Definition at line \mbox{\hyperlink{messaging__interface_8py_source_l00079}{79}} of file \mbox{\hyperlink{messaging__interface_8py_source}{messaging\+\_\+interface.\+py}}.
+
+\Hypertarget{classcommonpython_1_1interfaces_1_1messaging__interface_1_1_i_messaging_manager_a310a573b2e7c62f2c222c24817684df9}\index{commonpython.interfaces.messaging\_interface.IMessagingManager@{commonpython.interfaces.messaging\_interface.IMessagingManager}!connect@{connect}}
+\index{connect@{connect}!commonpython.interfaces.messaging\_interface.IMessagingManager@{commonpython.interfaces.messaging\_interface.IMessagingManager}}
+\doxysubsubsection{\texorpdfstring{connect()}{connect()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1interfaces_1_1messaging__interface_1_1_i_messaging_manager_a310a573b2e7c62f2c222c24817684df9} 
+ bool commonpython.\+interfaces.\+messaging\+\_\+interface.\+IMessaging\+Manager.\+connect (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Establish connection to the message queue manager.
+
+@brief Connect to messaging server.
+@return True if connection successful, False otherwise
+\end{DoxyVerb}
+ 
+
+Reimplemented in \mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__cli__adapter_1_1_m_q_c_l_i_adapter_ae7c585ad9e24111dd1ffe1d8cd89d1da}{commonpython.\+adapters.\+mq\+\_\+cli\+\_\+adapter.\+MQCLIAdapter}}, and \mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__library__adapter_1_1_m_q_library_adapter_a93f98154332271084b4f5f2260bd2cb6}{commonpython.\+adapters.\+mq\+\_\+library\+\_\+adapter.\+MQLibrary\+Adapter}}.
+
+
+
+Definition at line \mbox{\hyperlink{messaging__interface_8py_source_l00022}{22}} of file \mbox{\hyperlink{messaging__interface_8py_source}{messaging\+\_\+interface.\+py}}.
+
+\Hypertarget{classcommonpython_1_1interfaces_1_1messaging__interface_1_1_i_messaging_manager_adbd0163eea7c71949ad1953796dd5522}\index{commonpython.interfaces.messaging\_interface.IMessagingManager@{commonpython.interfaces.messaging\_interface.IMessagingManager}!disconnect@{disconnect}}
+\index{disconnect@{disconnect}!commonpython.interfaces.messaging\_interface.IMessagingManager@{commonpython.interfaces.messaging\_interface.IMessagingManager}}
+\doxysubsubsection{\texorpdfstring{disconnect()}{disconnect()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1interfaces_1_1messaging__interface_1_1_i_messaging_manager_adbd0163eea7c71949ad1953796dd5522} 
+ None commonpython.\+interfaces.\+messaging\+\_\+interface.\+IMessaging\+Manager.\+disconnect (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Close the messaging connection.
+
+@brief Disconnect from messaging server.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__cli__adapter_1_1_m_q_c_l_i_adapter_a1f05ba4eca1d6727463b5ca49e193633}{commonpython.\+adapters.\+mq\+\_\+cli\+\_\+adapter.\+MQCLIAdapter}}, and \mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__library__adapter_1_1_m_q_library_adapter_ab9a197b2bbd6ad829741c2bdf8c53e1d}{commonpython.\+adapters.\+mq\+\_\+library\+\_\+adapter.\+MQLibrary\+Adapter}}.
+
+
+
+Definition at line \mbox{\hyperlink{messaging__interface_8py_source_l00032}{32}} of file \mbox{\hyperlink{messaging__interface_8py_source}{messaging\+\_\+interface.\+py}}.
+
+\Hypertarget{classcommonpython_1_1interfaces_1_1messaging__interface_1_1_i_messaging_manager_a8cfeac42ee46fd6b3b8342cb84dff0a2}\index{commonpython.interfaces.messaging\_interface.IMessagingManager@{commonpython.interfaces.messaging\_interface.IMessagingManager}!get\_message@{get\_message}}
+\index{get\_message@{get\_message}!commonpython.interfaces.messaging\_interface.IMessagingManager@{commonpython.interfaces.messaging\_interface.IMessagingManager}}
+\doxysubsubsection{\texorpdfstring{get\_message()}{get\_message()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1interfaces_1_1messaging__interface_1_1_i_messaging_manager_a8cfeac42ee46fd6b3b8342cb84dff0a2} 
+ Optional\mbox{[}Dict\mbox{[}str, Any\mbox{]}\mbox{]} commonpython.\+interfaces.\+messaging\+\_\+interface.\+IMessaging\+Manager.\+get\+\_\+message (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{queue\+\_\+name}{, }\item[{Optional\mbox{[}int\mbox{]} }]{timeout}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get a message from a queue.
+
+@brief Receive message from message queue.
+@param queue_name Name of the queue
+@param timeout Timeout in seconds (None for default timeout)
+@return Dictionary containing message data and properties, or None if no message
+@throws Exception If message retrieval fails
+\end{DoxyVerb}
+ 
+
+Reimplemented in \mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__cli__adapter_1_1_m_q_c_l_i_adapter_a4ddad0f5030d090a24799f38c510266c}{commonpython.\+adapters.\+mq\+\_\+cli\+\_\+adapter.\+MQCLIAdapter}}, and \mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__library__adapter_1_1_m_q_library_adapter_a502e8503d0387f62bb9ec443a9ca989b}{commonpython.\+adapters.\+mq\+\_\+library\+\_\+adapter.\+MQLibrary\+Adapter}}.
+
+
+
+Definition at line \mbox{\hyperlink{messaging__interface_8py_source_l00066}{66}} of file \mbox{\hyperlink{messaging__interface_8py_source}{messaging\+\_\+interface.\+py}}.
+
+\Hypertarget{classcommonpython_1_1interfaces_1_1messaging__interface_1_1_i_messaging_manager_a348e36cc640c21851586939d66210f5d}\index{commonpython.interfaces.messaging\_interface.IMessagingManager@{commonpython.interfaces.messaging\_interface.IMessagingManager}!get\_queue\_depth@{get\_queue\_depth}}
+\index{get\_queue\_depth@{get\_queue\_depth}!commonpython.interfaces.messaging\_interface.IMessagingManager@{commonpython.interfaces.messaging\_interface.IMessagingManager}}
+\doxysubsubsection{\texorpdfstring{get\_queue\_depth()}{get\_queue\_depth()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1interfaces_1_1messaging__interface_1_1_i_messaging_manager_a348e36cc640c21851586939d66210f5d} 
+ int commonpython.\+interfaces.\+messaging\+\_\+interface.\+IMessaging\+Manager.\+get\+\_\+queue\+\_\+depth (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{queue\+\_\+name}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get the depth (number of messages) in a queue.
+
+@brief Get current queue depth.
+@param queue_name Name of the queue
+@return Number of messages in the queue, -1 if error
+@throws Exception If queue depth retrieval fails
+\end{DoxyVerb}
+ 
+
+Reimplemented in \mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__cli__adapter_1_1_m_q_c_l_i_adapter_a73082b26e983c99429706aecf776dc28}{commonpython.\+adapters.\+mq\+\_\+cli\+\_\+adapter.\+MQCLIAdapter}}, and \mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__library__adapter_1_1_m_q_library_adapter_ab9f28f837d3dc7d1b30fa8e2026e7dde}{commonpython.\+adapters.\+mq\+\_\+library\+\_\+adapter.\+MQLibrary\+Adapter}}.
+
+
+
+Definition at line \mbox{\hyperlink{messaging__interface_8py_source_l00092}{92}} of file \mbox{\hyperlink{messaging__interface_8py_source}{messaging\+\_\+interface.\+py}}.
+
+\Hypertarget{classcommonpython_1_1interfaces_1_1messaging__interface_1_1_i_messaging_manager_a3dfd690d4f489c476191ca50ceabd95f}\index{commonpython.interfaces.messaging\_interface.IMessagingManager@{commonpython.interfaces.messaging\_interface.IMessagingManager}!is\_connected@{is\_connected}}
+\index{is\_connected@{is\_connected}!commonpython.interfaces.messaging\_interface.IMessagingManager@{commonpython.interfaces.messaging\_interface.IMessagingManager}}
+\doxysubsubsection{\texorpdfstring{is\_connected()}{is\_connected()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1interfaces_1_1messaging__interface_1_1_i_messaging_manager_a3dfd690d4f489c476191ca50ceabd95f} 
+ bool commonpython.\+interfaces.\+messaging\+\_\+interface.\+IMessaging\+Manager.\+is\+\_\+connected (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Check if messaging connection is active.
+
+@brief Check connection status.
+@return True if connected, False otherwise
+\end{DoxyVerb}
+ 
+
+Reimplemented in \mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__cli__adapter_1_1_m_q_c_l_i_adapter_af38a3043cd09bd80110b2b38175ef70a}{commonpython.\+adapters.\+mq\+\_\+cli\+\_\+adapter.\+MQCLIAdapter}}, and \mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__library__adapter_1_1_m_q_library_adapter_a0b2b350c00aa151007f276d32d16fcfe}{commonpython.\+adapters.\+mq\+\_\+library\+\_\+adapter.\+MQLibrary\+Adapter}}.
+
+
+
+Definition at line \mbox{\hyperlink{messaging__interface_8py_source_l00041}{41}} of file \mbox{\hyperlink{messaging__interface_8py_source}{messaging\+\_\+interface.\+py}}.
+
+\Hypertarget{classcommonpython_1_1interfaces_1_1messaging__interface_1_1_i_messaging_manager_a3dd9e96be91715bc515284da2d002e0a}\index{commonpython.interfaces.messaging\_interface.IMessagingManager@{commonpython.interfaces.messaging\_interface.IMessagingManager}!purge\_queue@{purge\_queue}}
+\index{purge\_queue@{purge\_queue}!commonpython.interfaces.messaging\_interface.IMessagingManager@{commonpython.interfaces.messaging\_interface.IMessagingManager}}
+\doxysubsubsection{\texorpdfstring{purge\_queue()}{purge\_queue()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1interfaces_1_1messaging__interface_1_1_i_messaging_manager_a3dd9e96be91715bc515284da2d002e0a} 
+ int commonpython.\+interfaces.\+messaging\+\_\+interface.\+IMessaging\+Manager.\+purge\+\_\+queue (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{queue\+\_\+name}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Purge all messages from a queue.
+
+@brief Clear all messages from queue.
+@param queue_name Name of the queue
+@return Number of messages purged
+@throws Exception If queue purging fails
+\end{DoxyVerb}
+ 
+
+Reimplemented in \mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__cli__adapter_1_1_m_q_c_l_i_adapter_a93de801fae4b5643f4156413c5e98ad7}{commonpython.\+adapters.\+mq\+\_\+cli\+\_\+adapter.\+MQCLIAdapter}}, and \mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__library__adapter_1_1_m_q_library_adapter_a5a83600533d1c9f6f69e0c642ad6feb6}{commonpython.\+adapters.\+mq\+\_\+library\+\_\+adapter.\+MQLibrary\+Adapter}}.
+
+
+
+Definition at line \mbox{\hyperlink{messaging__interface_8py_source_l00104}{104}} of file \mbox{\hyperlink{messaging__interface_8py_source}{messaging\+\_\+interface.\+py}}.
+
+\Hypertarget{classcommonpython_1_1interfaces_1_1messaging__interface_1_1_i_messaging_manager_a93d2a32835632e9f2ac4a4679f9744e6}\index{commonpython.interfaces.messaging\_interface.IMessagingManager@{commonpython.interfaces.messaging\_interface.IMessagingManager}!put\_message@{put\_message}}
+\index{put\_message@{put\_message}!commonpython.interfaces.messaging\_interface.IMessagingManager@{commonpython.interfaces.messaging\_interface.IMessagingManager}}
+\doxysubsubsection{\texorpdfstring{put\_message()}{put\_message()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1interfaces_1_1messaging__interface_1_1_i_messaging_manager_a93d2a32835632e9f2ac4a4679f9744e6} 
+ bool commonpython.\+interfaces.\+messaging\+\_\+interface.\+IMessaging\+Manager.\+put\+\_\+message (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{queue\+\_\+name}{, }\item[{Union\mbox{[}str, bytes, Dict\mbox{]}}]{message}{, }\item[{Optional\mbox{[}Dict\mbox{[}str, Any\mbox{]}\mbox{]} }]{message\+\_\+properties}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Put a message to a queue.
+
+@brief Send message to message queue.
+@param queue_name Name of the queue
+@param message Message content (string, bytes, or dictionary)
+@param message_properties Optional message properties
+@return True if message sent successfully, False otherwise
+@throws Exception If message sending fails
+\end{DoxyVerb}
+ 
+
+Reimplemented in \mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__cli__adapter_1_1_m_q_c_l_i_adapter_a4d1a06720c83aaaf79d4d312a0158103}{commonpython.\+adapters.\+mq\+\_\+cli\+\_\+adapter.\+MQCLIAdapter}}, and \mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__library__adapter_1_1_m_q_library_adapter_a48f70bd4ee48203e4124808efe662f5b}{commonpython.\+adapters.\+mq\+\_\+library\+\_\+adapter.\+MQLibrary\+Adapter}}.
+
+
+
+Definition at line \mbox{\hyperlink{messaging__interface_8py_source_l00051}{51}} of file \mbox{\hyperlink{messaging__interface_8py_source}{messaging\+\_\+interface.\+py}}.
+
+\Hypertarget{classcommonpython_1_1interfaces_1_1messaging__interface_1_1_i_messaging_manager_a990919bced40bba5a0a8869707be9b40}\index{commonpython.interfaces.messaging\_interface.IMessagingManager@{commonpython.interfaces.messaging\_interface.IMessagingManager}!test\_connection@{test\_connection}}
+\index{test\_connection@{test\_connection}!commonpython.interfaces.messaging\_interface.IMessagingManager@{commonpython.interfaces.messaging\_interface.IMessagingManager}}
+\doxysubsubsection{\texorpdfstring{test\_connection()}{test\_connection()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1interfaces_1_1messaging__interface_1_1_i_messaging_manager_a990919bced40bba5a0a8869707be9b40} 
+ bool commonpython.\+interfaces.\+messaging\+\_\+interface.\+IMessaging\+Manager.\+test\+\_\+connection (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test messaging connection.
+
+@brief Test if messaging connection is working properly.
+@return True if connection is working, False otherwise
+\end{DoxyVerb}
+ 
+
+Reimplemented in \mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__cli__adapter_1_1_m_q_c_l_i_adapter_a6fc1b751b6ede29a83886ff3d075bd73}{commonpython.\+adapters.\+mq\+\_\+cli\+\_\+adapter.\+MQCLIAdapter}}, and \mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__library__adapter_1_1_m_q_library_adapter_a34b51630f678c41de8e40f123619e149}{commonpython.\+adapters.\+mq\+\_\+library\+\_\+adapter.\+MQLibrary\+Adapter}}.
+
+
+
+Definition at line \mbox{\hyperlink{messaging__interface_8py_source_l00116}{116}} of file \mbox{\hyperlink{messaging__interface_8py_source}{messaging\+\_\+interface.\+py}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+commonpython/interfaces/\mbox{\hyperlink{messaging__interface_8py}{messaging\+\_\+interface.\+py}}\end{DoxyCompactItemize}

@@ -1,0 +1,367 @@
+\doxysection{commonpython.\+adapters.\+db2\+\_\+library\+\_\+adapter.\+DB2\+Library\+Adapter Class Reference}
+\hypertarget{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter}{}\label{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter}\index{commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter@{commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter}}
+Inheritance diagram for commonpython.\+adapters.\+db2\+\_\+library\+\_\+adapter.\+DB2\+Library\+Adapter\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_aa2d0742c1ee7e0cab188491c2fcdd7ee}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, Dict\mbox{[}str, Any\mbox{]} config, logger=None)
+\item 
+bool \mbox{\hyperlink{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_adf9d1949b48e4cb09f9700c9d77aa685}{connect}} (self)
+\item 
+None \mbox{\hyperlink{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_a06ec86bab5f2667b97c205ea9e4a51d5}{disconnect}} (self)
+\item 
+bool \mbox{\hyperlink{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_a76b9e4078467bc630109e3fa217cc936}{is\+\_\+connected}} (self)
+\item 
+List\mbox{[}Dict\mbox{[}str, Any\mbox{]}\mbox{]} \mbox{\hyperlink{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_a98244bd18d0c5cd123e1103cf4fa0450}{execute\+\_\+query}} (self, str query, Optional\mbox{[}Tuple\mbox{]} params=None)
+\item 
+int \mbox{\hyperlink{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_af837881a7e096bc62bce2e1b0744d4d8}{execute\+\_\+update}} (self, str query, Optional\mbox{[}Tuple\mbox{]} params=None)
+\item 
+List\mbox{[}int\mbox{]} \mbox{\hyperlink{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_a714caeb5070c87f3152ae223c2c05c6a}{execute\+\_\+batch}} (self, List\mbox{[}str\mbox{]} queries, Optional\mbox{[}List\mbox{[}Tuple\mbox{]}\mbox{]} params\+\_\+list=None)
+\item 
+\mbox{\hyperlink{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_a07932cc266707f1abdaa1078c31cbc90}{transaction}} (self)
+\item 
+List\mbox{[}Dict\mbox{[}str, Any\mbox{]}\mbox{]} \mbox{\hyperlink{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_af9031418cc406e4edd4ed781b9e64214}{get\+\_\+table\+\_\+info}} (self, str table\+\_\+name)
+\item 
+Dict\mbox{[}str, Any\mbox{]} \mbox{\hyperlink{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_a376652b40cfde6b6492abaf770850eff}{get\+\_\+database\+\_\+info}} (self)
+\item 
+bool \mbox{\hyperlink{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_a4ed5cc06fc3decd4d96a63bb5d59c052}{test\+\_\+connection}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+str \mbox{\hyperlink{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_a6322913b57deeb2a2cf8c81316635df1}{\+\_\+build\+\_\+connection\+\_\+string}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_a3fc4bef3e50114d31d1b61aa3c3c87c5}{\+\_\+config}} = config
+\item 
+\mbox{\hyperlink{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_a0bffa2efb60a6096b5fa67363dd57a4b}{\+\_\+logger}} = logger
+\item 
+bool \mbox{\hyperlink{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_affcb35ba3d99544e2c1a85d2e5928af8}{\+\_\+conn}} = None
+\item 
+\mbox{\hyperlink{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_afb351448ee6b11328a0ae7bfe0a7ebbb}{\+\_\+dbi\+\_\+conn}} = None
+\item 
+str \mbox{\hyperlink{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_a67e4cd28e8a9e1e957dfe0163dd346e6}{\+\_\+connection\+\_\+string}} = self.\+\_\+build\+\_\+connection\+\_\+string()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Adapter for library-based DB2 database operations using ibm_db.
+
+Provides efficient, native DB2 connectivity using the ibm_db Python library
+with support for connection pooling, prepared statements, and proper
+parameterized queries.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{db2__library__adapter_8py_source_l00022}{22}} of file \mbox{\hyperlink{db2__library__adapter_8py_source}{db2\+\_\+library\+\_\+adapter.\+py}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_aa2d0742c1ee7e0cab188491c2fcdd7ee}\index{commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter@{commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter@{commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_aa2d0742c1ee7e0cab188491c2fcdd7ee} 
+commonpython.\+adapters.\+db2\+\_\+library\+\_\+adapter.\+DB2\+Library\+Adapter.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Dict\mbox{[}str, Any\mbox{]}}]{config}{, }\item[{}]{logger}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Initialize the DB2 library adapter.
+
+@brief Initialize adapter with ibm_db library.
+@param config Database configuration dictionary
+@param logger Logger manager instance (optional)
+@throws ImportError If ibm_db library is not installed
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{db2__library__adapter_8py_source_l00031}{31}} of file \mbox{\hyperlink{db2__library__adapter_8py_source}{db2\+\_\+library\+\_\+adapter.\+py}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_a6322913b57deeb2a2cf8c81316635df1}\index{commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter@{commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter}!\_build\_connection\_string@{\_build\_connection\_string}}
+\index{\_build\_connection\_string@{\_build\_connection\_string}!commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter@{commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter}}
+\doxysubsubsection{\texorpdfstring{\_build\_connection\_string()}{\_build\_connection\_string()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_a6322913b57deeb2a2cf8c81316635df1} 
+ str commonpython.\+adapters.\+db2\+\_\+library\+\_\+adapter.\+DB2\+Library\+Adapter.\+\_\+build\+\_\+connection\+\_\+string (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Build DB2 connection string from configuration.
+
+@brief Create connection string for ibm_db.
+@return Formatted connection string
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{db2__library__adapter_8py_source_l00052}{52}} of file \mbox{\hyperlink{db2__library__adapter_8py_source}{db2\+\_\+library\+\_\+adapter.\+py}}.
+
+\Hypertarget{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_adf9d1949b48e4cb09f9700c9d77aa685}\index{commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter@{commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter}!connect@{connect}}
+\index{connect@{connect}!commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter@{commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter}}
+\doxysubsubsection{\texorpdfstring{connect()}{connect()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_adf9d1949b48e4cb09f9700c9d77aa685} 
+ bool commonpython.\+adapters.\+db2\+\_\+library\+\_\+adapter.\+DB2\+Library\+Adapter.\+connect (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Establish connection to DB2 database using ibm_db library.
+
+@brief Connect to database via ibm_db library.
+@return True if connection successful, False otherwise
+\end{DoxyVerb}
+ 
+
+Reimplemented from \mbox{\hyperlink{classcommonpython_1_1interfaces_1_1database__interface_1_1_i_database_manager_ad999961418fccbda617d8944713427b7}{commonpython.\+interfaces.\+database\+\_\+interface.\+IDatabase\+Manager}}.
+
+
+
+Definition at line \mbox{\hyperlink{db2__library__adapter_8py_source_l00074}{74}} of file \mbox{\hyperlink{db2__library__adapter_8py_source}{db2\+\_\+library\+\_\+adapter.\+py}}.
+
+\Hypertarget{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_a06ec86bab5f2667b97c205ea9e4a51d5}\index{commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter@{commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter}!disconnect@{disconnect}}
+\index{disconnect@{disconnect}!commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter@{commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter}}
+\doxysubsubsection{\texorpdfstring{disconnect()}{disconnect()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_a06ec86bab5f2667b97c205ea9e4a51d5} 
+ None commonpython.\+adapters.\+db2\+\_\+library\+\_\+adapter.\+DB2\+Library\+Adapter.\+disconnect (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Close the database connection.
+
+@brief Disconnect from database via ibm_db library.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \mbox{\hyperlink{classcommonpython_1_1interfaces_1_1database__interface_1_1_i_database_manager_a30be2926de558c38aea7ae2550c55041}{commonpython.\+interfaces.\+database\+\_\+interface.\+IDatabase\+Manager}}.
+
+
+
+Definition at line \mbox{\hyperlink{db2__library__adapter_8py_source_l00096}{96}} of file \mbox{\hyperlink{db2__library__adapter_8py_source}{db2\+\_\+library\+\_\+adapter.\+py}}.
+
+\Hypertarget{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_a714caeb5070c87f3152ae223c2c05c6a}\index{commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter@{commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter}!execute\_batch@{execute\_batch}}
+\index{execute\_batch@{execute\_batch}!commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter@{commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter}}
+\doxysubsubsection{\texorpdfstring{execute\_batch()}{execute\_batch()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_a714caeb5070c87f3152ae223c2c05c6a} 
+ List\mbox{[}int\mbox{]} commonpython.\+adapters.\+db2\+\_\+library\+\_\+adapter.\+DB2\+Library\+Adapter.\+execute\+\_\+batch (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{List\mbox{[}str\mbox{]}}]{queries}{, }\item[{Optional\mbox{[}List\mbox{[}Tuple\mbox{]}\mbox{]} }]{params\+\_\+list}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Execute multiple queries in a batch.
+
+@brief Execute batch queries via ibm_db within a transaction.
+@param queries List of SQL query strings
+@param params_list List of parameter tuples for each query
+@return List of affected rows for each query
+@throws Exception If batch execution fails
+\end{DoxyVerb}
+ 
+
+Reimplemented from \mbox{\hyperlink{classcommonpython_1_1interfaces_1_1database__interface_1_1_i_database_manager_a3458bcf9fcbdf380d674b0f9c4268398}{commonpython.\+interfaces.\+database\+\_\+interface.\+IDatabase\+Manager}}.
+
+
+
+Definition at line \mbox{\hyperlink{db2__library__adapter_8py_source_l00245}{245}} of file \mbox{\hyperlink{db2__library__adapter_8py_source}{db2\+\_\+library\+\_\+adapter.\+py}}.
+
+\Hypertarget{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_a98244bd18d0c5cd123e1103cf4fa0450}\index{commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter@{commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter}!execute\_query@{execute\_query}}
+\index{execute\_query@{execute\_query}!commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter@{commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter}}
+\doxysubsubsection{\texorpdfstring{execute\_query()}{execute\_query()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_a98244bd18d0c5cd123e1103cf4fa0450} 
+ List\mbox{[}Dict\mbox{[}str, Any\mbox{]}\mbox{]} commonpython.\+adapters.\+db2\+\_\+library\+\_\+adapter.\+DB2\+Library\+Adapter.\+execute\+\_\+query (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{query}{, }\item[{Optional\mbox{[}Tuple\mbox{]} }]{params}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Execute a SELECT query and return results.
+
+@brief Execute SELECT query via ibm_db with parameterization support.
+@param query SQL query string (use ? for parameters)
+@param params Query parameters tuple
+@return List of dictionaries containing query results
+@throws Exception If query execution fails
+\end{DoxyVerb}
+ 
+
+Reimplemented from \mbox{\hyperlink{classcommonpython_1_1interfaces_1_1database__interface_1_1_i_database_manager_a11366d26a76bb9e9bd586f7d277f1d24}{commonpython.\+interfaces.\+database\+\_\+interface.\+IDatabase\+Manager}}.
+
+
+
+Definition at line \mbox{\hyperlink{db2__library__adapter_8py_source_l00132}{132}} of file \mbox{\hyperlink{db2__library__adapter_8py_source}{db2\+\_\+library\+\_\+adapter.\+py}}.
+
+\Hypertarget{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_af837881a7e096bc62bce2e1b0744d4d8}\index{commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter@{commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter}!execute\_update@{execute\_update}}
+\index{execute\_update@{execute\_update}!commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter@{commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter}}
+\doxysubsubsection{\texorpdfstring{execute\_update()}{execute\_update()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_af837881a7e096bc62bce2e1b0744d4d8} 
+ int commonpython.\+adapters.\+db2\+\_\+library\+\_\+adapter.\+DB2\+Library\+Adapter.\+execute\+\_\+update (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{query}{, }\item[{Optional\mbox{[}Tuple\mbox{]} }]{params}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Execute an INSERT, UPDATE, or DELETE query.
+
+@brief Execute DML query via ibm_db with parameterization support.
+@param query SQL query string (use ? for parameters)
+@param params Query parameters tuple
+@return Number of affected rows
+@throws Exception If query execution fails
+\end{DoxyVerb}
+ 
+
+Reimplemented from \mbox{\hyperlink{classcommonpython_1_1interfaces_1_1database__interface_1_1_i_database_manager_a42b74b8edf626fdd827258721182a20d}{commonpython.\+interfaces.\+database\+\_\+interface.\+IDatabase\+Manager}}.
+
+
+
+Definition at line \mbox{\hyperlink{db2__library__adapter_8py_source_l00192}{192}} of file \mbox{\hyperlink{db2__library__adapter_8py_source}{db2\+\_\+library\+\_\+adapter.\+py}}.
+
+\Hypertarget{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_a376652b40cfde6b6492abaf770850eff}\index{commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter@{commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter}!get\_database\_info@{get\_database\_info}}
+\index{get\_database\_info@{get\_database\_info}!commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter@{commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter}}
+\doxysubsubsection{\texorpdfstring{get\_database\_info()}{get\_database\_info()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_a376652b40cfde6b6492abaf770850eff} 
+ Dict\mbox{[}str, Any\mbox{]} commonpython.\+adapters.\+db2\+\_\+library\+\_\+adapter.\+DB2\+Library\+Adapter.\+get\+\_\+database\+\_\+info (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get database information.
+
+@brief Get database metadata using ibm_db system catalog.
+@return Dictionary containing database information
+@throws Exception If database info retrieval fails
+\end{DoxyVerb}
+ 
+
+Reimplemented from \mbox{\hyperlink{classcommonpython_1_1interfaces_1_1database__interface_1_1_i_database_manager_a331f4839d4ed47eff4748d700bfe4d73}{commonpython.\+interfaces.\+database\+\_\+interface.\+IDatabase\+Manager}}.
+
+
+
+Definition at line \mbox{\hyperlink{db2__library__adapter_8py_source_l00339}{339}} of file \mbox{\hyperlink{db2__library__adapter_8py_source}{db2\+\_\+library\+\_\+adapter.\+py}}.
+
+\Hypertarget{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_af9031418cc406e4edd4ed781b9e64214}\index{commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter@{commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter}!get\_table\_info@{get\_table\_info}}
+\index{get\_table\_info@{get\_table\_info}!commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter@{commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter}}
+\doxysubsubsection{\texorpdfstring{get\_table\_info()}{get\_table\_info()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_af9031418cc406e4edd4ed781b9e64214} 
+ List\mbox{[}Dict\mbox{[}str, Any\mbox{]}\mbox{]} commonpython.\+adapters.\+db2\+\_\+library\+\_\+adapter.\+DB2\+Library\+Adapter.\+get\+\_\+table\+\_\+info (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{table\+\_\+name}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get table column information.
+
+@brief Get table metadata using ibm_db system catalog.
+@param table_name Name of the table
+@return List of dictionaries containing column information
+@throws Exception If table info retrieval fails
+\end{DoxyVerb}
+ 
+
+Reimplemented from \mbox{\hyperlink{classcommonpython_1_1interfaces_1_1database__interface_1_1_i_database_manager_a293d931303d3d295331c08786f96b3de}{commonpython.\+interfaces.\+database\+\_\+interface.\+IDatabase\+Manager}}.
+
+
+
+Definition at line \mbox{\hyperlink{db2__library__adapter_8py_source_l00321}{321}} of file \mbox{\hyperlink{db2__library__adapter_8py_source}{db2\+\_\+library\+\_\+adapter.\+py}}.
+
+\Hypertarget{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_a76b9e4078467bc630109e3fa217cc936}\index{commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter@{commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter}!is\_connected@{is\_connected}}
+\index{is\_connected@{is\_connected}!commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter@{commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter}}
+\doxysubsubsection{\texorpdfstring{is\_connected()}{is\_connected()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_a76b9e4078467bc630109e3fa217cc936} 
+ bool commonpython.\+adapters.\+db2\+\_\+library\+\_\+adapter.\+DB2\+Library\+Adapter.\+is\+\_\+connected (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Check if database connection is active.
+
+@brief Check ibm_db connection status.
+@return True if connected, False otherwise
+\end{DoxyVerb}
+ 
+
+Reimplemented from \mbox{\hyperlink{classcommonpython_1_1interfaces_1_1database__interface_1_1_i_database_manager_ae438f5f416bcb4fa52c1546c6919792c}{commonpython.\+interfaces.\+database\+\_\+interface.\+IDatabase\+Manager}}.
+
+
+
+Definition at line \mbox{\hyperlink{db2__library__adapter_8py_source_l00118}{118}} of file \mbox{\hyperlink{db2__library__adapter_8py_source}{db2\+\_\+library\+\_\+adapter.\+py}}.
+
+\Hypertarget{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_a4ed5cc06fc3decd4d96a63bb5d59c052}\index{commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter@{commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter}!test\_connection@{test\_connection}}
+\index{test\_connection@{test\_connection}!commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter@{commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter}}
+\doxysubsubsection{\texorpdfstring{test\_connection()}{test\_connection()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_a4ed5cc06fc3decd4d96a63bb5d59c052} 
+ bool commonpython.\+adapters.\+db2\+\_\+library\+\_\+adapter.\+DB2\+Library\+Adapter.\+test\+\_\+connection (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test database connection.
+
+@brief Test ibm_db connection.
+@return True if connection is working, False otherwise
+\end{DoxyVerb}
+ 
+
+Reimplemented from \mbox{\hyperlink{classcommonpython_1_1interfaces_1_1database__interface_1_1_i_database_manager_a4290354f2f1c6983a7508089c4a7e4ea}{commonpython.\+interfaces.\+database\+\_\+interface.\+IDatabase\+Manager}}.
+
+
+
+Definition at line \mbox{\hyperlink{db2__library__adapter_8py_source_l00354}{354}} of file \mbox{\hyperlink{db2__library__adapter_8py_source}{db2\+\_\+library\+\_\+adapter.\+py}}.
+
+\Hypertarget{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_a07932cc266707f1abdaa1078c31cbc90}\index{commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter@{commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter}!transaction@{transaction}}
+\index{transaction@{transaction}!commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter@{commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter}}
+\doxysubsubsection{\texorpdfstring{transaction()}{transaction()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_a07932cc266707f1abdaa1078c31cbc90} 
+commonpython.\+adapters.\+db2\+\_\+library\+\_\+adapter.\+DB2\+Library\+Adapter.\+transaction (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Context manager for database transactions.
+
+@brief Provide transaction context via ibm_db.
+@throws Exception If transaction management fails
+\end{DoxyVerb}
+ 
+
+Reimplemented from \mbox{\hyperlink{classcommonpython_1_1interfaces_1_1database__interface_1_1_i_database_manager_a61d61ff0692ddb564eca691f116d46cf}{commonpython.\+interfaces.\+database\+\_\+interface.\+IDatabase\+Manager}}.
+
+
+
+Definition at line \mbox{\hyperlink{db2__library__adapter_8py_source_l00292}{292}} of file \mbox{\hyperlink{db2__library__adapter_8py_source}{db2\+\_\+library\+\_\+adapter.\+py}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_a3fc4bef3e50114d31d1b61aa3c3c87c5}\index{commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter@{commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter}!\_config@{\_config}}
+\index{\_config@{\_config}!commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter@{commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter}}
+\doxysubsubsection{\texorpdfstring{\_config}{\_config}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_a3fc4bef3e50114d31d1b61aa3c3c87c5} 
+commonpython.\+adapters.\+db2\+\_\+library\+\_\+adapter.\+DB2\+Library\+Adapter.\+\_\+config = config\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{db2__library__adapter_8py_source_l00046}{46}} of file \mbox{\hyperlink{db2__library__adapter_8py_source}{db2\+\_\+library\+\_\+adapter.\+py}}.
+
+\Hypertarget{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_affcb35ba3d99544e2c1a85d2e5928af8}\index{commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter@{commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter}!\_conn@{\_conn}}
+\index{\_conn@{\_conn}!commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter@{commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter}}
+\doxysubsubsection{\texorpdfstring{\_conn}{\_conn}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_affcb35ba3d99544e2c1a85d2e5928af8} 
+commonpython.\+adapters.\+db2\+\_\+library\+\_\+adapter.\+DB2\+Library\+Adapter.\+\_\+conn = None\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{db2__library__adapter_8py_source_l00048}{48}} of file \mbox{\hyperlink{db2__library__adapter_8py_source}{db2\+\_\+library\+\_\+adapter.\+py}}.
+
+\Hypertarget{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_a67e4cd28e8a9e1e957dfe0163dd346e6}\index{commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter@{commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter}!\_connection\_string@{\_connection\_string}}
+\index{\_connection\_string@{\_connection\_string}!commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter@{commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter}}
+\doxysubsubsection{\texorpdfstring{\_connection\_string}{\_connection\_string}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_a67e4cd28e8a9e1e957dfe0163dd346e6} 
+str commonpython.\+adapters.\+db2\+\_\+library\+\_\+adapter.\+DB2\+Library\+Adapter.\+\_\+connection\+\_\+string = self.\+\_\+build\+\_\+connection\+\_\+string()\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{db2__library__adapter_8py_source_l00050}{50}} of file \mbox{\hyperlink{db2__library__adapter_8py_source}{db2\+\_\+library\+\_\+adapter.\+py}}.
+
+\Hypertarget{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_afb351448ee6b11328a0ae7bfe0a7ebbb}\index{commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter@{commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter}!\_dbi\_conn@{\_dbi\_conn}}
+\index{\_dbi\_conn@{\_dbi\_conn}!commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter@{commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter}}
+\doxysubsubsection{\texorpdfstring{\_dbi\_conn}{\_dbi\_conn}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_afb351448ee6b11328a0ae7bfe0a7ebbb} 
+commonpython.\+adapters.\+db2\+\_\+library\+\_\+adapter.\+DB2\+Library\+Adapter.\+\_\+dbi\+\_\+conn = None\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{db2__library__adapter_8py_source_l00049}{49}} of file \mbox{\hyperlink{db2__library__adapter_8py_source}{db2\+\_\+library\+\_\+adapter.\+py}}.
+
+\Hypertarget{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_a0bffa2efb60a6096b5fa67363dd57a4b}\index{commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter@{commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter}!\_logger@{\_logger}}
+\index{\_logger@{\_logger}!commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter@{commonpython.adapters.db2\_library\_adapter.DB2LibraryAdapter}}
+\doxysubsubsection{\texorpdfstring{\_logger}{\_logger}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_a0bffa2efb60a6096b5fa67363dd57a4b} 
+commonpython.\+adapters.\+db2\+\_\+library\+\_\+adapter.\+DB2\+Library\+Adapter.\+\_\+logger = logger\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{db2__library__adapter_8py_source_l00047}{47}} of file \mbox{\hyperlink{db2__library__adapter_8py_source}{db2\+\_\+library\+\_\+adapter.\+py}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+commonpython/adapters/\mbox{\hyperlink{db2__library__adapter_8py}{db2\+\_\+library\+\_\+adapter.\+py}}\end{DoxyCompactItemize}

@@ -1,0 +1,474 @@
+\doxysection{commonpython.\+framework.\+component\+\_\+base.\+Component\+Base Class Reference}
+\hypertarget{classcommonpython_1_1framework_1_1component__base_1_1_component_base}{}\label{classcommonpython_1_1framework_1_1component__base_1_1_component_base}\index{commonpython.framework.component\_base.ComponentBase@{commonpython.framework.component\_base.ComponentBase}}
+Inheritance diagram for commonpython.\+framework.\+component\+\_\+base.\+Component\+Base\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcommonpython_1_1framework_1_1component__base_1_1_component_base}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcommonpython_1_1framework_1_1component__base_1_1_component_base_a660fd5b22e41fe9e6b89f0d274509f67}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, str \mbox{\hyperlink{classcommonpython_1_1framework_1_1component__base_1_1_component_base_aa83249ca02aff3215e35919c1948d373}{component\+\_\+name}}, Optional\mbox{[}str\mbox{]} \mbox{\hyperlink{classcommonpython_1_1framework_1_1component__base_1_1_component_base_abfbb36e9574eacf57f1020fe1b42b4b6}{config\+\_\+file}}=None)
+\item 
+Any \mbox{\hyperlink{classcommonpython_1_1framework_1_1component__base_1_1_component_base_a33f02e7a8c98d43627dbfca00d7723bc}{get\+\_\+config}} (self, str key, Any default=None)
+\item 
+None \mbox{\hyperlink{classcommonpython_1_1framework_1_1component__base_1_1_component_base_a8d57506226594c31893591f305214a3d}{set\+\_\+config}} (self, str key, Any value)
+\item 
+None \mbox{\hyperlink{classcommonpython_1_1framework_1_1component__base_1_1_component_base_aeb18efa5983399481ec92169a058ba9d}{log\+\_\+info}} (self, str message, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kwargs)
+\item 
+None \mbox{\hyperlink{classcommonpython_1_1framework_1_1component__base_1_1_component_base_a52cf5bc5fef500fcb0ec6a1147f5090c}{log\+\_\+error}} (self, str message, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kwargs)
+\item 
+None \mbox{\hyperlink{classcommonpython_1_1framework_1_1component__base_1_1_component_base_a04bfbf648407bd634c0c5e304001e9ac}{log\+\_\+warning}} (self, str message, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kwargs)
+\item 
+None \mbox{\hyperlink{classcommonpython_1_1framework_1_1component__base_1_1_component_base_add6a7bd8888bcd2b680a4147185c7d3d}{log\+\_\+debug}} (self, str message, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kwargs)
+\item 
+bool \mbox{\hyperlink{classcommonpython_1_1framework_1_1component__base_1_1_component_base_a5bdc93172b8871828ba2422a4ebb1933}{connect\+\_\+database}} (self)
+\item 
+None \mbox{\hyperlink{classcommonpython_1_1framework_1_1component__base_1_1_component_base_a86c7da62143fe31bbd4a0b4e44198884}{disconnect\+\_\+database}} (self)
+\item 
+bool \mbox{\hyperlink{classcommonpython_1_1framework_1_1component__base_1_1_component_base_ae379666bcccb544f62d8355ad90ca296}{connect\+\_\+messaging}} (self)
+\item 
+None \mbox{\hyperlink{classcommonpython_1_1framework_1_1component__base_1_1_component_base_a685bc345dc9edae2ee8748918f7b86a8}{disconnect\+\_\+messaging}} (self)
+\item 
+list \mbox{\hyperlink{classcommonpython_1_1framework_1_1component__base_1_1_component_base_a2f8bbb65ba07035c8ee79882d95d7238}{execute\+\_\+query}} (self, str query, Optional\mbox{[}tuple\mbox{]} params=None)
+\item 
+int \mbox{\hyperlink{classcommonpython_1_1framework_1_1component__base_1_1_component_base_a5f2976b6d101f240778bf68d83bc50e6}{execute\+\_\+update}} (self, str query, Optional\mbox{[}tuple\mbox{]} params=None)
+\item 
+bool \mbox{\hyperlink{classcommonpython_1_1framework_1_1component__base_1_1_component_base_adda9cbd0db7fede19462bd40f172ec29}{send\+\_\+message}} (self, str queue\+\_\+name, Any message, Optional\mbox{[}Dict\mbox{[}str, Any\mbox{]}\mbox{]} properties=None)
+\item 
+Optional\mbox{[}Dict\mbox{[}str, Any\mbox{]}\mbox{]} \mbox{\hyperlink{classcommonpython_1_1framework_1_1component__base_1_1_component_base_a2228aa89402202332cfcb93d202c4154}{receive\+\_\+message}} (self, str queue\+\_\+name, Optional\mbox{[}int\mbox{]} timeout=None)
+\item 
+bool \mbox{\hyperlink{classcommonpython_1_1framework_1_1component__base_1_1_component_base_a65b14dd514bdaee049036b8e838648d3}{initialize}} (self)
+\item 
+bool \mbox{\hyperlink{classcommonpython_1_1framework_1_1component__base_1_1_component_base_aaf5223b140d5b4e0b5f10fb9572d2c5a}{run}} (self)
+\item 
+None \mbox{\hyperlink{classcommonpython_1_1framework_1_1component__base_1_1_component_base_a24b83e8803321854feb5236e25b82508}{cleanup}} (self)
+\item 
+bool \mbox{\hyperlink{classcommonpython_1_1framework_1_1component__base_1_1_component_base_a3490698b0e3f0c495c8db14a5bdc585b}{start}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcommonpython_1_1framework_1_1component__base_1_1_component_base_aa83249ca02aff3215e35919c1948d373}{component\+\_\+name}} = component\+\_\+name
+\item 
+\mbox{\hyperlink{classcommonpython_1_1framework_1_1component__base_1_1_component_base_abfbb36e9574eacf57f1020fe1b42b4b6}{config\+\_\+file}} = config\+\_\+file
+\item 
+\mbox{\hyperlink{classcommonpython_1_1framework_1_1component__base_1_1_component_base_a99d2423ee2cc7447dd608af2af1af77f}{config\+\_\+manager}} = \mbox{\hyperlink{classcommonpython_1_1config_1_1config__manager_1_1_config_manager}{Config\+Manager}}(self.\+config\+\_\+file)
+\item 
+\mbox{\hyperlink{classcommonpython_1_1framework_1_1component__base_1_1_component_base_afdf907fe1507ced4a13dda2dc4f2a1a1}{logger\+\_\+manager}} = \mbox{\hyperlink{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager}{Logger\+Manager}}(self.\+component\+\_\+name, logging\+\_\+config)
+\item 
+\mbox{\hyperlink{classcommonpython_1_1framework_1_1component__base_1_1_component_base_a1e71c310c5851b69feb2f0a7b0dd14c4}{db\+\_\+manager}} = \mbox{\hyperlink{classcommonpython_1_1factories_1_1manager__factory_1_1_manager_factory_a11cbb0ff92f45a7ed90d0563145cf5e2}{Manager\+Factory.\+create\+\_\+database\+\_\+manager}}(db\+\_\+config, self.\+logger\+\_\+manager)
+\item 
+\mbox{\hyperlink{classcommonpython_1_1framework_1_1component__base_1_1_component_base_a1728a50644b4650f9949e691aecbaf49}{mq\+\_\+manager}} = \mbox{\hyperlink{classcommonpython_1_1factories_1_1manager__factory_1_1_manager_factory_a066774d37ceab875e991f7f8b28b373c}{Manager\+Factory.\+create\+\_\+messaging\+\_\+manager}}(mq\+\_\+config, self.\+logger\+\_\+manager)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+None \mbox{\hyperlink{classcommonpython_1_1framework_1_1component__base_1_1_component_base_a044786bb709c54b6ceae9403ba13714a}{\+\_\+initialize\+\_\+services}} (self)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Base class for components using CommonPython framework.
+
+Provides common functionality including configuration, logging, database,
+and messaging capabilities to any component that inherits from this class.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{component__base_8py_source_l00021}{21}} of file \mbox{\hyperlink{component__base_8py_source}{component\+\_\+base.\+py}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classcommonpython_1_1framework_1_1component__base_1_1_component_base_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcommonpython_1_1framework_1_1component__base_1_1_component_base_a660fd5b22e41fe9e6b89f0d274509f67}\index{commonpython.framework.component\_base.ComponentBase@{commonpython.framework.component\_base.ComponentBase}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!commonpython.framework.component\_base.ComponentBase@{commonpython.framework.component\_base.ComponentBase}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1framework_1_1component__base_1_1_component_base_a660fd5b22e41fe9e6b89f0d274509f67} 
+commonpython.\+framework.\+component\+\_\+base.\+Component\+Base.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{component\+\_\+name}{, }\item[{Optional\mbox{[}str\mbox{]} }]{config\+\_\+file}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Initialize the component.
+
+@brief Initialize component with CommonPython framework services.
+@param component_name Name of the component
+@param config_file Path to configuration file (optional)
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{component__base_8py_source_l00029}{29}} of file \mbox{\hyperlink{component__base_8py_source}{component\+\_\+base.\+py}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcommonpython_1_1framework_1_1component__base_1_1_component_base_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcommonpython_1_1framework_1_1component__base_1_1_component_base_a044786bb709c54b6ceae9403ba13714a}\index{commonpython.framework.component\_base.ComponentBase@{commonpython.framework.component\_base.ComponentBase}!\_initialize\_services@{\_initialize\_services}}
+\index{\_initialize\_services@{\_initialize\_services}!commonpython.framework.component\_base.ComponentBase@{commonpython.framework.component\_base.ComponentBase}}
+\doxysubsubsection{\texorpdfstring{\_initialize\_services()}{\_initialize\_services()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1framework_1_1component__base_1_1_component_base_a044786bb709c54b6ceae9403ba13714a} 
+ None commonpython.\+framework.\+component\+\_\+base.\+Component\+Base.\+\_\+initialize\+\_\+services (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Initialize CommonPython framework services.
+
+@brief Setup configuration, logging, database, and messaging services.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{component__base_8py_source_l00043}{43}} of file \mbox{\hyperlink{component__base_8py_source}{component\+\_\+base.\+py}}.
+
+\Hypertarget{classcommonpython_1_1framework_1_1component__base_1_1_component_base_a24b83e8803321854feb5236e25b82508}\index{commonpython.framework.component\_base.ComponentBase@{commonpython.framework.component\_base.ComponentBase}!cleanup@{cleanup}}
+\index{cleanup@{cleanup}!commonpython.framework.component\_base.ComponentBase@{commonpython.framework.component\_base.ComponentBase}}
+\doxysubsubsection{\texorpdfstring{cleanup()}{cleanup()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1framework_1_1component__base_1_1_component_base_a24b83e8803321854feb5236e25b82508} 
+ None commonpython.\+framework.\+component\+\_\+base.\+Component\+Base.\+cleanup (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Cleanup the component.
+
+@brief Component-specific cleanup logic.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{component__base_8py_source_l00289}{289}} of file \mbox{\hyperlink{component__base_8py_source}{component\+\_\+base.\+py}}.
+
+\Hypertarget{classcommonpython_1_1framework_1_1component__base_1_1_component_base_a5bdc93172b8871828ba2422a4ebb1933}\index{commonpython.framework.component\_base.ComponentBase@{commonpython.framework.component\_base.ComponentBase}!connect\_database@{connect\_database}}
+\index{connect\_database@{connect\_database}!commonpython.framework.component\_base.ComponentBase@{commonpython.framework.component\_base.ComponentBase}}
+\doxysubsubsection{\texorpdfstring{connect\_database()}{connect\_database()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1framework_1_1component__base_1_1_component_base_a5bdc93172b8871828ba2422a4ebb1933} 
+ bool commonpython.\+framework.\+component\+\_\+base.\+Component\+Base.\+connect\+\_\+database (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Connect to database.
+
+@brief Establish database connection.
+@return True if connection successful, False otherwise
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{component__base_8py_source_l00135}{135}} of file \mbox{\hyperlink{component__base_8py_source}{component\+\_\+base.\+py}}.
+
+\Hypertarget{classcommonpython_1_1framework_1_1component__base_1_1_component_base_ae379666bcccb544f62d8355ad90ca296}\index{commonpython.framework.component\_base.ComponentBase@{commonpython.framework.component\_base.ComponentBase}!connect\_messaging@{connect\_messaging}}
+\index{connect\_messaging@{connect\_messaging}!commonpython.framework.component\_base.ComponentBase@{commonpython.framework.component\_base.ComponentBase}}
+\doxysubsubsection{\texorpdfstring{connect\_messaging()}{connect\_messaging()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1framework_1_1component__base_1_1_component_base_ae379666bcccb544f62d8355ad90ca296} 
+ bool commonpython.\+framework.\+component\+\_\+base.\+Component\+Base.\+connect\+\_\+messaging (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Connect to messaging.
+
+@brief Establish messaging connection.
+@return True if connection successful, False otherwise
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{component__base_8py_source_l00165}{165}} of file \mbox{\hyperlink{component__base_8py_source}{component\+\_\+base.\+py}}.
+
+\Hypertarget{classcommonpython_1_1framework_1_1component__base_1_1_component_base_a86c7da62143fe31bbd4a0b4e44198884}\index{commonpython.framework.component\_base.ComponentBase@{commonpython.framework.component\_base.ComponentBase}!disconnect\_database@{disconnect\_database}}
+\index{disconnect\_database@{disconnect\_database}!commonpython.framework.component\_base.ComponentBase@{commonpython.framework.component\_base.ComponentBase}}
+\doxysubsubsection{\texorpdfstring{disconnect\_database()}{disconnect\_database()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1framework_1_1component__base_1_1_component_base_a86c7da62143fe31bbd4a0b4e44198884} 
+ None commonpython.\+framework.\+component\+\_\+base.\+Component\+Base.\+disconnect\+\_\+database (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Disconnect from database.
+
+@brief Close database connection.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{component__base_8py_source_l00153}{153}} of file \mbox{\hyperlink{component__base_8py_source}{component\+\_\+base.\+py}}.
+
+\Hypertarget{classcommonpython_1_1framework_1_1component__base_1_1_component_base_a685bc345dc9edae2ee8748918f7b86a8}\index{commonpython.framework.component\_base.ComponentBase@{commonpython.framework.component\_base.ComponentBase}!disconnect\_messaging@{disconnect\_messaging}}
+\index{disconnect\_messaging@{disconnect\_messaging}!commonpython.framework.component\_base.ComponentBase@{commonpython.framework.component\_base.ComponentBase}}
+\doxysubsubsection{\texorpdfstring{disconnect\_messaging()}{disconnect\_messaging()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1framework_1_1component__base_1_1_component_base_a685bc345dc9edae2ee8748918f7b86a8} 
+ None commonpython.\+framework.\+component\+\_\+base.\+Component\+Base.\+disconnect\+\_\+messaging (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Disconnect from messaging.
+
+@brief Close messaging connection.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{component__base_8py_source_l00183}{183}} of file \mbox{\hyperlink{component__base_8py_source}{component\+\_\+base.\+py}}.
+
+\Hypertarget{classcommonpython_1_1framework_1_1component__base_1_1_component_base_a2f8bbb65ba07035c8ee79882d95d7238}\index{commonpython.framework.component\_base.ComponentBase@{commonpython.framework.component\_base.ComponentBase}!execute\_query@{execute\_query}}
+\index{execute\_query@{execute\_query}!commonpython.framework.component\_base.ComponentBase@{commonpython.framework.component\_base.ComponentBase}}
+\doxysubsubsection{\texorpdfstring{execute\_query()}{execute\_query()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1framework_1_1component__base_1_1_component_base_a2f8bbb65ba07035c8ee79882d95d7238} 
+ list commonpython.\+framework.\+component\+\_\+base.\+Component\+Base.\+execute\+\_\+query (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{query}{, }\item[{Optional\mbox{[}tuple\mbox{]} }]{params}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Execute database query.
+
+@brief Execute SELECT query and return results.
+@param query SQL query string
+@param params Query parameters
+@return List of query results
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{component__base_8py_source_l00195}{195}} of file \mbox{\hyperlink{component__base_8py_source}{component\+\_\+base.\+py}}.
+
+\Hypertarget{classcommonpython_1_1framework_1_1component__base_1_1_component_base_a5f2976b6d101f240778bf68d83bc50e6}\index{commonpython.framework.component\_base.ComponentBase@{commonpython.framework.component\_base.ComponentBase}!execute\_update@{execute\_update}}
+\index{execute\_update@{execute\_update}!commonpython.framework.component\_base.ComponentBase@{commonpython.framework.component\_base.ComponentBase}}
+\doxysubsubsection{\texorpdfstring{execute\_update()}{execute\_update()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1framework_1_1component__base_1_1_component_base_a5f2976b6d101f240778bf68d83bc50e6} 
+ int commonpython.\+framework.\+component\+\_\+base.\+Component\+Base.\+execute\+\_\+update (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{query}{, }\item[{Optional\mbox{[}tuple\mbox{]} }]{params}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Execute database update.
+
+@brief Execute INSERT/UPDATE/DELETE query.
+@param query SQL query string
+@param params Query parameters
+@return Number of affected rows
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{component__base_8py_source_l00212}{212}} of file \mbox{\hyperlink{component__base_8py_source}{component\+\_\+base.\+py}}.
+
+\Hypertarget{classcommonpython_1_1framework_1_1component__base_1_1_component_base_a33f02e7a8c98d43627dbfca00d7723bc}\index{commonpython.framework.component\_base.ComponentBase@{commonpython.framework.component\_base.ComponentBase}!get\_config@{get\_config}}
+\index{get\_config@{get\_config}!commonpython.framework.component\_base.ComponentBase@{commonpython.framework.component\_base.ComponentBase}}
+\doxysubsubsection{\texorpdfstring{get\_config()}{get\_config()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1framework_1_1component__base_1_1_component_base_a33f02e7a8c98d43627dbfca00d7723bc} 
+ Any commonpython.\+framework.\+component\+\_\+base.\+Component\+Base.\+get\+\_\+config (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{key}{, }\item[{Any }]{default}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get configuration value.
+
+@brief Get configuration value by key.
+@param key Configuration key
+@param default Default value if key not found
+@return Configuration value
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{component__base_8py_source_l00074}{74}} of file \mbox{\hyperlink{component__base_8py_source}{component\+\_\+base.\+py}}.
+
+\Hypertarget{classcommonpython_1_1framework_1_1component__base_1_1_component_base_a65b14dd514bdaee049036b8e838648d3}\index{commonpython.framework.component\_base.ComponentBase@{commonpython.framework.component\_base.ComponentBase}!initialize@{initialize}}
+\index{initialize@{initialize}!commonpython.framework.component\_base.ComponentBase@{commonpython.framework.component\_base.ComponentBase}}
+\doxysubsubsection{\texorpdfstring{initialize()}{initialize()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1framework_1_1component__base_1_1_component_base_a65b14dd514bdaee049036b8e838648d3} 
+ bool commonpython.\+framework.\+component\+\_\+base.\+Component\+Base.\+initialize (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Initialize the component.
+
+@brief Component-specific initialization logic.
+@return True if initialization successful, False otherwise
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{component__base_8py_source_l00269}{269}} of file \mbox{\hyperlink{component__base_8py_source}{component\+\_\+base.\+py}}.
+
+\Hypertarget{classcommonpython_1_1framework_1_1component__base_1_1_component_base_add6a7bd8888bcd2b680a4147185c7d3d}\index{commonpython.framework.component\_base.ComponentBase@{commonpython.framework.component\_base.ComponentBase}!log\_debug@{log\_debug}}
+\index{log\_debug@{log\_debug}!commonpython.framework.component\_base.ComponentBase@{commonpython.framework.component\_base.ComponentBase}}
+\doxysubsubsection{\texorpdfstring{log\_debug()}{log\_debug()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1framework_1_1component__base_1_1_component_base_add6a7bd8888bcd2b680a4147185c7d3d} 
+ None commonpython.\+framework.\+component\+\_\+base.\+Component\+Base.\+log\+\_\+debug (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{message}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{kwargs}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Log debug message.
+
+@brief Log debug message.
+@param message Message to log
+@param kwargs Additional log data
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{component__base_8py_source_l00125}{125}} of file \mbox{\hyperlink{component__base_8py_source}{component\+\_\+base.\+py}}.
+
+\Hypertarget{classcommonpython_1_1framework_1_1component__base_1_1_component_base_a52cf5bc5fef500fcb0ec6a1147f5090c}\index{commonpython.framework.component\_base.ComponentBase@{commonpython.framework.component\_base.ComponentBase}!log\_error@{log\_error}}
+\index{log\_error@{log\_error}!commonpython.framework.component\_base.ComponentBase@{commonpython.framework.component\_base.ComponentBase}}
+\doxysubsubsection{\texorpdfstring{log\_error()}{log\_error()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1framework_1_1component__base_1_1_component_base_a52cf5bc5fef500fcb0ec6a1147f5090c} 
+ None commonpython.\+framework.\+component\+\_\+base.\+Component\+Base.\+log\+\_\+error (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{message}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{kwargs}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Log error message.
+
+@brief Log error message.
+@param message Message to log
+@param kwargs Additional log data
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{component__base_8py_source_l00105}{105}} of file \mbox{\hyperlink{component__base_8py_source}{component\+\_\+base.\+py}}.
+
+\Hypertarget{classcommonpython_1_1framework_1_1component__base_1_1_component_base_aeb18efa5983399481ec92169a058ba9d}\index{commonpython.framework.component\_base.ComponentBase@{commonpython.framework.component\_base.ComponentBase}!log\_info@{log\_info}}
+\index{log\_info@{log\_info}!commonpython.framework.component\_base.ComponentBase@{commonpython.framework.component\_base.ComponentBase}}
+\doxysubsubsection{\texorpdfstring{log\_info()}{log\_info()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1framework_1_1component__base_1_1_component_base_aeb18efa5983399481ec92169a058ba9d} 
+ None commonpython.\+framework.\+component\+\_\+base.\+Component\+Base.\+log\+\_\+info (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{message}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{kwargs}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Log info message.
+
+@brief Log informational message.
+@param message Message to log
+@param kwargs Additional log data
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{component__base_8py_source_l00095}{95}} of file \mbox{\hyperlink{component__base_8py_source}{component\+\_\+base.\+py}}.
+
+\Hypertarget{classcommonpython_1_1framework_1_1component__base_1_1_component_base_a04bfbf648407bd634c0c5e304001e9ac}\index{commonpython.framework.component\_base.ComponentBase@{commonpython.framework.component\_base.ComponentBase}!log\_warning@{log\_warning}}
+\index{log\_warning@{log\_warning}!commonpython.framework.component\_base.ComponentBase@{commonpython.framework.component\_base.ComponentBase}}
+\doxysubsubsection{\texorpdfstring{log\_warning()}{log\_warning()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1framework_1_1component__base_1_1_component_base_a04bfbf648407bd634c0c5e304001e9ac} 
+ None commonpython.\+framework.\+component\+\_\+base.\+Component\+Base.\+log\+\_\+warning (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{message}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{kwargs}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Log warning message.
+
+@brief Log warning message.
+@param message Message to log
+@param kwargs Additional log data
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{component__base_8py_source_l00115}{115}} of file \mbox{\hyperlink{component__base_8py_source}{component\+\_\+base.\+py}}.
+
+\Hypertarget{classcommonpython_1_1framework_1_1component__base_1_1_component_base_a2228aa89402202332cfcb93d202c4154}\index{commonpython.framework.component\_base.ComponentBase@{commonpython.framework.component\_base.ComponentBase}!receive\_message@{receive\_message}}
+\index{receive\_message@{receive\_message}!commonpython.framework.component\_base.ComponentBase@{commonpython.framework.component\_base.ComponentBase}}
+\doxysubsubsection{\texorpdfstring{receive\_message()}{receive\_message()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1framework_1_1component__base_1_1_component_base_a2228aa89402202332cfcb93d202c4154} 
+ Optional\mbox{[}Dict\mbox{[}str, Any\mbox{]}\mbox{]} commonpython.\+framework.\+component\+\_\+base.\+Component\+Base.\+receive\+\_\+message (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{queue\+\_\+name}{, }\item[{Optional\mbox{[}int\mbox{]} }]{timeout}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Receive message from queue.
+
+@brief Receive message from MQ queue.
+@param queue_name Name of the queue
+@param timeout Timeout in seconds
+@return Message data or None if no message
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{component__base_8py_source_l00250}{250}} of file \mbox{\hyperlink{component__base_8py_source}{component\+\_\+base.\+py}}.
+
+\Hypertarget{classcommonpython_1_1framework_1_1component__base_1_1_component_base_aaf5223b140d5b4e0b5f10fb9572d2c5a}\index{commonpython.framework.component\_base.ComponentBase@{commonpython.framework.component\_base.ComponentBase}!run@{run}}
+\index{run@{run}!commonpython.framework.component\_base.ComponentBase@{commonpython.framework.component\_base.ComponentBase}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1framework_1_1component__base_1_1_component_base_aaf5223b140d5b4e0b5f10fb9572d2c5a} 
+ bool commonpython.\+framework.\+component\+\_\+base.\+Component\+Base.\+run (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Run the component.
+
+@brief Main component execution logic.
+@return True if execution successful, False otherwise
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{component__base_8py_source_l00279}{279}} of file \mbox{\hyperlink{component__base_8py_source}{component\+\_\+base.\+py}}.
+
+\Hypertarget{classcommonpython_1_1framework_1_1component__base_1_1_component_base_adda9cbd0db7fede19462bd40f172ec29}\index{commonpython.framework.component\_base.ComponentBase@{commonpython.framework.component\_base.ComponentBase}!send\_message@{send\_message}}
+\index{send\_message@{send\_message}!commonpython.framework.component\_base.ComponentBase@{commonpython.framework.component\_base.ComponentBase}}
+\doxysubsubsection{\texorpdfstring{send\_message()}{send\_message()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1framework_1_1component__base_1_1_component_base_adda9cbd0db7fede19462bd40f172ec29} 
+ bool commonpython.\+framework.\+component\+\_\+base.\+Component\+Base.\+send\+\_\+message (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{queue\+\_\+name}{, }\item[{Any}]{message}{, }\item[{Optional\mbox{[}Dict\mbox{[}str, Any\mbox{]}\mbox{]} }]{properties}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Send message to queue.
+
+@brief Send message to MQ queue.
+@param queue_name Name of the queue
+@param message Message content
+@param properties Message properties
+@return True if message sent successfully
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{component__base_8py_source_l00229}{229}} of file \mbox{\hyperlink{component__base_8py_source}{component\+\_\+base.\+py}}.
+
+\Hypertarget{classcommonpython_1_1framework_1_1component__base_1_1_component_base_a8d57506226594c31893591f305214a3d}\index{commonpython.framework.component\_base.ComponentBase@{commonpython.framework.component\_base.ComponentBase}!set\_config@{set\_config}}
+\index{set\_config@{set\_config}!commonpython.framework.component\_base.ComponentBase@{commonpython.framework.component\_base.ComponentBase}}
+\doxysubsubsection{\texorpdfstring{set\_config()}{set\_config()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1framework_1_1component__base_1_1_component_base_a8d57506226594c31893591f305214a3d} 
+ None commonpython.\+framework.\+component\+\_\+base.\+Component\+Base.\+set\+\_\+config (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{key}{, }\item[{Any}]{value}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Set configuration value.
+
+@brief Set configuration value by key.
+@param key Configuration key
+@param value Value to set
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{component__base_8py_source_l00085}{85}} of file \mbox{\hyperlink{component__base_8py_source}{component\+\_\+base.\+py}}.
+
+\Hypertarget{classcommonpython_1_1framework_1_1component__base_1_1_component_base_a3490698b0e3f0c495c8db14a5bdc585b}\index{commonpython.framework.component\_base.ComponentBase@{commonpython.framework.component\_base.ComponentBase}!start@{start}}
+\index{start@{start}!commonpython.framework.component\_base.ComponentBase@{commonpython.framework.component\_base.ComponentBase}}
+\doxysubsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1framework_1_1component__base_1_1_component_base_a3490698b0e3f0c495c8db14a5bdc585b} 
+ bool commonpython.\+framework.\+component\+\_\+base.\+Component\+Base.\+start (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Start the component.
+
+@brief Complete component lifecycle: initialize, run, cleanup.
+@return True if component executed successfully, False otherwise
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{component__base_8py_source_l00297}{297}} of file \mbox{\hyperlink{component__base_8py_source}{component\+\_\+base.\+py}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classcommonpython_1_1framework_1_1component__base_1_1_component_base_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcommonpython_1_1framework_1_1component__base_1_1_component_base_aa83249ca02aff3215e35919c1948d373}\index{commonpython.framework.component\_base.ComponentBase@{commonpython.framework.component\_base.ComponentBase}!component\_name@{component\_name}}
+\index{component\_name@{component\_name}!commonpython.framework.component\_base.ComponentBase@{commonpython.framework.component\_base.ComponentBase}}
+\doxysubsubsection{\texorpdfstring{component\_name}{component\_name}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1framework_1_1component__base_1_1_component_base_aa83249ca02aff3215e35919c1948d373} 
+commonpython.\+framework.\+component\+\_\+base.\+Component\+Base.\+component\+\_\+name = component\+\_\+name}
+
+
+
+Definition at line \mbox{\hyperlink{component__base_8py_source_l00037}{37}} of file \mbox{\hyperlink{component__base_8py_source}{component\+\_\+base.\+py}}.
+
+\Hypertarget{classcommonpython_1_1framework_1_1component__base_1_1_component_base_abfbb36e9574eacf57f1020fe1b42b4b6}\index{commonpython.framework.component\_base.ComponentBase@{commonpython.framework.component\_base.ComponentBase}!config\_file@{config\_file}}
+\index{config\_file@{config\_file}!commonpython.framework.component\_base.ComponentBase@{commonpython.framework.component\_base.ComponentBase}}
+\doxysubsubsection{\texorpdfstring{config\_file}{config\_file}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1framework_1_1component__base_1_1_component_base_abfbb36e9574eacf57f1020fe1b42b4b6} 
+commonpython.\+framework.\+component\+\_\+base.\+Component\+Base.\+config\+\_\+file = config\+\_\+file}
+
+
+
+Definition at line \mbox{\hyperlink{component__base_8py_source_l00038}{38}} of file \mbox{\hyperlink{component__base_8py_source}{component\+\_\+base.\+py}}.
+
+\Hypertarget{classcommonpython_1_1framework_1_1component__base_1_1_component_base_a99d2423ee2cc7447dd608af2af1af77f}\index{commonpython.framework.component\_base.ComponentBase@{commonpython.framework.component\_base.ComponentBase}!config\_manager@{config\_manager}}
+\index{config\_manager@{config\_manager}!commonpython.framework.component\_base.ComponentBase@{commonpython.framework.component\_base.ComponentBase}}
+\doxysubsubsection{\texorpdfstring{config\_manager}{config\_manager}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1framework_1_1component__base_1_1_component_base_a99d2423ee2cc7447dd608af2af1af77f} 
+commonpython.\+framework.\+component\+\_\+base.\+Component\+Base.\+config\+\_\+manager = \mbox{\hyperlink{classcommonpython_1_1config_1_1config__manager_1_1_config_manager}{Config\+Manager}}(self.\+config\+\_\+file)}
+
+
+
+Definition at line \mbox{\hyperlink{component__base_8py_source_l00051}{51}} of file \mbox{\hyperlink{component__base_8py_source}{component\+\_\+base.\+py}}.
+
+\Hypertarget{classcommonpython_1_1framework_1_1component__base_1_1_component_base_a1e71c310c5851b69feb2f0a7b0dd14c4}\index{commonpython.framework.component\_base.ComponentBase@{commonpython.framework.component\_base.ComponentBase}!db\_manager@{db\_manager}}
+\index{db\_manager@{db\_manager}!commonpython.framework.component\_base.ComponentBase@{commonpython.framework.component\_base.ComponentBase}}
+\doxysubsubsection{\texorpdfstring{db\_manager}{db\_manager}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1framework_1_1component__base_1_1_component_base_a1e71c310c5851b69feb2f0a7b0dd14c4} 
+commonpython.\+framework.\+component\+\_\+base.\+Component\+Base.\+db\+\_\+manager = \mbox{\hyperlink{classcommonpython_1_1factories_1_1manager__factory_1_1_manager_factory_a11cbb0ff92f45a7ed90d0563145cf5e2}{Manager\+Factory.\+create\+\_\+database\+\_\+manager}}(db\+\_\+config, self.\+logger\+\_\+manager)}
+
+
+
+Definition at line \mbox{\hyperlink{component__base_8py_source_l00062}{62}} of file \mbox{\hyperlink{component__base_8py_source}{component\+\_\+base.\+py}}.
+
+\Hypertarget{classcommonpython_1_1framework_1_1component__base_1_1_component_base_afdf907fe1507ced4a13dda2dc4f2a1a1}\index{commonpython.framework.component\_base.ComponentBase@{commonpython.framework.component\_base.ComponentBase}!logger\_manager@{logger\_manager}}
+\index{logger\_manager@{logger\_manager}!commonpython.framework.component\_base.ComponentBase@{commonpython.framework.component\_base.ComponentBase}}
+\doxysubsubsection{\texorpdfstring{logger\_manager}{logger\_manager}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1framework_1_1component__base_1_1_component_base_afdf907fe1507ced4a13dda2dc4f2a1a1} 
+commonpython.\+framework.\+component\+\_\+base.\+Component\+Base.\+logger\+\_\+manager = \mbox{\hyperlink{classcommonpython_1_1logging_1_1logger__manager_1_1_logger_manager}{Logger\+Manager}}(self.\+component\+\_\+name, logging\+\_\+config)}
+
+
+
+Definition at line \mbox{\hyperlink{component__base_8py_source_l00058}{58}} of file \mbox{\hyperlink{component__base_8py_source}{component\+\_\+base.\+py}}.
+
+\Hypertarget{classcommonpython_1_1framework_1_1component__base_1_1_component_base_a1728a50644b4650f9949e691aecbaf49}\index{commonpython.framework.component\_base.ComponentBase@{commonpython.framework.component\_base.ComponentBase}!mq\_manager@{mq\_manager}}
+\index{mq\_manager@{mq\_manager}!commonpython.framework.component\_base.ComponentBase@{commonpython.framework.component\_base.ComponentBase}}
+\doxysubsubsection{\texorpdfstring{mq\_manager}{mq\_manager}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1framework_1_1component__base_1_1_component_base_a1728a50644b4650f9949e691aecbaf49} 
+commonpython.\+framework.\+component\+\_\+base.\+Component\+Base.\+mq\+\_\+manager = \mbox{\hyperlink{classcommonpython_1_1factories_1_1manager__factory_1_1_manager_factory_a066774d37ceab875e991f7f8b28b373c}{Manager\+Factory.\+create\+\_\+messaging\+\_\+manager}}(mq\+\_\+config, self.\+logger\+\_\+manager)}
+
+
+
+Definition at line \mbox{\hyperlink{component__base_8py_source_l00066}{66}} of file \mbox{\hyperlink{component__base_8py_source}{component\+\_\+base.\+py}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+commonpython/framework/\mbox{\hyperlink{component__base_8py}{component\+\_\+base.\+py}}\end{DoxyCompactItemize}

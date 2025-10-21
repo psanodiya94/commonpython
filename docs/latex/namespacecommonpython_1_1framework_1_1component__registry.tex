@@ -1,0 +1,95 @@
+\doxysection{commonpython.\+framework.\+component\+\_\+registry Namespace Reference}
+\hypertarget{namespacecommonpython_1_1framework_1_1component__registry}{}\label{namespacecommonpython_1_1framework_1_1component__registry}\index{commonpython.framework.component\_registry@{commonpython.framework.component\_registry}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classcommonpython_1_1framework_1_1component__registry_1_1_component_registry}{Component\+Registry}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+None \mbox{\hyperlink{namespacecommonpython_1_1framework_1_1component__registry_a5ceabcbd2d8f112d2dbe1d0b4010306a}{register\+\_\+component}} (str name, Type\mbox{[}\mbox{\hyperlink{classcommonpython_1_1framework_1_1component__base_1_1_component_base}{Component\+Base}}\mbox{]} component\+\_\+class)
+\item 
+Type\mbox{[}\mbox{\hyperlink{classcommonpython_1_1framework_1_1component__base_1_1_component_base}{Component\+Base}}\mbox{]} \mbox{\hyperlink{namespacecommonpython_1_1framework_1_1component__registry_aa597bb3d55378034c5bf8697666825d7}{get\+\_\+component}} (str name)
+\item 
+List\mbox{[}str\mbox{]} \mbox{\hyperlink{namespacecommonpython_1_1framework_1_1component__registry_ac70ad8fe187b8b1b27533bdbc4490a53}{list\+\_\+components}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacecommonpython_1_1framework_1_1component__registry_ade3da57d96882e82c4dd3754172a3c6d}{component\+\_\+registry}} = \mbox{\hyperlink{classcommonpython_1_1framework_1_1component__registry_1_1_component_registry}{Component\+Registry}}()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Component Registry for CommonPython Framework
+
+Provides a registry for managing and discovering components.
+\end{DoxyVerb}
+ 
+
+\label{doc-func-members}
+\Hypertarget{namespacecommonpython_1_1framework_1_1component__registry_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacecommonpython_1_1framework_1_1component__registry_aa597bb3d55378034c5bf8697666825d7}\index{commonpython.framework.component\_registry@{commonpython.framework.component\_registry}!get\_component@{get\_component}}
+\index{get\_component@{get\_component}!commonpython.framework.component\_registry@{commonpython.framework.component\_registry}}
+\doxysubsubsection{\texorpdfstring{get\_component()}{get\_component()}}
+{\footnotesize\ttfamily \label{namespacecommonpython_1_1framework_1_1component__registry_aa597bb3d55378034c5bf8697666825d7} 
+ Type\mbox{[}\mbox{\hyperlink{classcommonpython_1_1framework_1_1component__base_1_1_component_base}{Component\+Base}}\mbox{]} commonpython.\+framework.\+component\+\_\+registry.\+get\+\_\+component (\begin{DoxyParamCaption}\item[{str}]{name}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get a component from the global registry.
+
+@brief Convenience function to get a component.
+@param name Component name
+@return Component class
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{component__registry_8py_source_l00120}{120}} of file \mbox{\hyperlink{component__registry_8py_source}{component\+\_\+registry.\+py}}.
+
+\Hypertarget{namespacecommonpython_1_1framework_1_1component__registry_ac70ad8fe187b8b1b27533bdbc4490a53}\index{commonpython.framework.component\_registry@{commonpython.framework.component\_registry}!list\_components@{list\_components}}
+\index{list\_components@{list\_components}!commonpython.framework.component\_registry@{commonpython.framework.component\_registry}}
+\doxysubsubsection{\texorpdfstring{list\_components()}{list\_components()}}
+{\footnotesize\ttfamily \label{namespacecommonpython_1_1framework_1_1component__registry_ac70ad8fe187b8b1b27533bdbc4490a53} 
+ List\mbox{[}str\mbox{]} commonpython.\+framework.\+component\+\_\+registry.\+list\+\_\+components (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}List all components in the global registry.
+
+@brief Convenience function to list all components.
+@return List of component names
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{component__registry_8py_source_l00131}{131}} of file \mbox{\hyperlink{component__registry_8py_source}{component\+\_\+registry.\+py}}.
+
+\Hypertarget{namespacecommonpython_1_1framework_1_1component__registry_a5ceabcbd2d8f112d2dbe1d0b4010306a}\index{commonpython.framework.component\_registry@{commonpython.framework.component\_registry}!register\_component@{register\_component}}
+\index{register\_component@{register\_component}!commonpython.framework.component\_registry@{commonpython.framework.component\_registry}}
+\doxysubsubsection{\texorpdfstring{register\_component()}{register\_component()}}
+{\footnotesize\ttfamily \label{namespacecommonpython_1_1framework_1_1component__registry_a5ceabcbd2d8f112d2dbe1d0b4010306a} 
+ None commonpython.\+framework.\+component\+\_\+registry.\+register\+\_\+component (\begin{DoxyParamCaption}\item[{str}]{name}{, }\item[{Type\mbox{[}\mbox{\hyperlink{classcommonpython_1_1framework_1_1component__base_1_1_component_base}{Component\+Base}}\mbox{]}}]{component\+\_\+class}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Register a component with the global registry.
+
+@brief Convenience function to register a component.
+@param name Component name
+@param component_class Component class that inherits from ComponentBase
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{component__registry_8py_source_l00109}{109}} of file \mbox{\hyperlink{component__registry_8py_source}{component\+\_\+registry.\+py}}.
+
+
+
+\label{doc-var-members}
+\Hypertarget{namespacecommonpython_1_1framework_1_1component__registry_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespacecommonpython_1_1framework_1_1component__registry_ade3da57d96882e82c4dd3754172a3c6d}\index{commonpython.framework.component\_registry@{commonpython.framework.component\_registry}!component\_registry@{component\_registry}}
+\index{component\_registry@{component\_registry}!commonpython.framework.component\_registry@{commonpython.framework.component\_registry}}
+\doxysubsubsection{\texorpdfstring{component\_registry}{component\_registry}}
+{\footnotesize\ttfamily \label{namespacecommonpython_1_1framework_1_1component__registry_ade3da57d96882e82c4dd3754172a3c6d} 
+commonpython.\+framework.\+component\+\_\+registry.\+component\+\_\+registry = \mbox{\hyperlink{classcommonpython_1_1framework_1_1component__registry_1_1_component_registry}{Component\+Registry}}()}
+
+
+
+Definition at line \mbox{\hyperlink{component__registry_8py_source_l00106}{106}} of file \mbox{\hyperlink{component__registry_8py_source}{component\+\_\+registry.\+py}}.
+

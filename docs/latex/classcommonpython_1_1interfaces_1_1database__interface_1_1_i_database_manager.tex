@@ -1,0 +1,259 @@
+\doxysection{commonpython.\+interfaces.\+database\+\_\+interface.\+IDatabase\+Manager Class Reference}
+\hypertarget{classcommonpython_1_1interfaces_1_1database__interface_1_1_i_database_manager}{}\label{classcommonpython_1_1interfaces_1_1database__interface_1_1_i_database_manager}\index{commonpython.interfaces.database\_interface.IDatabaseManager@{commonpython.interfaces.database\_interface.IDatabaseManager}}
+Inheritance diagram for commonpython.\+interfaces.\+database\+\_\+interface.\+IDatabase\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.153846cm]{classcommonpython_1_1interfaces_1_1database__interface_1_1_i_database_manager}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classcommonpython_1_1interfaces_1_1database__interface_1_1_i_database_manager_ad999961418fccbda617d8944713427b7}{connect}} (self)
+\item 
+None \mbox{\hyperlink{classcommonpython_1_1interfaces_1_1database__interface_1_1_i_database_manager_a30be2926de558c38aea7ae2550c55041}{disconnect}} (self)
+\item 
+bool \mbox{\hyperlink{classcommonpython_1_1interfaces_1_1database__interface_1_1_i_database_manager_ae438f5f416bcb4fa52c1546c6919792c}{is\+\_\+connected}} (self)
+\item 
+List\mbox{[}Dict\mbox{[}str, Any\mbox{]}\mbox{]} \mbox{\hyperlink{classcommonpython_1_1interfaces_1_1database__interface_1_1_i_database_manager_a11366d26a76bb9e9bd586f7d277f1d24}{execute\+\_\+query}} (self, str query, Optional\mbox{[}Tuple\mbox{]} params=None)
+\item 
+int \mbox{\hyperlink{classcommonpython_1_1interfaces_1_1database__interface_1_1_i_database_manager_a42b74b8edf626fdd827258721182a20d}{execute\+\_\+update}} (self, str query, Optional\mbox{[}Tuple\mbox{]} params=None)
+\item 
+List\mbox{[}int\mbox{]} \mbox{\hyperlink{classcommonpython_1_1interfaces_1_1database__interface_1_1_i_database_manager_a3458bcf9fcbdf380d674b0f9c4268398}{execute\+\_\+batch}} (self, List\mbox{[}str\mbox{]} queries, Optional\mbox{[}List\mbox{[}Tuple\mbox{]}\mbox{]} params\+\_\+list=None)
+\item 
+\mbox{\hyperlink{classcommonpython_1_1interfaces_1_1database__interface_1_1_i_database_manager_a61d61ff0692ddb564eca691f116d46cf}{transaction}} (self)
+\item 
+List\mbox{[}Dict\mbox{[}str, Any\mbox{]}\mbox{]} \mbox{\hyperlink{classcommonpython_1_1interfaces_1_1database__interface_1_1_i_database_manager_a293d931303d3d295331c08786f96b3de}{get\+\_\+table\+\_\+info}} (self, str table\+\_\+name)
+\item 
+Dict\mbox{[}str, Any\mbox{]} \mbox{\hyperlink{classcommonpython_1_1interfaces_1_1database__interface_1_1_i_database_manager_a331f4839d4ed47eff4748d700bfe4d73}{get\+\_\+database\+\_\+info}} (self)
+\item 
+bool \mbox{\hyperlink{classcommonpython_1_1interfaces_1_1database__interface_1_1_i_database_manager_a4290354f2f1c6983a7508089c4a7e4ea}{test\+\_\+connection}} (self)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Abstract interface for database management operations.
+
+All database adapters (CLI-based, library-based) must implement this interface
+to ensure compatibility with the CommonPython framework.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{database__interface_8py_source_l00014}{14}} of file \mbox{\hyperlink{database__interface_8py_source}{database\+\_\+interface.\+py}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcommonpython_1_1interfaces_1_1database__interface_1_1_i_database_manager_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcommonpython_1_1interfaces_1_1database__interface_1_1_i_database_manager_ad999961418fccbda617d8944713427b7}\index{commonpython.interfaces.database\_interface.IDatabaseManager@{commonpython.interfaces.database\_interface.IDatabaseManager}!connect@{connect}}
+\index{connect@{connect}!commonpython.interfaces.database\_interface.IDatabaseManager@{commonpython.interfaces.database\_interface.IDatabaseManager}}
+\doxysubsubsection{\texorpdfstring{connect()}{connect()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1interfaces_1_1database__interface_1_1_i_database_manager_ad999961418fccbda617d8944713427b7} 
+ bool commonpython.\+interfaces.\+database\+\_\+interface.\+IDatabase\+Manager.\+connect (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Establish connection to the database.
+
+@brief Connect to database server.
+@return True if connection successful, False otherwise
+\end{DoxyVerb}
+ 
+
+Reimplemented in \mbox{\hyperlink{classcommonpython_1_1adapters_1_1db2__cli__adapter_1_1_d_b2_c_l_i_adapter_a4ac491256de8e088fdde1bf28926c728}{commonpython.\+adapters.\+db2\+\_\+cli\+\_\+adapter.\+DB2\+CLIAdapter}}, and \mbox{\hyperlink{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_adf9d1949b48e4cb09f9700c9d77aa685}{commonpython.\+adapters.\+db2\+\_\+library\+\_\+adapter.\+DB2\+Library\+Adapter}}.
+
+
+
+Definition at line \mbox{\hyperlink{database__interface_8py_source_l00023}{23}} of file \mbox{\hyperlink{database__interface_8py_source}{database\+\_\+interface.\+py}}.
+
+\Hypertarget{classcommonpython_1_1interfaces_1_1database__interface_1_1_i_database_manager_a30be2926de558c38aea7ae2550c55041}\index{commonpython.interfaces.database\_interface.IDatabaseManager@{commonpython.interfaces.database\_interface.IDatabaseManager}!disconnect@{disconnect}}
+\index{disconnect@{disconnect}!commonpython.interfaces.database\_interface.IDatabaseManager@{commonpython.interfaces.database\_interface.IDatabaseManager}}
+\doxysubsubsection{\texorpdfstring{disconnect()}{disconnect()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1interfaces_1_1database__interface_1_1_i_database_manager_a30be2926de558c38aea7ae2550c55041} 
+ None commonpython.\+interfaces.\+database\+\_\+interface.\+IDatabase\+Manager.\+disconnect (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Close the database connection.
+
+@brief Disconnect from database server.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \mbox{\hyperlink{classcommonpython_1_1adapters_1_1db2__cli__adapter_1_1_d_b2_c_l_i_adapter_a8caffae68b8353e5f928e8dbcc49843a}{commonpython.\+adapters.\+db2\+\_\+cli\+\_\+adapter.\+DB2\+CLIAdapter}}, and \mbox{\hyperlink{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_a06ec86bab5f2667b97c205ea9e4a51d5}{commonpython.\+adapters.\+db2\+\_\+library\+\_\+adapter.\+DB2\+Library\+Adapter}}.
+
+
+
+Definition at line \mbox{\hyperlink{database__interface_8py_source_l00033}{33}} of file \mbox{\hyperlink{database__interface_8py_source}{database\+\_\+interface.\+py}}.
+
+\Hypertarget{classcommonpython_1_1interfaces_1_1database__interface_1_1_i_database_manager_a3458bcf9fcbdf380d674b0f9c4268398}\index{commonpython.interfaces.database\_interface.IDatabaseManager@{commonpython.interfaces.database\_interface.IDatabaseManager}!execute\_batch@{execute\_batch}}
+\index{execute\_batch@{execute\_batch}!commonpython.interfaces.database\_interface.IDatabaseManager@{commonpython.interfaces.database\_interface.IDatabaseManager}}
+\doxysubsubsection{\texorpdfstring{execute\_batch()}{execute\_batch()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1interfaces_1_1database__interface_1_1_i_database_manager_a3458bcf9fcbdf380d674b0f9c4268398} 
+ List\mbox{[}int\mbox{]} commonpython.\+interfaces.\+database\+\_\+interface.\+IDatabase\+Manager.\+execute\+\_\+batch (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{List\mbox{[}str\mbox{]}}]{queries}{, }\item[{Optional\mbox{[}List\mbox{[}Tuple\mbox{]}\mbox{]} }]{params\+\_\+list}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Execute multiple queries in a batch.
+
+@brief Execute multiple queries in batch mode.
+@param queries List of SQL query strings
+@param params_list List of parameter tuples for each query
+@return List of affected rows for each query
+@throws Exception If batch execution fails
+\end{DoxyVerb}
+ 
+
+Reimplemented in \mbox{\hyperlink{classcommonpython_1_1adapters_1_1db2__cli__adapter_1_1_d_b2_c_l_i_adapter_adf9514aecf2ca37e52653a0136690d15}{commonpython.\+adapters.\+db2\+\_\+cli\+\_\+adapter.\+DB2\+CLIAdapter}}, and \mbox{\hyperlink{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_a714caeb5070c87f3152ae223c2c05c6a}{commonpython.\+adapters.\+db2\+\_\+library\+\_\+adapter.\+DB2\+Library\+Adapter}}.
+
+
+
+Definition at line \mbox{\hyperlink{database__interface_8py_source_l00078}{78}} of file \mbox{\hyperlink{database__interface_8py_source}{database\+\_\+interface.\+py}}.
+
+\Hypertarget{classcommonpython_1_1interfaces_1_1database__interface_1_1_i_database_manager_a11366d26a76bb9e9bd586f7d277f1d24}\index{commonpython.interfaces.database\_interface.IDatabaseManager@{commonpython.interfaces.database\_interface.IDatabaseManager}!execute\_query@{execute\_query}}
+\index{execute\_query@{execute\_query}!commonpython.interfaces.database\_interface.IDatabaseManager@{commonpython.interfaces.database\_interface.IDatabaseManager}}
+\doxysubsubsection{\texorpdfstring{execute\_query()}{execute\_query()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1interfaces_1_1database__interface_1_1_i_database_manager_a11366d26a76bb9e9bd586f7d277f1d24} 
+ List\mbox{[}Dict\mbox{[}str, Any\mbox{]}\mbox{]} commonpython.\+interfaces.\+database\+\_\+interface.\+IDatabase\+Manager.\+execute\+\_\+query (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{query}{, }\item[{Optional\mbox{[}Tuple\mbox{]} }]{params}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Execute a SELECT query and return results.
+
+@brief Execute SELECT query and return results as list of dictionaries.
+@param query SQL query string
+@param params Query parameters tuple for parameterized queries
+@return List of dictionaries containing query results
+@throws Exception If query execution fails
+\end{DoxyVerb}
+ 
+
+Reimplemented in \mbox{\hyperlink{classcommonpython_1_1adapters_1_1db2__cli__adapter_1_1_d_b2_c_l_i_adapter_a53748b3cb761c3711d397787ddeaa333}{commonpython.\+adapters.\+db2\+\_\+cli\+\_\+adapter.\+DB2\+CLIAdapter}}, and \mbox{\hyperlink{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_a98244bd18d0c5cd123e1103cf4fa0450}{commonpython.\+adapters.\+db2\+\_\+library\+\_\+adapter.\+DB2\+Library\+Adapter}}.
+
+
+
+Definition at line \mbox{\hyperlink{database__interface_8py_source_l00052}{52}} of file \mbox{\hyperlink{database__interface_8py_source}{database\+\_\+interface.\+py}}.
+
+\Hypertarget{classcommonpython_1_1interfaces_1_1database__interface_1_1_i_database_manager_a42b74b8edf626fdd827258721182a20d}\index{commonpython.interfaces.database\_interface.IDatabaseManager@{commonpython.interfaces.database\_interface.IDatabaseManager}!execute\_update@{execute\_update}}
+\index{execute\_update@{execute\_update}!commonpython.interfaces.database\_interface.IDatabaseManager@{commonpython.interfaces.database\_interface.IDatabaseManager}}
+\doxysubsubsection{\texorpdfstring{execute\_update()}{execute\_update()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1interfaces_1_1database__interface_1_1_i_database_manager_a42b74b8edf626fdd827258721182a20d} 
+ int commonpython.\+interfaces.\+database\+\_\+interface.\+IDatabase\+Manager.\+execute\+\_\+update (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{query}{, }\item[{Optional\mbox{[}Tuple\mbox{]} }]{params}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Execute an INSERT, UPDATE, or DELETE query.
+
+@brief Execute DML query and return affected rows count.
+@param query SQL query string
+@param params Query parameters tuple for parameterized queries
+@return Number of affected rows
+@throws Exception If query execution fails
+\end{DoxyVerb}
+ 
+
+Reimplemented in \mbox{\hyperlink{classcommonpython_1_1adapters_1_1db2__cli__adapter_1_1_d_b2_c_l_i_adapter_aa00e667aacee0d6b158b3eae6912e65c}{commonpython.\+adapters.\+db2\+\_\+cli\+\_\+adapter.\+DB2\+CLIAdapter}}, and \mbox{\hyperlink{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_af837881a7e096bc62bce2e1b0744d4d8}{commonpython.\+adapters.\+db2\+\_\+library\+\_\+adapter.\+DB2\+Library\+Adapter}}.
+
+
+
+Definition at line \mbox{\hyperlink{database__interface_8py_source_l00065}{65}} of file \mbox{\hyperlink{database__interface_8py_source}{database\+\_\+interface.\+py}}.
+
+\Hypertarget{classcommonpython_1_1interfaces_1_1database__interface_1_1_i_database_manager_a331f4839d4ed47eff4748d700bfe4d73}\index{commonpython.interfaces.database\_interface.IDatabaseManager@{commonpython.interfaces.database\_interface.IDatabaseManager}!get\_database\_info@{get\_database\_info}}
+\index{get\_database\_info@{get\_database\_info}!commonpython.interfaces.database\_interface.IDatabaseManager@{commonpython.interfaces.database\_interface.IDatabaseManager}}
+\doxysubsubsection{\texorpdfstring{get\_database\_info()}{get\_database\_info()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1interfaces_1_1database__interface_1_1_i_database_manager_a331f4839d4ed47eff4748d700bfe4d73} 
+ Dict\mbox{[}str, Any\mbox{]} commonpython.\+interfaces.\+database\+\_\+interface.\+IDatabase\+Manager.\+get\+\_\+database\+\_\+info (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get database information.
+
+@brief Get database metadata and system information.
+@return Dictionary containing database information
+@throws Exception If database info retrieval fails
+\end{DoxyVerb}
+ 
+
+Reimplemented in \mbox{\hyperlink{classcommonpython_1_1adapters_1_1db2__cli__adapter_1_1_d_b2_c_l_i_adapter_ad5cad438302a7e60a946dbf7a7a5eacd}{commonpython.\+adapters.\+db2\+\_\+cli\+\_\+adapter.\+DB2\+CLIAdapter}}, and \mbox{\hyperlink{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_a376652b40cfde6b6492abaf770850eff}{commonpython.\+adapters.\+db2\+\_\+library\+\_\+adapter.\+DB2\+Library\+Adapter}}.
+
+
+
+Definition at line \mbox{\hyperlink{database__interface_8py_source_l00119}{119}} of file \mbox{\hyperlink{database__interface_8py_source}{database\+\_\+interface.\+py}}.
+
+\Hypertarget{classcommonpython_1_1interfaces_1_1database__interface_1_1_i_database_manager_a293d931303d3d295331c08786f96b3de}\index{commonpython.interfaces.database\_interface.IDatabaseManager@{commonpython.interfaces.database\_interface.IDatabaseManager}!get\_table\_info@{get\_table\_info}}
+\index{get\_table\_info@{get\_table\_info}!commonpython.interfaces.database\_interface.IDatabaseManager@{commonpython.interfaces.database\_interface.IDatabaseManager}}
+\doxysubsubsection{\texorpdfstring{get\_table\_info()}{get\_table\_info()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1interfaces_1_1database__interface_1_1_i_database_manager_a293d931303d3d295331c08786f96b3de} 
+ List\mbox{[}Dict\mbox{[}str, Any\mbox{]}\mbox{]} commonpython.\+interfaces.\+database\+\_\+interface.\+IDatabase\+Manager.\+get\+\_\+table\+\_\+info (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{table\+\_\+name}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get table column information.
+
+@brief Get table metadata including column names, types, etc.
+@param table_name Name of the table
+@return List of dictionaries containing column information
+@throws Exception If table info retrieval fails
+\end{DoxyVerb}
+ 
+
+Reimplemented in \mbox{\hyperlink{classcommonpython_1_1adapters_1_1db2__cli__adapter_1_1_d_b2_c_l_i_adapter_a5ca5a57cd86ab5229d9701ddd8f3ffe4}{commonpython.\+adapters.\+db2\+\_\+cli\+\_\+adapter.\+DB2\+CLIAdapter}}, and \mbox{\hyperlink{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_af9031418cc406e4edd4ed781b9e64214}{commonpython.\+adapters.\+db2\+\_\+library\+\_\+adapter.\+DB2\+Library\+Adapter}}.
+
+
+
+Definition at line \mbox{\hyperlink{database__interface_8py_source_l00107}{107}} of file \mbox{\hyperlink{database__interface_8py_source}{database\+\_\+interface.\+py}}.
+
+\Hypertarget{classcommonpython_1_1interfaces_1_1database__interface_1_1_i_database_manager_ae438f5f416bcb4fa52c1546c6919792c}\index{commonpython.interfaces.database\_interface.IDatabaseManager@{commonpython.interfaces.database\_interface.IDatabaseManager}!is\_connected@{is\_connected}}
+\index{is\_connected@{is\_connected}!commonpython.interfaces.database\_interface.IDatabaseManager@{commonpython.interfaces.database\_interface.IDatabaseManager}}
+\doxysubsubsection{\texorpdfstring{is\_connected()}{is\_connected()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1interfaces_1_1database__interface_1_1_i_database_manager_ae438f5f416bcb4fa52c1546c6919792c} 
+ bool commonpython.\+interfaces.\+database\+\_\+interface.\+IDatabase\+Manager.\+is\+\_\+connected (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Check if database connection is active.
+
+@brief Check connection status.
+@return True if connected, False otherwise
+\end{DoxyVerb}
+ 
+
+Reimplemented in \mbox{\hyperlink{classcommonpython_1_1adapters_1_1db2__cli__adapter_1_1_d_b2_c_l_i_adapter_adfcc517f06c74273e30beaec1006fb77}{commonpython.\+adapters.\+db2\+\_\+cli\+\_\+adapter.\+DB2\+CLIAdapter}}, and \mbox{\hyperlink{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_a76b9e4078467bc630109e3fa217cc936}{commonpython.\+adapters.\+db2\+\_\+library\+\_\+adapter.\+DB2\+Library\+Adapter}}.
+
+
+
+Definition at line \mbox{\hyperlink{database__interface_8py_source_l00042}{42}} of file \mbox{\hyperlink{database__interface_8py_source}{database\+\_\+interface.\+py}}.
+
+\Hypertarget{classcommonpython_1_1interfaces_1_1database__interface_1_1_i_database_manager_a4290354f2f1c6983a7508089c4a7e4ea}\index{commonpython.interfaces.database\_interface.IDatabaseManager@{commonpython.interfaces.database\_interface.IDatabaseManager}!test\_connection@{test\_connection}}
+\index{test\_connection@{test\_connection}!commonpython.interfaces.database\_interface.IDatabaseManager@{commonpython.interfaces.database\_interface.IDatabaseManager}}
+\doxysubsubsection{\texorpdfstring{test\_connection()}{test\_connection()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1interfaces_1_1database__interface_1_1_i_database_manager_a4290354f2f1c6983a7508089c4a7e4ea} 
+ bool commonpython.\+interfaces.\+database\+\_\+interface.\+IDatabase\+Manager.\+test\+\_\+connection (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test database connection.
+
+@brief Test if database connection is working properly.
+@return True if connection is working, False otherwise
+\end{DoxyVerb}
+ 
+
+Reimplemented in \mbox{\hyperlink{classcommonpython_1_1adapters_1_1db2__cli__adapter_1_1_d_b2_c_l_i_adapter_a0b4070653aa31b9154c119631c0e3f25}{commonpython.\+adapters.\+db2\+\_\+cli\+\_\+adapter.\+DB2\+CLIAdapter}}, and \mbox{\hyperlink{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_a4ed5cc06fc3decd4d96a63bb5d59c052}{commonpython.\+adapters.\+db2\+\_\+library\+\_\+adapter.\+DB2\+Library\+Adapter}}.
+
+
+
+Definition at line \mbox{\hyperlink{database__interface_8py_source_l00130}{130}} of file \mbox{\hyperlink{database__interface_8py_source}{database\+\_\+interface.\+py}}.
+
+\Hypertarget{classcommonpython_1_1interfaces_1_1database__interface_1_1_i_database_manager_a61d61ff0692ddb564eca691f116d46cf}\index{commonpython.interfaces.database\_interface.IDatabaseManager@{commonpython.interfaces.database\_interface.IDatabaseManager}!transaction@{transaction}}
+\index{transaction@{transaction}!commonpython.interfaces.database\_interface.IDatabaseManager@{commonpython.interfaces.database\_interface.IDatabaseManager}}
+\doxysubsubsection{\texorpdfstring{transaction()}{transaction()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1interfaces_1_1database__interface_1_1_i_database_manager_a61d61ff0692ddb564eca691f116d46cf} 
+commonpython.\+interfaces.\+database\+\_\+interface.\+IDatabase\+Manager.\+transaction (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Context manager for database transactions.
+
+@brief Provide transaction context for multiple operations.
+@throws Exception If transaction management fails
+
+Usage:
+    with db_manager.transaction():
+        db_manager.execute_update("INSERT INTO table VALUES (?)", (value,))
+        db_manager.execute_update("UPDATE table SET col = ?", (new_value,))
+\end{DoxyVerb}
+ 
+
+Reimplemented in \mbox{\hyperlink{classcommonpython_1_1adapters_1_1db2__cli__adapter_1_1_d_b2_c_l_i_adapter_a07354b9d2c17d9aef865b37cd7072d38}{commonpython.\+adapters.\+db2\+\_\+cli\+\_\+adapter.\+DB2\+CLIAdapter}}, and \mbox{\hyperlink{classcommonpython_1_1adapters_1_1db2__library__adapter_1_1_d_b2_library_adapter_a07932cc266707f1abdaa1078c31cbc90}{commonpython.\+adapters.\+db2\+\_\+library\+\_\+adapter.\+DB2\+Library\+Adapter}}.
+
+
+
+Definition at line \mbox{\hyperlink{database__interface_8py_source_l00092}{92}} of file \mbox{\hyperlink{database__interface_8py_source}{database\+\_\+interface.\+py}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+commonpython/interfaces/\mbox{\hyperlink{database__interface_8py}{database\+\_\+interface.\+py}}\end{DoxyCompactItemize}

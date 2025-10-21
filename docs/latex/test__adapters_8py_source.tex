@@ -1,0 +1,272 @@
+\doxysection{test\+\_\+adapters.\+py}
+\hypertarget{test__adapters_8py_source}{}\label{test__adapters_8py_source}\index{test/test\_adapters.py@{test/test\_adapters.py}}
+\mbox{\hyperlink{test__adapters_8py}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00001}\mbox{\hyperlink{namespacetest_1_1test__adapters}{00001}}\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00002}00002\ \textcolor{stringliteral}{Tests\ for\ Database\ and\ Messaging\ Adapters}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00003}00003\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00004}00004\ \textcolor{stringliteral}{Comprehensive\ test\ suite\ for\ CLI\ and\ library-\/based\ adapters\ to\ ensure}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00005}00005\ \textcolor{stringliteral}{they\ properly\ implement\ the\ interface\ contracts\ and\ work\ correctly.}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00006}00006\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00008}00008\ \textcolor{keyword}{import}\ unittest}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00009}00009\ \textcolor{keyword}{from}\ unittest.mock\ \textcolor{keyword}{import}\ Mock,\ patch,\ MagicMock}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00010}00010\ \textcolor{keyword}{import}\ sys}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00011}00011\ \textcolor{keyword}{from}\ pathlib\ \textcolor{keyword}{import}\ Path}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00013}00013\ \textcolor{comment}{\#\ Add\ parent\ directory\ to\ path}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00014}00014\ sys.path.insert(0,\ str(Path(\_\_file\_\_).parent.parent))}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00016}00016\ \textcolor{keyword}{from}\ \mbox{\hyperlink{namespacecommonpython_1_1interfaces}{commonpython.interfaces}}\ \textcolor{keyword}{import}\ IDatabaseManager,\ IMessagingManager}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00017}00017\ \textcolor{keyword}{from}\ \mbox{\hyperlink{namespacecommonpython_1_1adapters}{commonpython.adapters}}\ \textcolor{keyword}{import}\ DB2CLIAdapter,\ MQCLIAdapter}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00020}\mbox{\hyperlink{classtest_1_1test__adapters_1_1_test_d_b2_c_l_i_adapter}{00020}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtest_1_1test__adapters_1_1_test_d_b2_c_l_i_adapter}{TestDB2CLIAdapter}}(unittest.TestCase):}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00021}00021\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Test\ suite\ for\ DB2\ CLI\ adapter"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00022}00022\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00023}\mbox{\hyperlink{classtest_1_1test__adapters_1_1_test_d_b2_c_l_i_adapter_af6e676535a2643da15cbaa118200cf62}{00023}}\ \textcolor{stringliteral}{\ \ \ \ def\ setUp(self):}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00024}00024\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}Set\ up\ test\ fixtures"{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00025}\mbox{\hyperlink{classtest_1_1test__adapters_1_1_test_d_b2_c_l_i_adapter_a51ce588b9bc53c1dd5d541a38b5c0845}{00025}}\ \ \ \ \ \ \ \ \ self.config\ =\ \{}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ 'host':\ 'localhost',}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ 'port':\ 50000,}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ 'database':\ 'testdb',}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ 'name':\ 'testdb',}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ 'user':\ 'testuser',}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \ 'password':\ 'testpass',}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \ \ \ 'schema':\ 'testschema',}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ 'timeout':\ 30}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00034}00034\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00035}\mbox{\hyperlink{classtest_1_1test__adapters_1_1_test_d_b2_c_l_i_adapter_a934494fe2148b84e4cde85ae84bc5bb4}{00035}}\ \ \ \ \ \ \ \ \ self.logger\ =\ Mock()}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00036}00036\ \ \ \ \ \ \ \ \ self.logger.logger\ =\ Mock()}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00038}\mbox{\hyperlink{classtest_1_1test__adapters_1_1_test_d_b2_c_l_i_adapter_a38d73f9314e1be27978e1a975f1423dc}{00038}}\ \ \ \ \ def\ test\_adapter\_implements\_interface(self):}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00039}00039\ \ \ \ \ \ \ \ \ "{}"{}"{}Test\ that\ adapter\ properly\ implements\ IDatabaseManager\ interface"{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00040}00040\ \ \ \ \ \ \ \ \ adapter\ =\ DB2CLIAdapter(self.config,\ self.logger)}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00041}00041\ \ \ \ \ \ \ \ \ self.assertIsInstance(adapter,\ IDatabaseManager)}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00043}\mbox{\hyperlink{classtest_1_1test__adapters_1_1_test_d_b2_c_l_i_adapter_a83a2f30a26fa86b703123373f1da70f3}{00043}}\ \ \ \ \ def\ test\_adapter\_initialization(self):}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00044}00044\ \ \ \ \ \ \ \ \ "{}"{}"{}Test\ adapter\ initialization"{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00045}00045\ \ \ \ \ \ \ \ \ adapter\ =\ DB2CLIAdapter(self.config,\ self.logger)}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00046}00046\ \ \ \ \ \ \ \ \ self.assertIsNotNone(adapter)}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00047}00047\ \ \ \ \ \ \ \ \ self.assertEqual(adapter.\_config,\ self.config)}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00048}00048\ \ \ \ \ \ \ \ \ self.assertEqual(adapter.\_logger,\ self.logger)}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00050}00050\ \ \ \ \ @patch('commonpython.database.db2\_manager.subprocess.run')}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00051}\mbox{\hyperlink{classtest_1_1test__adapters_1_1_test_d_b2_c_l_i_adapter_a58f9c6012f638a5a997b43c77d082a48}{00051}}\ \ \ \ \ def\ test\_connect(self,\ mock\_run):}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00052}00052\ \ \ \ \ \ \ \ \ "{}"{}"{}Test\ database\ connection"{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00053}00053\ \ \ \ \ \ \ \ \ mock\_run.return\_value\ =\ Mock(returncode=0,\ stdout='Connected',\ stderr='')}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00055}00055\ \ \ \ \ \ \ \ \ adapter\ =\ DB2CLIAdapter(self.config,\ self.logger)}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00056}00056\ \ \ \ \ \ \ \ \ result\ =\ adapter.connect()}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00058}00058\ \ \ \ \ \ \ \ \ self.assertTrue(result)}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00059}00059\ \ \ \ \ \ \ \ \ self.assertTrue(adapter.is\_connected())}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00061}00061\ \ \ \ \ @patch('commonpython.database.db2\_manager.subprocess.run')}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00062}\mbox{\hyperlink{classtest_1_1test__adapters_1_1_test_d_b2_c_l_i_adapter_a53893988b5ec8abea4d6f977ed8b79cf}{00062}}\ \ \ \ \ def\ test\_connect\_failure(self,\ mock\_run):}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00063}00063\ \ \ \ \ \ \ \ \ "{}"{}"{}Test\ database\ connection\ failure"{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00064}00064\ \ \ \ \ \ \ \ \ mock\_run.return\_value\ =\ Mock(returncode=1,\ stdout='',\ stderr='Connection\ failed')}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00066}00066\ \ \ \ \ \ \ \ \ adapter\ =\ DB2CLIAdapter(self.config,\ self.logger)}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00067}00067\ \ \ \ \ \ \ \ \ result\ =\ adapter.connect()}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00069}00069\ \ \ \ \ \ \ \ \ self.assertFalse(result)}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00070}00070\ \ \ \ \ \ \ \ \ self.assertFalse(adapter.is\_connected())}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00072}00072\ \ \ \ \ @patch('commonpython.database.db2\_manager.subprocess.run')}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00073}\mbox{\hyperlink{classtest_1_1test__adapters_1_1_test_d_b2_c_l_i_adapter_ae81025e9e3ff32df8eefdeffe418bed8}{00073}}\ \ \ \ \ def\ test\_disconnect(self,\ mock\_run):}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00074}00074\ \ \ \ \ \ \ \ \ "{}"{}"{}Test\ database\ disconnection"{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00075}00075\ \ \ \ \ \ \ \ \ mock\_run.return\_value\ =\ Mock(returncode=0,\ stdout='Connected',\ stderr='')}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00076}00076\ }
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00077}00077\ \ \ \ \ \ \ \ \ adapter\ =\ DB2CLIAdapter(self.config,\ self.logger)}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00078}00078\ \ \ \ \ \ \ \ \ adapter.connect()}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00079}00079\ \ \ \ \ \ \ \ \ adapter.disconnect()}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00081}00081\ \ \ \ \ \ \ \ \ self.assertFalse(adapter.is\_connected())}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00083}00083\ \ \ \ \ @patch('commonpython.database.db2\_manager.subprocess.run')}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00084}\mbox{\hyperlink{classtest_1_1test__adapters_1_1_test_d_b2_c_l_i_adapter_a2cc68e9047d16a9ee68a557452c80c1e}{00084}}\ \ \ \ \ def\ test\_execute\_query(self,\ mock\_run):}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00085}00085\ \ \ \ \ \ \ \ \ "{}"{}"{}Test\ query\ execution"{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00086}00086\ \ \ \ \ \ \ \ \ mock\_run.return\_value\ =\ Mock(returncode=0,\ stdout='Connected',\ stderr='')}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00088}00088\ \ \ \ \ \ \ \ \ adapter\ =\ DB2CLIAdapter(self.config,\ self.logger)}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00089}00089\ \ \ \ \ \ \ \ \ adapter.connect()}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00091}00091\ \ \ \ \ \ \ \ \ \#\ Mock\ the\ query\ execution}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00092}00092\ \ \ \ \ \ \ \ \ with\ patch.object(adapter.\_impl,\ 'execute\_query',\ return\_value=[\{'id':\ 1,\ 'name':\ 'test'\}]):}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ results\ =\ adapter.execute\_query("{}SELECT\ *\ FROM\ test"{})}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ self.assertEqual(len(results),\ 1)}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ self.assertEqual(results[0]['id'],\ 1)}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00096}00096\ }
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00097}00097\ \ \ \ \ @patch('commonpython.database.db2\_manager.subprocess.run')}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00098}\mbox{\hyperlink{classtest_1_1test__adapters_1_1_test_d_b2_c_l_i_adapter_ac043311659fd82067a6b6510fb2c3a7e}{00098}}\ \ \ \ \ def\ test\_execute\_update(self,\ mock\_run):}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00099}00099\ \ \ \ \ \ \ \ \ "{}"{}"{}Test\ update\ execution"{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00100}00100\ \ \ \ \ \ \ \ \ mock\_run.return\_value\ =\ Mock(returncode=0,\ stdout='Connected',\ stderr='')}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00101}00101\ }
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00102}00102\ \ \ \ \ \ \ \ \ adapter\ =\ DB2CLIAdapter(self.config,\ self.logger)}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00103}00103\ \ \ \ \ \ \ \ \ adapter.connect()}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00104}00104\ }
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00105}00105\ \ \ \ \ \ \ \ \ \#\ Mock\ the\ update\ execution}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00106}00106\ \ \ \ \ \ \ \ \ with\ patch.object(adapter.\_impl,\ 'execute\_update',\ return\_value=5):}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ rows\_affected\ =\ adapter.execute\_update("{}UPDATE\ test\ SET\ name\ =\ 'updated'"{})}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ self.assertEqual(rows\_affected,\ 5)}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00109}00109\ }
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00110}00110\ \ \ \ \ @patch('commonpython.database.db2\_manager.subprocess.run')}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00111}\mbox{\hyperlink{classtest_1_1test__adapters_1_1_test_d_b2_c_l_i_adapter_a64c1391fa0975eff44bf63823cd22e5d}{00111}}\ \ \ \ \ def\ test\_transaction\_context\_manager(self,\ mock\_run):}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00112}00112\ \ \ \ \ \ \ \ \ "{}"{}"{}Test\ transaction\ context\ manage\textcolor{stringliteral}{r"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00113}00113\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ mock\_run.return\_value\ =\ Mock(returncode=0,\ stdout='Connected',\ stderr='')}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00114}00114\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00115}00115\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ adapter\ =\ DB2CLIAdapter(self.config,\ self.logger)}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00116}00116\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ adapter.connect()}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00117}00117\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00118}00118\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \#\ Mock\ transaction\ methods}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00119}00119\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ with\ patch.object(adapter.\_impl,\ 'transaction'):}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00120}00120\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ with\ adapter.transaction():}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00121}00121\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pass\ \ \#\ Transaction\ should\ commit\ successfully}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00122}00122\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00123}00123\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00124}\mbox{\hyperlink{classtest_1_1test__adapters_1_1_test_m_q_c_l_i_adapter}{00124}}\ \textcolor{stringliteral}{class\ TestMQCLIAdapter(unittest.TestCase):}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00125}00125\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}Test\ suite\ for\ MQ\ CLI\ adapte\textcolor{stringliteral}{r"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00126}00126\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00127}\mbox{\hyperlink{classtest_1_1test__adapters_1_1_test_m_q_c_l_i_adapter_af2df5bee908837298849d521227ff9c5}{00127}}\ \textcolor{stringliteral}{\ \ \ \ def\ setUp(self):}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00128}00128\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}Set\ up\ test\ fixtures"{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00129}\mbox{\hyperlink{classtest_1_1test__adapters_1_1_test_m_q_c_l_i_adapter_ad304d8120fb43edb1d0e5200793aeeec}{00129}}\ \ \ \ \ \ \ \ \ self.config\ =\ \{}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ 'host':\ 'localhost',}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ 'port':\ 1414,}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ 'queue\_manager':\ 'QM1',}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ 'channel':\ 'SYSTEM.DEF.SVRCONN',}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ 'user':\ 'testuser',}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ 'password':\ 'testpass',}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ 'timeout':\ 30}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00137}00137\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00138}\mbox{\hyperlink{classtest_1_1test__adapters_1_1_test_m_q_c_l_i_adapter_a31d8d7ec380f81c6473d6e748a40f10f}{00138}}\ \ \ \ \ \ \ \ \ self.logger\ =\ Mock()}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00139}00139\ \ \ \ \ \ \ \ \ self.logger.logger\ =\ Mock()}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00140}00140\ }
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00141}\mbox{\hyperlink{classtest_1_1test__adapters_1_1_test_m_q_c_l_i_adapter_ad4215cb18606a35c735db0323ff5910d}{00141}}\ \ \ \ \ def\ test\_adapter\_implements\_interface(self):}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00142}00142\ \ \ \ \ \ \ \ \ "{}"{}"{}Test\ that\ adapter\ properly\ implements\ IMessagingManager\ interface"{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00143}00143\ \ \ \ \ \ \ \ \ adapter\ =\ MQCLIAdapter(self.config,\ self.logger)}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00144}00144\ \ \ \ \ \ \ \ \ self.assertIsInstance(adapter,\ IMessagingManager)}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00145}00145\ }
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00146}\mbox{\hyperlink{classtest_1_1test__adapters_1_1_test_m_q_c_l_i_adapter_a0e49453682bac3029f2d795f0791f07e}{00146}}\ \ \ \ \ def\ test\_adapter\_initialization(self):}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00147}00147\ \ \ \ \ \ \ \ \ "{}"{}"{}Test\ adapter\ initialization"{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00148}00148\ \ \ \ \ \ \ \ \ adapter\ =\ MQCLIAdapter(self.config,\ self.logger)}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00149}00149\ \ \ \ \ \ \ \ \ self.assertIsNotNone(adapter)}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00150}00150\ \ \ \ \ \ \ \ \ self.assertEqual(adapter.\_config,\ self.config)}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00151}00151\ \ \ \ \ \ \ \ \ self.assertEqual(adapter.\_logger,\ self.logger)}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00152}00152\ }
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00153}00153\ \ \ \ \ @patch('commonpython.messaging.mq\_manager.subprocess.run')}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00154}\mbox{\hyperlink{classtest_1_1test__adapters_1_1_test_m_q_c_l_i_adapter_a12b7b05131818f526181d3bd42b297f2}{00154}}\ \ \ \ \ def\ test\_connect(self,\ mock\_run):}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00155}00155\ \ \ \ \ \ \ \ \ "{}"{}"{}Test\ messaging\ connection"{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00156}00156\ \ \ \ \ \ \ \ \ mock\_run.return\_value\ =\ Mock(returncode=0,\ stdout='Connected',\ stderr='')}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00157}00157\ }
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00158}00158\ \ \ \ \ \ \ \ \ adapter\ =\ MQCLIAdapter(self.config,\ self.logger)}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00159}00159\ \ \ \ \ \ \ \ \ result\ =\ adapter.connect()}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00160}00160\ }
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00161}00161\ \ \ \ \ \ \ \ \ self.assertTrue(result)}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00162}00162\ \ \ \ \ \ \ \ \ self.assertTrue(adapter.is\_connected())}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00163}00163\ }
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00164}00164\ \ \ \ \ @patch('commonpython.messaging.mq\_manager.subprocess.run')}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00165}\mbox{\hyperlink{classtest_1_1test__adapters_1_1_test_m_q_c_l_i_adapter_a1f0623b0b30629ff12612bcb53b476a8}{00165}}\ \ \ \ \ def\ test\_connect\_failure(self,\ mock\_run):}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00166}00166\ \ \ \ \ \ \ \ \ "{}"{}"{}Test\ messaging\ connection\ failure"{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00167}00167\ \ \ \ \ \ \ \ \ mock\_run.return\_value\ =\ Mock(returncode=1,\ stdout='',\ stderr='Connection\ failed')}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00168}00168\ }
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00169}00169\ \ \ \ \ \ \ \ \ adapter\ =\ MQCLIAdapter(self.config,\ self.logger)}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00170}00170\ \ \ \ \ \ \ \ \ result\ =\ adapter.connect()}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00171}00171\ }
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00172}00172\ \ \ \ \ \ \ \ \ self.assertFalse(result)}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00173}00173\ \ \ \ \ \ \ \ \ self.assertFalse(adapter.is\_connected())}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00174}00174\ }
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00175}00175\ \ \ \ \ @patch('commonpython.messaging.mq\_manager.subprocess.run')}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00176}\mbox{\hyperlink{classtest_1_1test__adapters_1_1_test_m_q_c_l_i_adapter_a49c2933dc32d85f18cd48fe03a653a0f}{00176}}\ \ \ \ \ def\ test\_put\_message(self,\ mock\_run):}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00177}00177\ \ \ \ \ \ \ \ \ "{}"{}"{}Test\ message\ sending"{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00178}00178\ \ \ \ \ \ \ \ \ mock\_run.return\_value\ =\ Mock(returncode=0,\ stdout='Connected',\ stderr='')}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00179}00179\ }
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00180}00180\ \ \ \ \ \ \ \ \ adapter\ =\ MQCLIAdapter(self.config,\ self.logger)}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00181}00181\ \ \ \ \ \ \ \ \ adapter.connect()}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00182}00182\ }
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00183}00183\ \ \ \ \ \ \ \ \ \#\ Mock\ the\ put\_message}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00184}00184\ \ \ \ \ \ \ \ \ with\ patch.object(adapter.\_impl,\ 'put\_message',\ return\_value=True):}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ adapter.put\_message('TEST.QUEUE',\ \{'message':\ 'test'\})}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ self.assertTrue(result)}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00187}00187\ }
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00188}00188\ \ \ \ \ @patch('commonpython.messaging.mq\_manager.subprocess.run')}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00189}\mbox{\hyperlink{classtest_1_1test__adapters_1_1_test_m_q_c_l_i_adapter_a4b85153d1f354df33eae07240441f862}{00189}}\ \ \ \ \ def\ test\_get\_message(self,\ mock\_run):}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00190}00190\ \ \ \ \ \ \ \ \ "{}"{}"{}Test\ message\ receiving"{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00191}00191\ \ \ \ \ \ \ \ \ mock\_run.return\_value\ =\ Mock(returncode=0,\ stdout='Connected',\ stderr='')}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00192}00192\ }
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00193}00193\ \ \ \ \ \ \ \ \ adapter\ =\ MQCLIAdapter(self.config,\ self.logger)}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00194}00194\ \ \ \ \ \ \ \ \ adapter.connect()}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00195}00195\ }
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00196}00196\ \ \ \ \ \ \ \ \ \#\ Mock\ the\ get\_message}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00197}00197\ \ \ \ \ \ \ \ \ expected\_message\ =\ \{}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ 'data':\ \{'message':\ 'test'\},}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00199}00199\ \ \ \ \ \ \ \ \ \ \ \ \ 'properties':\ \{'message\_id':\ '12345'\},}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \ \ 'raw\_bytes':\ b'test'}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00201}00201\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00202}00202\ \ \ \ \ \ \ \ \ with\ patch.object(adapter.\_impl,\ 'get\_message',\ return\_value=expected\_message):}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00203}00203\ \ \ \ \ \ \ \ \ \ \ \ \ message\ =\ adapter.get\_message('TEST.QUEUE')}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00204}00204\ \ \ \ \ \ \ \ \ \ \ \ \ self.assertIsNotNone(message)}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00205}00205\ \ \ \ \ \ \ \ \ \ \ \ \ self.assertEqual(message['data']['message'],\ 'test')}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00206}00206\ }
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00207}00207\ \ \ \ \ @patch('commonpython.messaging.mq\_manager.subprocess.run')}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00208}\mbox{\hyperlink{classtest_1_1test__adapters_1_1_test_m_q_c_l_i_adapter_a77116bfa2ffa9fcae9ce42f6be5213a9}{00208}}\ \ \ \ \ def\ test\_get\_queue\_depth(self,\ mock\_run):}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00209}00209\ \ \ \ \ \ \ \ \ "{}"{}"{}Test\ queue\ depth\ retrieval"{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00210}00210\ \ \ \ \ \ \ \ \ mock\_run.return\_value\ =\ Mock(returncode=0,\ stdout='Connected',\ stderr='')}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00211}00211\ }
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00212}00212\ \ \ \ \ \ \ \ \ adapter\ =\ MQCLIAdapter(self.config,\ self.logger)}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00213}00213\ \ \ \ \ \ \ \ \ adapter.connect()}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00214}00214\ }
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00215}00215\ \ \ \ \ \ \ \ \ \#\ Mock\ the\ get\_queue\_depth}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00216}00216\ \ \ \ \ \ \ \ \ with\ patch.object(adapter.\_impl,\ 'get\_queue\_depth',\ return\_value=10):}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00217}00217\ \ \ \ \ \ \ \ \ \ \ \ \ depth\ =\ adapter.get\_queue\_depth('TEST.QUEUE')}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00218}00218\ \ \ \ \ \ \ \ \ \ \ \ \ self.assertEqual(depth,\ 10)}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00219}00219\ }
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00220}00220\ }
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00221}\mbox{\hyperlink{classtest_1_1test__adapters_1_1_test_library_adapters}{00221}}\ class\ TestLibraryAdapters(unittest.TestCase):}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00222}00222\ \ \ \ \ "{}"{}"{}Test\ suite\ for\ library-\/based\ adapters\ (when\ available)"{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00223}00223\ }
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00224}\mbox{\hyperlink{classtest_1_1test__adapters_1_1_test_library_adapters_ab02d7328970896a354f5f2a142838611}{00224}}\ \ \ \ \ def\ test\_db2\_library\_adapter\_import(self):}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00225}00225\ \ \ \ \ \ \ \ \ "{}"{}"{}Test\ importing\ DB2\ library\ adapte\textcolor{stringliteral}{r"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00226}00226\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ try:}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00227}00227\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ from\ commonpython.adapters.db2\_library\_adapter\ import\ DB2LibraryAdapter}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00228}00228\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ self.assertTrue(hasattr(DB2LibraryAdapter,\ '\_\_init\_\_'))}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00229}00229\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ except\ ImportError:}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00230}00230\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ self.skipTest("{}ibm\_db\ library\ not\ installed"{})}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00231}00231\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00232}\mbox{\hyperlink{classtest_1_1test__adapters_1_1_test_library_adapters_a54533e797e9f325d3323a56b8931d58c}{00232}}\ \textcolor{stringliteral}{\ \ \ \ def\ test\_mq\_library\_adapter\_import(self):}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00233}00233\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}Test\ importing\ MQ\ library\ adapte\textcolor{stringliteral}{r"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00234}00234\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ try:}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00235}00235\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ from\ commonpython.adapters.mq\_library\_adapter\ import\ MQLibraryAdapter}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00236}00236\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ self.assertTrue(hasattr(MQLibraryAdapter,\ '\_\_init\_\_'))}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00237}00237\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ except\ ImportError:}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00238}00238\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ self.skipTest("{}pymqi\ library\ not\ installed"{})}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00239}00239\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00240}\mbox{\hyperlink{classtest_1_1test__adapters_1_1_test_library_adapters_abdd2efbe5b875204053821887f59629f}{00240}}\ \textcolor{stringliteral}{\ \ \ \ def\ test\_db2\_library\_adapter\_without\_library(self):}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00241}00241\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}Test\ DB2\ library\ adapter\ raises\ error\ when\ ibm\_db\ not\ installed"{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00242}00242\ \ \ \ \ \ \ \ \ with\ patch.dict('sys.modules',\ \{'ibm\_db':\ None,\ 'ibm\_db\_dbi':\ None\}):}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00243}00243\ \ \ \ \ \ \ \ \ \ \ \ \ try:}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00244}00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ from\ commonpython.adapters.db2\_library\_adapter\ import\ DB2LibraryAdapter}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00245}00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ config\ =\ \{'host':\ 'localhost',\ 'port':\ 50000,\ 'name':\ 'testdb'\}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00246}00246\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ with\ self.assertRaises(ImportError):}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00247}00247\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ adapter\ =\ DB2LibraryAdapter(config)}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00248}00248\ \ \ \ \ \ \ \ \ \ \ \ \ except\ ImportError:}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00249}00249\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ If\ module\ itself\ can't\ be\ imported,\ that's\ also\ acceptable}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00250}00250\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pass}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00251}00251\ }
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00252}\mbox{\hyperlink{classtest_1_1test__adapters_1_1_test_library_adapters_a907ed72722f21c2ff1275418ced1d0f6}{00252}}\ \ \ \ \ def\ test\_mq\_library\_adapter\_without\_library(self):}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00253}00253\ \ \ \ \ \ \ \ \ "{}"{}"{}Test\ MQ\ library\ adapter\ raises\ error\ when\ pymqi\ not\ installed"{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00254}00254\ \ \ \ \ \ \ \ \ with\ patch.dict('sys.modules',\ \{'pymqi':\ None\}):}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00255}00255\ \ \ \ \ \ \ \ \ \ \ \ \ try:}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00256}00256\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ from\ commonpython.adapters.mq\_library\_adapter\ import\ MQLibraryAdapter}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00257}00257\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ config\ =\ \{'host':\ 'localhost',\ 'port':\ 1414,\ 'queue\_manager':\ 'QM1'\}}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00258}00258\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ with\ self.assertRaises(ImportError):}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00259}00259\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ adapter\ =\ MQLibraryAdapter(config)}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00260}00260\ \ \ \ \ \ \ \ \ \ \ \ \ except\ ImportError:}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00261}00261\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ If\ module\ itself\ can't\ be\ imported,\ that's\ also\ acceptable}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00262}00262\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pass}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00263}00263\ }
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00264}00264\ }
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00265}00265\ if\ \_\_name\_\_\ ==\ '\_\_main\_\_':}
+\DoxyCodeLine{\Hypertarget{test__adapters_8py_source_l00266}00266\ \ \ \ \ unittest.main()}
+
+\end{DoxyCode}

@@ -1,0 +1,36 @@
+\doxysection{\+\_\+\+\_\+init\+\_\+\+\_\+.\+py}
+\hypertarget{commonpython_2adapters_2____init_____8py_source}{}\label{commonpython_2adapters_2____init_____8py_source}\index{commonpython/adapters/\_\_init\_\_.py@{commonpython/adapters/\_\_init\_\_.py}}
+\mbox{\hyperlink{commonpython_2adapters_2____init_____8py}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{commonpython_2adapters_2____init_____8py_source_l00001}\mbox{\hyperlink{namespacecommonpython_1_1adapters}{00001}}\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{commonpython_2adapters_2____init_____8py_source_l00002}00002\ \textcolor{stringliteral}{Adapters\ for\ CommonPython\ Framework}}
+\DoxyCodeLine{\Hypertarget{commonpython_2adapters_2____init_____8py_source_l00003}00003\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{commonpython_2adapters_2____init_____8py_source_l00004}00004\ \textcolor{stringliteral}{Provides\ adapter\ implementations\ for\ different\ database\ and\ messaging\ backends.}}
+\DoxyCodeLine{\Hypertarget{commonpython_2adapters_2____init_____8py_source_l00005}00005\ \textcolor{stringliteral}{Adapters\ implement\ the\ abstract\ interfaces\ and\ wrap\ actual\ implementations.}}
+\DoxyCodeLine{\Hypertarget{commonpython_2adapters_2____init_____8py_source_l00006}00006\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{commonpython_2adapters_2____init_____8py_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{commonpython_2adapters_2____init_____8py_source_l00008}00008\ \textcolor{keyword}{from}\ .db2\_cli\_adapter\ \textcolor{keyword}{import}\ DB2CLIAdapter}
+\DoxyCodeLine{\Hypertarget{commonpython_2adapters_2____init_____8py_source_l00009}00009\ \textcolor{keyword}{from}\ .mq\_cli\_adapter\ \textcolor{keyword}{import}\ MQCLIAdapter}
+\DoxyCodeLine{\Hypertarget{commonpython_2adapters_2____init_____8py_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{commonpython_2adapters_2____init_____8py_source_l00011}00011\ \textcolor{comment}{\#\ Library\ adapters\ may\ not\ be\ available\ if\ dependencies\ aren't\ installed}}
+\DoxyCodeLine{\Hypertarget{commonpython_2adapters_2____init_____8py_source_l00012}00012\ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{commonpython_2adapters_2____init_____8py_source_l00013}00013\ \ \ \ \ \textcolor{keyword}{from}\ .db2\_library\_adapter\ \textcolor{keyword}{import}\ DB2LibraryAdapter}
+\DoxyCodeLine{\Hypertarget{commonpython_2adapters_2____init_____8py_source_l00014}\mbox{\hyperlink{namespacecommonpython_1_1adapters_a0162362cdfb4770e6d75789773ae6a5c}{00014}}\ \ \ \ \ HAS\_DB2\_LIBRARY\ =\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{commonpython_2adapters_2____init_____8py_source_l00015}00015\ \textcolor{keywordflow}{except}\ ImportError:}
+\DoxyCodeLine{\Hypertarget{commonpython_2adapters_2____init_____8py_source_l00016}00016\ \ \ \ \ HAS\_DB2\_LIBRARY\ =\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{commonpython_2adapters_2____init_____8py_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{commonpython_2adapters_2____init_____8py_source_l00018}00018\ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{commonpython_2adapters_2____init_____8py_source_l00019}00019\ \ \ \ \ \textcolor{keyword}{from}\ .mq\_library\_adapter\ \textcolor{keyword}{import}\ MQLibraryAdapter}
+\DoxyCodeLine{\Hypertarget{commonpython_2adapters_2____init_____8py_source_l00020}\mbox{\hyperlink{namespacecommonpython_1_1adapters_ad188cbfed01717b664dceb14aa2aee18}{00020}}\ \ \ \ \ HAS\_MQ\_LIBRARY\ =\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{commonpython_2adapters_2____init_____8py_source_l00021}00021\ \textcolor{keywordflow}{except}\ ImportError:}
+\DoxyCodeLine{\Hypertarget{commonpython_2adapters_2____init_____8py_source_l00022}00022\ \ \ \ \ HAS\_MQ\_LIBRARY\ =\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{commonpython_2adapters_2____init_____8py_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{commonpython_2adapters_2____init_____8py_source_l00024}00024\ \_\_all\_\_\ =\ [\textcolor{stringliteral}{'DB2CLIAdapter'},\ \textcolor{stringliteral}{'MQCLIAdapter'}]}
+\DoxyCodeLine{\Hypertarget{commonpython_2adapters_2____init_____8py_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{commonpython_2adapters_2____init_____8py_source_l00026}00026\ \textcolor{keywordflow}{if}\ HAS\_DB2\_LIBRARY:}
+\DoxyCodeLine{\Hypertarget{commonpython_2adapters_2____init_____8py_source_l00027}00027\ \ \ \ \ \_\_all\_\_.append(\textcolor{stringliteral}{'DB2LibraryAdapter'})}
+\DoxyCodeLine{\Hypertarget{commonpython_2adapters_2____init_____8py_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{commonpython_2adapters_2____init_____8py_source_l00029}00029\ \textcolor{keywordflow}{if}\ HAS\_MQ\_LIBRARY:}
+\DoxyCodeLine{\Hypertarget{commonpython_2adapters_2____init_____8py_source_l00030}00030\ \ \ \ \ \_\_all\_\_.append(\textcolor{stringliteral}{'MQLibraryAdapter'})}
+
+\end{DoxyCode}

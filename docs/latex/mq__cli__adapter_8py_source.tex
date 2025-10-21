@@ -1,0 +1,133 @@
+\doxysection{mq\+\_\+cli\+\_\+adapter.\+py}
+\hypertarget{mq__cli__adapter_8py_source}{}\label{mq__cli__adapter_8py_source}\index{commonpython/adapters/mq\_cli\_adapter.py@{commonpython/adapters/mq\_cli\_adapter.py}}
+\mbox{\hyperlink{mq__cli__adapter_8py}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00001}\mbox{\hyperlink{namespacecommonpython_1_1adapters_1_1mq__cli__adapter}{00001}}\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00002}00002\ \textcolor{stringliteral}{MQ\ CLI\ Adapter\ for\ CommonPython\ Framework}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00003}00003\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00004}00004\ \textcolor{stringliteral}{Adapter\ that\ wraps\ the\ CLI-\/based\ MQManager\ implementation\ and\ implements}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00005}00005\ \textcolor{stringliteral}{the\ IMessagingManager\ interface.\ This\ allows\ the\ CLI\ implementation\ to\ be}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00006}00006\ \textcolor{stringliteral}{used\ interchangeably\ with\ library-\/based\ implementations.}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00007}00007\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00009}00009\ \textcolor{keyword}{from}\ typing\ \textcolor{keyword}{import}\ Any,\ Dict,\ Optional,\ Union}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00010}00010\ \textcolor{keyword}{from}\ ..interfaces.messaging\_interface\ \textcolor{keyword}{import}\ IMessagingManager}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00011}00011\ \textcolor{keyword}{from}\ ..messaging.mq\_manager\ \textcolor{keyword}{import}\ MQManager}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00014}\mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__cli__adapter_1_1_m_q_c_l_i_adapter}{00014}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__cli__adapter_1_1_m_q_c_l_i_adapter}{MQCLIAdapter}}(\mbox{\hyperlink{classcommonpython_1_1interfaces_1_1messaging__interface_1_1_i_messaging_manager}{IMessagingManager}}):}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00015}00015\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00016}00016\ \textcolor{stringliteral}{\ \ \ \ Adapter\ for\ CLI-\/based\ MQ\ messaging\ operations.}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00017}00017\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00018}00018\ \textcolor{stringliteral}{\ \ \ \ Wraps\ the\ existing\ MQManager\ (CLI-\/based)\ implementation\ and\ exposes}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00019}00019\ \textcolor{stringliteral}{\ \ \ \ it\ through\ the\ IMessagingManager\ interface.}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00020}00020\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00022}\mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__cli__adapter_1_1_m_q_c_l_i_adapter_a7f24ab468565239e44f3aa4cfe7f0bf3}{00022}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__cli__adapter_1_1_m_q_c_l_i_adapter_a7f24ab468565239e44f3aa4cfe7f0bf3}{\_\_init\_\_}}(self,\ config:\ Dict[str,\ Any],\ logger=\textcolor{keywordtype}{None}):}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00023}00023\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00024}00024\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Initialize\ the\ MQ\ CLI\ adapter.}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00025}00025\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00026}00026\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Initialize\ adapter\ with\ CLI-\/based\ MQManager.}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00027}00027\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @param\ config\ Messaging\ configuration\ dictionary}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00028}00028\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @param\ logger\ Logger\ manager\ instance\ (optional)}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00029}00029\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00030}\mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__cli__adapter_1_1_m_q_c_l_i_adapter_a9a5dfcd5edf102ff35c46fc7bc811d23}{00030}}\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__cli__adapter_1_1_m_q_c_l_i_adapter_a9a5dfcd5edf102ff35c46fc7bc811d23}{\_impl}}\ =\ \mbox{\hyperlink{classcommonpython_1_1messaging_1_1mq__manager_1_1_m_q_manager}{MQManager}}(config,\ logger)}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00031}\mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__cli__adapter_1_1_m_q_c_l_i_adapter_ab5e5c64a2f020e16c150cf5331ccc54b}{00031}}\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__cli__adapter_1_1_m_q_c_l_i_adapter_ab5e5c64a2f020e16c150cf5331ccc54b}{\_config}}\ =\ config}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00032}\mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__cli__adapter_1_1_m_q_c_l_i_adapter_a6c897d1ad0936e07abbddc92ec4c90c9}{00032}}\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__cli__adapter_1_1_m_q_c_l_i_adapter_a6c897d1ad0936e07abbddc92ec4c90c9}{\_logger}}\ =\ logger}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00034}\mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__cli__adapter_1_1_m_q_c_l_i_adapter_ae7c585ad9e24111dd1ffe1d8cd89d1da}{00034}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__cli__adapter_1_1_m_q_c_l_i_adapter_ae7c585ad9e24111dd1ffe1d8cd89d1da}{connect}}(self)\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00035}00035\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00036}00036\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Establish\ connection\ to\ MQ\ queue\ manager\ using\ CLI.}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00037}00037\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00038}00038\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Connect\ to\ messaging\ server\ via\ CLI\ tools.}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00039}00039\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @return\ True\ if\ connection\ successful,\ False\ otherwise}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00040}00040\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00041}00041\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__cli__adapter_1_1_m_q_c_l_i_adapter_a9a5dfcd5edf102ff35c46fc7bc811d23}{\_impl}}.\mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__cli__adapter_1_1_m_q_c_l_i_adapter_ae7c585ad9e24111dd1ffe1d8cd89d1da}{connect}}()}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00043}\mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__cli__adapter_1_1_m_q_c_l_i_adapter_a1f05ba4eca1d6727463b5ca49e193633}{00043}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__cli__adapter_1_1_m_q_c_l_i_adapter_a1f05ba4eca1d6727463b5ca49e193633}{disconnect}}(self)\ -\/>\ None:}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00044}00044\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00045}00045\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Close\ the\ messaging\ connection.}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00046}00046\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00047}00047\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Disconnect\ from\ messaging\ server\ via\ CLI\ tools.}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00048}00048\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00049}00049\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__cli__adapter_1_1_m_q_c_l_i_adapter_a9a5dfcd5edf102ff35c46fc7bc811d23}{\_impl}}.\mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__cli__adapter_1_1_m_q_c_l_i_adapter_a1f05ba4eca1d6727463b5ca49e193633}{disconnect}}()}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00051}\mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__cli__adapter_1_1_m_q_c_l_i_adapter_af38a3043cd09bd80110b2b38175ef70a}{00051}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__cli__adapter_1_1_m_q_c_l_i_adapter_af38a3043cd09bd80110b2b38175ef70a}{is\_connected}}(self)\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00052}00052\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00053}00053\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Check\ if\ messaging\ connection\ is\ active.}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00054}00054\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00055}00055\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Check\ CLI\ connection\ status.}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00056}00056\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @return\ True\ if\ connected,\ False\ otherwise}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00057}00057\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00058}00058\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__cli__adapter_1_1_m_q_c_l_i_adapter_a9a5dfcd5edf102ff35c46fc7bc811d23}{\_impl}}.\mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__cli__adapter_1_1_m_q_c_l_i_adapter_af38a3043cd09bd80110b2b38175ef70a}{is\_connected}}()}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00060}\mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__cli__adapter_1_1_m_q_c_l_i_adapter_a4d1a06720c83aaaf79d4d312a0158103}{00060}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__cli__adapter_1_1_m_q_c_l_i_adapter_a4d1a06720c83aaaf79d4d312a0158103}{put\_message}}(self,\ queue\_name:\ str,\ message:\ Union[str,\ bytes,\ Dict],}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ message\_properties:\ Optional[Dict[str,\ Any]]\ =\ \textcolor{keywordtype}{None})\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00062}00062\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00063}00063\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Put\ a\ message\ to\ a\ queue.}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00064}00064\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00065}00065\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Send\ message\ to\ queue\ via\ CLI\ tools.}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00066}00066\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @param\ queue\_name\ Name\ of\ the\ queue}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00067}00067\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @param\ message\ Message\ content\ (string,\ bytes,\ or\ dictionary)}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00068}00068\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @param\ message\_properties\ Optional\ message\ properties}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00069}00069\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @return\ True\ if\ message\ sent\ successfully,\ False\ otherwise}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00070}00070\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @throws\ Exception\ If\ message\ sending\ fails}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00071}00071\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00072}00072\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__cli__adapter_1_1_m_q_c_l_i_adapter_a9a5dfcd5edf102ff35c46fc7bc811d23}{\_impl}}.\mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__cli__adapter_1_1_m_q_c_l_i_adapter_a4d1a06720c83aaaf79d4d312a0158103}{put\_message}}(queue\_name,\ message,\ message\_properties)}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00074}\mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__cli__adapter_1_1_m_q_c_l_i_adapter_a4ddad0f5030d090a24799f38c510266c}{00074}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__cli__adapter_1_1_m_q_c_l_i_adapter_a4ddad0f5030d090a24799f38c510266c}{get\_message}}(self,\ queue\_name:\ str,\ timeout:\ Optional[int]\ =\ \textcolor{keywordtype}{None})\ -\/>\ Optional[Dict[str,\ Any]]:}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00075}00075\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00076}00076\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Get\ a\ message\ from\ a\ queue.}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00077}00077\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00078}00078\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Receive\ message\ from\ queue\ via\ CLI\ tools.}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00079}00079\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @param\ queue\_name\ Name\ of\ the\ queue}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00080}00080\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @param\ timeout\ Timeout\ in\ seconds\ (None\ for\ default\ timeout)}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00081}00081\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @return\ Dictionary\ containing\ message\ data\ and\ properties,\ or\ None\ if\ no\ message}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00082}00082\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @throws\ Exception\ If\ message\ retrieval\ fails}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00083}00083\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00084}00084\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__cli__adapter_1_1_m_q_c_l_i_adapter_a9a5dfcd5edf102ff35c46fc7bc811d23}{\_impl}}.\mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__cli__adapter_1_1_m_q_c_l_i_adapter_a4ddad0f5030d090a24799f38c510266c}{get\_message}}(queue\_name,\ timeout)}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00086}\mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__cli__adapter_1_1_m_q_c_l_i_adapter_a971cbff1ede6f4a515c1fe4f8f9a05fa}{00086}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__cli__adapter_1_1_m_q_c_l_i_adapter_a971cbff1ede6f4a515c1fe4f8f9a05fa}{browse\_message}}(self,\ queue\_name:\ str,\ message\_id:\ Optional[bytes]\ =\ \textcolor{keywordtype}{None})\ -\/>\ Optional[Dict[str,\ Any]]:}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00087}00087\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00088}00088\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Browse\ a\ message\ from\ a\ queue\ without\ removing\ it.}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00089}00089\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00090}00090\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Browse\ message\ via\ CLI\ tools.}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00091}00091\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @param\ queue\_name\ Name\ of\ the\ queue}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00092}00092\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @param\ message\_id\ Specific\ message\ ID\ to\ browse\ (optional)}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00093}00093\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @return\ Dictionary\ containing\ message\ data\ and\ properties,\ or\ None\ if\ no\ message}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00094}00094\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @throws\ Exception\ If\ message\ browsing\ fails}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00095}00095\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00096}00096\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__cli__adapter_1_1_m_q_c_l_i_adapter_a9a5dfcd5edf102ff35c46fc7bc811d23}{\_impl}}.\mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__cli__adapter_1_1_m_q_c_l_i_adapter_a971cbff1ede6f4a515c1fe4f8f9a05fa}{browse\_message}}(queue\_name,\ message\_id)}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00098}\mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__cli__adapter_1_1_m_q_c_l_i_adapter_a73082b26e983c99429706aecf776dc28}{00098}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__cli__adapter_1_1_m_q_c_l_i_adapter_a73082b26e983c99429706aecf776dc28}{get\_queue\_depth}}(self,\ queue\_name:\ str)\ -\/>\ int:}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00099}00099\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00100}00100\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Get\ the\ depth\ (number\ of\ messages)\ in\ a\ queue.}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00101}00101\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00102}00102\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Get\ queue\ depth\ via\ CLI\ tools.}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00103}00103\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @param\ queue\_name\ Name\ of\ the\ queue}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00104}00104\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @return\ Number\ of\ messages\ in\ the\ queue,\ -\/1\ if\ error}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00105}00105\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @throws\ Exception\ If\ queue\ depth\ retrieval\ fails}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00106}00106\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00107}00107\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__cli__adapter_1_1_m_q_c_l_i_adapter_a9a5dfcd5edf102ff35c46fc7bc811d23}{\_impl}}.\mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__cli__adapter_1_1_m_q_c_l_i_adapter_a73082b26e983c99429706aecf776dc28}{get\_queue\_depth}}(queue\_name)}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00108}00108\ }
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00109}\mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__cli__adapter_1_1_m_q_c_l_i_adapter_a93de801fae4b5643f4156413c5e98ad7}{00109}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__cli__adapter_1_1_m_q_c_l_i_adapter_a93de801fae4b5643f4156413c5e98ad7}{purge\_queue}}(self,\ queue\_name:\ str)\ -\/>\ int:}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00110}00110\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00111}00111\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Purge\ all\ messages\ from\ a\ queue.}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00112}00112\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00113}00113\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Purge\ queue\ via\ CLI\ tools.}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00114}00114\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @param\ queue\_name\ Name\ of\ the\ queue}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00115}00115\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @return\ Number\ of\ messages\ purged}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00116}00116\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @throws\ Exception\ If\ queue\ purging\ fails}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00117}00117\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00118}00118\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__cli__adapter_1_1_m_q_c_l_i_adapter_a9a5dfcd5edf102ff35c46fc7bc811d23}{\_impl}}.\mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__cli__adapter_1_1_m_q_c_l_i_adapter_a93de801fae4b5643f4156413c5e98ad7}{purge\_queue}}(queue\_name)}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00119}00119\ }
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00120}\mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__cli__adapter_1_1_m_q_c_l_i_adapter_a6fc1b751b6ede29a83886ff3d075bd73}{00120}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__cli__adapter_1_1_m_q_c_l_i_adapter_a6fc1b751b6ede29a83886ff3d075bd73}{test\_connection}}(self)\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00121}00121\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00122}00122\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Test\ messaging\ connection.}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00123}00123\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00124}00124\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Test\ CLI\ messaging\ connection.}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00125}00125\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @return\ True\ if\ connection\ is\ working,\ False\ otherwise}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00126}00126\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mq__cli__adapter_8py_source_l00127}00127\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__cli__adapter_1_1_m_q_c_l_i_adapter_a9a5dfcd5edf102ff35c46fc7bc811d23}{\_impl}}.\mbox{\hyperlink{classcommonpython_1_1adapters_1_1mq__cli__adapter_1_1_m_q_c_l_i_adapter_a6fc1b751b6ede29a83886ff3d075bd73}{test\_connection}}()}
+
+\end{DoxyCode}

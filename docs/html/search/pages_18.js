@@ -1,0 +1,26 @@
+var searchData=
+[
+  ['of_20conduct_0',['Code of Conduct',['../md__c_o_n_t_r_i_b_u_t_i_n_g.html#autotoc_md24',1,'']]],
+  ['of_20contents_1',['of Contents',['../md__c_o_n_t_r_i_b_u_t_i_n_g.html#autotoc_md23',1,'Table of Contents'],['../md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e.html#autotoc_md106',1,'Table of Contents']]],
+  ['of_20this_20architecture_2',['Benefits of This Architecture',['../md_docs_2_a_d_a_p_t_e_r___a_r_c_h_i_t_e_c_t_u_r_e.html#autotoc_md79',1,'']]],
+  ['only_3',['Option A: Minimal Install (Mandatory Only)',['../md__r_e_a_d_m_e.html#autotoc_md310',1,'']]],
+  ['only_20setup_4',['Scenario 4: Database-Only Setup',['../md__i_n_s_t_a_l_l_a_t_i_o_n.html#autotoc_md285',1,'']]],
+  ['operations_5',['Operations',['../md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e.html#autotoc_md126',1,'Database Operations'],['../md__i_n_s_t_a_l_l_a_t_i_o_n.html#autotoc_md269',1,'For Database Operations'],['../md__i_n_s_t_a_l_l_a_t_i_o_n.html#autotoc_md270',1,'For Messaging Operations'],['../md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e.html#autotoc_md132',1,'Message Operations'],['../md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e.html#autotoc_md130',1,'Messaging Operations'],['../md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e.html#autotoc_md128',1,'Query Operations']]],
+  ['option_20a_3a_20install_20all_20library_20dependencies_6',['Option A: Install All Library Dependencies',['../md__i_n_s_t_a_l_l_a_t_i_o_n.html#autotoc_md273',1,'']]],
+  ['option_20a_3a_20minimal_20install_20mandatory_20only_7',['Option A: Minimal Install (Mandatory Only)',['../md__r_e_a_d_m_e.html#autotoc_md310',1,'']]],
+  ['option_20b_3a_20high_20performance_20recommended_8',['Option B: High Performance (Recommended)',['../md__r_e_a_d_m_e.html#autotoc_md311',1,'']]],
+  ['option_20b_3a_20install_20selectively_9',['Option B: Install Selectively',['../md__i_n_s_t_a_l_l_a_t_i_o_n.html#autotoc_md274',1,'']]],
+  ['option_20c_3a_20full_20development_20setup_10',['Option C: Full Development Setup',['../md__r_e_a_d_m_e.html#autotoc_md312',1,'']]],
+  ['optional_11',['Optional',['../md__i_n_s_t_a_l_l_a_t_i_o_n.html#autotoc_md268',1,'⚙️ Step 2: CLI Implementation (Optional)'],['../md__i_n_s_t_a_l_l_a_t_i_o_n.html#autotoc_md276',1,'🧪 Step 4: Development Dependencies (Optional)'],['../md__i_m_p_r_o_v_e_m_e_n_t_s.html#autotoc_md250',1,'Immediate (Optional)'],['../md_docs_2_a_d_a_p_t_e_r___a_r_c_h_i_t_e_c_t_u_r_e.html#autotoc_md90',1,'Step 1: Install Library Dependencies (Optional)']]],
+  ['optional_20for_20cli_20implementation_20default_12',['⚙️ Optional - For CLI Implementation (Default)',['../md__r_e_a_d_m_e.html#autotoc_md318',1,'']]],
+  ['optional_20for_20development_20testing_13',['🧪 Optional - For Development &amp;amp; Testing',['../md__r_e_a_d_m_e.html#autotoc_md320',1,'']]],
+  ['optional_20for_20library_20implementation_20better_20performance_14',['🚀 Optional - For Library Implementation (Better Performance)',['../md__r_e_a_d_m_e.html#autotoc_md319',1,'']]],
+  ['optional_20recommended_15',['🚀 Step 3: Library Implementation (Optional - Recommended)',['../md__i_n_s_t_a_l_l_a_t_i_o_n.html#autotoc_md272',1,'']]],
+  ['optional_20require_20additional_20dependencies_16',['Library Adapters (Optional - require additional dependencies)',['../md_docs_2_a_d_a_p_t_e_r___a_r_c_h_i_t_e_c_t_u_r_e.html#autotoc_md77',1,'']]],
+  ['options_17',['Options',['../C:/Personal/Workspace/cpp/projects/commonpython/scripts/README.md#autotoc_md374',1,'Command Line Options'],['../C:/Personal/Workspace/cpp/projects/commonpython/scripts/README.md#autotoc_md373',1,'Verbosity Options']]],
+  ['organization_18',['Test Organization',['../md__c_o_n_t_r_i_b_u_t_i_n_g.html#autotoc_md51',1,'']]],
+  ['our_20pledge_19',['Our Pledge',['../md__c_o_n_t_r_i_b_u_t_i_n_g.html#autotoc_md25',1,'']]],
+  ['output_20',['Sample Output',['../C:/Personal/Workspace/cpp/projects/commonpython/scripts/README.md#autotoc_md378',1,'']]],
+  ['output_20categories_21',['Output Categories',['../C:/Personal/Workspace/cpp/projects/commonpython/scripts/README.md#autotoc_md376',1,'']]],
+  ['overview_22',['Overview',['../md__i_n_s_t_a_l_l_a_t_i_o_n.html#autotoc_md263',1,'📋 Dependency Overview'],['../md_docs_2_a_d_a_p_t_e_r___a_r_c_h_i_t_e_c_t_u_r_e.html#autotoc_md72',1,'Overview'],['../md__i_m_p_r_o_v_e_m_e_n_t_s.html#autotoc_md203',1,'Overview'],['../md__i_m_p_l_e_m_e_n_t_a_t_i_o_n___s_u_m_m_a_r_y.html#autotoc_md160',1,'Project Overview']]]
+];

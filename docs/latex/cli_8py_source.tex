@@ -1,0 +1,471 @@
+\doxysection{cli.\+py}
+\hypertarget{cli_8py_source}{}\label{cli_8py_source}\index{commonpython/cli/cli.py@{commonpython/cli/cli.py}}
+\mbox{\hyperlink{cli_8py}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00001}\mbox{\hyperlink{namespacecommonpython_1_1cli_1_1cli}{00001}}\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00002}00002\ \textcolor{stringliteral}{CLI\ Interface\ for\ CommonPython\ Framework}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00003}00003\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00004}00004\ \textcolor{stringliteral}{Provides\ command-\/line\ interface\ using\ only\ standard\ Python\ modules\ with\ support\ for:}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00005}00005\ \textcolor{stringliteral}{-\/\ Database\ operations}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00006}00006\ \textcolor{stringliteral}{-\/\ Message\ queue\ operations}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00007}00007\ \textcolor{stringliteral}{-\/\ Configuration\ management}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00008}00008\ \textcolor{stringliteral}{-\/\ Logging\ control}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00009}00009\ \textcolor{stringliteral}{-\/\ Framework\ testing}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00010}00010\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00012}00012\ \textcolor{keyword}{import}\ argparse}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00013}00013\ \textcolor{keyword}{import}\ json}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00014}00014\ \textcolor{keyword}{import}\ sys}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00015}00015\ \textcolor{keyword}{import}\ time}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00016}00016\ \textcolor{keyword}{from}\ typing\ \textcolor{keyword}{import}\ Any,\ Dict,\ Optional}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00019}\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i}{00019}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i}{CLI}}:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00020}00020\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00021}00021\ \textcolor{stringliteral}{\ \ \ \ Command-\/line\ interface\ for\ the\ CommonPython\ framework.}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00022}00022\ \textcolor{stringliteral}{\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00023}00023\ \textcolor{stringliteral}{\ \ \ \ Provides\ interactive\ and\ non-\/interactive\ access\ to\ framework\ functionality}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00024}00024\ \textcolor{stringliteral}{\ \ \ \ using\ only\ standard\ Python\ modules.}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00025}00025\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00026}00026\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00027}\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a99330c8082d7fb8c586eda7e52eee397}{00027}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a99330c8082d7fb8c586eda7e52eee397}{\_\_init\_\_}}(self,\ config\_file:\ Optional[str]\ =\ \textcolor{keywordtype}{None}):}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00028}00028\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00029}00029\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Initialize\ the\ CLI.}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00030}00030\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00031}00031\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Initialize\ CLI\ with\ configuration\ file\ support.}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00032}00032\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @param\ config\_file\ Path\ to\ configuration\ file}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00033}00033\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00034}\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a0e7f5f2bb6a4bf985d390dd7b2929654}{00034}}\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a0e7f5f2bb6a4bf985d390dd7b2929654}{config\_file}}\ =\ config\_file}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00035}\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a3cebcea48127bb73ccf8a7dad0657c3a}{00035}}\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a3cebcea48127bb73ccf8a7dad0657c3a}{config\_manager}}\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00036}\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a47e703c4566d85ac1468b685558e40c0}{00036}}\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a47e703c4566d85ac1468b685558e40c0}{logger\_manager}}\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00037}\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a8d61839c0c1dcc19c8b7dd4f6435ed9b}{00037}}\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a8d61839c0c1dcc19c8b7dd4f6435ed9b}{db\_manager}}\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00038}\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a58f27211f0b21773ec26f5062b9f3558}{00038}}\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a58f27211f0b21773ec26f5062b9f3558}{mq\_manager}}\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00039}00039\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00040}00040\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Initialize\ components}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00041}00041\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_ae8b52470216cf97426636b06a151df1a}{\_initialize\_components}}()}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00042}00042\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00043}\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_ae8b52470216cf97426636b06a151df1a}{00043}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_ae8b52470216cf97426636b06a151df1a}{\_initialize\_components}}(self)\ -\/>\ None:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00044}00044\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00045}00045\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Initialize\ framework\ components.}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00046}00046\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00047}00047\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Initialize\ configuration,\ logging,\ database,\ and\ messaging\ managers.}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00048}00048\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00049}00049\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{from}\ ..config\ \textcolor{keyword}{import}\ ConfigManager}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{from}\ ..logging\ \textcolor{keyword}{import}\ LoggerManager}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{from}\ ..database\ \textcolor{keyword}{import}\ DB2Manager}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{from}\ ..messaging\ \textcolor{keyword}{import}\ MQManager}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a3cebcea48127bb73ccf8a7dad0657c3a}{config\_manager}}\ =\ ConfigManager(self.\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a0e7f5f2bb6a4bf985d390dd7b2929654}{config\_file}})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ logging\_config\ =\ self.\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a3cebcea48127bb73ccf8a7dad0657c3a}{config\_manager}}.get\_logging\_config()}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{stringliteral}{'dir'}\ \textcolor{keywordflow}{not}\ \textcolor{keywordflow}{in}\ logging\_config:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ logging\_config[\textcolor{stringliteral}{'dir'}]\ =\ \textcolor{stringliteral}{'log'}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a47e703c4566d85ac1468b685558e40c0}{logger\_manager}}\ =\ LoggerManager(\textcolor{stringliteral}{"{}cli"{}},\ logging\_config)}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Initialize\ managers\ but\ don't\ connect\ yet}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ db\_config\ =\ self.\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a3cebcea48127bb73ccf8a7dad0657c3a}{config\_manager}}.get\_database\_config()}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ mq\_config\ =\ self.\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a3cebcea48127bb73ccf8a7dad0657c3a}{config\_manager}}.get\_messaging\_config()}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a8d61839c0c1dcc19c8b7dd4f6435ed9b}{db\_manager}}\ =\ DB2Manager(db\_config,\ self.\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a47e703c4566d85ac1468b685558e40c0}{logger\_manager}})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a58f27211f0b21773ec26f5062b9f3558}{mq\_manager}}\ =\ MQManager(mq\_config,\ self.\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a47e703c4566d85ac1468b685558e40c0}{logger\_manager}})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00068}00068\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ ImportError\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}Error\ importing\ modules:\ \{e\}"{}})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ sys.exit(1)}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00071}00071\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00072}\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_af44ec25e783d6ebcc3674731d3d10f75}{00072}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_af44ec25e783d6ebcc3674731d3d10f75}{\_setup\_database}}(self)\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00073}00073\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00074}00074\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Setup\ database\ connection.}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00075}00075\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00076}00076\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Establish\ database\ connection.}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00077}00077\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @return\ True\ if\ connection\ successful,\ False\ otherwise}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00078}00078\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00079}00079\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a8d61839c0c1dcc19c8b7dd4f6435ed9b}{db\_manager}}.connect()}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00081}00081\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}Database\ setup\ failed:\ \{str(e)\}"{}})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00084}00084\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00085}\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a0a650b67088eade813342c1a2c930667}{00085}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a0a650b67088eade813342c1a2c930667}{\_setup\_messaging}}(self)\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00086}00086\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00087}00087\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Setup\ messaging\ connection.}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00088}00088\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00089}00089\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Establish\ messaging\ connection.}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00090}00090\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @return\ True\ if\ connection\ successful,\ False\ otherwise}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00091}00091\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00092}00092\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a58f27211f0b21773ec26f5062b9f3558}{mq\_manager}}.connect()}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00094}00094\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}Messaging\ setup\ failed:\ \{str(e)\}"{}})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00097}00097\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00098}\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_ae6928d446a98c9c86e7435eb46d842e3}{00098}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_ae6928d446a98c9c86e7435eb46d842e3}{\_display\_results}}(self,\ results:\ Any,\ title:\ str\ =\ \textcolor{stringliteral}{"{}Results"{}})\ -\/>\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00099}00099\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00100}00100\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Display\ results\ in\ a\ formatted\ table.}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00101}00101\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00102}00102\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Display\ results\ in\ a\ readable\ format.}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00103}00103\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @param\ results\ Results\ to\ display}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00104}00104\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @param\ title\ Title\ for\ the\ results}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00105}00105\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00106}00106\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ results:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}No\ \{title.lower()\}\ found"{}})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00109}00109\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00110}00110\ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}\(\backslash\)n\{title\}:"{}})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00111}00111\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}="{}}\ *\ len(title))}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00112}00112\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00113}00113\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ isinstance(results,\ list)\ \textcolor{keywordflow}{and}\ results\ \textcolor{keywordflow}{and}\ isinstance(results[0],\ dict):}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Display\ as\ table}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ results:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Get\ column\ headers}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ headers\ =\ list(results[0].keys())}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Calculate\ column\ widths}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ col\_widths\ =\ \{\}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ header\ \textcolor{keywordflow}{in}\ headers:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ col\_widths[header]\ =\ max(len(str(header)),\ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ max(len(str(row.get(header,\ \textcolor{stringliteral}{''})))\ \textcolor{keywordflow}{for}\ row\ \textcolor{keywordflow}{in}\ results))}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Print\ header}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ header\_row\ =\ \textcolor{stringliteral}{"{}\ |\ "{}}.join(header.ljust(col\_widths[header])\ \textcolor{keywordflow}{for}\ header\ \textcolor{keywordflow}{in}\ headers)}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ print(header\_row)}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}-\/"{}}\ *\ len(header\_row))}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Print\ rows}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ row\ \textcolor{keywordflow}{in}\ results:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ row\_data\ =\ \textcolor{stringliteral}{"{}\ |\ "{}}.join(str(row.get(header,\ \textcolor{stringliteral}{''})).ljust(col\_widths[header])\ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ header\ \textcolor{keywordflow}{in}\ headers)}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ print(row\_data)}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00135}00135\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Display\ as\ JSON}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ print(json.dumps(results,\ indent=2,\ default=str))}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00138}00138\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00139}\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a16c2f6fe657560399d1a4f3bd5f563ab}{00139}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a16c2f6fe657560399d1a4f3bd5f563ab}{test\_database}}(self)\ -\/>\ None:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00140}00140\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00141}00141\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Test\ database\ connection.}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00142}00142\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00143}00143\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Test\ database\ connection\ and\ display\ results.}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00144}00144\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00145}00145\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}Testing\ database\ connection..."{}})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00146}00146\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00147}00147\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_af44ec25e783d6ebcc3674731d3d10f75}{\_setup\_database}}():}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a8d61839c0c1dcc19c8b7dd4f6435ed9b}{db\_manager}}.test\_connection():}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}✓\ Database\ connection\ successful"{}})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}✗\ Database\ connection\ failed"{}})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00152}00152\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}✗\ Database\ setup\ failed"{}})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00154}00154\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00155}\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a6f385c3d725bfb3c1a901c7d702627e0}{00155}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a6f385c3d725bfb3c1a901c7d702627e0}{execute\_query}}(self,\ query:\ str,\ params:\ Optional[str]\ =\ \textcolor{keywordtype}{None})\ -\/>\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00156}00156\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00157}00157\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Execute\ a\ database\ query.}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00158}00158\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00159}00159\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Execute\ database\ query\ and\ display\ results.}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00160}00160\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @param\ query\ SQL\ query\ to\ execute}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00161}00161\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @param\ params\ Query\ parameters\ as\ JSON\ string}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00162}00162\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00163}00163\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ self.\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_af44ec25e783d6ebcc3674731d3d10f75}{\_setup\_database}}():}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ sys.exit(1)}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00165}00165\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00166}00166\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Parse\ parameters\ if\ provided}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ query\_params\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ params:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ query\_params\ =\ tuple(json.loads(params))}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Execute\ query}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ query.strip().upper().startswith(\textcolor{stringliteral}{'SELECT'}):}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ results\ =\ self.\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a8d61839c0c1dcc19c8b7dd4f6435ed9b}{db\_manager}}.\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a6f385c3d725bfb3c1a901c7d702627e0}{execute\_query}}(query,\ query\_params)}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_ae6928d446a98c9c86e7435eb46d842e3}{\_display\_results}}(results,\ \textcolor{stringliteral}{"{}Query\ Results"{}})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rows\_affected\ =\ self.\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a8d61839c0c1dcc19c8b7dd4f6435ed9b}{db\_manager}}.execute\_update(query,\ query\_params)}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}Query\ executed\ successfully.\ Rows\ affected:\ \{rows\_affected\}"{}})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00179}00179\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00180}00180\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}Query\ execution\ failed:\ \{str(e)\}"{}})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ sys.exit(1)}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00183}00183\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00184}\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_ad7e1799bc52e9ae732cddeb43e6ec083}{00184}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_ad7e1799bc52e9ae732cddeb43e6ec083}{get\_table\_info}}(self,\ table\_name:\ str)\ -\/>\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00185}00185\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00186}00186\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Get\ table\ information.}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00187}00187\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00188}00188\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Get\ table\ metadata\ and\ display\ results.}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00189}00189\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @param\ table\_name\ Name\ of\ the\ table}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00190}00190\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00191}00191\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ self.\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_af44ec25e783d6ebcc3674731d3d10f75}{\_setup\_database}}():}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \ \ sys.exit(1)}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00193}00193\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00194}00194\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ \ \ results\ =\ self.\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a8d61839c0c1dcc19c8b7dd4f6435ed9b}{db\_manager}}.\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_ad7e1799bc52e9ae732cddeb43e6ec083}{get\_table\_info}}(table\_name)}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00196}00196\ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_ae6928d446a98c9c86e7435eb46d842e3}{\_display\_results}}(results,\ f\textcolor{stringliteral}{"{}Table\ Information:\ \{table\_name\}"{}})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00197}00197\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}Failed\ to\ get\ table\ info:\ \{str(e)\}"{}})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00199}00199\ \ \ \ \ \ \ \ \ \ \ \ \ sys.exit(1)}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00200}00200\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00201}\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a6da3814194d7512377ad5099f41abaf2}{00201}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a6da3814194d7512377ad5099f41abaf2}{test\_messaging}}(self)\ -\/>\ None:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00202}00202\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00203}00203\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Test\ MQ\ connection.}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00204}00204\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00205}00205\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Test\ messaging\ connection\ and\ display\ results.}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00206}00206\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00207}00207\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}Testing\ MQ\ connection..."{}})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00208}00208\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00209}00209\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a0a650b67088eade813342c1a2c930667}{\_setup\_messaging}}():}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00210}00210\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a58f27211f0b21773ec26f5062b9f3558}{mq\_manager}}.test\_connection():}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00211}00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}✓\ MQ\ connection\ successful"{}})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00212}00212\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00213}00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}✗\ MQ\ connection\ failed"{}})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00214}00214\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00215}00215\ \ \ \ \ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}✗\ MQ\ setup\ failed"{}})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00216}00216\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00217}\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a3f977116a5cf6d8c00f2bb246cfef782}{00217}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a3f977116a5cf6d8c00f2bb246cfef782}{get\_message}}(self,\ queue\_name:\ str,\ timeout:\ Optional[int]\ =\ \textcolor{keywordtype}{None})\ -\/>\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00218}00218\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00219}00219\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Get\ a\ message\ from\ queue.}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00220}00220\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00221}00221\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Get\ message\ from\ queue\ and\ display\ results.}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00222}00222\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @param\ queue\_name\ Name\ of\ the\ queue}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00223}00223\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @param\ timeout\ Timeout\ in\ seconds}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00224}00224\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00225}00225\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ self.\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a0a650b67088eade813342c1a2c930667}{\_setup\_messaging}}():}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00226}00226\ \ \ \ \ \ \ \ \ \ \ \ \ sys.exit(1)}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00227}00227\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00228}00228\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00229}00229\ \ \ \ \ \ \ \ \ \ \ \ \ message\ =\ self.\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a58f27211f0b21773ec26f5062b9f3558}{mq\_manager}}.\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a3f977116a5cf6d8c00f2bb246cfef782}{get\_message}}(queue\_name,\ timeout)}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00230}00230\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ message:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00231}00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_ae6928d446a98c9c86e7435eb46d842e3}{\_display\_results}}(message,\ f\textcolor{stringliteral}{"{}Message\ from\ \{queue\_name\}"{}})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00232}00232\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00233}00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}No\ message\ available\ in\ queue\ \{queue\_name\}"{}})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00234}00234\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00235}00235\ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}Failed\ to\ get\ message:\ \{str(e)\}"{}})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00236}00236\ \ \ \ \ \ \ \ \ \ \ \ \ sys.exit(1)}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00237}00237\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00238}\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a8aadb5626fc6f25b75fdddbd7e978faa}{00238}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a8aadb5626fc6f25b75fdddbd7e978faa}{put\_message}}(self,\ queue\_name:\ str,\ message:\ str,\ properties:\ Optional[str]\ =\ \textcolor{keywordtype}{None})\ -\/>\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00239}00239\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00240}00240\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Put\ a\ message\ to\ queue.}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00241}00241\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00242}00242\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Send\ message\ to\ queue.}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00243}00243\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @param\ queue\_name\ Name\ of\ the\ queue}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00244}00244\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @param\ message\ Message\ content}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00245}00245\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @param\ properties\ Message\ properties\ as\ JSON\ string}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00246}00246\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00247}00247\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ self.\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a0a650b67088eade813342c1a2c930667}{\_setup\_messaging}}():}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00248}00248\ \ \ \ \ \ \ \ \ \ \ \ \ sys.exit(1)}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00249}00249\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00250}00250\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Parse\ message\ properties\ if\ provided}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00251}00251\ \ \ \ \ \ \ \ \ \ \ \ \ message\_properties\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00252}00252\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ properties:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00253}00253\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00254}00254\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ message\_properties\ =\ json.loads(properties)}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00255}00255\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ json.JSONDecodeError:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00256}00256\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ message\_properties\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00257}00257\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Try\ to\ parse\ message\ as\ JSON,\ fallback\ to\ string}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00258}00258\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00259}00259\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ message\_data\ =\ json.loads(message)}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00260}00260\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ json.JSONDecodeError:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00261}00261\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ message\_data\ =\ message}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00262}00262\ \ \ \ \ \ \ \ \ \ \ \ \ success\ =\ self.\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a58f27211f0b21773ec26f5062b9f3558}{mq\_manager}}.\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a8aadb5626fc6f25b75fdddbd7e978faa}{put\_message}}(queue\_name,\ message\_data,\ message\_properties)}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00263}00263\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ success:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00264}00264\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}Message\ sent\ to\ queue\ \{queue\_name\}"{}})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00265}00265\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00266}00266\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}Failed\ to\ send\ message\ to\ queue\ \{queue\_name\}"{}})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00267}00267\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sys.exit(1)}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00268}00268\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00269}00269\ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}Failed\ to\ put\ message:\ \{str(e)\}"{}})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00270}00270\ \ \ \ \ \ \ \ \ \ \ \ \ sys.exit(1)}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00271}00271\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00272}\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a5b831c5dbe6824d9e2c27a673daf3ef1}{00272}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a5b831c5dbe6824d9e2c27a673daf3ef1}{get\_queue\_depth}}(self,\ queue\_name:\ str)\ -\/>\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00273}00273\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00274}00274\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Get\ queue\ depth.}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00275}00275\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00276}00276\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Get\ queue\ depth\ and\ display\ results.}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00277}00277\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @param\ queue\_name\ Name\ of\ the\ queue}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00278}00278\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00279}00279\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ self.\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a0a650b67088eade813342c1a2c930667}{\_setup\_messaging}}():}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00280}00280\ \ \ \ \ \ \ \ \ \ \ \ \ sys.exit(1)}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00281}00281\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00282}00282\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00283}00283\ \ \ \ \ \ \ \ \ \ \ \ \ depth\ =\ self.\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a58f27211f0b21773ec26f5062b9f3558}{mq\_manager}}.\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a5b831c5dbe6824d9e2c27a673daf3ef1}{get\_queue\_depth}}(queue\_name)}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00284}00284\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ depth\ >=\ 0:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00285}00285\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}Queue\ \{queue\_name\}\ depth:\ \{depth\}"{}})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00286}00286\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00287}00287\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}Failed\ to\ get\ queue\ depth"{}})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00288}00288\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sys.exit(1)}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00289}00289\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00290}00290\ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}Failed\ to\ get\ queue\ depth:\ \{str(e)\}"{}})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00291}00291\ \ \ \ \ \ \ \ \ \ \ \ \ sys.exit(1)}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00292}00292\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00293}\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a5b97312ff83dc76429a4a924fbd01fb1}{00293}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a5b97312ff83dc76429a4a924fbd01fb1}{show\_config}}(self)\ -\/>\ None:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00294}00294\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00295}00295\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Show\ current\ configuration.}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00296}00296\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00297}00297\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Display\ current\ configuration.}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00298}00298\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00299}00299\ \ \ \ \ \ \ \ \ config\_dict\ =\ self.\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a3cebcea48127bb73ccf8a7dad0657c3a}{config\_manager}}.to\_dict()}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00300}00300\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_ae6928d446a98c9c86e7435eb46d842e3}{\_display\_results}}(config\_dict,\ \textcolor{stringliteral}{"{}Current\ Configuration"{}})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00301}00301\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00302}\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a7a7b77e0c66c54b9c5c97a3fd0c584c9}{00302}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a7a7b77e0c66c54b9c5c97a3fd0c584c9}{get\_config}}(self,\ key:\ str)\ -\/>\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00303}00303\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00304}00304\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Get\ a\ configuration\ value.}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00305}00305\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00306}00306\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Get\ specific\ configuration\ value.}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00307}00307\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @param\ key\ Configuration\ key}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00308}00308\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00309}00309\ \ \ \ \ \ \ \ \ value\ =\ self.\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a3cebcea48127bb73ccf8a7dad0657c3a}{config\_manager}}.get(key)}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00310}00310\ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}\{key\}:\ \{value\}"{}})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00311}00311\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00312}\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_ad2844c1a7bd2fda408ae5995f2567162}{00312}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_ad2844c1a7bd2fda408ae5995f2567162}{set\_config}}(self,\ key:\ str,\ value:\ str)\ -\/>\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00313}00313\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00314}00314\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Set\ a\ configuration\ value.}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00315}00315\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00316}00316\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Set\ configuration\ value.}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00317}00317\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @param\ key\ Configuration\ key}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00318}00318\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @param\ value\ Configuration\ value}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00319}00319\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00320}00320\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a3cebcea48127bb73ccf8a7dad0657c3a}{config\_manager}}.set(key,\ value)}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00321}00321\ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}Set\ \{key\}\ =\ \{value\}"{}})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00322}00322\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00323}\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a167dfb23681ed2d0caa8796d0a432166}{00323}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a167dfb23681ed2d0caa8796d0a432166}{test\_all}}(self)\ -\/>\ None:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00324}00324\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00325}00325\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Test\ all\ framework\ components.}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00326}00326\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00327}00327\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ Test\ all\ framework\ components\ and\ display\ results.}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00328}00328\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00329}00329\ \ \ \ \ \ \ \ \ results\ =\ \{\}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00330}00330\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00331}00331\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Test\ database}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00332}00332\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}Testing\ database..."{}})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00333}00333\ \ \ \ \ \ \ \ \ results[\textcolor{stringliteral}{'database'}]\ =\ self.\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_af44ec25e783d6ebcc3674731d3d10f75}{\_setup\_database}}()\ \textcolor{keywordflow}{and}\ self.\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a8d61839c0c1dcc19c8b7dd4f6435ed9b}{db\_manager}}.test\_connection()}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00334}00334\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00335}00335\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Test\ messaging}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00336}00336\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}Testing\ messaging..."{}})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00337}00337\ \ \ \ \ \ \ \ \ results[\textcolor{stringliteral}{'messaging'}]\ =\ self.\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a0a650b67088eade813342c1a2c930667}{\_setup\_messaging}}()\ \textcolor{keywordflow}{and}\ self.\mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i_a58f27211f0b21773ec26f5062b9f3558}{mq\_manager}}.test\_connection()}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00338}00338\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00339}00339\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Display\ results}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00340}00340\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}\(\backslash\)nFramework\ Test\ Results:"{}})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00341}00341\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}="{}}\ *\ 25)}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00342}00342\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ component,\ status\ \textcolor{keywordflow}{in}\ results.items():}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00343}00343\ \ \ \ \ \ \ \ \ \ \ \ \ status\_text\ =\ \textcolor{stringliteral}{"{}✓\ PASS"{}}\ \textcolor{keywordflow}{if}\ status\ \textcolor{keywordflow}{else}\ \textcolor{stringliteral}{"{}✗\ FAIL"{}}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00344}00344\ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}\{component.title()\}:\ \{status\_text\}"{}})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00345}00345\ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00346}00346\ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00347}\mbox{\hyperlink{namespacecommonpython_1_1cli_1_1cli_a32376de6177f094b6d50de55e2a943ce}{00347}}\ \textcolor{keyword}{def\ }\mbox{\hyperlink{namespacecommonpython_1_1cli_1_1cli_a32376de6177f094b6d50de55e2a943ce}{create\_parser}}()\ -\/>\ argparse.ArgumentParser:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00348}00348\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00349}00349\ \textcolor{stringliteral}{\ \ \ \ Create\ command-\/line\ argument\ parser.}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00350}00350\ \textcolor{stringliteral}{\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00351}00351\ \textcolor{stringliteral}{\ \ \ \ @brief\ Create\ argument\ parser\ for\ CLI\ commands.}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00352}00352\ \textcolor{stringliteral}{\ \ \ \ @return\ Configured\ ArgumentParser\ instance}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00353}00353\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00354}00354\ \ \ \ \ parser\ =\ argparse.ArgumentParser(description=\textcolor{stringliteral}{'CommonPython\ Framework\ CLI'})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00355}00355\ \ \ \ \ parser.add\_argument(\textcolor{stringliteral}{'-\/-\/config'},\ \textcolor{stringliteral}{'-\/c'},\ help=\textcolor{stringliteral}{'Configuration\ file\ path'})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00356}00356\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00357}00357\ \ \ \ \ subparsers\ =\ parser.add\_subparsers(dest=\textcolor{stringliteral}{'command'},\ help=\textcolor{stringliteral}{'Available\ commands'})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00358}00358\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00359}00359\ \ \ \ \ \textcolor{comment}{\#\ Database\ commands}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00360}00360\ \ \ \ \ db\_parser\ =\ subparsers.add\_parser(\textcolor{stringliteral}{'database'},\ help=\textcolor{stringliteral}{'Database\ operations'})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00361}00361\ \ \ \ \ db\_subparsers\ =\ db\_parser.add\_subparsers(dest=\textcolor{stringliteral}{'db\_command'},\ help=\textcolor{stringliteral}{'Database\ commands'})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00362}00362\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00363}00363\ \ \ \ \ db\_test\_parser\ =\ db\_subparsers.add\_parser(\textcolor{stringliteral}{'test'},\ help=\textcolor{stringliteral}{'Test\ database\ connection'})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00364}00364\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00365}00365\ \ \ \ \ db\_exec\_parser\ =\ db\_subparsers.add\_parser(\textcolor{stringliteral}{'execute'},\ help=\textcolor{stringliteral}{'Execute\ database\ query'})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00366}00366\ \ \ \ \ db\_exec\_parser.add\_argument(\textcolor{stringliteral}{'query'},\ help=\textcolor{stringliteral}{'SQL\ query\ to\ execute'})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00367}00367\ \ \ \ \ db\_exec\_parser.add\_argument(\textcolor{stringliteral}{'-\/-\/params'},\ \textcolor{stringliteral}{'-\/p'},\ help=\textcolor{stringliteral}{'Query\ parameters\ as\ JSON\ string'})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00368}00368\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00369}00369\ \ \ \ \ db\_info\_parser\ =\ db\_subparsers.add\_parser(\textcolor{stringliteral}{'info'},\ help=\textcolor{stringliteral}{'Get\ table\ information'})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00370}00370\ \ \ \ \ db\_info\_parser.add\_argument(\textcolor{stringliteral}{'table\_name'},\ help=\textcolor{stringliteral}{'Name\ of\ the\ table'})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00371}00371\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00372}00372\ \ \ \ \ \textcolor{comment}{\#\ Messaging\ commands}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00373}00373\ \ \ \ \ mq\_parser\ =\ subparsers.add\_parser(\textcolor{stringliteral}{'messaging'},\ help=\textcolor{stringliteral}{'Message\ queue\ operations'})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00374}00374\ \ \ \ \ mq\_subparsers\ =\ mq\_parser.add\_subparsers(dest=\textcolor{stringliteral}{'mq\_command'},\ help=\textcolor{stringliteral}{'Messaging\ commands'})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00375}00375\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00376}00376\ \ \ \ \ mq\_test\_parser\ =\ mq\_subparsers.add\_parser(\textcolor{stringliteral}{'test'},\ help=\textcolor{stringliteral}{'Test\ MQ\ connection'})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00377}00377\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00378}00378\ \ \ \ \ mq\_get\_parser\ =\ mq\_subparsers.add\_parser(\textcolor{stringliteral}{'get'},\ help=\textcolor{stringliteral}{'Get\ message\ from\ queue'})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00379}00379\ \ \ \ \ mq\_get\_parser.add\_argument(\textcolor{stringliteral}{'queue\_name'},\ help=\textcolor{stringliteral}{'Name\ of\ the\ queue'})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00380}00380\ \ \ \ \ mq\_get\_parser.add\_argument(\textcolor{stringliteral}{'-\/-\/timeout'},\ \textcolor{stringliteral}{'-\/t'},\ type=int,\ help=\textcolor{stringliteral}{'Timeout\ in\ seconds'})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00381}00381\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00382}00382\ \ \ \ \ mq\_put\_parser\ =\ mq\_subparsers.add\_parser(\textcolor{stringliteral}{'put'},\ help=\textcolor{stringliteral}{'Put\ message\ to\ queue'})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00383}00383\ \ \ \ \ mq\_put\_parser.add\_argument(\textcolor{stringliteral}{'queue\_name'},\ help=\textcolor{stringliteral}{'Name\ of\ the\ queue'})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00384}00384\ \ \ \ \ mq\_put\_parser.add\_argument(\textcolor{stringliteral}{'message'},\ help=\textcolor{stringliteral}{'Message\ content'})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00385}00385\ \ \ \ \ mq\_put\_parser.add\_argument(\textcolor{stringliteral}{'-\/-\/properties'},\ \textcolor{stringliteral}{'-\/p'},\ help=\textcolor{stringliteral}{'Message\ properties\ as\ JSON\ string'})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00386}00386\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00387}00387\ \ \ \ \ mq\_depth\_parser\ =\ mq\_subparsers.add\_parser(\textcolor{stringliteral}{'depth'},\ help=\textcolor{stringliteral}{'Get\ queue\ depth'})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00388}00388\ \ \ \ \ mq\_depth\_parser.add\_argument(\textcolor{stringliteral}{'queue\_name'},\ help=\textcolor{stringliteral}{'Name\ of\ the\ queue'})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00389}00389\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00390}00390\ \ \ \ \ \textcolor{comment}{\#\ Configuration\ commands}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00391}00391\ \ \ \ \ config\_parser\ =\ subparsers.add\_parser(\textcolor{stringliteral}{'config'},\ help=\textcolor{stringliteral}{'Configuration\ management'})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00392}00392\ \ \ \ \ config\_subparsers\ =\ config\_parser.add\_subparsers(dest=\textcolor{stringliteral}{'config\_command'},\ help=\textcolor{stringliteral}{'Configuration\ commands'})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00393}00393\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00394}00394\ \ \ \ \ config\_show\_parser\ =\ config\_subparsers.add\_parser(\textcolor{stringliteral}{'show'},\ help=\textcolor{stringliteral}{'Show\ current\ configuration'})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00395}00395\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00396}00396\ \ \ \ \ config\_get\_parser\ =\ config\_subparsers.add\_parser(\textcolor{stringliteral}{'get'},\ help=\textcolor{stringliteral}{'Get\ configuration\ value'})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00397}00397\ \ \ \ \ config\_get\_parser.add\_argument(\textcolor{stringliteral}{'key'},\ help=\textcolor{stringliteral}{'Configuration\ key'})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00398}00398\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00399}00399\ \ \ \ \ config\_set\_parser\ =\ config\_subparsers.add\_parser(\textcolor{stringliteral}{'set'},\ help=\textcolor{stringliteral}{'Set\ configuration\ value'})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00400}00400\ \ \ \ \ config\_set\_parser.add\_argument(\textcolor{stringliteral}{'key'},\ help=\textcolor{stringliteral}{'Configuration\ key'})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00401}00401\ \ \ \ \ config\_set\_parser.add\_argument(\textcolor{stringliteral}{'value'},\ help=\textcolor{stringliteral}{'Configuration\ value'})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00402}00402\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00403}00403\ \ \ \ \ \textcolor{comment}{\#\ Test\ all\ command}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00404}00404\ \ \ \ \ subparsers.add\_parser(\textcolor{stringliteral}{'test-\/all'},\ help=\textcolor{stringliteral}{'Test\ all\ framework\ components'})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00405}00405\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00406}00406\ \ \ \ \ \textcolor{keywordflow}{return}\ parser}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00407}00407\ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00408}00408\ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00409}\mbox{\hyperlink{namespacecommonpython_1_1cli_1_1cli_ab376a89b47ce850c0641294f6bbb95ca}{00409}}\ \textcolor{keyword}{def\ }\mbox{\hyperlink{namespacecommonpython_1_1cli_1_1cli_ab376a89b47ce850c0641294f6bbb95ca}{main}}():}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00410}00410\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00411}00411\ \textcolor{stringliteral}{\ \ \ \ Main\ CLI\ entry\ point.}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00412}00412\ \textcolor{stringliteral}{\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00413}00413\ \textcolor{stringliteral}{\ \ \ \ @brief\ Main\ entry\ point\ for\ CLI\ application.}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00414}00414\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00415}00415\ \ \ \ \ parser\ =\ \mbox{\hyperlink{namespacecommonpython_1_1cli_1_1cli_a32376de6177f094b6d50de55e2a943ce}{create\_parser}}()}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00416}00416\ \ \ \ \ args\ =\ parser.parse\_args()}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00417}00417\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00418}00418\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ args.command:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00419}00419\ \ \ \ \ \ \ \ \ parser.print\_help()}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00420}00420\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00421}00421\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00422}00422\ \ \ \ \ cli\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00423}00423\ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00424}00424\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ args.command\ !=\ \textcolor{stringliteral}{'help'}:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00425}00425\ \ \ \ \ \ \ \ \ \ \ \ \ cli\ =\ \mbox{\hyperlink{classcommonpython_1_1cli_1_1cli_1_1_c_l_i}{CLI}}(args.config)}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00426}00426\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00427}00427\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ args.command\ ==\ \textcolor{stringliteral}{'database'}:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00428}00428\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ args.db\_command\ ==\ \textcolor{stringliteral}{'test'}:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00429}00429\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cli.test\_database()}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00430}00430\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ args.db\_command\ ==\ \textcolor{stringliteral}{'execute'}:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00431}00431\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cli.execute\_query(args.query,\ args.params)}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00432}00432\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ args.db\_command\ ==\ \textcolor{stringliteral}{'info'}:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00433}00433\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cli.get\_table\_info(args.table\_name)}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00434}00434\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00435}00435\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ args.command\ ==\ \textcolor{stringliteral}{'messaging'}:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00436}00436\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ args.mq\_command\ ==\ \textcolor{stringliteral}{'test'}:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00437}00437\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cli.test\_messaging()}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00438}00438\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ args.mq\_command\ ==\ \textcolor{stringliteral}{'get'}:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00439}00439\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cli.get\_message(args.queue\_name,\ args.timeout)}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00440}00440\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ args.mq\_command\ ==\ \textcolor{stringliteral}{'put'}:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00441}00441\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cli.put\_message(args.queue\_name,\ args.message,\ args.properties)}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00442}00442\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ args.mq\_command\ ==\ \textcolor{stringliteral}{'depth'}:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00443}00443\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cli.get\_queue\_depth(args.queue\_name)}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00444}00444\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00445}00445\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ args.command\ ==\ \textcolor{stringliteral}{'config'}:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00446}00446\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ args.config\_command\ ==\ \textcolor{stringliteral}{'show'}:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00447}00447\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cli.show\_config()}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00448}00448\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ args.config\_command\ ==\ \textcolor{stringliteral}{'get'}:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00449}00449\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cli.get\_config(args.key)}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00450}00450\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ args.config\_command\ ==\ \textcolor{stringliteral}{'set'}:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00451}00451\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cli.set\_config(args.key,\ args.value)}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00452}00452\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00453}00453\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ args.command\ ==\ \textcolor{stringliteral}{'test-\/all'}:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00454}00454\ \ \ \ \ \ \ \ \ \ \ \ \ cli.test\_all()}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00455}00455\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00456}00456\ \ \ \ \ \textcolor{keywordflow}{except}\ KeyboardInterrupt:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00457}00457\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}\(\backslash\)nOperation\ cancelled\ by\ user"{}})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00458}00458\ \ \ \ \ \ \ \ \ sys.exit(1)}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00459}00459\ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00460}00460\ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}Error:\ \{str(e)\}"{}})}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00461}00461\ \ \ \ \ \ \ \ \ sys.exit(1)}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00462}00462\ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00463}00463\ }
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00464}00464\ \textcolor{keywordflow}{if}\ \_\_name\_\_\ ==\ \textcolor{stringliteral}{'\_\_main\_\_'}:}
+\DoxyCodeLine{\Hypertarget{cli_8py_source_l00465}00465\ \ \ \ \ \mbox{\hyperlink{namespacecommonpython_1_1cli_1_1cli_ab376a89b47ce850c0641294f6bbb95ca}{main}}()}
+
+\end{DoxyCode}

@@ -1,0 +1,603 @@
+\chapter{Common\+Python Framework -\/ Development Guide }
+\hypertarget{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e}{}\label{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e}\index{CommonPython Framework -\/ Development Guide@{CommonPython Framework -\/ Development Guide}}
+\label{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md105}%
+\Hypertarget{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md105}%
+
+
+This guide provides comprehensive information for developers who want to use the Common\+Python framework to build components and tools.\hypertarget{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md106}{}\doxysection{\texorpdfstring{Table of Contents}{Table of Contents}}\label{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md106}
+
+\begin{DoxyEnumerate}
+\item Quick Start
+\item Framework Architecture
+\item Creating Your First Component
+\item Configuration Management
+\item Logging System
+\item Database Operations
+\item Messaging Operations
+\item CLI Development
+\item Testing Your Components
+\item Best Practices
+\item Troubleshooting
+\end{DoxyEnumerate}\hypertarget{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md107}{}\doxysection{\texorpdfstring{Quick Start}{Quick Start}}\label{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md107}
+\hypertarget{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md108}{}\doxysubsection{\texorpdfstring{1. Installation}{1. Installation}}\label{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md108}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Clone\ the\ repository}
+\DoxyCodeLine{git\ clone\ <repository-\/url>}
+\DoxyCodeLine{cd\ commonpython}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Install\ in\ development\ mode}
+\DoxyCodeLine{pip\ install\ -\/e\ .}
+
+\end{DoxyCode}
+\hypertarget{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md109}{}\doxysubsection{\texorpdfstring{2. Create Your First Component}{2. Create Your First Component}}\label{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md109}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Copy\ the\ template}
+\DoxyCodeLine{cp\ examples/component\_template.py\ my\_component.py}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Edit\ the\ template\ with\ your\ logic}
+\DoxyCodeLine{\#\ Run\ your\ component}
+\DoxyCodeLine{python\ my\_component.py\ -\/-\/config\ config/config.yaml\ -\/-\/verbose}
+
+\end{DoxyCode}
+\hypertarget{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md110}{}\doxysubsection{\texorpdfstring{3. Test the Framework}{3. Test the Framework}}\label{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md110}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Run\ all\ tests}
+\DoxyCodeLine{python\ scripts/test\_commonpython.py}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Run\ with\ coverage}
+\DoxyCodeLine{python\ scripts/test\_commonpython.py\ -\/-\/coverage}
+
+\end{DoxyCode}
+\hypertarget{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md111}{}\doxysection{\texorpdfstring{Framework Architecture}{Framework Architecture}}\label{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md111}
+The Common\+Python framework consists of several core modules\+:\hypertarget{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md112}{}\doxysubsection{\texorpdfstring{Core Modules}{Core Modules}}\label{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md112}
+
+\begin{DoxyItemize}
+\item {\bfseries{Config\+Manager}}\+: Centralized configuration management
+\item {\bfseries{Logger\+Manager}}\+: Structured logging with multiple output formats
+\item {\bfseries{DB2\+Manager}}\+: IBM DB2 database operations via CLI
+\item {\bfseries{MQManager}}\+: IBM MQ messaging operations via CLI
+\item {\bfseries{CLI}}\+: Command-\/line interface for all operations
+\item {\bfseries{Component\+Base}}\+: Base class for building components
+\item {\bfseries{Component\+Runner}}\+: Component lifecycle management
+\item {\bfseries{Component\+Registry}}\+: Component registration and discovery
+\end{DoxyItemize}\hypertarget{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md113}{}\doxysubsection{\texorpdfstring{Design Principles}{Design Principles}}\label{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md113}
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Standard Library Only}}\+: Uses only Python standard library modules
+\item {\bfseries{CLI Interface}}\+: Uses IBM CLI tools instead of SDK modules
+\item {\bfseries{Configuration-\/\+Driven}}\+: All behavior controlled by configuration
+\item {\bfseries{Comprehensive Logging}}\+: Structured logging with multiple formats
+\item {\bfseries{Error Handling}}\+: Built-\/in error handling and recovery
+\item {\bfseries{Testing}}\+: Comprehensive test coverage
+\end{DoxyEnumerate}\hypertarget{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md114}{}\doxysection{\texorpdfstring{Creating Your First Component}{Creating Your First Component}}\label{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md114}
+\hypertarget{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md115}{}\doxysubsection{\texorpdfstring{Step 1\+: Use the Template}{Step 1\+: Use the Template}}\label{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md115}
+Start with the provided template\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{from}\ \mbox{\hyperlink{namespacecommonpython_1_1framework}{commonpython.framework}}\ \textcolor{keyword}{import}\ ComponentBase,\ run\_component}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{class\ }MyComponent(ComponentBase):}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{def\ }\_\_init\_\_(self,\ config\_file=None):}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ super().\_\_init\_\_(\textcolor{stringliteral}{"{}MyComponent"{}},\ config\_file)}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{def\ }initialize(self)\ -\/>\ bool:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Your\ initialization\ logic}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{def\ }run(self)\ -\/>\ bool:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Your\ main\ logic}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{def\ }cleanup(self)\ -\/>\ None:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Your\ cleanup\ logic}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ \_\_name\_\_\ ==\ \textcolor{stringliteral}{'\_\_main\_\_'}:}
+\DoxyCodeLine{\ \ \ \ sys.exit(0\ \textcolor{keywordflow}{if}\ run\_component(MyComponent,\ \textcolor{stringliteral}{"{}MyComponent"{}})\ \textcolor{keywordflow}{else}\ 1)}
+
+\end{DoxyCode}
+\hypertarget{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md116}{}\doxysubsection{\texorpdfstring{Step 2\+: Implement Your Logic}{Step 2\+: Implement Your Logic}}\label{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md116}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{def\ }run(self)\ -\/>\ bool:}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{\#\ Connect\ to\ services}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ self.connect\_database():}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ results\ =\ self.execute\_query(\textcolor{stringliteral}{"{}SELECT\ *\ FROM\ my\_table"{}})}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ self.log\_info(f\textcolor{stringliteral}{"{}Found\ \{len(results)\}\ records"{}})}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ self.connect\_messaging():}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ self.send\_message(\textcolor{stringliteral}{"{}MY.QUEUE"{}},\ \{\textcolor{stringliteral}{"{}data"{}}:\ \textcolor{stringliteral}{"{}message"{}}\})}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{True}}
+
+\end{DoxyCode}
+\hypertarget{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md117}{}\doxysubsection{\texorpdfstring{Step 3\+: Configure Your Component}{Step 3\+: Configure Your Component}}\label{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md117}
+Create a configuration file\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ config/config.yaml}
+\DoxyCodeLine{database:}
+\DoxyCodeLine{\ \ host:\ localhost}
+\DoxyCodeLine{\ \ port:\ 50000}
+\DoxyCodeLine{\ \ name:\ mydb}
+\DoxyCodeLine{\ \ user:\ myuser}
+\DoxyCodeLine{\ \ password:\ mypass}
+\DoxyCodeLine{}
+\DoxyCodeLine{messaging:}
+\DoxyCodeLine{\ \ host:\ localhost}
+\DoxyCodeLine{\ \ port:\ 1414}
+\DoxyCodeLine{\ \ queue\_manager:\ MY\_QM}
+\DoxyCodeLine{\ \ channel:\ SYSTEM.DEF.SVRCONN}
+\DoxyCodeLine{}
+\DoxyCodeLine{logging:}
+\DoxyCodeLine{\ \ level:\ INFO}
+\DoxyCodeLine{\ \ file:\ my\_component.log}
+\DoxyCodeLine{\ \ json\_format:\ false}
+\DoxyCodeLine{}
+\DoxyCodeLine{component:}
+\DoxyCodeLine{\ \ \#\ Your\ component-\/specific\ settings}
+\DoxyCodeLine{\ \ operation\_count:\ 10}
+\DoxyCodeLine{\ \ delay\_seconds:\ 2}
+
+\end{DoxyCode}
+\hypertarget{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md118}{}\doxysection{\texorpdfstring{Configuration Management}{Configuration Management}}\label{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md118}
+\hypertarget{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md119}{}\doxysubsection{\texorpdfstring{Configuration Sources}{Configuration Sources}}\label{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md119}
+The framework supports multiple configuration sources with priority order\+:
+
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Environment Variables}} (highest priority)
+\item {\bfseries{Configuration Files}}
+\item {\bfseries{Default Values}} (lowest priority)
+\end{DoxyEnumerate}\hypertarget{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md120}{}\doxysubsection{\texorpdfstring{Environment Variables}{Environment Variables}}\label{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md120}
+Override any configuration using environment variables\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{export\ DB2\_HOST=my-\/db-\/server}
+\DoxyCodeLine{export\ DB2\_PORT=50000}
+\DoxyCodeLine{export\ DB2\_DATABASE=mydb}
+\DoxyCodeLine{export\ DB2\_USER=myuser}
+\DoxyCodeLine{export\ DB2\_PASSWORD=mypass}
+\DoxyCodeLine{}
+\DoxyCodeLine{export\ MQ\_HOST=my-\/mq-\/server}
+\DoxyCodeLine{export\ MQ\_PORT=1414}
+\DoxyCodeLine{export\ MQ\_QUEUE\_MANAGER=MY\_QM}
+\DoxyCodeLine{export\ MQ\_CHANNEL=SYSTEM.DEF.SVRCONN}
+\DoxyCodeLine{}
+\DoxyCodeLine{export\ LOG\_LEVEL=DEBUG}
+\DoxyCodeLine{export\ LOG\_FILE=my\_component.log}
+
+\end{DoxyCode}
+\hypertarget{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md121}{}\doxysubsection{\texorpdfstring{Configuration Access}{Configuration Access}}\label{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md121}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{\#\ Get\ configuration\ values}}
+\DoxyCodeLine{host\ =\ self.get\_config(\textcolor{stringliteral}{'database.host'},\ \textcolor{stringliteral}{'localhost'})}
+\DoxyCodeLine{port\ =\ self.get\_config(\textcolor{stringliteral}{'database.port'},\ 50000)}
+\DoxyCodeLine{operation\_count\ =\ self.get\_config(\textcolor{stringliteral}{'component.operation\_count'},\ 5)}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{\#\ Set\ configuration\ values}}
+\DoxyCodeLine{self.set\_config(\textcolor{stringliteral}{'component.custom\_setting'},\ \textcolor{stringliteral}{'value'})}
+
+\end{DoxyCode}
+\hypertarget{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md122}{}\doxysection{\texorpdfstring{Logging System}{Logging System}}\label{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md122}
+\hypertarget{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md123}{}\doxysubsection{\texorpdfstring{Log Levels}{Log Levels}}\label{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md123}
+
+\begin{DoxyItemize}
+\item {\bfseries{DEBUG}}\+: Detailed information for debugging
+\item {\bfseries{INFO}}\+: General information about program execution
+\item {\bfseries{WARNING}}\+: Something unexpected happened
+\item {\bfseries{ERROR}}\+: A serious problem occurred
+\item {\bfseries{CRITICAL}}\+: A very serious error occurred
+\end{DoxyItemize}\hypertarget{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md124}{}\doxysubsection{\texorpdfstring{Logging Methods}{Logging Methods}}\label{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md124}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{\#\ Basic\ logging}}
+\DoxyCodeLine{self.log\_info(\textcolor{stringliteral}{"{}Processing\ started"{}})}
+\DoxyCodeLine{self.log\_warning(\textcolor{stringliteral}{"{}Connection\ timeout"{}})}
+\DoxyCodeLine{self.log\_error(\textcolor{stringliteral}{"{}Database\ connection\ failed"{}})}
+\DoxyCodeLine{self.log\_debug(\textcolor{stringliteral}{"{}Debug\ information"{}})}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{\#\ Structured\ logging}}
+\DoxyCodeLine{self.logger\_manager.log\_function\_call(\textcolor{stringliteral}{"{}my\_function"{}},\ (\textcolor{stringliteral}{"{}arg1"{}},),\ \{\textcolor{stringliteral}{"{}key"{}}:\ \textcolor{stringliteral}{"{}value"{}}\})}
+\DoxyCodeLine{self.logger\_manager.log\_database\_operation(\textcolor{stringliteral}{"{}SELECT"{}},\ \textcolor{stringliteral}{"{}users"{}},\ \textcolor{stringliteral}{"{}SELECT\ *\ FROM\ users"{}})}
+\DoxyCodeLine{self.logger\_manager.log\_mq\_operation(\textcolor{stringliteral}{"{}PUT"{}},\ \textcolor{stringliteral}{"{}MY.QUEUE"{}},\ \{\textcolor{stringliteral}{"{}data"{}}:\ \textcolor{stringliteral}{"{}message"{}}\})}
+
+\end{DoxyCode}
+\hypertarget{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md125}{}\doxysubsection{\texorpdfstring{Log Formats}{Log Formats}}\label{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md125}
+The framework supports two log formats\+:
+
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Human-\/readable}} (default)\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{2025-\/09-\/29\ 01:07:00,947\ -\/\ MyComponent\ -\/\ INFO\ -\/\ Processing\ started}
+
+\end{DoxyCode}
+
+\item {\bfseries{JSON format}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{"{}timestamp"{}:\ "{}2025-\/09-\/29T01:07:00.947"{},\ "{}level"{}:\ "{}INFO"{},\ "{}logger"{}:\ "{}MyComponent"{},\ "{}message"{}:\ "{}Processing\ started"{}\}}
+
+\end{DoxyCode}
+
+\end{DoxyEnumerate}\hypertarget{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md126}{}\doxysection{\texorpdfstring{Database Operations}{Database Operations}}\label{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md126}
+\hypertarget{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md127}{}\doxysubsection{\texorpdfstring{Database Connection Management}{Database Connection Management}}\label{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md127}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{\#\ Connect\ to\ database}}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ self.connect\_database():}
+\DoxyCodeLine{\ \ \ \ self.log\_info(\textcolor{stringliteral}{"{}Database\ connected"{}})}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{\#\ Perform\ operations}}
+\DoxyCodeLine{\ \ \ \ results\ =\ self.execute\_query(\textcolor{stringliteral}{"{}SELECT\ *\ FROM\ users"{}})}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{\#\ Disconnect}}
+\DoxyCodeLine{\ \ \ \ self.disconnect\_database()}
+\DoxyCodeLine{\textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\ \ \ \ self.log\_error(\textcolor{stringliteral}{"{}Database\ connection\ failed"{}})}
+
+\end{DoxyCode}
+\hypertarget{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md128}{}\doxysubsection{\texorpdfstring{Query Operations}{Query Operations}}\label{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md128}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{\#\ SELECT\ queries}}
+\DoxyCodeLine{results\ =\ self.execute\_query(\textcolor{stringliteral}{"{}SELECT\ *\ FROM\ users\ WHERE\ active\ =\ ?"{}},\ (\textcolor{keyword}{True},))}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{\#\ INSERT/UPDATE/DELETE\ operations}}
+\DoxyCodeLine{rows\_affected\ =\ self.execute\_update(\textcolor{stringliteral}{"{}INSERT\ INTO\ users\ (name,\ email)\ VALUES\ (?,\ ?)"{}},\ }
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{"{}John\ Doe"{}},\ \textcolor{stringliteral}{"{}john@example.com"{}}))}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{\#\ Batch\ operations}}
+\DoxyCodeLine{queries\ =\ [}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}INSERT\ INTO\ users\ (name)\ VALUES\ ('User\ 1')"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}INSERT\ INTO\ users\ (name)\ VALUES\ ('User\ 2')"{}}}
+\DoxyCodeLine{]}
+\DoxyCodeLine{self.execute\_batch(queries)}
+
+\end{DoxyCode}
+\hypertarget{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md129}{}\doxysubsection{\texorpdfstring{Transaction Management}{Transaction Management}}\label{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md129}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{\#\ Using\ context\ manager}}
+\DoxyCodeLine{\textcolor{keyword}{with}\ self.transaction():}
+\DoxyCodeLine{\ \ \ \ self.execute\_update(\textcolor{stringliteral}{"{}INSERT\ INTO\ users\ (name)\ VALUES\ (?)"{}},\ (\textcolor{stringliteral}{"{}User\ 1"{}},))}
+\DoxyCodeLine{\ \ \ \ self.execute\_update(\textcolor{stringliteral}{"{}INSERT\ INTO\ users\ (name)\ VALUES\ (?)"{}},\ (\textcolor{stringliteral}{"{}User\ 2"{}},))}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{\#\ Transaction\ is\ automatically\ committed}}
+
+\end{DoxyCode}
+\hypertarget{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md130}{}\doxysection{\texorpdfstring{Messaging Operations}{Messaging Operations}}\label{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md130}
+\hypertarget{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md131}{}\doxysubsection{\texorpdfstring{Messaging Connection Management}{Messaging Connection Management}}\label{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md131}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{\#\ Connect\ to\ messaging}}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ self.connect\_messaging():}
+\DoxyCodeLine{\ \ \ \ self.log\_info(\textcolor{stringliteral}{"{}Messaging\ connected"{}})}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{\#\ Perform\ operations}}
+\DoxyCodeLine{\ \ \ \ self.send\_message(\textcolor{stringliteral}{"{}MY.QUEUE"{}},\ \{\textcolor{stringliteral}{"{}data"{}}:\ \textcolor{stringliteral}{"{}message"{}}\})}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{\#\ Disconnect}}
+\DoxyCodeLine{\ \ \ \ self.disconnect\_messaging()}
+\DoxyCodeLine{\textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\ \ \ \ self.log\_error(\textcolor{stringliteral}{"{}Messaging\ connection\ failed"{}})}
+
+\end{DoxyCode}
+\hypertarget{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md132}{}\doxysubsection{\texorpdfstring{Message Operations}{Message Operations}}\label{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md132}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{\#\ Send\ messages}}
+\DoxyCodeLine{self.send\_message(\textcolor{stringliteral}{"{}MY.QUEUE"{}},\ \{\textcolor{stringliteral}{"{}data"{}}:\ \textcolor{stringliteral}{"{}message"{}}\})}
+\DoxyCodeLine{self.send\_message(\textcolor{stringliteral}{"{}MY.QUEUE"{}},\ \textcolor{stringliteral}{"{}simple\ string\ message"{}})}
+\DoxyCodeLine{self.send\_message(\textcolor{stringliteral}{"{}MY.QUEUE"{}},\ b\textcolor{stringliteral}{"{}binary\ data"{}})}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{\#\ Receive\ messages}}
+\DoxyCodeLine{message\ =\ self.receive\_message(\textcolor{stringliteral}{"{}MY.QUEUE"{}})}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ message:}
+\DoxyCodeLine{\ \ \ \ self.log\_info(f\textcolor{stringliteral}{"{}Received:\ \{message['data']\}"{}})}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{\#\ Browse\ messages\ (peek\ without\ removing)}}
+\DoxyCodeLine{message\ =\ self.browse\_message(\textcolor{stringliteral}{"{}MY.QUEUE"{}})}
+
+\end{DoxyCode}
+\hypertarget{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md133}{}\doxysubsection{\texorpdfstring{Queue Management}{Queue Management}}\label{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md133}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{\#\ Get\ queue\ depth}}
+\DoxyCodeLine{depth\ =\ self.get\_queue\_depth(\textcolor{stringliteral}{"{}MY.QUEUE"{}})}
+\DoxyCodeLine{self.log\_info(f\textcolor{stringliteral}{"{}Queue\ depth:\ \{depth\}"{}})}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{\#\ Purge\ queue}}
+\DoxyCodeLine{self.purge\_queue(\textcolor{stringliteral}{"{}MY.QUEUE"{}})}
+
+\end{DoxyCode}
+\hypertarget{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md134}{}\doxysection{\texorpdfstring{CLI Development}{CLI Development}}\label{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md134}
+\hypertarget{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md135}{}\doxysubsection{\texorpdfstring{Using the CLI}{Using the CLI}}\label{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md135}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Test\ database\ connection}
+\DoxyCodeLine{commonpython\ database\ test}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Execute\ database\ query}
+\DoxyCodeLine{commonpython\ database\ execute\ "{}SELECT\ *\ FROM\ users"{}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Test\ messaging\ connection}
+\DoxyCodeLine{commonpython\ messaging\ test}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Send\ message}
+\DoxyCodeLine{commonpython\ messaging\ put\ MY.QUEUE\ "{}Hello\ World"{}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Get\ message}
+\DoxyCodeLine{commonpython\ messaging\ get\ MY.QUEUE}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Show\ configuration}
+\DoxyCodeLine{commonpython\ config\ show}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Test\ all\ components}
+\DoxyCodeLine{commonpython\ test-\/all}
+
+\end{DoxyCode}
+\hypertarget{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md136}{}\doxysubsection{\texorpdfstring{Creating CLI Tools}{Creating CLI Tools}}\label{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md136}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{from}\ \mbox{\hyperlink{namespacecommonpython_1_1cli}{commonpython.cli}}\ \textcolor{keyword}{import}\ CLI}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{\#\ Initialize\ CLI}}
+\DoxyCodeLine{cli\ =\ CLI(\textcolor{stringliteral}{"{}config.yaml"{}})}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{\#\ Use\ CLI\ methods}}
+\DoxyCodeLine{cli.setup\_database()}
+\DoxyCodeLine{cli.execute\_query(\textcolor{stringliteral}{"{}SELECT\ *\ FROM\ users"{}})}
+\DoxyCodeLine{cli.setup\_messaging()}
+\DoxyCodeLine{cli.put\_message(\textcolor{stringliteral}{"{}MY.QUEUE"{}},\ \{\textcolor{stringliteral}{"{}data"{}}:\ \textcolor{stringliteral}{"{}message"{}}\})}
+
+\end{DoxyCode}
+\hypertarget{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md137}{}\doxysection{\texorpdfstring{Testing Your Components}{Testing Your Components}}\label{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md137}
+\hypertarget{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md138}{}\doxysubsection{\texorpdfstring{Unit Testing}{Unit Testing}}\label{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md138}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{import}\ unittest}
+\DoxyCodeLine{\textcolor{keyword}{from}\ unittest.mock\ \textcolor{keyword}{import}\ patch,\ MagicMock}
+\DoxyCodeLine{\textcolor{keyword}{from}\ \mbox{\hyperlink{namespacecommonpython_1_1framework}{commonpython.framework}}\ \textcolor{keyword}{import}\ ComponentBase}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{class\ }TestMyComponent(unittest.TestCase):}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{def\ }setUp(self):}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keyword}{with}\ patch(\textcolor{stringliteral}{'commonpython.framework.ComponentBase.\_initialize\_services'}):}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ self.component\ =\ MyComponent()}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{def\ }test\_initialize(self):}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ result\ =\ self.component.initialize()}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ self.assertTrue(result)}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{def\ }test\_run(self):}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keyword}{with}\ patch.object(self.component,\ \textcolor{stringliteral}{'connect\_database'},\ return\_value=\textcolor{keyword}{True}):}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{with}\ patch.object(self.component,\ \textcolor{stringliteral}{'execute\_query'},\ return\_value=[]):}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ self.component.run()}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.assertTrue(result)}
+
+\end{DoxyCode}
+\hypertarget{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md139}{}\doxysubsection{\texorpdfstring{Integration Testing}{Integration Testing}}\label{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md139}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{\#\ Test\ with\ actual\ configuration}}
+\DoxyCodeLine{component\ =\ MyComponent(\textcolor{stringliteral}{"{}test\_config.yaml"{}})}
+\DoxyCodeLine{result\ =\ component.start()\ \ \textcolor{comment}{\#\ Runs\ initialize,\ run,\ cleanup}}
+\DoxyCodeLine{self.assertTrue(result)}
+
+\end{DoxyCode}
+\hypertarget{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md140}{}\doxysubsection{\texorpdfstring{Running Tests}{Running Tests}}\label{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md140}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Run\ all\ tests\ with\ coverage}
+\DoxyCodeLine{python\ scripts/test\_commonpython.py\ -\/-\/cov}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Run\ specific\ test\ module}
+\DoxyCodeLine{python\ -\/m\ unittest\ test.test\_component\_framework}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Run\ individual\ test\ case}
+\DoxyCodeLine{python\ -\/m\ unittest\ test.test\_cli.TestCLI.test\_init}
+
+\end{DoxyCode}
+
+
+The test suite includes\+:
+
+
+\begin{DoxyItemize}
+\item 225+ comprehensive test cases
+\item 89\% code coverage
+\item Thorough mocking of external dependencies
+\item Extensive edge case testing
+\end{DoxyItemize}
+
+Key test areas\+:
+
+
+\begin{DoxyItemize}
+\item Configuration management (YAML and environment variables)
+\item Logging system (console, file, JSON formats)
+\item Database operations (connection, queries, transactions)
+\item Message queue operations (send, receive, browse)
+\item Component lifecycle (initialize, run, cleanup)
+\item CLI functionality
+\item Error handling and recovery
+\end{DoxyItemize}\hypertarget{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md141}{}\doxysection{\texorpdfstring{Best Practices}{Best Practices}}\label{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md141}
+\hypertarget{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md142}{}\doxysubsection{\texorpdfstring{1. Configuration Management}{1. Configuration Management}}\label{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md142}
+
+\begin{DoxyItemize}
+\item Use configuration files for all settings
+\item Provide sensible defaults
+\item Use environment variables for sensitive data
+\item Validate configuration on startup
+\end{DoxyItemize}\hypertarget{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md143}{}\doxysubsection{\texorpdfstring{2. Error Handling}{2. Error Handling}}\label{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md143}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{def\ }run(self)\ -\/>\ bool:}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Your\ logic\ here}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{except}\ DatabaseError\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ self.log\_error(f\textcolor{stringliteral}{"{}Database\ error:\ \{str(e)\}"{}})}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{except}\ MessagingError\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ self.log\_error(f\textcolor{stringliteral}{"{}Messaging\ error:\ \{str(e)\}"{}})}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ self.log\_error(f\textcolor{stringliteral}{"{}Unexpected\ error:\ \{str(e)\}"{}})}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+
+\end{DoxyCode}
+\hypertarget{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md144}{}\doxysubsection{\texorpdfstring{3. Resource Management}{3. Resource Management}}\label{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md144}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{def\ }cleanup(self)\ -\/>\ None:}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ self.disconnect\_database()}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{except}:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ self.disconnect\_messaging()}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{except}:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{\#\ Cleanup\ other\ resources}}
+
+\end{DoxyCode}
+\hypertarget{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md145}{}\doxysubsection{\texorpdfstring{4. Logging}{4. Logging}}\label{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md145}
+
+\begin{DoxyItemize}
+\item Use appropriate log levels
+\item Include context in log messages
+\item Log errors with full exception information
+\item Use structured logging for complex data
+\end{DoxyItemize}\hypertarget{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md146}{}\doxysubsection{\texorpdfstring{5. Testing}{5. Testing}}\label{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md146}
+
+\begin{DoxyItemize}
+\item Write unit tests for all methods
+\item Test error conditions
+\item Use mocks for external dependencies
+\item Test configuration scenarios
+\end{DoxyItemize}\hypertarget{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md147}{}\doxysection{\texorpdfstring{Troubleshooting}{Troubleshooting}}\label{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md147}
+\hypertarget{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md148}{}\doxysubsection{\texorpdfstring{Common Issues}{Common Issues}}\label{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md148}
+\hypertarget{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md149}{}\doxysubsubsection{\texorpdfstring{1. Configuration File Not Found}{1. Configuration File Not Found}}\label{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md149}
+{\bfseries{Error}}\+: `Configuration file \textquotesingle{}config.\+yaml' not found\`{}
+
+{\bfseries{Solution}}\+:
+
+
+\begin{DoxyItemize}
+\item Ensure the configuration file exists
+\item Check the file path
+\item Use absolute paths if needed
+\end{DoxyItemize}\hypertarget{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md150}{}\doxysubsubsection{\texorpdfstring{2. Database Connection Failed}{2. Database Connection Failed}}\label{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md150}
+{\bfseries{Error}}\+: `DB2 command error\+: \mbox{[}Errno 2\mbox{]} No such file or directory\+: \textquotesingle{}db2'\`{}
+
+{\bfseries{Solution}}\+:
+
+
+\begin{DoxyItemize}
+\item Install IBM DB2 CLI tools
+\item Add DB2 tools to system PATH
+\item Verify DB2 client installation
+\end{DoxyItemize}\hypertarget{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md151}{}\doxysubsubsection{\texorpdfstring{3. Messaging Connection Failed}{3. Messaging Connection Failed}}\label{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md151}
+{\bfseries{Error}}\+: `MQ command error\+: \mbox{[}Errno 2\mbox{]} No such file or directory\+: \textquotesingle{}runmqsc'\`{}
+
+{\bfseries{Solution}}\+:
+
+
+\begin{DoxyItemize}
+\item Install IBM MQ CLI tools
+\item Add MQ tools to system PATH
+\item Verify MQ client installation
+\end{DoxyItemize}\hypertarget{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md152}{}\doxysubsubsection{\texorpdfstring{4. Permission Denied}{4. Permission Denied}}\label{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md152}
+{\bfseries{Error}}\+: {\ttfamily Permission denied} when accessing log files
+
+{\bfseries{Solution}}\+:
+
+
+\begin{DoxyItemize}
+\item Check file permissions
+\item Ensure log directory exists
+\item Run with appropriate permissions
+\end{DoxyItemize}\hypertarget{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md153}{}\doxysubsection{\texorpdfstring{Debug Mode}{Debug Mode}}\label{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md153}
+Enable debug logging for troubleshooting\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{logging:}
+\DoxyCodeLine{\ \ level:\ DEBUG}
+\DoxyCodeLine{\ \ console:\ true}
+
+\end{DoxyCode}
+
+
+Or use environment variable\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{export\ LOG\_LEVEL=DEBUG}
+
+\end{DoxyCode}
+\hypertarget{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md154}{}\doxysubsection{\texorpdfstring{Getting Help}{Getting Help}}\label{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md154}
+
+\begin{DoxyEnumerate}
+\item Check the logs for detailed error information
+\item Run tests to verify framework functionality
+\item Check configuration file syntax
+\item Verify IBM CLI tools installation
+\item Review the examples in the {\ttfamily examples/} directory
+\end{DoxyEnumerate}\hypertarget{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md155}{}\doxysection{\texorpdfstring{Advanced Topics}{Advanced Topics}}\label{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md155}
+\hypertarget{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md156}{}\doxysubsection{\texorpdfstring{Custom Managers}{Custom Managers}}\label{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md156}
+You can extend the framework by creating custom managers\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{class\ }CustomManager:}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{def\ }\_\_init\_\_(self,\ config,\ logger\_manager):}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ self.config\ =\ config}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ self.logger\ =\ logger\_manager.logger}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{def\ }custom\_operation(self):}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ self.logger.info(\textcolor{stringliteral}{"{}Custom\ operation\ executed"{}})}
+
+\end{DoxyCode}
+\hypertarget{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md157}{}\doxysubsection{\texorpdfstring{Component Registration}{Component Registration}}\label{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md157}
+Register components for discovery\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{from}\ \mbox{\hyperlink{namespacecommonpython_1_1framework}{commonpython.framework}}\ \textcolor{keyword}{import}\ register\_component}
+\DoxyCodeLine{}
+\DoxyCodeLine{register\_component(\textcolor{stringliteral}{"{}MyComponent"{}},\ MyComponent)}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{\#\ Get\ registered\ component}}
+\DoxyCodeLine{component\_class\ =\ get\_component(\textcolor{stringliteral}{"{}MyComponent"{}})}
+
+\end{DoxyCode}
+\hypertarget{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md158}{}\doxysubsection{\texorpdfstring{Custom CLI Commands}{Custom CLI Commands}}\label{md_docs_2_d_e_v_e_l_o_p_m_e_n_t___g_u_i_d_e_autotoc_md158}
+Extend the CLI with custom commands\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{from}\ \mbox{\hyperlink{namespacecommonpython_1_1cli}{commonpython.cli}}\ \textcolor{keyword}{import}\ CLI}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{class\ }CustomCLI(CLI):}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{def\ }custom\_command(self,\ args):}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Your\ custom\ command\ logic}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{pass}}
+
+\end{DoxyCode}
+
+
+This development guide provides comprehensive information for using the Common\+Python framework. For more examples, see the {\ttfamily examples/} directory and the test files in the {\ttfamily test/} directory. 

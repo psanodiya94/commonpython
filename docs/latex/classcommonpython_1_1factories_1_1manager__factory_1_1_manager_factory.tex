@@ -1,0 +1,152 @@
+\doxysection{commonpython.\+factories.\+manager\+\_\+factory.\+Manager\+Factory Class Reference}
+\hypertarget{classcommonpython_1_1factories_1_1manager__factory_1_1_manager_factory}{}\label{classcommonpython_1_1factories_1_1manager__factory_1_1_manager_factory}\index{commonpython.factories.manager\_factory.ManagerFactory@{commonpython.factories.manager\_factory.ManagerFactory}}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcommonpython_1_1interfaces_1_1database__interface_1_1_i_database_manager}{IDatabase\+Manager}} \mbox{\hyperlink{classcommonpython_1_1factories_1_1manager__factory_1_1_manager_factory_a11cbb0ff92f45a7ed90d0563145cf5e2}{create\+\_\+database\+\_\+manager}} (Dict\mbox{[}str, Any\mbox{]} config, logger=None)
+\item 
+\mbox{\hyperlink{classcommonpython_1_1interfaces_1_1messaging__interface_1_1_i_messaging_manager}{IMessaging\+Manager}} \mbox{\hyperlink{classcommonpython_1_1factories_1_1manager__factory_1_1_manager_factory_a066774d37ceab875e991f7f8b28b373c}{create\+\_\+messaging\+\_\+manager}} (Dict\mbox{[}str, Any\mbox{]} config, logger=None)
+\item 
+Dict\mbox{[}str, Dict\mbox{[}str, bool\mbox{]}\mbox{]} \mbox{\hyperlink{classcommonpython_1_1factories_1_1manager__factory_1_1_manager_factory_a7672f19678c74f5bfdbef46ecaf9e37e}{get\+\_\+available\+\_\+implementations}} ()
+\item 
+\mbox{\hyperlink{classcommonpython_1_1factories_1_1manager__factory_1_1_manager_factory_a2f1c08e2bccc369edfe3553d57218c98}{reset\+\_\+cache}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+dict \mbox{\hyperlink{classcommonpython_1_1factories_1_1manager__factory_1_1_manager_factory_a3debb557011e0dfb5dd7c98f9549b479}{\+\_\+adapter\+\_\+cache}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Factory for creating manager instances based on configuration.
+
+Provides static methods to create database and messaging managers
+with automatic selection of implementation type (CLI or library)
+based on configuration and availability.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{manager__factory_8py_source_l00014}{14}} of file \mbox{\hyperlink{manager__factory_8py_source}{manager\+\_\+factory.\+py}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcommonpython_1_1factories_1_1manager__factory_1_1_manager_factory_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcommonpython_1_1factories_1_1manager__factory_1_1_manager_factory_a11cbb0ff92f45a7ed90d0563145cf5e2}\index{commonpython.factories.manager\_factory.ManagerFactory@{commonpython.factories.manager\_factory.ManagerFactory}!create\_database\_manager@{create\_database\_manager}}
+\index{create\_database\_manager@{create\_database\_manager}!commonpython.factories.manager\_factory.ManagerFactory@{commonpython.factories.manager\_factory.ManagerFactory}}
+\doxysubsubsection{\texorpdfstring{create\_database\_manager()}{create\_database\_manager()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1factories_1_1manager__factory_1_1_manager_factory_a11cbb0ff92f45a7ed90d0563145cf5e2} 
+ \mbox{\hyperlink{classcommonpython_1_1interfaces_1_1database__interface_1_1_i_database_manager}{IDatabase\+Manager}} commonpython.\+factories.\+manager\+\_\+factory.\+Manager\+Factory.\+create\+\_\+database\+\_\+manager (\begin{DoxyParamCaption}\item[{Dict\mbox{[}str, Any\mbox{]}}]{config}{, }\item[{}]{logger}{ = {\ttfamily None}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\begin{DoxyVerb}Create database manager based on configuration.
+
+@brief Create database manager with automatic implementation selection.
+@param config Database configuration dictionary
+@param logger Logger manager instance (optional)
+@return IDatabaseManager implementation instance
+@throws ValueError If specified implementation is not available
+@throws ImportError If required dependencies are missing
+
+Configuration keys:
+- implementation: 'cli' or 'library' (default: 'cli')
+- auto_fallback: True to automatically fallback to CLI if library unavailable (default: True)
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{manager__factory_8py_source_l00030}{30}} of file \mbox{\hyperlink{manager__factory_8py_source}{manager\+\_\+factory.\+py}}.
+
+\Hypertarget{classcommonpython_1_1factories_1_1manager__factory_1_1_manager_factory_a066774d37ceab875e991f7f8b28b373c}\index{commonpython.factories.manager\_factory.ManagerFactory@{commonpython.factories.manager\_factory.ManagerFactory}!create\_messaging\_manager@{create\_messaging\_manager}}
+\index{create\_messaging\_manager@{create\_messaging\_manager}!commonpython.factories.manager\_factory.ManagerFactory@{commonpython.factories.manager\_factory.ManagerFactory}}
+\doxysubsubsection{\texorpdfstring{create\_messaging\_manager()}{create\_messaging\_manager()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1factories_1_1manager__factory_1_1_manager_factory_a066774d37ceab875e991f7f8b28b373c} 
+ \mbox{\hyperlink{classcommonpython_1_1interfaces_1_1messaging__interface_1_1_i_messaging_manager}{IMessaging\+Manager}} commonpython.\+factories.\+manager\+\_\+factory.\+Manager\+Factory.\+create\+\_\+messaging\+\_\+manager (\begin{DoxyParamCaption}\item[{Dict\mbox{[}str, Any\mbox{]}}]{config}{, }\item[{}]{logger}{ = {\ttfamily None}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\begin{DoxyVerb}Create messaging manager based on configuration.
+
+@brief Create messaging manager with automatic implementation selection.
+@param config Messaging configuration dictionary
+@param logger Logger manager instance (optional)
+@return IMessagingManager implementation instance
+@throws ValueError If specified implementation is not available
+@throws ImportError If required dependencies are missing
+
+Configuration keys:
+- implementation: 'cli' or 'library' (default: 'cli')
+- auto_fallback: True to automatically fallback to CLI if library unavailable (default: True)
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{manager__factory_8py_source_l00089}{89}} of file \mbox{\hyperlink{manager__factory_8py_source}{manager\+\_\+factory.\+py}}.
+
+\Hypertarget{classcommonpython_1_1factories_1_1manager__factory_1_1_manager_factory_a7672f19678c74f5bfdbef46ecaf9e37e}\index{commonpython.factories.manager\_factory.ManagerFactory@{commonpython.factories.manager\_factory.ManagerFactory}!get\_available\_implementations@{get\_available\_implementations}}
+\index{get\_available\_implementations@{get\_available\_implementations}!commonpython.factories.manager\_factory.ManagerFactory@{commonpython.factories.manager\_factory.ManagerFactory}}
+\doxysubsubsection{\texorpdfstring{get\_available\_implementations()}{get\_available\_implementations()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1factories_1_1manager__factory_1_1_manager_factory_a7672f19678c74f5bfdbef46ecaf9e37e} 
+ Dict\mbox{[}str, Dict\mbox{[}str, bool\mbox{]}\mbox{]} commonpython.\+factories.\+manager\+\_\+factory.\+Manager\+Factory.\+get\+\_\+available\+\_\+implementations (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\begin{DoxyVerb}Get information about available implementations.
+
+@brief Check which implementations are available.
+@return Dictionary with availability information for each manager type
+
+Example return:
+{
+    'database': {
+        'cli': True,
+        'library': False  # ibm_db not installed
+    },
+    'messaging': {
+        'cli': True,
+        'library': True
+    }
+}
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{manager__factory_8py_source_l00148}{148}} of file \mbox{\hyperlink{manager__factory_8py_source}{manager\+\_\+factory.\+py}}.
+
+\Hypertarget{classcommonpython_1_1factories_1_1manager__factory_1_1_manager_factory_a2f1c08e2bccc369edfe3553d57218c98}\index{commonpython.factories.manager\_factory.ManagerFactory@{commonpython.factories.manager\_factory.ManagerFactory}!reset\_cache@{reset\_cache}}
+\index{reset\_cache@{reset\_cache}!commonpython.factories.manager\_factory.ManagerFactory@{commonpython.factories.manager\_factory.ManagerFactory}}
+\doxysubsubsection{\texorpdfstring{reset\_cache()}{reset\_cache()}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1factories_1_1manager__factory_1_1_manager_factory_a2f1c08e2bccc369edfe3553d57218c98} 
+commonpython.\+factories.\+manager\+\_\+factory.\+Manager\+Factory.\+reset\+\_\+cache (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\begin{DoxyVerb}Reset the adapter availability cache.
+
+@brief Reset cached availability information.
+Useful for testing or when dependencies are installed at runtime.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{manager__factory_8py_source_l00193}{193}} of file \mbox{\hyperlink{manager__factory_8py_source}{manager\+\_\+factory.\+py}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classcommonpython_1_1factories_1_1manager__factory_1_1_manager_factory_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcommonpython_1_1factories_1_1manager__factory_1_1_manager_factory_a3debb557011e0dfb5dd7c98f9549b479}\index{commonpython.factories.manager\_factory.ManagerFactory@{commonpython.factories.manager\_factory.ManagerFactory}!\_adapter\_cache@{\_adapter\_cache}}
+\index{\_adapter\_cache@{\_adapter\_cache}!commonpython.factories.manager\_factory.ManagerFactory@{commonpython.factories.manager\_factory.ManagerFactory}}
+\doxysubsubsection{\texorpdfstring{\_adapter\_cache}{\_adapter\_cache}}
+{\footnotesize\ttfamily \label{classcommonpython_1_1factories_1_1manager__factory_1_1_manager_factory_a3debb557011e0dfb5dd7c98f9549b479} 
+dict commonpython.\+factories.\+manager\+\_\+factory.\+Manager\+Factory.\+\_\+adapter\+\_\+cache\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'db2\_library\_available'}:\ \textcolor{keywordtype}{None},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'mq\_library\_available'}:\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{manager__factory_8py_source_l00024}{24}} of file \mbox{\hyperlink{manager__factory_8py_source}{manager\+\_\+factory.\+py}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+commonpython/factories/\mbox{\hyperlink{manager__factory_8py}{manager\+\_\+factory.\+py}}\end{DoxyCompactItemize}

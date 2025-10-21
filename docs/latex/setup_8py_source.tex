@@ -1,0 +1,122 @@
+\doxysection{setup.\+py}
+\hypertarget{setup_8py_source}{}\label{setup_8py_source}\mbox{\hyperlink{setup_8py}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00001}\mbox{\hyperlink{namespacesetup}{00001}}\ \textcolor{comment}{\#!/usr/bin/env\ python3}}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00002}00002\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00003}00003\ \textcolor{stringliteral}{Setup\ script\ for\ CommonPython\ Framework}}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00004}00004\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00005}00005\ \textcolor{stringliteral}{A\ common\ Python\ framework\ with\ config,\ logging,\ DB2,\ MQ,\ and\ CLI\ functionality.}}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00006}00006\ \textcolor{stringliteral}{Supports\ both\ CLI-\/based\ and\ library-\/based\ implementations\ via\ adapter\ pattern.}}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00007}00007\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00009}00009\ \textcolor{keyword}{from}\ setuptools\ \textcolor{keyword}{import}\ setup,\ find\_packages}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00010}00010\ \textcolor{keyword}{import}\ os}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00012}00012\ \textcolor{comment}{\#\ Read\ the\ README\ file}}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00013}\mbox{\hyperlink{namespacesetup_aa3df3540a44bb3bea0b7d057dafd97e5}{00013}}\ \textcolor{keyword}{def\ }\mbox{\hyperlink{namespacesetup_aa3df3540a44bb3bea0b7d057dafd97e5}{read\_readme}}():}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00014}00014\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00015}00015\ \textcolor{stringliteral}{\ \ \ \ Read\ the\ README\ file.}}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00016}00016\ \textcolor{stringliteral}{\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00017}00017\ \textcolor{stringliteral}{\ \ \ \ @brief\ Read\ and\ return\ the\ contents\ of\ the\ README\ file.}}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00018}00018\ \textcolor{stringliteral}{\ \ \ \ @return\ README\ file\ contents}}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00019}00019\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00020}00020\ \ \ \ \ \textcolor{keyword}{with}\ open(\textcolor{stringliteral}{"{}README.md"{}},\ \textcolor{stringliteral}{"{}r"{}},\ encoding=\textcolor{stringliteral}{"{}utf-\/8"{}})\ \textcolor{keyword}{as}\ fh:}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00021}00021\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ fh.read()}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00023}00023\ \textcolor{comment}{\#\ Read\ requirements}}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00024}\mbox{\hyperlink{namespacesetup_a8a139e9e63aa4b08938da36776b1d823}{00024}}\ \textcolor{keyword}{def\ }\mbox{\hyperlink{namespacesetup_a8a139e9e63aa4b08938da36776b1d823}{read\_requirements}}():}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00025}00025\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00026}00026\ \textcolor{stringliteral}{\ \ \ \ Read\ requirements\ from\ requirements.txt.}}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00027}00027\ \textcolor{stringliteral}{\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00028}00028\ \textcolor{stringliteral}{\ \ \ \ @brief\ Read\ and\ return\ requirements\ from\ requirements\ file.}}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00029}00029\ \textcolor{stringliteral}{\ \ \ \ @return\ List\ of\ requirements}}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00030}00030\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00031}00031\ \ \ \ \ \textcolor{keyword}{with}\ open(\textcolor{stringliteral}{"{}requirements.txt"{}},\ \textcolor{stringliteral}{"{}r"{}},\ encoding=\textcolor{stringliteral}{"{}utf-\/8"{}})\ \textcolor{keyword}{as}\ fh:}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00032}00032\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ [line.strip()\ \textcolor{keywordflow}{for}\ line\ \textcolor{keywordflow}{in}\ fh\ \textcolor{keywordflow}{if}\ line.strip()\ \textcolor{keywordflow}{and}\ \textcolor{keywordflow}{not}\ line.startswith(\textcolor{stringliteral}{"{}\#"{}})]}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00034}00034\ \mbox{\hyperlink{namespacesetup}{setup}}(}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00035}\mbox{\hyperlink{namespacesetup_ab3a7a0638d76a01367c5bc3cc699447f}{00035}}\ \ \ \ \ name=\textcolor{stringliteral}{"{}commonpython"{}},}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00036}\mbox{\hyperlink{namespacesetup_a2aa722b36a933088812b50ea79b97a5c}{00036}}\ \ \ \ \ version=\textcolor{stringliteral}{"{}2.0.0"{}},}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00037}\mbox{\hyperlink{namespacesetup_a3a57a4772d418a06835249cbade0d86a}{00037}}\ \ \ \ \ author=\textcolor{stringliteral}{"{}CommonPython\ Framework\ Team"{}},}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00038}\mbox{\hyperlink{namespacesetup_a5b08034343aa2be607722a8b315f3625}{00038}}\ \ \ \ \ author\_email=\textcolor{stringliteral}{"{}team@commonpython.com"{}},}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00039}\mbox{\hyperlink{namespacesetup_aedf461ec52a946bda975938ba0b93ec0}{00039}}\ \ \ \ \ description=\textcolor{stringliteral}{"{}A\ flexible\ Python\ framework\ with\ adapter\ pattern\ for\ IBM\ DB2\ and\ MQ\ integration"{}},}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00040}\mbox{\hyperlink{namespacesetup_a4cda9dbfb952875376a0749fe08a5bde}{00040}}\ \ \ \ \ long\_description=\mbox{\hyperlink{namespacesetup_aa3df3540a44bb3bea0b7d057dafd97e5}{read\_readme}}(),}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00041}\mbox{\hyperlink{namespacesetup_a3796ea10c998699d07d391414ff5d720}{00041}}\ \ \ \ \ long\_description\_content\_type=\textcolor{stringliteral}{"{}text/markdown"{}},}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00042}\mbox{\hyperlink{namespacesetup_afc13124aa5c0124e84e1d965e3f4b0fb}{00042}}\ \ \ \ \ url=\textcolor{stringliteral}{"{}https://github.com/your-\/org/commonpython"{}},}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00043}\mbox{\hyperlink{namespacesetup_aff2375a361fd5865c77bd9aa093be747}{00043}}\ \ \ \ \ packages=find\_packages(exclude=[\textcolor{stringliteral}{"{}test"{}},\ \textcolor{stringliteral}{"{}test.*"{}},\ \textcolor{stringliteral}{"{}scripts"{}}]),}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00044}\mbox{\hyperlink{namespacesetup_abe96a9c38c1c61f9f0fdb002c482f785}{00044}}\ \ \ \ \ classifiers=[}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00045}00045\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Development\ Status\ ::\ 4\ -\/\ Beta"{}},}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00046}00046\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Intended\ Audience\ ::\ Developers"{}},}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00047}00047\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}License\ ::\ OSI\ Approved\ ::\ MIT\ License"{}},}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00048}00048\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Operating\ System\ ::\ OS\ Independent"{}},}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00049}00049\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Programming\ Language\ ::\ Python\ ::\ 3"{}},}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00050}00050\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Programming\ Language\ ::\ Python\ ::\ 3.8"{}},}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00051}00051\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Programming\ Language\ ::\ Python\ ::\ 3.9"{}},}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00052}00052\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Programming\ Language\ ::\ Python\ ::\ 3.10"{}},}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00053}00053\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Programming\ Language\ ::\ Python\ ::\ 3.11"{}},}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00054}00054\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Programming\ Language\ ::\ Python\ ::\ 3.12"{}},}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00055}00055\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Topic\ ::\ Software\ Development\ ::\ Libraries\ ::\ Python\ Modules"{}},}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00056}00056\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Topic\ ::\ Database"{}},}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00057}00057\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Topic\ ::\ System\ ::\ Networking"{}},}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00058}00058\ \ \ \ \ ],}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00059}\mbox{\hyperlink{namespacesetup_aa7ca7bc9391b217e81efeb03689d8dbf}{00059}}\ \ \ \ \ python\_requires=\textcolor{stringliteral}{"{}>=3.8"{}},}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00060}00060\ \ \ \ \ \textcolor{comment}{\#\ Mandatory\ dependencies\ (always\ required)}}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00061}\mbox{\hyperlink{namespacesetup_abead4f26b530856f858f0d44c7cf2588}{00061}}\ \ \ \ \ install\_requires=\mbox{\hyperlink{namespacesetup_a8a139e9e63aa4b08938da36776b1d823}{read\_requirements}}(),}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00062}\mbox{\hyperlink{namespacesetup_ada7058afc98897f073d3f3b8b9157059}{00062}}\ \ \ \ \ entry\_points=\{}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00063}00063\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}console\_scripts"{}}:\ [}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}commonpython=commonpython.cli.cli:main"{}},}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00065}00065\ \ \ \ \ \ \ \ \ ],}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00066}00066\ \ \ \ \ \},}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00067}\mbox{\hyperlink{namespacesetup_a35139105b25ef46629d31888bad595d8}{00067}}\ \ \ \ \ include\_package\_data=\textcolor{keyword}{True},}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00068}\mbox{\hyperlink{namespacesetup_a0a5ccc22976d20d42c6bb6c7651ce0be}{00068}}\ \ \ \ \ package\_data=\{}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00069}00069\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}commonpython"{}}:\ [\textcolor{stringliteral}{"{}config/*.yaml"{}},\ \textcolor{stringliteral}{"{}config/*.json"{}}],}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00070}00070\ \ \ \ \ \},}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00071}\mbox{\hyperlink{namespacesetup_afd7a7f31bfa5027bfe335aedfcc1b70e}{00071}}\ \ \ \ \ test\_suite=\textcolor{stringliteral}{"{}test.run\_tests"{}},}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00072}00072\ \ \ \ \ \textcolor{comment}{\#\ Optional\ dependencies\ (install\ as\ needed)}}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00073}\mbox{\hyperlink{namespacesetup_a5081a5a3f9d0dee597ab99a7fdc362df}{00073}}\ \ \ \ \ extras\_require=\{}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00074}00074\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Development\ and\ testing}}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00075}00075\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}dev"{}}:\ [}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}coverage>=7.0.0"{}},}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}pytest>=7.4.0"{}},}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}pytest-\/cov>=4.1.0"{}},}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}black>=23.0.0"{}},}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}ruff>=0.1.0"{}},}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}mypy>=1.0.0"{}},}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}pre-\/commit>=3.0.0"{}},}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}types-\/PyYAML>=6.0.0"{}},}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00084}00084\ \ \ \ \ \ \ \ \ ],}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00085}00085\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}test"{}}:\ [}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}coverage>=7.0.0"{}},}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}pytest>=7.4.0"{}},}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}pytest-\/cov>=4.1.0"{}},}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00089}00089\ \ \ \ \ \ \ \ \ ],}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00090}00090\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Library-\/based\ implementations\ (high\ performance)}}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00091}00091\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}library"{}}:\ [}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}ibm\_db>=3.0.0"{}},}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}pymqi>=1.12.0"{}},}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00094}00094\ \ \ \ \ \ \ \ \ ],}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00095}00095\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Database\ library\ support\ only}}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00096}00096\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}db-\/library"{}}:\ [}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}ibm\_db>=3.0.0"{}},}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00098}00098\ \ \ \ \ \ \ \ \ ],}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00099}00099\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Messaging\ library\ support\ only}}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00100}00100\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}mq-\/library"{}}:\ [}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}pymqi>=1.12.0"{}},}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00102}00102\ \ \ \ \ \ \ \ \ ],}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00103}00103\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ All\ optional\ dependencies}}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00104}00104\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}all"{}}:\ [}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}coverage>=7.0.0"{}},}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}pytest>=7.4.0"{}},}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}pytest-\/cov>=4.1.0"{}},}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}black>=23.0.0"{}},}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}ruff>=0.1.0"{}},}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}mypy>=1.0.0"{}},}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}pre-\/commit>=3.0.0"{}},}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}types-\/PyYAML>=6.0.0"{}},}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}ibm\_db>=3.0.0"{}},}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}pymqi>=1.12.0"{}},}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00115}00115\ \ \ \ \ \ \ \ \ ],}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00116}00116\ \ \ \ \ \},}
+\DoxyCodeLine{\Hypertarget{setup_8py_source_l00117}00117\ )}
+
+\end{DoxyCode}

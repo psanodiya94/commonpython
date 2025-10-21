@@ -1,0 +1,329 @@
+\doxysection{quick\+\_\+start.\+py}
+\hypertarget{quick__start_8py_source}{}\label{quick__start_8py_source}\index{examples/quick\_start.py@{examples/quick\_start.py}}
+\mbox{\hyperlink{quick__start_8py}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00001}\mbox{\hyperlink{namespacequick__start}{00001}}\ \textcolor{comment}{\#!/usr/bin/env\ python3}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00002}00002\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00003}00003\ \textcolor{stringliteral}{CommonPython\ Framework\ -\/\ Quick\ Start\ Script}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00004}00004\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00005}00005\ \textcolor{stringliteral}{This\ script\ helps\ new\ users\ get\ started\ with\ the\ CommonPython\ framework\ by:}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00006}00006\ \textcolor{stringliteral}{1.\ Testing\ the\ framework\ installation}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00007}00007\ \textcolor{stringliteral}{2.\ Creating\ a\ sample\ component}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00008}00008\ \textcolor{stringliteral}{3.\ Running\ a\ basic\ test}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00009}00009\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00010}00010\ \textcolor{stringliteral}{@brief\ Quick\ start\ script\ for\ new\ users}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00011}00011\ \textcolor{stringliteral}{@author\ CommonPython\ Framework\ Team}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00012}00012\ \textcolor{stringliteral}{@version\ 2.0.0}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00013}00013\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00015}00015\ \textcolor{keyword}{import}\ sys}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00016}00016\ \textcolor{keyword}{import}\ os}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00017}00017\ \textcolor{keyword}{import}\ tempfile}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00018}00018\ \textcolor{keyword}{import}\ shutil}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00019}00019\ \textcolor{keyword}{from}\ pathlib\ \textcolor{keyword}{import}\ Path}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00021}\mbox{\hyperlink{namespacequick__start_ab0e08a3a362fcba32bfbb231bdb73b39}{00021}}\ \textcolor{keyword}{def\ }\mbox{\hyperlink{namespacequick__start_ab0e08a3a362fcba32bfbb231bdb73b39}{test\_framework\_installation}}():}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00022}00022\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00023}00023\ \textcolor{stringliteral}{\ \ \ \ Test\ if\ the\ framework\ is\ properly\ installed.}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00024}00024\ \textcolor{stringliteral}{\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00025}00025\ \textcolor{stringliteral}{\ \ \ \ @brief\ Test\ framework\ installation\ and\ imports.}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00026}00026\ \textcolor{stringliteral}{\ \ \ \ @return\ True\ if\ installation\ is\ successful,\ False\ otherwise}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00027}00027\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00028}00028\ \ \ \ \ print(\textcolor{stringliteral}{"{}🔍\ Testing\ framework\ installation..."{}})}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00029}00029\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00030}00030\ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00031}00031\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Test\ imports}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00032}00032\ \ \ \ \ \ \ \ \ \textcolor{keyword}{from}\ \mbox{\hyperlink{namespacecommonpython_1_1config}{commonpython.config}}\ \textcolor{keyword}{import}\ ConfigManager}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00033}00033\ \ \ \ \ \ \ \ \ \textcolor{keyword}{from}\ \mbox{\hyperlink{namespacecommonpython_1_1logging}{commonpython.logging}}\ \textcolor{keyword}{import}\ LoggerManager}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00034}00034\ \ \ \ \ \ \ \ \ \textcolor{keyword}{from}\ \mbox{\hyperlink{namespacecommonpython_1_1database}{commonpython.database}}\ \textcolor{keyword}{import}\ DB2Manager}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00035}00035\ \ \ \ \ \ \ \ \ \textcolor{keyword}{from}\ \mbox{\hyperlink{namespacecommonpython_1_1messaging}{commonpython.messaging}}\ \textcolor{keyword}{import}\ MQManager}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00036}00036\ \ \ \ \ \ \ \ \ \textcolor{keyword}{from}\ \mbox{\hyperlink{namespacecommonpython_1_1framework}{commonpython.framework}}\ \textcolor{keyword}{import}\ ComponentBase,\ run\_component}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00037}00037\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00038}00038\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}✅\ All\ imports\ successful!"{}})}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00039}00039\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00040}00040\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Test\ basic\ functionality}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00041}00041\ \ \ \ \ \ \ \ \ config\_manager\ =\ ConfigManager()}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00042}00042\ \ \ \ \ \ \ \ \ logging\_config\ =\ config\_manager.get\_logging\_config()}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00043}00043\ \ \ \ \ \ \ \ \ logger\_manager\ =\ LoggerManager(\textcolor{stringliteral}{'QuickStartTest'},\ logging\_config)}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00044}00044\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00045}00045\ \ \ \ \ \ \ \ \ logger\_manager.logger.info(\textcolor{stringliteral}{'Framework\ installation\ test\ completed\ successfully'})}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00046}00046\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}✅\ Basic\ functionality\ test\ successful!"{}})}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00047}00047\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00048}00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00049}00049\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00050}00050\ \ \ \ \ \textcolor{keywordflow}{except}\ ImportError\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00051}00051\ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}❌\ Import\ error:\ \{e\}"{}})}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00052}00052\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}💡\ Make\ sure\ you've\ installed\ the\ framework:\ pip\ install\ -\/e\ ."{}})}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00053}00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00054}00054\ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00055}00055\ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}❌\ Framework\ test\ failed:\ \{e\}"{}})}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00056}00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00058}\mbox{\hyperlink{namespacequick__start_a23d4a74d110a711764a81b80e811d0b7}{00058}}\ \textcolor{keyword}{def\ }\mbox{\hyperlink{namespacequick__start_a23d4a74d110a711764a81b80e811d0b7}{create\_sample\_component}}():}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00059}00059\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00060}00060\ \textcolor{stringliteral}{\ \ \ \ Create\ a\ sample\ component\ for\ testing.}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00061}00061\ \textcolor{stringliteral}{\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00062}00062\ \textcolor{stringliteral}{\ \ \ \ @brief\ Create\ a\ sample\ component\ to\ demonstrate\ framework\ usage.}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00063}00063\ \textcolor{stringliteral}{\ \ \ \ @return\ Path\ to\ the\ created\ component\ file}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00064}00064\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00065}00065\ \ \ \ \ print(\textcolor{stringliteral}{"{}📝\ Creating\ sample\ component..."{}})}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00066}00066\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00067}00067\ \ \ \ \ sample\_component\_code\ =\ \textcolor{stringliteral}{'''\#!/usr/bin/env\ python3}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00068}00068\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00069}00069\ \textcolor{stringliteral}{Sample\ Component\ for\ CommonPython\ Framework}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00070}00070\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00071}00071\ \textcolor{stringliteral}{This\ is\ a\ sample\ component\ created\ by\ the\ quick\ start\ script.}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00072}00072\ \textcolor{stringliteral}{It\ demonstrates\ basic\ framework\ usage.}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00073}00073\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00074}00074\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00075}00075\ \textcolor{stringliteral}{import\ sys}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00076}00076\ \textcolor{stringliteral}{from\ pathlib\ import\ Path}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00077}00077\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00078}00078\ \textcolor{stringliteral}{\#\ Add\ the\ parent\ directory\ to\ the\ path\ to\ import\ the\ module}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00079}00079\ \textcolor{stringliteral}{sys.path.insert(0,\ str(Path(\_\_file\_\_).parent.parent))}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00080}00080\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00081}00081\ \textcolor{stringliteral}{from\ commonpython.framework\ import\ ComponentBase,\ run\_component}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00082}00082\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00083}00083\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00084}00084\ \textcolor{stringliteral}{class\ SampleComponent(ComponentBase):}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00085}00085\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00086}00086\ \textcolor{stringliteral}{\ \ \ \ Sample\ component\ demonstrating\ CommonPython\ framework\ usage.}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00087}00087\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00088}00088\ \textcolor{stringliteral}{\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00089}00089\ \textcolor{stringliteral}{\ \ \ \ def\ \_\_init\_\_(self,\ config\_file=None):}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00090}00090\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ super().\_\_init\_\_("{}SampleComponent"{},\ config\_file)}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00091}00091\ \textcolor{stringliteral}{\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00092}00092\ \textcolor{stringliteral}{\ \ \ \ def\ initialize(self)\ -\/>\ bool:}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00093}00093\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ self.log\_info("{}Sample\ component\ is\ initializing!"{})}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00094}00094\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00095}00095\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \#\ Get\ some\ configuration}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00096}00096\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ operation\_count\ =\ self.get\_config('component.operation\_count',\ 3)}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00097}00097\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ self.log\_info(f"{}Will\ perform\ \{operation\_count\}\ operations"{})}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00098}00098\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00099}00099\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ return\ True}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00100}00100\ \textcolor{stringliteral}{\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00101}00101\ \textcolor{stringliteral}{\ \ \ \ def\ run(self)\ -\/>\ bool:}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00102}00102\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ self.log\_info("{}Sample\ component\ is\ running!"{})}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00103}00103\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00104}00104\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \#\ Try\ to\ connect\ to\ services\ (will\ fail\ gracefully\ if\ not\ available)}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00105}00105\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ db\_connected\ =\ self.connect\_database()}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00106}00106\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ mq\_connected\ =\ self.connect\_messaging()}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00107}00107\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00108}00108\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ if\ db\_connected:}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00109}00109\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ self.log\_info("{}✅\ Database\ connection\ successful!"{})}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00110}00110\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ else:}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00111}00111\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ self.log\_info("{}ℹ️\ \ Database\ connection\ failed\ (expected\ if\ DB2\ not\ available)"{})}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00112}00112\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00113}00113\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ if\ mq\_connected:}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00114}00114\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ self.log\_info("{}✅\ Messaging\ connection\ successful!"{})}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00115}00115\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ else:}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00116}00116\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ self.log\_info("{}ℹ️\ \ Messaging\ connection\ failed\ (expected\ if\ MQ\ not\ available)"{})}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00117}00117\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00118}00118\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \#\ Perform\ some\ sample\ operations}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00119}00119\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ operation\_count\ =\ self.get\_config('component.operation\_count',\ 3)}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00120}00120\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ for\ i\ in\ range(operation\_count):}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00121}00121\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ self.log\_info(f"{}Performing\ sample\ operation\ \{i\ +\ 1\}/\{operation\_count\}"{})}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00122}00122\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00123}00123\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ self.log\_info("{}Sample\ component\ execution\ completed\ successfully!"{})}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00124}00124\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ return\ True}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00125}00125\ \textcolor{stringliteral}{\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00126}00126\ \textcolor{stringliteral}{\ \ \ \ def\ cleanup(self)\ -\/>\ None:}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00127}00127\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ self.log\_info("{}Sample\ component\ is\ cleaning\ up!"{})}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00128}00128\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00129}00129\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \#\ Ensure\ services\ are\ disconnected}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00130}00130\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ try:}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00131}00131\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ self.disconnect\_database()}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00132}00132\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ except:}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00133}00133\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ pass}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00134}00134\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00135}00135\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ try:}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00136}00136\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ self.disconnect\_messaging()}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00137}00137\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ except:}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00138}00138\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ pass}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00139}00139\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00140}00140\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00141}00141\ \textcolor{stringliteral}{def\ main():}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00142}00142\ \textcolor{stringliteral}{\ \ \ \ return\ run\_component(SampleComponent,\ "{}SampleComponent"{})}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00143}00143\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00144}00144\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00145}00145\ \textcolor{stringliteral}{if\ \_\_name\_\_\ ==\ '\_\_main\_\_':}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00146}00146\ \textcolor{stringliteral}{\ \ \ \ sys.exit(0\ if\ main()\ else\ 1)}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00147}00147\ \textcolor{stringliteral}{'''}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00148}00148\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00149}00149\ \ \ \ \ \textcolor{comment}{\#\ Create\ the\ sample\ component\ file}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00150}00150\ \ \ \ \ sample\_file\ =\ Path(\textcolor{stringliteral}{"{}sample\_component.py"{}})}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00151}00151\ \ \ \ \ \textcolor{keyword}{with}\ open(sample\_file,\ \textcolor{stringliteral}{'w'})\ \textcolor{keyword}{as}\ f:}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00152}00152\ \ \ \ \ \ \ \ \ f.write(sample\_component\_code)}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00153}00153\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00154}00154\ \ \ \ \ print(f\textcolor{stringliteral}{"{}✅\ Sample\ component\ created:\ \{sample\_file\}"{}})}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00155}00155\ \ \ \ \ \textcolor{keywordflow}{return}\ str(sample\_file)}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00156}00156\ }
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00157}\mbox{\hyperlink{namespacequick__start_a42643dcea39b6dbb88b6b2d397a7a1b2}{00157}}\ \textcolor{keyword}{def\ }\mbox{\hyperlink{namespacequick__start_a42643dcea39b6dbb88b6b2d397a7a1b2}{create\_sample\_config}}():}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00158}00158\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00159}00159\ \textcolor{stringliteral}{\ \ \ \ Create\ a\ sample\ configuration\ file.}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00160}00160\ \textcolor{stringliteral}{\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00161}00161\ \textcolor{stringliteral}{\ \ \ \ @brief\ Create\ a\ sample\ configuration\ file\ for\ testing.}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00162}00162\ \textcolor{stringliteral}{\ \ \ \ @return\ Path\ to\ the\ created\ configuration\ file}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00163}00163\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00164}00164\ \ \ \ \ print(\textcolor{stringliteral}{"{}⚙️\ \ Creating\ sample\ configuration..."{}})}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00165}00165\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00166}00166\ \ \ \ \ sample\_config\ =\ \textcolor{stringliteral}{'''\#\ Sample\ Configuration\ for\ CommonPython\ Framework}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00167}00167\ \textcolor{stringliteral}{\#\ This\ configuration\ file\ is\ created\ by\ the\ quick\ start\ script}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00168}00168\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00169}00169\ \textcolor{stringliteral}{\#\ Database\ configuration\ (will\ fail\ gracefully\ if\ DB2\ not\ available)}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00170}00170\ \textcolor{stringliteral}{database:}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00171}00171\ \textcolor{stringliteral}{\ \ host:\ localhost}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00172}00172\ \textcolor{stringliteral}{\ \ port:\ 50000}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00173}00173\ \textcolor{stringliteral}{\ \ name:\ sampledb}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00174}00174\ \textcolor{stringliteral}{\ \ user:\ sampleuser}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00175}00175\ \textcolor{stringliteral}{\ \ password:\ samplepass}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00176}00176\ \textcolor{stringliteral}{\ \ schema:\ sampleschema}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00177}00177\ \textcolor{stringliteral}{\ \ timeout:\ 30}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00178}00178\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00179}00179\ \textcolor{stringliteral}{\#\ Messaging\ configuration\ (will\ fail\ gracefully\ if\ MQ\ not\ available)}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00180}00180\ \textcolor{stringliteral}{messaging:}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00181}00181\ \textcolor{stringliteral}{\ \ host:\ localhost}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00182}00182\ \textcolor{stringliteral}{\ \ port:\ 1414}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00183}00183\ \textcolor{stringliteral}{\ \ queue\_manager:\ SAMPLE\_QM}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00184}00184\ \textcolor{stringliteral}{\ \ channel:\ SYSTEM.DEF.SVRCONN}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00185}00185\ \textcolor{stringliteral}{\ \ user:\ sampleuser}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00186}00186\ \textcolor{stringliteral}{\ \ password:\ samplepass}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00187}00187\ \textcolor{stringliteral}{\ \ timeout:\ 30}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00188}00188\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00189}00189\ \textcolor{stringliteral}{\#\ Logging\ configuration}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00190}00190\ \textcolor{stringliteral}{logging:}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00191}00191\ \textcolor{stringliteral}{\ \ level:\ INFO}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00192}00192\ \textcolor{stringliteral}{\ \ file:\ sample\_component.log}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00193}00193\ \textcolor{stringliteral}{\ \ dir:\ log}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00194}00194\ \textcolor{stringliteral}{\ \ format:\ "{}\%(asctime)s\ -\/\ \%(name)s\ -\/\ \%(levelname)s\ -\/\ \%(message)s"{}}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00195}00195\ \textcolor{stringliteral}{\ \ max\_size:\ 10485760}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00196}00196\ \textcolor{stringliteral}{\ \ backup\_count:\ 5}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00197}00197\ \textcolor{stringliteral}{\ \ colored:\ true}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00198}00198\ \textcolor{stringliteral}{\ \ json\_format:\ false}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00199}00199\ \textcolor{stringliteral}{\ \ console:\ true}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00200}00200\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00201}00201\ \textcolor{stringliteral}{\#\ Component-\/specific\ configuration}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00202}00202\ \textcolor{stringliteral}{component:}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00203}00203\ \textcolor{stringliteral}{\ \ operation\_count:\ 3}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00204}00204\ \textcolor{stringliteral}{\ \ delay\_seconds:\ 1}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00205}00205\ \textcolor{stringliteral}{'''}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00206}00206\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00207}00207\ \ \ \ \ \textcolor{comment}{\#\ Create\ the\ sample\ configuration\ file}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00208}00208\ \ \ \ \ config\_file\ =\ Path(\textcolor{stringliteral}{"{}sample\_config.yaml"{}})}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00209}00209\ \ \ \ \ \textcolor{keyword}{with}\ open(config\_file,\ \textcolor{stringliteral}{'w'})\ \textcolor{keyword}{as}\ f:}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00210}00210\ \ \ \ \ \ \ \ \ f.write(sample\_config)}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00211}00211\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00212}00212\ \ \ \ \ print(f\textcolor{stringliteral}{"{}✅\ Sample\ configuration\ created:\ \{config\_file\}"{}})}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00213}00213\ \ \ \ \ \textcolor{keywordflow}{return}\ str(config\_file)}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00214}00214\ }
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00215}\mbox{\hyperlink{namespacequick__start_a0be93c26788a4cbcacab14965f0eeec5}{00215}}\ \textcolor{keyword}{def\ }\mbox{\hyperlink{namespacequick__start_a0be93c26788a4cbcacab14965f0eeec5}{run\_sample\_component}}(component\_file,\ config\_file):}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00216}00216\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00217}00217\ \textcolor{stringliteral}{\ \ \ \ Run\ the\ sample\ component.}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00218}00218\ \textcolor{stringliteral}{\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00219}00219\ \textcolor{stringliteral}{\ \ \ \ @brief\ Run\ the\ sample\ component\ to\ demonstrate\ framework\ usage.}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00220}00220\ \textcolor{stringliteral}{\ \ \ \ @param\ component\_file\ Path\ to\ the\ component\ file}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00221}00221\ \textcolor{stringliteral}{\ \ \ \ @param\ config\_file\ Path\ to\ the\ configuration\ file}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00222}00222\ \textcolor{stringliteral}{\ \ \ \ @return\ True\ if\ component\ ran\ successfully,\ False\ otherwise}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00223}00223\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00224}00224\ \ \ \ \ print(\textcolor{stringliteral}{"{}🚀\ Running\ sample\ component..."{}})}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00225}00225\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00226}00226\ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00227}00227\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Import\ and\ run\ the\ component}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00228}00228\ \ \ \ \ \ \ \ \ \textcolor{keyword}{import}\ importlib.util}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00229}00229\ \ \ \ \ \ \ \ \ spec\ =\ importlib.util.spec\_from\_file\_location(\textcolor{stringliteral}{"{}sample\_component"{}},\ component\_file)}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00230}00230\ \ \ \ \ \ \ \ \ module\ =\ importlib.util.module\_from\_spec(spec)}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00231}00231\ \ \ \ \ \ \ \ \ spec.loader.exec\_module(module)}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00232}00232\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00233}00233\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Create\ a\ component\ instance\ with\ the\ config\ file}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00234}00234\ \ \ \ \ \ \ \ \ component\ =\ module.SampleComponent(config\_file)}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00235}00235\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00236}00236\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Run\ the\ component}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00237}00237\ \ \ \ \ \ \ \ \ result\ =\ component.start()}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00238}00238\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00239}00239\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ result:}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00240}00240\ \ \ \ \ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}✅\ Sample\ component\ ran\ successfully!"{}})}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00241}00241\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00242}00242\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00243}00243\ \ \ \ \ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}❌\ Sample\ component\ failed!"{}})}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00244}00244\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00245}00245\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00246}00246\ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00247}00247\ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}❌\ Error\ running\ sample\ component:\ \{e\}"{}})}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00248}00248\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00249}00249\ }
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00250}\mbox{\hyperlink{namespacequick__start_a56b9771ce4d136cbca5e37540ca77153}{00250}}\ \textcolor{keyword}{def\ }\mbox{\hyperlink{namespacequick__start_a56b9771ce4d136cbca5e37540ca77153}{cleanup\_files}}(files):}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00251}00251\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00252}00252\ \textcolor{stringliteral}{\ \ \ \ Clean\ up\ temporary\ files.}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00253}00253\ \textcolor{stringliteral}{\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00254}00254\ \textcolor{stringliteral}{\ \ \ \ @brief\ Remove\ temporary\ files\ created\ during\ quick\ start.}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00255}00255\ \textcolor{stringliteral}{\ \ \ \ @param\ files\ List\ of\ file\ paths\ to\ remove}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00256}00256\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00257}00257\ \ \ \ \ print(\textcolor{stringliteral}{"{}🧹\ Cleaning\ up\ temporary\ files..."{}})}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00258}00258\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00259}00259\ \ \ \ \ \textcolor{keywordflow}{for}\ file\_path\ \textcolor{keywordflow}{in}\ files:}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00260}00260\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00261}00261\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ os.path.exists(file\_path):}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00262}00262\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ os.remove(file\_path)}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00263}00263\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}✅\ Removed:\ \{file\_path\}"{}})}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00264}00264\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00265}00265\ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}⚠️\ \ Could\ not\ remove\ \{file\_path\}:\ \{e\}"{}})}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00266}00266\ }
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00267}\mbox{\hyperlink{namespacequick__start_a365aed21ab1a4c50468b1bc837a55a24}{00267}}\ \textcolor{keyword}{def\ }\mbox{\hyperlink{namespacequick__start_a365aed21ab1a4c50468b1bc837a55a24}{main}}():}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00268}00268\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00269}00269\ \textcolor{stringliteral}{\ \ \ \ Main\ quick\ start\ function.}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00270}00270\ \textcolor{stringliteral}{\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00271}00271\ \textcolor{stringliteral}{\ \ \ \ @brief\ Run\ the\ complete\ quick\ start\ process.}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00272}00272\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00273}00273\ \ \ \ \ print(\textcolor{stringliteral}{"{}🎉\ Welcome\ to\ CommonPython\ Framework\ Quick\ Start!"{}})}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00274}00274\ \ \ \ \ print(\textcolor{stringliteral}{"{}="{}}\ *\ 60)}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00275}00275\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00276}00276\ \ \ \ \ \textcolor{comment}{\#\ Test\ framework\ installation}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00277}00277\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ \mbox{\hyperlink{namespacequick__start_ab0e08a3a362fcba32bfbb231bdb73b39}{test\_framework\_installation}}():}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00278}00278\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}\(\backslash\)n❌\ Framework\ installation\ test\ failed!"{}})}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00279}00279\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}💡\ Please\ check\ your\ installation\ and\ try\ again."{}})}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00280}00280\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00281}00281\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00282}00282\ \ \ \ \ print(\textcolor{stringliteral}{"{}\(\backslash\)n"{}}\ +\ \textcolor{stringliteral}{"{}="{}}\ *\ 60)}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00283}00283\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00284}00284\ \ \ \ \ \textcolor{comment}{\#\ Create\ sample\ files}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00285}00285\ \ \ \ \ component\_file\ =\ \mbox{\hyperlink{namespacequick__start_a23d4a74d110a711764a81b80e811d0b7}{create\_sample\_component}}()}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00286}00286\ \ \ \ \ config\_file\ =\ \mbox{\hyperlink{namespacequick__start_a42643dcea39b6dbb88b6b2d397a7a1b2}{create\_sample\_config}}()}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00287}00287\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00288}00288\ \ \ \ \ print(\textcolor{stringliteral}{"{}\(\backslash\)n"{}}\ +\ \textcolor{stringliteral}{"{}="{}}\ *\ 60)}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00289}00289\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00290}00290\ \ \ \ \ \textcolor{comment}{\#\ Run\ sample\ component}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00291}00291\ \ \ \ \ success\ =\ \mbox{\hyperlink{namespacequick__start_a0be93c26788a4cbcacab14965f0eeec5}{run\_sample\_component}}(component\_file,\ config\_file)}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00292}00292\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00293}00293\ \ \ \ \ print(\textcolor{stringliteral}{"{}\(\backslash\)n"{}}\ +\ \textcolor{stringliteral}{"{}="{}}\ *\ 60)}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00294}00294\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00295}00295\ \ \ \ \ \textcolor{comment}{\#\ Ask\ user\ if\ they\ want\ to\ keep\ the\ sample\ files}}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00296}00296\ \ \ \ \ keep\_files\ =\ input(\textcolor{stringliteral}{"{}\(\backslash\)n🤔\ Would\ you\ like\ to\ keep\ the\ sample\ files?\ (y/n):\ "{}}).lower().strip()}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00297}00297\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00298}00298\ \ \ \ \ \textcolor{keywordflow}{if}\ keep\_files\ \textcolor{keywordflow}{in}\ [\textcolor{stringliteral}{'y'},\ \textcolor{stringliteral}{'yes'}]:}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00299}00299\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}✅\ Sample\ files\ kept:"{}})}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00300}00300\ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}\ \ \ -\/\ Component:\ \{component\_file\}"{}})}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00301}00301\ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}\ \ \ -\/\ Configuration:\ \{config\_file\}"{}})}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00302}00302\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}\(\backslash\)n💡\ You\ can\ now\ modify\ these\ files\ to\ create\ your\ own\ components!"{}})}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00303}00303\ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00304}00304\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacequick__start_a56b9771ce4d136cbca5e37540ca77153}{cleanup\_files}}([component\_file,\ config\_file])}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00305}00305\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00306}00306\ \ \ \ \ print(\textcolor{stringliteral}{"{}\(\backslash\)n"{}}\ +\ \textcolor{stringliteral}{"{}="{}}\ *\ 60)}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00307}00307\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00308}00308\ \ \ \ \ \textcolor{keywordflow}{if}\ success:}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00309}00309\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}🎉\ Quick\ start\ completed\ successfully!"{}})}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00310}00310\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}\(\backslash\)n📚\ Next\ steps:"{}})}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00311}00311\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}1.\ Read\ the\ README.md\ for\ detailed\ documentation"{}})}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00312}00312\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}2.\ Check\ out\ the\ examples/\ directory\ for\ more\ examples"{}})}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00313}00313\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}3.\ Use\ templates/component\_template.py\ as\ a\ starting\ point"{}})}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00314}00314\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}4.\ Read\ docs/DEVELOPMENT\_GUIDE.md\ for\ comprehensive\ guidance"{}})}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00315}00315\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}\(\backslash\)n🚀\ Happy\ coding\ with\ CommonPython\ Framework!"{}})}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00316}00316\ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00317}00317\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}❌\ Quick\ start\ encountered\ some\ issues."{}})}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00318}00318\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}💡\ Check\ the\ error\ messages\ above\ and\ refer\ to\ the\ troubleshooting\ section\ in\ README.md"{}})}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00319}00319\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00320}00320\ \ \ \ \ \textcolor{keywordflow}{return}\ success}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00321}00321\ }
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00322}00322\ \textcolor{keywordflow}{if}\ \_\_name\_\_\ ==\ \textcolor{stringliteral}{'\_\_main\_\_'}:}
+\DoxyCodeLine{\Hypertarget{quick__start_8py_source_l00323}00323\ \ \ \ \ sys.exit(0\ \textcolor{keywordflow}{if}\ \mbox{\hyperlink{namespacequick__start_a365aed21ab1a4c50468b1bc837a55a24}{main}}()\ \textcolor{keywordflow}{else}\ 1)}
+
+\end{DoxyCode}
