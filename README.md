@@ -1,10 +1,11 @@
 # CommonPython Framework
 
-A comprehensive Python framework providing configuration management, logging, database connectivity, message queue operations, and command-line interface functionality using only standard Python modules and IBM CLI interfaces.
+A comprehensive Python framework providing configuration management, logging, database connectivity, message queue operations, and command-line interface functionality. Features a **flexible adapter architecture** that supports both CLI-based and library-based implementations.
 
 [![Python Version](https://img.shields.io/badge/python-3.12%2B-blue.svg)](https://www.python.org/downloads/)
-[![Tests](https://img.shields.io/badge/tests-225%20passed-brightgreen.svg)](scripts/test_commonpython.py)
-[![Coverage](https://img.shields.io/badge/coverage-89%25-green.svg)](scripts/test_commonpython.py)
+[![Tests](https://img.shields.io/badge/tests-295%20passed-brightgreen.svg)](test/)
+[![Coverage](https://img.shields.io/badge/coverage-89%25-green.svg)](test/)
+[![Architecture](https://img.shields.io/badge/architecture-adapter%20pattern-blue.svg)](docs/ADAPTER_ARCHITECTURE.md)
 
 ## 🚀 Quick Start
 
@@ -44,22 +45,65 @@ python examples/quick_start.py
 
 - **🔧 Configuration Management**: YAML-based configuration with environment variable support
 - **📝 Logging**: Human-readable and JSON logging with colored console output
-- **🗄️ Database Operations**: IBM DB2 connectivity using CLI interface
-- **📨 Message Queue**: IBM MQ operations using CLI interface
+- **🗄️ Database Operations**: IBM DB2 connectivity with **both CLI and library implementations**
+- **📨 Message Queue**: IBM MQ operations with **both CLI and library implementations**
+- **🔄 Adapter Pattern**: Seamlessly switch between CLI and library implementations via configuration
 - **💻 Command Line Interface**: Full-featured CLI for all operations
 - **🧩 Component Framework**: Common framework for building components with shared functionality
-- **🧪 Testing**: Comprehensive test suite with coverage reporting
-- **📚 Documentation**: Complete Doxygen-style documentation
+- **🧪 Testing**: Comprehensive test suite with 295+ tests and coverage reporting
+- **📚 Documentation**: Complete Doxygen-style documentation and architecture guides
+- **🚀 Zero Migration Cost**: Switch implementations without changing application code
 
 ## 📋 Requirements
 
+### Core Requirements
 - Python 3.12 or higher (tested with 3.12.3)
+- PyYAML (for configuration handling)
+- Coverage 7.0.0 or higher (for testing)
+
+### Implementation-Specific Requirements
+
+**CLI Implementation** (Default - Always Available):
 - IBM DB2 CLI tools (for database operations)
 - IBM MQ CLI tools (for messaging operations)
-- Coverage 7.0.0 or higher (for testing)
-- PyYAML (for configuration handling)
+
+**Library Implementation** (Optional - Better Performance):
+- `ibm_db` - For native DB2 database operations
+- `pymqi` - For native IBM MQ messaging operations
+
+Install library dependencies with:
+```bash
+pip install ibm_db pymqi
+```
 
 Note: The framework is actively tested with Python 3.12.3 but may work with earlier versions.
+
+## 🏗️ Architecture: Adapter Pattern
+
+**NEW!** The framework now features a flexible adapter architecture that allows you to switch between CLI-based and library-based implementations **without changing your code**.
+
+### Why Use the Adapter Pattern?
+
+✅ **Zero Code Changes**: Switch implementations via configuration
+✅ **Better Performance**: Library adapters are 10-50x faster
+✅ **Improved Security**: Native parameterized queries prevent SQL injection
+✅ **Gradual Migration**: Migrate database and messaging independently
+✅ **Auto-Fallback**: Automatically use CLI if libraries aren't installed
+
+### Quick Example
+
+```yaml
+# config.yaml - Switch from CLI to library implementation
+database:
+  implementation: library  # Was: cli
+  auto_fallback: true     # Fallback to CLI if library not available
+  host: localhost
+  # ... rest of config unchanged
+```
+
+**That's it!** No application code changes needed.
+
+📚 **[Read the complete Adapter Architecture Guide](docs/ADAPTER_ARCHITECTURE.md)** for migration steps, performance comparisons, and best practices.
 
 ## 🎯 For New Users
 

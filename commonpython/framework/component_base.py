@@ -14,8 +14,8 @@ sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
 from ..config import ConfigManager
 from ..logging import LoggerManager
-from ..database import DB2Manager
-from ..messaging import MQManager
+from ..factories import ManagerFactory
+from ..interfaces import IDatabaseManager, IMessagingManager
 
 
 class ComponentBase(ABC):
@@ -57,13 +57,13 @@ class ComponentBase(ABC):
                 logging_config['dir'] = 'log'
             self.logger_manager = LoggerManager(self.component_name, logging_config)
             
-            # Initialize database manager
+            # Initialize database manager using factory
             db_config = self.config_manager.get_database_config()
-            self.db_manager = DB2Manager(db_config, self.logger_manager)
-            
-            # Initialize messaging manager
+            self.db_manager = ManagerFactory.create_database_manager(db_config, self.logger_manager)
+
+            # Initialize messaging manager using factory
             mq_config = self.config_manager.get_messaging_config()
-            self.mq_manager = MQManager(mq_config, self.logger_manager)
+            self.mq_manager = ManagerFactory.create_messaging_manager(mq_config, self.logger_manager)
             
             self.logger_manager.logger.info(f"Component '{self.component_name}' initialized successfully")
             
