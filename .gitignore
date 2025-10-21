@@ -48,11 +48,29 @@ coverage.xml
 # Testing
 .pytest_cache/
 .tox/
+.nox/
+*.cover
+.hypothesis/
 
 # OS
 .DS_Store
 Thumbs.db
 
+# MyPy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Ruff
+.ruff_cache/
+
 # Project specific
 *.log
 .cursor/
+
+# Bandit
+bandit-report.json
+
+# Build artifacts
+*.whl
+*.tar.gz

@@ -74,9 +74,18 @@ setup(
         # Development and testing
         "dev": [
             "coverage>=7.0.0",
+            "pytest>=7.4.0",
+            "pytest-cov>=4.1.0",
+            "black>=23.0.0",
+            "ruff>=0.1.0",
+            "mypy>=1.0.0",
+            "pre-commit>=3.0.0",
+            "types-PyYAML>=6.0.0",
         ],
         "test": [
             "coverage>=7.0.0",
+            "pytest>=7.4.0",
+            "pytest-cov>=4.1.0",
         ],
         # Library-based implementations (high performance)
         "library": [
@@ -94,6 +103,13 @@ setup(
         # All optional dependencies
         "all": [
             "coverage>=7.0.0",
+            "pytest>=7.4.0",
+            "pytest-cov>=4.1.0",
+            "black>=23.0.0",
+            "ruff>=0.1.0",
+            "mypy>=1.0.0",
+            "pre-commit>=3.0.0",
+            "types-PyYAML>=6.0.0",
             "ibm_db>=3.0.0",
             "pymqi>=1.12.0",
         ],
