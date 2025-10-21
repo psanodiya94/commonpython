@@ -46,11 +46,9 @@ htmlcov/
 coverage.xml
 
 # Testing
-.pytest_cache/
 .tox/
 .nox/
 *.cover
-.hypothesis/
 
 # OS
 .DS_Store
@@ -74,3 +72,8 @@ bandit-report.json
 # Build artifacts
 *.whl
 *.tar.gz
+
+# Generated documentation (run doxygen to regenerate)
+docs/html/
+docs/latex/
+docs/doxygen/

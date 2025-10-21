@@ -1,7 +1,0 @@
-<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" title=" " alt="" coords="5,45,144,70"/>
-<area shape="rect" id="Node000001" href="$dc/df6/classcommonpython_1_1logging_1_1logger__manager_1_1ColoredFormatter.html" title=" " alt="" coords="192,5,413,45"/>
-<area shape="poly" id="edge2_Node000000_Node000001" title=" " alt="" coords="157,43,191,38,192,44,158,48"/>
-<area shape="rect" id="Node000002" href="$d4/db4/classcommonpython_1_1logging_1_1logger__manager_1_1JSONFormatter.html" title=" " alt="" coords="192,69,413,109"/>
-<area shape="poly" id="edge3_Node000000_Node000002" title=" " alt="" coords="158,66,192,71,191,76,157,72"/>
-</map>
