@@ -107,10 +107,7 @@ Changelog = "https://github.com/psanodiya94/commonpython/blob/main/CHANGELOG.md"
 commonpython = "commonpython.cli.cli:main"
 
 [tool.setuptools]
-packages = ["commonpython"]
-
-[tool.setuptools.packages.find]
-exclude = ["test*", "scripts*", "docs*", "examples*"]
+packages = { find = { where = ["."], exclude = ["test*", "scripts*", "docs*", "examples*"] } }
 
 [tool.setuptools.package-data]
 commonpython = ["config/*.yaml", "config/*.json"]
