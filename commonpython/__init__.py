@@ -23,10 +23,26 @@ from .database import DB2Manager
 from .messaging import MQManager
 from .cli import CLI
 
+# Import exception classes
+from .exceptions import (
+    CommonPythonError,
+    ConfigurationError,
+    DatabaseError,
+    MessagingError,
+    AdapterError,
+    ComponentError,
+)
+
 __all__ = [
     'ConfigManager',
-    'LoggerManager', 
+    'LoggerManager',
     'DB2Manager',
     'MQManager',
-    'CLI'
+    'CLI',
+    'CommonPythonError',
+    'ConfigurationError',
+    'DatabaseError',
+    'MessagingError',
+    'AdapterError',
+    'ComponentError',
 ]
