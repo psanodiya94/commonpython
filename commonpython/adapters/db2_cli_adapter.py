@@ -7,7 +7,7 @@ used interchangeably with library-based implementations.
 """
 
 from contextlib import contextmanager
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Optional
 
 from ..database.db2_manager import DB2Manager
 from ..interfaces.database_interface import IDatabaseManager
@@ -21,7 +21,7 @@ class DB2CLIAdapter(IDatabaseManager):
     it through the IDatabaseManager interface.
     """
 
-    def __init__(self, config: Dict[str, Any], logger=None):
+    def __init__(self, config: dict[str, Any], logger=None):
         """
         Initialize the DB2 CLI adapter.
 
@@ -59,7 +59,7 @@ class DB2CLIAdapter(IDatabaseManager):
         """
         return self._impl.is_connected()
 
-    def execute_query(self, query: str, params: Optional[Tuple] = None) -> List[Dict[str, Any]]:
+    def execute_query(self, query: str, params: Optional[tuple] = None) -> list[dict[str, Any]]:
         """
         Execute a SELECT query and return results.
 
@@ -71,7 +71,7 @@ class DB2CLIAdapter(IDatabaseManager):
         """
         return self._impl.execute_query(query, params)
 
-    def execute_update(self, query: str, params: Optional[Tuple] = None) -> int:
+    def execute_update(self, query: str, params: Optional[tuple] = None) -> int:
         """
         Execute an INSERT, UPDATE, or DELETE query.
 
@@ -84,8 +84,8 @@ class DB2CLIAdapter(IDatabaseManager):
         return self._impl.execute_update(query, params)
 
     def execute_batch(
-        self, queries: List[str], params_list: Optional[List[Tuple]] = None
-    ) -> List[int]:
+        self, queries: list[str], params_list: Optional[list[tuple]] = None
+    ) -> list[int]:
         """
         Execute multiple queries in a batch.
 
@@ -108,7 +108,7 @@ class DB2CLIAdapter(IDatabaseManager):
         with self._impl.transaction():
             yield self
 
-    def get_table_info(self, table_name: str) -> List[Dict[str, Any]]:
+    def get_table_info(self, table_name: str) -> list[dict[str, Any]]:
         """
         Get table column information.
 
@@ -119,7 +119,7 @@ class DB2CLIAdapter(IDatabaseManager):
         """
         return self._impl.get_table_info(table_name)
 
-    def get_database_info(self) -> Dict[str, Any]:
+    def get_database_info(self) -> dict[str, Any]:
         """
         Get database information.
 

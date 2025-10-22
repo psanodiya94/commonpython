@@ -6,7 +6,7 @@ Provides base functionality for components that want to use the CommonPython fra
 
 import sys
 from abc import ABC, abstractmethod
-from typing import Any, Dict, Optional
+from typing import Any, Optional
 
 from ..config import ConfigManager
 from ..factories import ManagerFactory
@@ -226,7 +226,7 @@ class ComponentBase(ABC):
             raise
 
     def send_message(
-        self, queue_name: str, message: Any, properties: Optional[Dict[str, Any]] = None
+        self, queue_name: str, message: Any, properties: Optional[dict[str, Any]] = None
     ) -> bool:
         """
         Send message to queue.
@@ -250,7 +250,7 @@ class ComponentBase(ABC):
 
     def receive_message(
         self, queue_name: str, timeout: Optional[int] = None
-    ) -> Optional[Dict[str, Any]]:
+    ) -> Optional[dict[str, Any]]:
         """
         Receive message from queue.
 

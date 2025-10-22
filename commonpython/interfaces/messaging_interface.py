@@ -7,7 +7,7 @@ library-based implementations without changing client code.
 """
 
 from abc import ABC, abstractmethod
-from typing import Any, Dict, Optional, Union
+from typing import Any, Optional, Union
 
 
 class IMessagingManager(ABC):
@@ -51,8 +51,8 @@ class IMessagingManager(ABC):
     def put_message(
         self,
         queue_name: str,
-        message: Union[str, bytes, Dict],
-        message_properties: Optional[Dict[str, Any]] = None,
+        message: Union[str, bytes, dict],
+        message_properties: Optional[dict[str, Any]] = None,
     ) -> bool:
         """
         Put a message to a queue.
@@ -69,7 +69,7 @@ class IMessagingManager(ABC):
     @abstractmethod
     def get_message(
         self, queue_name: str, timeout: Optional[int] = None
-    ) -> Optional[Dict[str, Any]]:
+    ) -> Optional[dict[str, Any]]:
         """
         Get a message from a queue.
 
@@ -84,7 +84,7 @@ class IMessagingManager(ABC):
     @abstractmethod
     def browse_message(
         self, queue_name: str, message_id: Optional[bytes] = None
-    ) -> Optional[Dict[str, Any]]:
+    ) -> Optional[dict[str, Any]]:
         """
         Browse a message from a queue without removing it.
 

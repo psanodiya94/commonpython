@@ -5,7 +5,7 @@ Provides a common way to run components with shared functionality.
 """
 
 import argparse
-from typing import Any, Dict, Optional, Type
+from typing import Any, Optional
 
 from .component_base import ComponentBase
 
@@ -18,7 +18,7 @@ class ComponentRunner:
     including configuration, logging, database, and messaging capabilities.
     """
 
-    def __init__(self, component_class: Type[ComponentBase], component_name: str):
+    def __init__(self, component_class: type[ComponentBase], component_name: str):
         """
         Initialize the component runner.
 
@@ -105,7 +105,7 @@ class ComponentRunner:
                 print(f"Component runner error: {str(e)}")
             return False
 
-    def run_with_config(self, config: Dict[str, Any]) -> bool:
+    def run_with_config(self, config: dict[str, Any]) -> bool:
         """
         Run component with configuration dictionary.
 
@@ -135,7 +135,7 @@ class ComponentRunner:
 
 
 def run_component(
-    component_class: Type[ComponentBase], component_name: str, args: Optional[list] = None
+    component_class: type[ComponentBase], component_name: str, args: Optional[list] = None
 ) -> bool:
     """
     Run a component with CommonPython framework.
@@ -151,7 +151,7 @@ def run_component(
 
 
 def run_component_with_config(
-    component_class: Type[ComponentBase], component_name: str, config: Dict[str, Any]
+    component_class: type[ComponentBase], component_name: str, config: dict[str, Any]
 ) -> bool:
     """
     Run a component with configuration dictionary.

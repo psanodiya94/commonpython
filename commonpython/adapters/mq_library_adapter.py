@@ -7,7 +7,7 @@ Implements the IMessagingManager interface for library-based access.
 
 import json
 import time
-from typing import Any, Dict, Optional, Union
+from typing import Any, Optional, Union
 
 from ..interfaces.messaging_interface import IMessagingManager
 
@@ -29,7 +29,7 @@ class MQLibraryAdapter(IMessagingManager):
     messaging features.
     """
 
-    def __init__(self, config: Dict[str, Any], logger=None):
+    def __init__(self, config: dict[str, Any], logger=None):
         """
         Initialize the MQ library adapter.
 
@@ -48,7 +48,7 @@ class MQLibraryAdapter(IMessagingManager):
         self._qmgr = None
         self._connection_info = self._build_connection_info()
 
-    def _build_connection_info(self) -> Dict[str, Any]:
+    def _build_connection_info(self) -> dict[str, Any]:
         """
         Build MQ connection information from configuration.
 
@@ -127,8 +127,8 @@ class MQLibraryAdapter(IMessagingManager):
     def put_message(
         self,
         queue_name: str,
-        message: Union[str, bytes, Dict],
-        message_properties: Optional[Dict[str, Any]] = None,
+        message: Union[str, bytes, dict],
+        message_properties: Optional[dict[str, Any]] = None,
     ) -> bool:
         """
         Put a message to a queue.
@@ -195,7 +195,7 @@ class MQLibraryAdapter(IMessagingManager):
 
     def get_message(
         self, queue_name: str, timeout: Optional[int] = None
-    ) -> Optional[Dict[str, Any]]:
+    ) -> Optional[dict[str, Any]]:
         """
         Get a message from a queue.
 
@@ -295,7 +295,7 @@ class MQLibraryAdapter(IMessagingManager):
 
     def browse_message(
         self, queue_name: str, message_id: Optional[bytes] = None
-    ) -> Optional[Dict[str, Any]]:
+    ) -> Optional[dict[str, Any]]:
         """
         Browse a message from a queue without removing it.
 

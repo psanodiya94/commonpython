@@ -6,7 +6,7 @@ configuration. Supports automatic selection between CLI and library implementati
 with intelligent fallback mechanisms.
 """
 
-from typing import Any, Dict
+from typing import Any
 
 from ..interfaces.database_interface import IDatabaseManager
 from ..interfaces.messaging_interface import IMessagingManager
@@ -25,7 +25,7 @@ class ManagerFactory:
     _adapter_cache = {"db2_library_available": None, "mq_library_available": None}
 
     @staticmethod
-    def create_database_manager(config: Dict[str, Any], logger=None) -> IDatabaseManager:
+    def create_database_manager(config: dict[str, Any], logger=None) -> IDatabaseManager:
         """
         Create database manager based on configuration.
 
@@ -88,7 +88,7 @@ class ManagerFactory:
             )
 
     @staticmethod
-    def create_messaging_manager(config: Dict[str, Any], logger=None) -> IMessagingManager:
+    def create_messaging_manager(config: dict[str, Any], logger=None) -> IMessagingManager:
         """
         Create messaging manager based on configuration.
 
@@ -151,7 +151,7 @@ class ManagerFactory:
             )
 
     @staticmethod
-    def get_available_implementations() -> Dict[str, Dict[str, bool]]:
+    def get_available_implementations() -> dict[str, dict[str, bool]]:
         """
         Get information about available implementations.
 

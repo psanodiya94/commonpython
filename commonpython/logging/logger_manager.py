@@ -15,7 +15,7 @@ import logging.handlers
 import sys
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Dict, Optional
+from typing import Any, Optional
 
 
 class JSONFormatter(logging.Formatter):
@@ -85,7 +85,7 @@ class LoggerManager:
     using only standard Python modules.
     """
 
-    def __init__(self, name: str = "commonpython", config: Optional[Dict[str, Any]] = None):
+    def __init__(self, name: str = "commonpython", config: Optional[dict[str, Any]] = None):
         """
         Initialize the logger manager.
 

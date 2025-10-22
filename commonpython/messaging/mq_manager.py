@@ -14,7 +14,7 @@ import os
 import subprocess
 import tempfile
 import time
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Optional, Union
 
 
 class MQManager:
@@ -25,7 +25,7 @@ class MQManager:
     using IBM MQ command-line tools instead of SDK modules.
     """
 
-    def __init__(self, config: Dict[str, Any], logger=None):
+    def __init__(self, config: dict[str, Any], logger=None):
         """
         Initialize the MQ manager.
 
@@ -38,7 +38,7 @@ class MQManager:
         self.connection_info = self._build_connection_info()
         self.connected = False
 
-    def _build_connection_info(self) -> Dict[str, Any]:
+    def _build_connection_info(self) -> dict[str, Any]:
         """
         Build MQ connection information from configuration.
 
@@ -56,8 +56,8 @@ class MQManager:
         }
 
     def _execute_mq_command(
-        self, command: str, params: Optional[List[str]] = None
-    ) -> Dict[str, Any]:
+        self, command: str, params: Optional[list[str]] = None
+    ) -> dict[str, Any]:
         """
         Execute an MQ CLI command.
 
@@ -151,8 +151,8 @@ class MQManager:
     def put_message(
         self,
         queue_name: str,
-        message: Union[str, bytes, Dict],
-        message_properties: Optional[Dict[str, Any]] = None,
+        message: Union[str, bytes, dict],
+        message_properties: Optional[dict[str, Any]] = None,
     ) -> bool:
         """
         Put a message to a queue.
@@ -221,7 +221,7 @@ class MQManager:
 
     def get_message(
         self, queue_name: str, timeout: Optional[int] = None
-    ) -> Optional[Dict[str, Any]]:
+    ) -> Optional[dict[str, Any]]:
         """
         Get a message from a queue.
 
@@ -298,7 +298,7 @@ class MQManager:
 
     def browse_message(
         self, queue_name: str, message_id: Optional[bytes] = None
-    ) -> Optional[Dict[str, Any]]:
+    ) -> Optional[dict[str, Any]]:
         """
         Browse a message from a queue without removing it.
 

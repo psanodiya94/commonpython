@@ -8,7 +8,7 @@ library-based implementations without changing client code.
 
 from abc import ABC, abstractmethod
 from contextlib import contextmanager
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Optional
 
 
 class IDatabaseManager(ABC):
@@ -49,7 +49,7 @@ class IDatabaseManager(ABC):
         pass
 
     @abstractmethod
-    def execute_query(self, query: str, params: Optional[Tuple] = None) -> List[Dict[str, Any]]:
+    def execute_query(self, query: str, params: Optional[tuple] = None) -> list[dict[str, Any]]:
         """
         Execute a SELECT query and return results.
 
@@ -62,7 +62,7 @@ class IDatabaseManager(ABC):
         pass
 
     @abstractmethod
-    def execute_update(self, query: str, params: Optional[Tuple] = None) -> int:
+    def execute_update(self, query: str, params: Optional[tuple] = None) -> int:
         """
         Execute an INSERT, UPDATE, or DELETE query.
 
@@ -76,8 +76,8 @@ class IDatabaseManager(ABC):
 
     @abstractmethod
     def execute_batch(
-        self, queries: List[str], params_list: Optional[List[Tuple]] = None
-    ) -> List[int]:
+        self, queries: list[str], params_list: Optional[list[tuple]] = None
+    ) -> list[int]:
         """
         Execute multiple queries in a batch.
 
@@ -106,7 +106,7 @@ class IDatabaseManager(ABC):
         pass
 
     @abstractmethod
-    def get_table_info(self, table_name: str) -> List[Dict[str, Any]]:
+    def get_table_info(self, table_name: str) -> list[dict[str, Any]]:
         """
         Get table column information.
 
@@ -118,7 +118,7 @@ class IDatabaseManager(ABC):
         pass
 
     @abstractmethod
-    def get_database_info(self) -> Dict[str, Any]:
+    def get_database_info(self) -> dict[str, Any]:
         """
         Get database information.
 

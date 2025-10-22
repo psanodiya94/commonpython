@@ -9,7 +9,7 @@ Provides centralized configuration management using only standard Python modules
 """
 
 import os
-from typing import Any, Dict, Optional
+from typing import Any, Optional
 
 import yaml
 
@@ -32,7 +32,7 @@ class ConfigManager:
         @param config_file Path to YAML configuration file
         @param env_file Path to .env file for environment variables (not used in stdlib version)
         """
-        self._config: Dict[str, Any] = {}
+        self._config: dict[str, Any] = {}
         self._config_file = config_file
 
         # Load configuration
@@ -129,7 +129,7 @@ class ConfigManager:
         """
         self._set_nested_value(key, value)
 
-    def get_database_config(self) -> Dict[str, Any]:
+    def get_database_config(self) -> dict[str, Any]:
         """
         Get database configuration with defaults.
 
@@ -150,7 +150,7 @@ class ConfigManager:
             config[key] = self.get(f"database.{key}", default_value)
         return config
 
-    def get_messaging_config(self) -> Dict[str, Any]:
+    def get_messaging_config(self) -> dict[str, Any]:
         """
         Get messaging configuration with defaults.
 
@@ -171,7 +171,7 @@ class ConfigManager:
             config[key] = self.get(f"messaging.{key}", default_value)
         return config
 
-    def get_logging_config(self) -> Dict[str, Any]:
+    def get_logging_config(self) -> dict[str, Any]:
         """
         Get logging configuration with defaults.
 
@@ -203,7 +203,7 @@ class ConfigManager:
         self._config = {}
         self._load_config()
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         """
         Get the entire configuration as a dictionary.
 

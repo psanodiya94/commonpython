@@ -7,7 +7,7 @@ Implements the IDatabaseManager interface for library-based access.
 
 import time
 from contextlib import contextmanager
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Optional
 
 from ..interfaces.database_interface import IDatabaseManager
 
@@ -30,7 +30,7 @@ class DB2LibraryAdapter(IDatabaseManager):
     parameterized queries.
     """
 
-    def __init__(self, config: Dict[str, Any], logger=None):
+    def __init__(self, config: dict[str, Any], logger=None):
         """
         Initialize the DB2 library adapter.
 
@@ -130,7 +130,7 @@ class DB2LibraryAdapter(IDatabaseManager):
             pass
         return False
 
-    def execute_query(self, query: str, params: Optional[Tuple] = None) -> List[Dict[str, Any]]:
+    def execute_query(self, query: str, params: Optional[tuple] = None) -> list[dict[str, Any]]:
         """
         Execute a SELECT query and return results.
 
@@ -184,7 +184,7 @@ class DB2LibraryAdapter(IDatabaseManager):
                 )
             raise
 
-    def execute_update(self, query: str, params: Optional[Tuple] = None) -> int:
+    def execute_update(self, query: str, params: Optional[tuple] = None) -> int:
         """
         Execute an INSERT, UPDATE, or DELETE query.
 
@@ -235,8 +235,8 @@ class DB2LibraryAdapter(IDatabaseManager):
             raise
 
     def execute_batch(
-        self, queries: List[str], params_list: Optional[List[Tuple]] = None
-    ) -> List[int]:
+        self, queries: list[str], params_list: Optional[list[tuple]] = None
+    ) -> list[int]:
         """
         Execute multiple queries in a batch.
 
@@ -312,7 +312,7 @@ class DB2LibraryAdapter(IDatabaseManager):
                 self._logger.logger.error(f"Transaction rolled back: {str(e)}")
             raise
 
-    def get_table_info(self, table_name: str) -> List[Dict[str, Any]]:
+    def get_table_info(self, table_name: str) -> list[dict[str, Any]]:
         """
         Get table column information.
 
@@ -330,7 +330,7 @@ class DB2LibraryAdapter(IDatabaseManager):
 
         return self.execute_query(query, (table_name.upper(),))
 
-    def get_database_info(self) -> Dict[str, Any]:
+    def get_database_info(self) -> dict[str, Any]:
         """
         Get database information.
 

@@ -6,7 +6,7 @@ the IMessagingManager interface. This allows the CLI implementation to be
 used interchangeably with library-based implementations.
 """
 
-from typing import Any, Dict, Optional, Union
+from typing import Any, Optional, Union
 
 from ..interfaces.messaging_interface import IMessagingManager
 from ..messaging.mq_manager import MQManager
@@ -20,7 +20,7 @@ class MQCLIAdapter(IMessagingManager):
     it through the IMessagingManager interface.
     """
 
-    def __init__(self, config: Dict[str, Any], logger=None):
+    def __init__(self, config: dict[str, Any], logger=None):
         """
         Initialize the MQ CLI adapter.
 
@@ -61,8 +61,8 @@ class MQCLIAdapter(IMessagingManager):
     def put_message(
         self,
         queue_name: str,
-        message: Union[str, bytes, Dict],
-        message_properties: Optional[Dict[str, Any]] = None,
+        message: Union[str, bytes, dict],
+        message_properties: Optional[dict[str, Any]] = None,
     ) -> bool:
         """
         Put a message to a queue.
@@ -78,7 +78,7 @@ class MQCLIAdapter(IMessagingManager):
 
     def get_message(
         self, queue_name: str, timeout: Optional[int] = None
-    ) -> Optional[Dict[str, Any]]:
+    ) -> Optional[dict[str, Any]]:
         """
         Get a message from a queue.
 
@@ -92,7 +92,7 @@ class MQCLIAdapter(IMessagingManager):
 
     def browse_message(
         self, queue_name: str, message_id: Optional[bytes] = None
-    ) -> Optional[Dict[str, Any]]:
+    ) -> Optional[dict[str, Any]]:
         """
         Browse a message from a queue without removing it.
 

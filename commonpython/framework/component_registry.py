@@ -4,7 +4,6 @@ Component Registry for CommonPython Framework
 Provides a registry for managing and discovering components.
 """
 
-from typing import Dict, List, Type
 
 from .component_base import ComponentBase
 
@@ -23,9 +22,9 @@ class ComponentRegistry:
 
         @brief Initialize empty component registry.
         """
-        self._components: Dict[str, Type[ComponentBase]] = {}
+        self._components: dict[str, type[ComponentBase]] = {}
 
-    def register(self, name: str, component_class: Type[ComponentBase]) -> None:
+    def register(self, name: str, component_class: type[ComponentBase]) -> None:
         """
         Register a component.
 
@@ -52,7 +51,7 @@ class ComponentRegistry:
 
         del self._components[name]
 
-    def get_component(self, name: str) -> Type[ComponentBase]:
+    def get_component(self, name: str) -> type[ComponentBase]:
         """
         Get a registered component.
 
@@ -66,7 +65,7 @@ class ComponentRegistry:
 
         return self._components[name]
 
-    def list_components(self) -> List[str]:
+    def list_components(self) -> list[str]:
         """
         List all registered components.
 
@@ -107,7 +106,7 @@ class ComponentRegistry:
 component_registry = ComponentRegistry()
 
 
-def register_component(name: str, component_class: Type[ComponentBase]) -> None:
+def register_component(name: str, component_class: type[ComponentBase]) -> None:
     """
     Register a component with the global registry.
 
@@ -118,7 +117,7 @@ def register_component(name: str, component_class: Type[ComponentBase]) -> None:
     component_registry.register(name, component_class)
 
 
-def get_component(name: str) -> Type[ComponentBase]:
+def get_component(name: str) -> type[ComponentBase]:
     """
     Get a component from the global registry.
 
@@ -129,7 +128,7 @@ def get_component(name: str) -> Type[ComponentBase]:
     return component_registry.get_component(name)
 
 
-def list_components() -> List[str]:
+def list_components() -> list[str]:
     """
     List all components in the global registry.
 

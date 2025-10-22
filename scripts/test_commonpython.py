@@ -12,7 +12,7 @@ import time
 import unittest
 from collections import defaultdict
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Optional
 
 # Add the parent directory to the path
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -110,7 +110,7 @@ def print_subsection(title: str, char: str = "-", width: int = 80):
     print(ColoredOutput.colorize(char * width, ColoredOutput.OKBLUE))
 
 
-def discover_tests(test_dir: Path) -> List[str]:
+def discover_tests(test_dir: Path) -> list[str]:
     """Discover all test files"""
     test_files = []
     for test_file in sorted(test_dir.glob("test_*.py")):
@@ -123,8 +123,8 @@ class DetailedTestResult(unittest.TextTestResult):
 
     def __init__(self, stream, descriptions, verbosity):
         super().__init__(stream, descriptions, verbosity)
-        self.test_times: Dict[str, float] = {}
-        self.category_stats: Dict[str, Dict[str, int]] = defaultdict(
+        self.test_times: dict[str, float] = {}
+        self.category_stats: dict[str, dict[str, int]] = defaultdict(
             lambda: {"total": 0, "passed": 0, "failed": 0, "errors": 0, "skipped": 0}
         )
         self.start_time: Optional[float] = None
@@ -374,7 +374,9 @@ def run_tests_with_coverage(suite_filter: Optional[str] = None, verbosity: int =
             color = (
                 ColoredOutput.OKGREEN
                 if pct >= 80
-                else ColoredOutput.WARNING if pct >= 60 else ColoredOutput.FAIL
+                else ColoredOutput.WARNING
+                if pct >= 60
+                else ColoredOutput.FAIL
             )
             print(f"  {module:30s} {ColoredOutput.colorize(f'{pct:5.1f}%', color)}")
 
