@@ -116,7 +116,7 @@ class ConfigManager:
             return current
         except (KeyError, TypeError):
             if required:
-                raise KeyError(f"Required config key '{key}' is missing.")
+                raise KeyError(f"Required config key '{key}' is missing.") from None
             return default
 
     def set(self, key: str, value: Any) -> None:

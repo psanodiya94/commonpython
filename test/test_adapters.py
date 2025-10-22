@@ -13,8 +13,8 @@ from unittest.mock import Mock, patch
 # Add parent directory to path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from commonpython.adapters import DB2CLIAdapter, MQCLIAdapter
-from commonpython.interfaces import IDatabaseManager, IMessagingManager
+from commonpython.adapters import DB2CLIAdapter, MQCLIAdapter  # noqa: E402
+from commonpython.interfaces import IDatabaseManager, IMessagingManager  # noqa: E402
 
 
 class TestDB2CLIAdapter(unittest.TestCase):
@@ -247,7 +247,7 @@ class TestLibraryAdapters(unittest.TestCase):
 
                 config = {"host": "localhost", "port": 50000, "name": "testdb"}
                 with self.assertRaises(ImportError):
-                    adapter = DB2LibraryAdapter(config)
+                    DB2LibraryAdapter(config)
             except ImportError:
                 # If module itself can't be imported, that's also acceptable
                 pass
@@ -260,7 +260,7 @@ class TestLibraryAdapters(unittest.TestCase):
 
                 config = {"host": "localhost", "port": 1414, "queue_manager": "QM1"}
                 with self.assertRaises(ImportError):
-                    adapter = MQLibraryAdapter(config)
+                    MQLibraryAdapter(config)
             except ImportError:
                 # If module itself can't be imported, that's also acceptable
                 pass

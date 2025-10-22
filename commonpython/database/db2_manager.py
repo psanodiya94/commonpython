@@ -92,11 +92,11 @@ class DB2Manager:
         except subprocess.TimeoutExpired:
             if self.logger:
                 self.logger.logger.error(f"DB2 command timeout: {command}")
-            raise Exception(f"DB2 command timeout: {command}")
+            raise Exception(f"DB2 command timeout: {command}") from None
         except Exception as e:
             if self.logger:
                 self.logger.logger.error(f"DB2 command error: {str(e)}")
-            raise Exception(f"DB2 command error: {str(e)}")
+            raise Exception(f"DB2 command error: {str(e)}") from e
 
     def connect(self) -> bool:
         """
@@ -224,7 +224,7 @@ class DB2Manager:
                     os.unlink(temp_file)
                 if os.path.exists("/tmp/query_result.csv"):
                     os.unlink("/tmp/query_result.csv")
-            except:
+            except Exception:
                 pass
 
     def _parse_csv_results(self, csv_file: str) -> List[Dict[str, Any]]:
@@ -316,7 +316,7 @@ class DB2Manager:
             try:
                 if "temp_file" in locals():
                     os.unlink(temp_file)
-            except:
+            except Exception:
                 pass
 
     def execute_batch(
@@ -340,7 +340,7 @@ class DB2Manager:
             # Begin transaction
             self._execute_db2_command("begin transaction")
 
-            for i, query in enumerate(queries):
+            for query in queries:
                 rows_affected = self.execute_update(query, None)
                 results.append(rows_affected)
 

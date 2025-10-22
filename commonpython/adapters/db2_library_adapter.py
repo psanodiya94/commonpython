@@ -126,7 +126,7 @@ class DB2LibraryAdapter(IDatabaseManager):
         try:
             if self._conn and ibm_db.active(self._conn):
                 return True
-        except:
+        except Exception:
             pass
         return False
 

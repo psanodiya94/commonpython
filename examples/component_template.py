@@ -17,7 +17,7 @@ from pathlib import Path
 # Add the parent directory to the path to import the module
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from commonpython.framework import ComponentBase, run_component
+from commonpython.framework import ComponentBase, run_component  # noqa: E402
 
 
 class MyComponent(ComponentBase):
@@ -160,12 +160,12 @@ class MyComponent(ComponentBase):
             # Ensure services are disconnected
             try:
                 self.disconnect_database()
-            except:
+            except Exception:
                 pass
 
             try:
                 self.disconnect_messaging()
-            except:
+            except Exception:
                 pass
 
             self.log_info("MyComponent cleanup completed")

@@ -120,7 +120,7 @@ class MQLibraryAdapter(IMessagingManager):
         try:
             if self._qmgr and self._qmgr.is_connected:
                 return True
-        except:
+        except Exception:
             pass
         return False
 
@@ -422,9 +422,6 @@ class MQLibraryAdapter(IMessagingManager):
         start_time = time.time()
 
         try:
-            # Get current depth before purging
-            initial_depth = self.get_queue_depth(queue_name)
-
             # Open queue for input
             queue = pymqi.Queue(self._qmgr, queue_name)
 

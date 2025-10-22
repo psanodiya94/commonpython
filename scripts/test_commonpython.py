@@ -274,12 +274,6 @@ def run_comprehensive_tests(suite_filter: Optional[str] = None, verbosity: int =
             errors = stats["errors"]
             skipped = stats["skipped"]
 
-            status_color = ColoredOutput.OKGREEN
-            if failed > 0 or errors > 0:
-                status_color = ColoredOutput.FAIL
-            elif skipped > 0:
-                status_color = ColoredOutput.WARNING
-
             print(f"\n{ColoredOutput.colorize(category, ColoredOutput.BOLD)}")
             print(
                 f"  Total: {total} | Passed: {passed} | Failed: {failed} | Errors: {errors} | Skipped: {skipped}"
@@ -355,7 +349,7 @@ def run_tests_with_coverage(suite_filter: Optional[str] = None, verbosity: int =
         # Generate coverage report
         print_section("COVERAGE REPORT")
 
-        total_coverage = cov.report(show_missing=True)
+        cov.report(show_missing=True)
 
         # Coverage by module
         print_subsection("Coverage by Module")

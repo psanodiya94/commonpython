@@ -111,17 +111,17 @@ class TestDB2Manager(unittest.TestCase):
         self.assertEqual(result["returncode"], 0)
 
     @patch("subprocess.run")
-    def test_execute_db2_command_failure(self, mock_run):
+    def test_execute_db2_command_exception(self, mock_run):
         """
-        Test DB2 command execution failure branch.
+        Test DB2 command execution exception handling.
         """
         mock_run.side_effect = Exception("subprocess error")
         with self.assertRaises(Exception):
             self.db_manager._execute_db2_command("SELECT * FROM test")
 
-    def test_connect_failure(self):
+    def test_connect_exception(self):
         """
-        Test connect failure branch.
+        Test connect exception handling.
         """
         self.db_manager._build_connection_string = MagicMock(return_value=None)
         with patch.object(self.db_manager, "_execute_db2_command", side_effect=Exception("fail")):

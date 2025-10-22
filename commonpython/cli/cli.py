@@ -361,7 +361,7 @@ def create_parser() -> argparse.ArgumentParser:
     db_parser = subparsers.add_parser("database", help="Database operations")
     db_subparsers = db_parser.add_subparsers(dest="db_command", help="Database commands")
 
-    db_test_parser = db_subparsers.add_parser("test", help="Test database connection")
+    db_subparsers.add_parser("test", help="Test database connection")
 
     db_exec_parser = db_subparsers.add_parser("execute", help="Execute database query")
     db_exec_parser.add_argument("query", help="SQL query to execute")
@@ -374,7 +374,7 @@ def create_parser() -> argparse.ArgumentParser:
     mq_parser = subparsers.add_parser("messaging", help="Message queue operations")
     mq_subparsers = mq_parser.add_subparsers(dest="mq_command", help="Messaging commands")
 
-    mq_test_parser = mq_subparsers.add_parser("test", help="Test MQ connection")
+    mq_subparsers.add_parser("test", help="Test MQ connection")
 
     mq_get_parser = mq_subparsers.add_parser("get", help="Get message from queue")
     mq_get_parser.add_argument("queue_name", help="Name of the queue")
@@ -394,7 +394,7 @@ def create_parser() -> argparse.ArgumentParser:
         dest="config_command", help="Configuration commands"
     )
 
-    config_show_parser = config_subparsers.add_parser("show", help="Show current configuration")
+    config_subparsers.add_parser("show", help="Show current configuration")
 
     config_get_parser = config_subparsers.add_parser("get", help="Get configuration value")
     config_get_parser.add_argument("key", help="Configuration key")

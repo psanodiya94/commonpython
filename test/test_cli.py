@@ -15,7 +15,7 @@ from unittest.mock import MagicMock, call, patch
 # Add the parent directory to the path to import the module
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from commonpython.cli.cli import CLI, create_parser, main
+from commonpython.cli.cli import CLI, create_parser, main  # noqa: E402
 
 
 class TestCLI(unittest.TestCase):
@@ -127,7 +127,7 @@ class TestCLI(unittest.TestCase):
         Test _initialize_components with import error.
         """
         with patch("builtins.__import__", side_effect=ImportError("Module not found")):
-            with patch("builtins.print") as mock_print:
+            with patch("builtins.print"):
                 cli = CLI.__new__(CLI)
                 cli.config_file = None
                 cli._initialize_components()
@@ -509,7 +509,7 @@ class TestCLI(unittest.TestCase):
         """
         mock_setup.return_value = True
 
-        with patch("builtins.print") as mock_print:
+        with patch("builtins.print"):
             self.cli.execute_query("SELECT * FROM test WHERE id = ?", "{invalid json}")
 
             mock_exit.assert_called_with(1)
@@ -907,7 +907,7 @@ class TestCLI(unittest.TestCase):
         """
         Test setting configuration with numeric value.
         """
-        with patch("builtins.print") as mock_print:
+        with patch("builtins.print"):
             self.cli.set_config("test.port", "8080")
 
             self.cli.config_manager.set.assert_called_once_with("test.port", "8080")
@@ -921,7 +921,7 @@ class TestCLI(unittest.TestCase):
         self.cli.db_manager.test_connection.return_value = True
         self.cli.mq_manager.test_connection.return_value = True
 
-        with patch("builtins.print") as mock_print:
+        with patch("builtins.print"):
             self.cli.test_all()
 
             # Verify all components were tested
@@ -938,7 +938,7 @@ class TestCLI(unittest.TestCase):
         self.cli._setup_messaging = MagicMock(return_value=True)
         self.cli.mq_manager.test_connection.return_value = True
 
-        with patch("builtins.print") as mock_print:
+        with patch("builtins.print"):
             self.cli.test_all()
 
             # Should still test messaging even if database fails
@@ -952,7 +952,7 @@ class TestCLI(unittest.TestCase):
         self.cli._setup_messaging = MagicMock(return_value=False)
         self.cli.db_manager.test_connection.return_value = True
 
-        with patch("builtins.print") as mock_print:
+        with patch("builtins.print"):
             self.cli.test_all()
 
             # Should test both even if one fails

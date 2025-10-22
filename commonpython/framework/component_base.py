@@ -6,11 +6,7 @@ Provides base functionality for components that want to use the CommonPython fra
 
 import sys
 from abc import ABC, abstractmethod
-from pathlib import Path
 from typing import Any, Dict, Optional
-
-# Add the parent directory to the path to import the module
-sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
 from ..config import ConfigManager
 from ..factories import ManagerFactory

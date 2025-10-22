@@ -88,11 +88,11 @@ class MQManager:
         except subprocess.TimeoutExpired:
             if self.logger:
                 self.logger.logger.error(f"MQ command timeout: {command}")
-            raise Exception(f"MQ command timeout: {command}")
+            raise Exception(f"MQ command timeout: {command}") from None
         except Exception as e:
             if self.logger:
                 self.logger.logger.error(f"MQ command error: {str(e)}")
-            raise Exception(f"MQ command error: {str(e)}")
+            raise Exception(f"MQ command error: {str(e)}") from e
 
     def connect(self) -> bool:
         """

@@ -172,7 +172,7 @@ class ManagerFactory:
         """
         # Check DB2 library
         try:
-            from ..adapters.db2_library_adapter import HAS_IBM_DB, DB2LibraryAdapter
+            from ..adapters.db2_library_adapter import HAS_IBM_DB
 
             db2_library_available = HAS_IBM_DB
         except ImportError:
@@ -180,7 +180,7 @@ class ManagerFactory:
 
         # Check MQ library
         try:
-            from ..adapters.mq_library_adapter import HAS_PYMQI, MQLibraryAdapter
+            from ..adapters.mq_library_adapter import HAS_PYMQI
 
             mq_library_available = HAS_PYMQI
         except ImportError:

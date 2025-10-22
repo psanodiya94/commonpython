@@ -29,10 +29,10 @@ def test_framework_installation():
     try:
         # Test imports
         from commonpython.config import ConfigManager
-        from commonpython.database import DB2Manager
-        from commonpython.framework import ComponentBase, run_component
+        from commonpython.database import DB2Manager  # noqa: F401
+        from commonpython.framework import ComponentBase, run_component  # noqa: F401
         from commonpython.logging import LoggerManager
-        from commonpython.messaging import MQManager
+        from commonpython.messaging import MQManager  # noqa: F401
 
         print("✅ All imports successful!")
 
