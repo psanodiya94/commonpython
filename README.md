@@ -213,36 +213,6 @@ Run it:
 python my_first_component.py --config config/config.yaml --verbose
 ```
 
-## Installation
-
-```bash
-# Clone the repository
-git clone <repository-url>
-cd commonpython
-
-# Install in development mode
-pip install -e .
-```
-
-### Dependencies
-
-The framework has minimal dependencies to keep it lightweight:
-
-**Mandatory:**
-- `PyYAML>=6.0` - Configuration file parsing
-
-**Optional (Testing):**
-- `coverage>=7.0.0` - Test coverage reporting with Python's unittest
-
-**Optional (Development):**
-- `black>=23.0.0` - Code formatting
-- `ruff>=0.1.0` - Code linting
-- `mypy>=1.0.0` - Type checking
-
-**Optional (IBM Integration):**
-- `ibm_db>=3.0.0` - Native DB2 library adapter
-- `pymqi>=1.12.0` - Native MQ library adapter
-
 ## Configuration
 
 ### Configuration File
@@ -501,23 +471,6 @@ commonpython/
 6. **Flexible Configuration**: YAML-based with environment variable support
 7. **Structured Logging**: Multiple output formats (console, JSON, colored)
 
-## IBM CLI Requirements
-
-### DB2 CLI Tools
-
-The framework requires IBM DB2 CLI tools to be installed and available in the system PATH:
-
-- `db2` command-line tool
-- DB2 client libraries
-
-### MQ CLI Tools
-
-The framework requires IBM MQ CLI tools to be installed and available in the system PATH:
-
-- `runmqsc` command-line tool
-- `amqsput` and `amqsget` utilities
-- MQ client libraries
-
 ## Development
 
 ### Adding New Features
@@ -541,7 +494,7 @@ MIT License - see LICENSE file for details.
 
 ---
 
-> **Note:** This tool was developed with help from Cursor AI.
+> **Note:** This tool was developed with the assistance of AI tools including Claude by Anthropic.
 
 ## Contributing
 
