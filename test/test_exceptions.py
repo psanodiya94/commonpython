@@ -349,7 +349,7 @@ class TestExceptionMapping(unittest.TestCase):
 
     def test_exception_map_values_are_exception_classes(self):
         """Test EXCEPTION_MAP values are exception classes"""
-        for key, value in EXCEPTION_MAP.items():
+        for _key, value in EXCEPTION_MAP.items():
             self.assertTrue(issubclass(value, CommonPythonError))
 
 
