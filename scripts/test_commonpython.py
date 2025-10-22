@@ -374,9 +374,7 @@ def run_tests_with_coverage(suite_filter: Optional[str] = None, verbosity: int =
             color = (
                 ColoredOutput.OKGREEN
                 if pct >= 80
-                else ColoredOutput.WARNING
-                if pct >= 60
-                else ColoredOutput.FAIL
+                else ColoredOutput.WARNING if pct >= 60 else ColoredOutput.FAIL
             )
             print(f"  {module:30s} {ColoredOutput.colorize(f'{pct:5.1f}%', color)}")
 
