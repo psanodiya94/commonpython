@@ -12,6 +12,7 @@ A comprehensive Python framework providing configuration management, logging, da
 ### 1. Installation
 
 #### Option A: Minimal Install (Mandatory Only)
+
 ```bash
 # Clone the repository
 git clone <repository-url>
@@ -22,12 +23,14 @@ pip install -e .
 ```
 
 #### Option B: High Performance (Recommended)
+
 ```bash
 # Install with library adapters for 10-50x better performance
 pip install -e ".[library]"
 ```
 
 #### Option C: Full Development Setup
+
 ```bash
 # Install everything (libraries + testing tools)
 pip install -e ".[all]"
@@ -73,28 +76,29 @@ python examples/quick_start.py
 
 ### ✅ Mandatory (Always Required)
 
-| Requirement | Version | Purpose | Install |
-|-------------|---------|---------|---------|
-| **Python** | 3.12+ | Core runtime | [Download](https://www.python.org/downloads/) |
-| **PyYAML** | Latest | Configuration parsing | `pip install pyyaml` |
+| Requirement | Version | Purpose               | Install                                       |
+| ----------- | ------- | --------------------- | --------------------------------------------- |
+| **Python**  | 3.12+   | Core runtime          | [Download](https://www.python.org/downloads/) |
+| **PyYAML**  | Latest  | Configuration parsing | `pip install pyyaml`                          |
 
 ### ⚙️ Optional - For CLI Implementation (Default)
 
-| Requirement | Purpose | Status |
-|-------------|---------|--------|
-| **IBM DB2 CLI tools** | Database operations via CLI | Optional - Only if using database |
-| **IBM MQ CLI tools** | Messaging operations via CLI | Optional - Only if using messaging |
+| Requirement           | Purpose                      | Status                             |
+| --------------------- | ---------------------------- | ---------------------------------- |
+| **IBM DB2 CLI tools** | Database operations via CLI  | Optional - Only if using database  |
+| **IBM MQ CLI tools**  | Messaging operations via CLI | Optional - Only if using messaging |
 
 > 💡 **Note**: CLI implementation works without Python libraries but requires IBM CLI tools installed and in PATH.
 
 ### 🚀 Optional - For Library Implementation (Better Performance)
 
-| Package | Purpose | Performance Gain | Install |
-|---------|---------|------------------|---------|
-| **ibm_db** | Native DB2 operations | 10-50x faster | `pip install ibm_db` |
-| **pymqi** | Native MQ operations | 10-50x faster | `pip install pymqi` |
+| Package    | Purpose               | Performance Gain | Install              |
+| ---------- | --------------------- | ---------------- | -------------------- |
+| **ibm_db** | Native DB2 operations | 10-50x faster    | `pip install ibm_db` |
+| **pymqi**  | Native MQ operations  | 10-50x faster    | `pip install pymqi`  |
 
 Install all library dependencies:
+
 ```bash
 pip install ibm_db pymqi
 ```
@@ -103,13 +107,14 @@ pip install ibm_db pymqi
 
 ### 🧪 Optional - For Development & Testing
 
-| Package | Version | Purpose | Install |
-|---------|---------|---------|---------|
-| **coverage** | 7.0.0+ | Code coverage analysis | `pip install coverage` |
+| Package      | Version | Purpose                | Install                |
+| ------------ | ------- | ---------------------- | ---------------------- |
+| **coverage** | 7.0.0+  | Code coverage analysis | `pip install coverage` |
 
----
+______________________________________________________________________
 
 **Compatibility Notes:**
+
 - ✅ Framework tested with Python 3.12.3
 - ⚠️ May work with Python 3.8+ (untested)
 - 🔄 Auto-fallback: Library → CLI if dependencies missing
@@ -165,11 +170,11 @@ Use CommonPython when you need to build applications that:
 ### Getting Started as a New User
 
 1. **📖 Read the Documentation**: Start with this README and the [Development Guide](docs/DEVELOPMENT_GUIDE.md)
-2. **🔧 Set Up Your Environment**: Install Python 3.8+ and IBM CLI tools
-3. **📝 Use the Template**: Copy `examples/component_template.py` to start your first component
-4. **⚙️ Configure**: Copy `config/config.yaml` and modify it for your environment
-5. **🧪 Test**: Run the test suite to verify everything works
-6. **🚀 Build**: Create your component using the framework's services
+1. **🔧 Set Up Your Environment**: Install Python 3.8+ and IBM CLI tools
+1. **📝 Use the Template**: Copy `examples/component_template.py` to start your first component
+1. **⚙️ Configure**: Copy `config/config.yaml` and modify it for your environment
+1. **🧪 Test**: Run the test suite to verify everything works
+1. **🚀 Build**: Create your component using the framework's services
 
 **💡 Pro Tip**: Run `python examples/quick_start.py` for an interactive guided setup!
 
@@ -178,32 +183,34 @@ Use CommonPython when you need to build applications that:
 ```python
 from commonpython.framework import ComponentBase, run_component
 
+
 class MyFirstComponent(ComponentBase):
     def __init__(self, config_file=None):
         super().__init__("MyFirstComponent", config_file)
-    
+
     def initialize(self) -> bool:
         self.log_info("My first component is initializing!")
         return True
-    
+
     def run(self) -> bool:
         self.log_info("My first component is running!")
-        
+
         # Connect to database
         if self.connect_database():
             results = self.execute_query("SELECT COUNT(*) FROM users")
             self.log_info(f"Found {results[0][0]} users in database")
-        
+
         # Send a message
         if self.connect_messaging():
             self.send_message("MY.QUEUE", {"message": "Hello from my component!"})
-        
+
         return True
-    
+
     def cleanup(self) -> None:
         self.log_info("My first component is cleaning up!")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     sys.exit(0 if run_component(MyFirstComponent, "MyFirstComponent") else 1)
 ```
 
@@ -306,8 +313,8 @@ from commonpython.database import DB2Manager
 from commonpython.messaging import MQManager
 
 # Initialize configuration
-config_manager = ConfigManager('config.yaml')
-logger_manager = LoggerManager('myapp', config_manager.get_logging_config())
+config_manager = ConfigManager("config.yaml")
+logger_manager = LoggerManager("myapp", config_manager.get_logging_config())
 
 # Database operations
 db_config = config_manager.get_database_config()
@@ -337,32 +344,34 @@ Create components that use the framework's shared functionality:
 ```python
 from commonpython.framework import ComponentBase, run_component
 
+
 class MyComponent(ComponentBase):
     def __init__(self, config_file=None):
         super().__init__("MyComponent", config_file)
-    
+
     def initialize(self) -> bool:
         # Your initialization logic
         self.log_info("Component initialized")
         return True
-    
+
     def run(self) -> bool:
         # Your main logic
         if self.connect_database():
             results = self.execute_query("SELECT * FROM my_table")
             self.log_info(f"Found {len(results)} records")
-        
+
         if self.connect_messaging():
             self.send_message("MY.QUEUE", {"data": "message"})
-        
+
         return True
-    
+
     def cleanup(self) -> None:
         # Your cleanup logic
         self.log_info("Component cleanup completed")
 
+
 # Run the component
-if __name__ == '__main__':
+if __name__ == "__main__":
     sys.exit(0 if run_component(MyComponent, "MyComponent") else 1)
 ```
 
@@ -412,6 +421,7 @@ python -m unittest test.test_cli -v
 ### Test Structure
 
 All tests use Python's standard `unittest` framework:
+
 - No pytest or other third-party test frameworks
 - All test files follow the pattern `test_*.py`
 - Tests can be run individually or as a complete suite
@@ -464,22 +474,22 @@ commonpython/
 ### Key Design Principles
 
 1. **Minimal Dependencies**: Only PyYAML required; everything else is optional
-2. **Adapter Pattern**: Switch between CLI and library implementations seamlessly
-3. **unittest Framework**: All tests use Python's built-in unittest (no pytest)
-4. **Comprehensive Testing**: Full test coverage with unittest and coverage reporting
-5. **Complete Documentation**: Doxygen-style docs and architecture guides in docs/
-6. **Flexible Configuration**: YAML-based with environment variable support
-7. **Structured Logging**: Multiple output formats (console, JSON, colored)
+1. **Adapter Pattern**: Switch between CLI and library implementations seamlessly
+1. **unittest Framework**: All tests use Python's built-in unittest (no pytest)
+1. **Comprehensive Testing**: Full test coverage with unittest and coverage reporting
+1. **Complete Documentation**: Doxygen-style docs and architecture guides in docs/
+1. **Flexible Configuration**: YAML-based with environment variable support
+1. **Structured Logging**: Multiple output formats (console, JSON, colored)
 
 ## Development
 
 ### Adding New Features
 
 1. Create new modules in appropriate directories
-2. Add comprehensive test cases
-3. Update CLI interface if needed
-4. Update documentation
-5. Ensure all tests pass
+1. Add comprehensive test cases
+1. Update CLI interface if needed
+1. Update documentation
+1. Ensure all tests pass
 
 ### Code Style
 
@@ -492,18 +502,18 @@ commonpython/
 
 MIT License - see LICENSE file for details.
 
----
+______________________________________________________________________
 
 > **Note:** This tool was developed with the assistance of AI tools including Claude by Anthropic.
 
 ## Contributing
 
 1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests for new functionality
-5. Ensure all tests pass
-6. Submit a pull request
+1. Create a feature branch
+1. Make your changes
+1. Add tests for new functionality
+1. Ensure all tests pass
+1. Submit a pull request
 
 ## 🔧 Troubleshooting
 
@@ -563,10 +573,10 @@ logging:
 ### Getting Help
 
 1. **📚 Check Documentation**: Read this README and [Development Guide](docs/DEVELOPMENT_GUIDE.md)
-2. **🧪 Run Tests**: Verify framework functionality with `python scripts/test_commonpython.py`
-3. **📝 Check Logs**: Look for detailed error information in log files
-4. **🔍 Review Examples**: Study the examples in the `examples/` directory
-5. **🐛 Report Issues**: Create an issue with detailed information and logs
+1. **🧪 Run Tests**: Verify framework functionality with `python scripts/test_commonpython.py`
+1. **📝 Check Logs**: Look for detailed error information in log files
+1. **🔍 Review Examples**: Study the examples in the `examples/` directory
+1. **🐛 Report Issues**: Create an issue with detailed information and logs
 
 ## 📚 Additional Resources
 
@@ -583,6 +593,6 @@ logging:
 For issues and questions:
 
 1. Check the documentation and troubleshooting section above
-2. Run the test suite to verify framework functionality
-3. Review the examples and templates
-4. Create an issue with detailed information and error logs
+1. Run the test suite to verify framework functionality
+1. Review the examples and templates
+1. Create an issue with detailed information and error logs

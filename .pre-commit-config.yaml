@@ -2,7 +2,7 @@
 # See https://pre-commit.com/hooks.html for more hooks
 
 default_language_version:
-  python: python3.8
+  python: python3.11
 
 repos:
   # General checks
@@ -27,7 +27,7 @@ repos:
     rev: 23.12.1
     hooks:
       - id: black
-        language_version: python3.8
+        language_version: python3.11
 
   # Python linting and import sorting with ruff
   - repo: https://github.com/astral-sh/ruff-pre-commit
