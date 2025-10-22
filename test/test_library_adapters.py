@@ -8,7 +8,7 @@ library dependencies to ensure comprehensive code coverage.
 import sys
 import unittest
 from pathlib import Path
-from unittest.mock import Mock, MagicMock, patch, PropertyMock
+from unittest.mock import MagicMock, Mock, PropertyMock, patch
 
 # Add parent directory to path
 sys.path.insert(0, str(Path(__file__).parent.parent))
