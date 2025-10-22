@@ -2,7 +2,7 @@
 
 A comprehensive Python framework providing configuration management, logging, database connectivity, message queue operations, and command-line interface functionality. Features a **flexible adapter architecture** that supports both CLI-based and library-based implementations.
 
-[![Python Version](https://img.shields.io/badge/python-3.12%2B-blue.svg)](https://www.python.org/downloads/)
+[![Python Version](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://www.python.org/downloads/)
 [![Tests](https://img.shields.io/badge/tests-295%20passed-brightgreen.svg)](test/)
 [![Coverage](https://img.shields.io/badge/coverage-89%25-green.svg)](test/)
 [![Architecture](https://img.shields.io/badge/architecture-adapter%20pattern-blue.svg)](docs/ADAPTER_ARCHITECTURE.md)
@@ -78,7 +78,7 @@ python examples/quick_start.py
 
 | Requirement | Version | Purpose               | Install                                       |
 | ----------- | ------- | --------------------- | --------------------------------------------- |
-| **Python**  | 3.12+   | Core runtime          | [Download](https://www.python.org/downloads/) |
+| **Python**  | 3.11+   | Core runtime          | [Download](https://www.python.org/downloads/) |
 | **PyYAML**  | Latest  | Configuration parsing | `pip install pyyaml`                          |
 
 ### ⚙️ Optional - For CLI Implementation (Default)
@@ -115,8 +115,8 @@ ______________________________________________________________________
 
 **Compatibility Notes:**
 
-- ✅ Framework tested with Python 3.12.3
-- ⚠️ May work with Python 3.8+ (untested)
+- ✅ Framework requires Python 3.11+
+- ✅ Tested with Python 3.11 and 3.12
 - 🔄 Auto-fallback: Library → CLI if dependencies missing
 
 ## 🏗️ Architecture: Adapter Pattern
@@ -170,7 +170,7 @@ Use CommonPython when you need to build applications that:
 ### Getting Started as a New User
 
 1. **📖 Read the Documentation**: Start with this README and the [Development Guide](docs/DEVELOPMENT_GUIDE.md)
-1. **🔧 Set Up Your Environment**: Install Python 3.8+ and IBM CLI tools
+1. **🔧 Set Up Your Environment**: Install Python 3.11+ and IBM CLI tools
 1. **📝 Use the Template**: Copy `examples/component_template.py` to start your first component
 1. **⚙️ Configure**: Copy `config/config.yaml` and modify it for your environment
 1. **🧪 Test**: Run the test suite to verify everything works
