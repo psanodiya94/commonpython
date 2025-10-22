@@ -8,7 +8,7 @@ library dependencies to ensure comprehensive code coverage.
 import sys
 import unittest
 from pathlib import Path
-from unittest.mock import Mock, MagicMock, patch, call, PropertyMock
+from unittest.mock import Mock, MagicMock, patch, PropertyMock
 
 # Add parent directory to path
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -37,23 +37,22 @@ class TestDB2LibraryAdapter(unittest.TestCase):
         self.mock_ibm_db_dbi = MagicMock()
 
         # Setup module patches
-        self.ibm_db_patcher = patch.dict('sys.modules', {
-            'ibm_db': self.mock_ibm_db,
-            'ibm_db_dbi': self.mock_ibm_db_dbi
-        })
+        self.ibm_db_patcher = patch.dict(
+            "sys.modules", {"ibm_db": self.mock_ibm_db, "ibm_db_dbi": self.mock_ibm_db_dbi}
+        )
         self.ibm_db_patcher.start()
 
     def tearDown(self):
         """Clean up patches"""
         self.ibm_db_patcher.stop()
         # Clear the module from cache if it was imported
-        if 'commonpython.adapters.db2_library_adapter' in sys.modules:
-            del sys.modules['commonpython.adapters.db2_library_adapter']
+        if "commonpython.adapters.db2_library_adapter" in sys.modules:
+            del sys.modules["commonpython.adapters.db2_library_adapter"]
 
     def test_initialization_with_library(self):
         """Test adapter initialization when ibm_db is available"""
         # Mock HAS_IBM_DB = True
-        with patch('commonpython.adapters.db2_library_adapter.HAS_IBM_DB', True):
+        with patch("commonpython.adapters.db2_library_adapter.HAS_IBM_DB", True):
             from commonpython.adapters.db2_library_adapter import DB2LibraryAdapter
 
             adapter = DB2LibraryAdapter(self.config, self.logger)
@@ -63,7 +62,7 @@ class TestDB2LibraryAdapter(unittest.TestCase):
 
     def test_initialization_without_library(self):
         """Test adapter initialization raises ImportError when ibm_db not available"""
-        with patch('commonpython.adapters.db2_library_adapter.HAS_IBM_DB', False):
+        with patch("commonpython.adapters.db2_library_adapter.HAS_IBM_DB", False):
             from commonpython.adapters.db2_library_adapter import DB2LibraryAdapter
 
             with self.assertRaises(ImportError) as context:
@@ -72,7 +71,7 @@ class TestDB2LibraryAdapter(unittest.TestCase):
 
     def test_initialization_creates_connection_string(self):
         """Test that initialization creates connection string"""
-        with patch('commonpython.adapters.db2_library_adapter.HAS_IBM_DB', True):
+        with patch("commonpython.adapters.db2_library_adapter.HAS_IBM_DB", True):
             from commonpython.adapters.db2_library_adapter import DB2LibraryAdapter
 
             adapter = DB2LibraryAdapter(self.config, self.logger)
@@ -82,7 +81,7 @@ class TestDB2LibraryAdapter(unittest.TestCase):
 
     def test_connect_success(self):
         """Test successful database connection"""
-        with patch('commonpython.adapters.db2_library_adapter.HAS_IBM_DB', True):
+        with patch("commonpython.adapters.db2_library_adapter.HAS_IBM_DB", True):
             from commonpython.adapters.db2_library_adapter import DB2LibraryAdapter
 
             # Mock successful connection
@@ -101,17 +100,17 @@ class TestDB2LibraryAdapter(unittest.TestCase):
 
     def test_connect_failure_path_exists(self):
         """Test that connect method handles failures gracefully"""
-        with patch('commonpython.adapters.db2_library_adapter.HAS_IBM_DB', True):
+        with patch("commonpython.adapters.db2_library_adapter.HAS_IBM_DB", True):
             from commonpython.adapters.db2_library_adapter import DB2LibraryAdapter
 
             adapter = DB2LibraryAdapter(self.config, self.logger)
             # Verify the adapter was created and has connect method
-            self.assertTrue(hasattr(adapter, 'connect'))
+            self.assertTrue(hasattr(adapter, "connect"))
             self.assertTrue(callable(adapter.connect))
 
     def test_connect_without_logger(self):
         """Test connection without logger"""
-        with patch('commonpython.adapters.db2_library_adapter.HAS_IBM_DB', True):
+        with patch("commonpython.adapters.db2_library_adapter.HAS_IBM_DB", True):
             from commonpython.adapters.db2_library_adapter import DB2LibraryAdapter
 
             mock_conn = Mock()
@@ -126,7 +125,7 @@ class TestDB2LibraryAdapter(unittest.TestCase):
 
     def test_disconnect_success(self):
         """Test successful disconnection"""
-        with patch('commonpython.adapters.db2_library_adapter.HAS_IBM_DB', True):
+        with patch("commonpython.adapters.db2_library_adapter.HAS_IBM_DB", True):
             from commonpython.adapters.db2_library_adapter import DB2LibraryAdapter
 
             mock_conn = Mock()
@@ -145,7 +144,7 @@ class TestDB2LibraryAdapter(unittest.TestCase):
 
     def test_disconnect_with_error(self):
         """Test disconnection with error"""
-        with patch('commonpython.adapters.db2_library_adapter.HAS_IBM_DB', True):
+        with patch("commonpython.adapters.db2_library_adapter.HAS_IBM_DB", True):
             from commonpython.adapters.db2_library_adapter import DB2LibraryAdapter
 
             mock_conn = Mock()
@@ -162,7 +161,7 @@ class TestDB2LibraryAdapter(unittest.TestCase):
 
     def test_is_connected_true(self):
         """Test is_connected returns True when connected"""
-        with patch('commonpython.adapters.db2_library_adapter.HAS_IBM_DB', True):
+        with patch("commonpython.adapters.db2_library_adapter.HAS_IBM_DB", True):
             from commonpython.adapters.db2_library_adapter import DB2LibraryAdapter
 
             mock_conn = Mock()
@@ -175,7 +174,7 @@ class TestDB2LibraryAdapter(unittest.TestCase):
 
     def test_is_connected_false(self):
         """Test is_connected returns False when not connected"""
-        with patch('commonpython.adapters.db2_library_adapter.HAS_IBM_DB', True):
+        with patch("commonpython.adapters.db2_library_adapter.HAS_IBM_DB", True):
             from commonpython.adapters.db2_library_adapter import DB2LibraryAdapter
 
             adapter = DB2LibraryAdapter(self.config, self.logger)
@@ -185,7 +184,7 @@ class TestDB2LibraryAdapter(unittest.TestCase):
 
     def test_is_connected_exception(self):
         """Test is_connected handles exceptions"""
-        with patch('commonpython.adapters.db2_library_adapter.HAS_IBM_DB', True):
+        with patch("commonpython.adapters.db2_library_adapter.HAS_IBM_DB", True):
             from commonpython.adapters.db2_library_adapter import DB2LibraryAdapter
 
             mock_conn = Mock()
@@ -198,7 +197,7 @@ class TestDB2LibraryAdapter(unittest.TestCase):
 
     def test_execute_query_success(self):
         """Test successful query execution"""
-        with patch('commonpython.adapters.db2_library_adapter.HAS_IBM_DB', True):
+        with patch("commonpython.adapters.db2_library_adapter.HAS_IBM_DB", True):
             from commonpython.adapters.db2_library_adapter import DB2LibraryAdapter
 
             # Setup mocks
@@ -224,7 +223,7 @@ class TestDB2LibraryAdapter(unittest.TestCase):
 
     def test_execute_query_with_params(self):
         """Test query execution with parameters"""
-        with patch('commonpython.adapters.db2_library_adapter.HAS_IBM_DB', True):
+        with patch("commonpython.adapters.db2_library_adapter.HAS_IBM_DB", True):
             from commonpython.adapters.db2_library_adapter import DB2LibraryAdapter
 
             mock_cursor = Mock()
@@ -246,7 +245,7 @@ class TestDB2LibraryAdapter(unittest.TestCase):
 
     def test_execute_query_not_connected(self):
         """Test query execution when not connected"""
-        with patch('commonpython.adapters.db2_library_adapter.HAS_IBM_DB', True):
+        with patch("commonpython.adapters.db2_library_adapter.HAS_IBM_DB", True):
             from commonpython.adapters.db2_library_adapter import DB2LibraryAdapter
 
             adapter = DB2LibraryAdapter(self.config, self.logger)
@@ -257,7 +256,7 @@ class TestDB2LibraryAdapter(unittest.TestCase):
 
     def test_execute_query_error(self):
         """Test query execution with error"""
-        with patch('commonpython.adapters.db2_library_adapter.HAS_IBM_DB', True):
+        with patch("commonpython.adapters.db2_library_adapter.HAS_IBM_DB", True):
             from commonpython.adapters.db2_library_adapter import DB2LibraryAdapter
 
             mock_cursor = Mock()
@@ -278,7 +277,7 @@ class TestDB2LibraryAdapter(unittest.TestCase):
 
     def test_execute_update_success(self):
         """Test successful update execution"""
-        with patch('commonpython.adapters.db2_library_adapter.HAS_IBM_DB', True):
+        with patch("commonpython.adapters.db2_library_adapter.HAS_IBM_DB", True):
             from commonpython.adapters.db2_library_adapter import DB2LibraryAdapter
 
             mock_cursor = Mock()
@@ -301,7 +300,7 @@ class TestDB2LibraryAdapter(unittest.TestCase):
 
     def test_execute_update_with_params(self):
         """Test update execution with parameters"""
-        with patch('commonpython.adapters.db2_library_adapter.HAS_IBM_DB', True):
+        with patch("commonpython.adapters.db2_library_adapter.HAS_IBM_DB", True):
             from commonpython.adapters.db2_library_adapter import DB2LibraryAdapter
 
             mock_cursor = Mock()
@@ -321,7 +320,7 @@ class TestDB2LibraryAdapter(unittest.TestCase):
 
     def test_execute_update_not_connected(self):
         """Test update execution when not connected"""
-        with patch('commonpython.adapters.db2_library_adapter.HAS_IBM_DB', True):
+        with patch("commonpython.adapters.db2_library_adapter.HAS_IBM_DB", True):
             from commonpython.adapters.db2_library_adapter import DB2LibraryAdapter
 
             adapter = DB2LibraryAdapter(self.config, self.logger)
@@ -332,7 +331,7 @@ class TestDB2LibraryAdapter(unittest.TestCase):
 
     def test_execute_update_error(self):
         """Test update execution with error"""
-        with patch('commonpython.adapters.db2_library_adapter.HAS_IBM_DB', True):
+        with patch("commonpython.adapters.db2_library_adapter.HAS_IBM_DB", True):
             from commonpython.adapters.db2_library_adapter import DB2LibraryAdapter
 
             mock_cursor = Mock()
@@ -351,7 +350,7 @@ class TestDB2LibraryAdapter(unittest.TestCase):
 
     def test_execute_batch_success(self):
         """Test successful batch execution"""
-        with patch('commonpython.adapters.db2_library_adapter.HAS_IBM_DB', True):
+        with patch("commonpython.adapters.db2_library_adapter.HAS_IBM_DB", True):
             from commonpython.adapters.db2_library_adapter import DB2LibraryAdapter
 
             mock_cursor = Mock()
@@ -376,7 +375,7 @@ class TestDB2LibraryAdapter(unittest.TestCase):
 
     def test_execute_batch_without_params(self):
         """Test batch execution without parameters"""
-        with patch('commonpython.adapters.db2_library_adapter.HAS_IBM_DB', True):
+        with patch("commonpython.adapters.db2_library_adapter.HAS_IBM_DB", True):
             from commonpython.adapters.db2_library_adapter import DB2LibraryAdapter
 
             mock_cursor = Mock()
@@ -398,7 +397,7 @@ class TestDB2LibraryAdapter(unittest.TestCase):
 
     def test_execute_batch_error_rollback(self):
         """Test batch execution error triggers rollback"""
-        with patch('commonpython.adapters.db2_library_adapter.HAS_IBM_DB', True):
+        with patch("commonpython.adapters.db2_library_adapter.HAS_IBM_DB", True):
             from commonpython.adapters.db2_library_adapter import DB2LibraryAdapter
 
             mock_cursor = Mock()
@@ -421,7 +420,7 @@ class TestDB2LibraryAdapter(unittest.TestCase):
 
     def test_transaction_context_success(self):
         """Test successful transaction context"""
-        with patch('commonpython.adapters.db2_library_adapter.HAS_IBM_DB', True):
+        with patch("commonpython.adapters.db2_library_adapter.HAS_IBM_DB", True):
             from commonpython.adapters.db2_library_adapter import DB2LibraryAdapter
 
             mock_dbi_conn = Mock()
@@ -438,7 +437,7 @@ class TestDB2LibraryAdapter(unittest.TestCase):
 
     def test_transaction_context_error_rollback(self):
         """Test transaction context error triggers rollback"""
-        with patch('commonpython.adapters.db2_library_adapter.HAS_IBM_DB', True):
+        with patch("commonpython.adapters.db2_library_adapter.HAS_IBM_DB", True):
             from commonpython.adapters.db2_library_adapter import DB2LibraryAdapter
 
             mock_dbi_conn = Mock()
@@ -456,7 +455,7 @@ class TestDB2LibraryAdapter(unittest.TestCase):
 
     def test_transaction_not_connected(self):
         """Test transaction when not connected"""
-        with patch('commonpython.adapters.db2_library_adapter.HAS_IBM_DB', True):
+        with patch("commonpython.adapters.db2_library_adapter.HAS_IBM_DB", True):
             from commonpython.adapters.db2_library_adapter import DB2LibraryAdapter
 
             adapter = DB2LibraryAdapter(self.config, self.logger)
@@ -468,11 +467,18 @@ class TestDB2LibraryAdapter(unittest.TestCase):
 
     def test_get_table_info(self):
         """Test getting table information"""
-        with patch('commonpython.adapters.db2_library_adapter.HAS_IBM_DB', True):
+        with patch("commonpython.adapters.db2_library_adapter.HAS_IBM_DB", True):
             from commonpython.adapters.db2_library_adapter import DB2LibraryAdapter
 
             mock_cursor = Mock()
-            mock_cursor.description = [("COLNAME",), ("TYPENAME",), ("LENGTH",), ("SCALE",), ("NULLS",), ("KEYSEQ",)]
+            mock_cursor.description = [
+                ("COLNAME",),
+                ("TYPENAME",),
+                ("LENGTH",),
+                ("SCALE",),
+                ("NULLS",),
+                ("KEYSEQ",),
+            ]
             mock_cursor.fetchall.return_value = [("ID", "INTEGER", 4, 0, "N", 1)]
 
             mock_dbi_conn = Mock()
@@ -490,7 +496,7 @@ class TestDB2LibraryAdapter(unittest.TestCase):
 
     def test_get_database_info(self):
         """Test getting database information"""
-        with patch('commonpython.adapters.db2_library_adapter.HAS_IBM_DB', True):
+        with patch("commonpython.adapters.db2_library_adapter.HAS_IBM_DB", True):
             from commonpython.adapters.db2_library_adapter import DB2LibraryAdapter
 
             mock_cursor = Mock()
@@ -511,7 +517,7 @@ class TestDB2LibraryAdapter(unittest.TestCase):
 
     def test_get_database_info_empty(self):
         """Test getting database information when no results"""
-        with patch('commonpython.adapters.db2_library_adapter.HAS_IBM_DB', True):
+        with patch("commonpython.adapters.db2_library_adapter.HAS_IBM_DB", True):
             from commonpython.adapters.db2_library_adapter import DB2LibraryAdapter
 
             mock_cursor = Mock()
@@ -532,7 +538,7 @@ class TestDB2LibraryAdapter(unittest.TestCase):
 
     def test_test_connection_success(self):
         """Test connection test success"""
-        with patch('commonpython.adapters.db2_library_adapter.HAS_IBM_DB', True):
+        with patch("commonpython.adapters.db2_library_adapter.HAS_IBM_DB", True):
             from commonpython.adapters.db2_library_adapter import DB2LibraryAdapter
 
             mock_cursor = Mock()
@@ -553,7 +559,7 @@ class TestDB2LibraryAdapter(unittest.TestCase):
 
     def test_test_connection_failure(self):
         """Test connection test failure"""
-        with patch('commonpython.adapters.db2_library_adapter.HAS_IBM_DB', True):
+        with patch("commonpython.adapters.db2_library_adapter.HAS_IBM_DB", True):
             from commonpython.adapters.db2_library_adapter import DB2LibraryAdapter
 
             mock_cursor = Mock()
@@ -593,21 +599,19 @@ class TestMQLibraryAdapter(unittest.TestCase):
         self.mock_pymqi = MagicMock()
 
         # Setup module patches
-        self.pymqi_patcher = patch.dict('sys.modules', {
-            'pymqi': self.mock_pymqi
-        })
+        self.pymqi_patcher = patch.dict("sys.modules", {"pymqi": self.mock_pymqi})
         self.pymqi_patcher.start()
 
     def tearDown(self):
         """Clean up patches"""
         self.pymqi_patcher.stop()
         # Clear the module from cache if it was imported
-        if 'commonpython.adapters.mq_library_adapter' in sys.modules:
-            del sys.modules['commonpython.adapters.mq_library_adapter']
+        if "commonpython.adapters.mq_library_adapter" in sys.modules:
+            del sys.modules["commonpython.adapters.mq_library_adapter"]
 
     def test_initialization_with_library(self):
         """Test adapter initialization when pymqi is available"""
-        with patch('commonpython.adapters.mq_library_adapter.HAS_PYMQI', True):
+        with patch("commonpython.adapters.mq_library_adapter.HAS_PYMQI", True):
             from commonpython.adapters.mq_library_adapter import MQLibraryAdapter
 
             adapter = MQLibraryAdapter(self.config, self.logger)
@@ -617,7 +621,7 @@ class TestMQLibraryAdapter(unittest.TestCase):
 
     def test_initialization_without_library(self):
         """Test adapter initialization raises ImportError when pymqi not available"""
-        with patch('commonpython.adapters.mq_library_adapter.HAS_PYMQI', False):
+        with patch("commonpython.adapters.mq_library_adapter.HAS_PYMQI", False):
             from commonpython.adapters.mq_library_adapter import MQLibraryAdapter
 
             with self.assertRaises(ImportError) as context:
@@ -626,7 +630,7 @@ class TestMQLibraryAdapter(unittest.TestCase):
 
     def test_build_connection_info(self):
         """Test connection info building"""
-        with patch('commonpython.adapters.mq_library_adapter.HAS_PYMQI', True):
+        with patch("commonpython.adapters.mq_library_adapter.HAS_PYMQI", True):
             from commonpython.adapters.mq_library_adapter import MQLibraryAdapter
 
             adapter = MQLibraryAdapter(self.config, self.logger)
@@ -640,7 +644,7 @@ class TestMQLibraryAdapter(unittest.TestCase):
 
     def test_build_connection_info_defaults(self):
         """Test connection info building with defaults"""
-        with patch('commonpython.adapters.mq_library_adapter.HAS_PYMQI', True):
+        with patch("commonpython.adapters.mq_library_adapter.HAS_PYMQI", True):
             from commonpython.adapters.mq_library_adapter import MQLibraryAdapter
 
             config = {}
@@ -652,7 +656,7 @@ class TestMQLibraryAdapter(unittest.TestCase):
 
     def test_connect_success(self):
         """Test successful MQ connection"""
-        with patch('commonpython.adapters.mq_library_adapter.HAS_PYMQI', True):
+        with patch("commonpython.adapters.mq_library_adapter.HAS_PYMQI", True):
             from commonpython.adapters.mq_library_adapter import MQLibraryAdapter
 
             mock_qmgr = Mock()
@@ -667,7 +671,7 @@ class TestMQLibraryAdapter(unittest.TestCase):
 
     def test_connect_failure(self):
         """Test MQ connection failure"""
-        with patch('commonpython.adapters.mq_library_adapter.HAS_PYMQI', True):
+        with patch("commonpython.adapters.mq_library_adapter.HAS_PYMQI", True):
             from commonpython.adapters.mq_library_adapter import MQLibraryAdapter
 
             self.mock_pymqi.connect.side_effect = Exception("Connection failed")
@@ -680,7 +684,7 @@ class TestMQLibraryAdapter(unittest.TestCase):
 
     def test_disconnect_success(self):
         """Test successful disconnection"""
-        with patch('commonpython.adapters.mq_library_adapter.HAS_PYMQI', True):
+        with patch("commonpython.adapters.mq_library_adapter.HAS_PYMQI", True):
             from commonpython.adapters.mq_library_adapter import MQLibraryAdapter
 
             mock_qmgr = Mock()
@@ -695,7 +699,7 @@ class TestMQLibraryAdapter(unittest.TestCase):
 
     def test_disconnect_with_error(self):
         """Test disconnection with error"""
-        with patch('commonpython.adapters.mq_library_adapter.HAS_PYMQI', True):
+        with patch("commonpython.adapters.mq_library_adapter.HAS_PYMQI", True):
             from commonpython.adapters.mq_library_adapter import MQLibraryAdapter
 
             mock_qmgr = Mock()
@@ -710,7 +714,7 @@ class TestMQLibraryAdapter(unittest.TestCase):
 
     def test_is_connected_true(self):
         """Test is_connected returns True when connected"""
-        with patch('commonpython.adapters.mq_library_adapter.HAS_PYMQI', True):
+        with patch("commonpython.adapters.mq_library_adapter.HAS_PYMQI", True):
             from commonpython.adapters.mq_library_adapter import MQLibraryAdapter
 
             mock_qmgr = Mock()
@@ -723,7 +727,7 @@ class TestMQLibraryAdapter(unittest.TestCase):
 
     def test_is_connected_false(self):
         """Test is_connected returns False when not connected"""
-        with patch('commonpython.adapters.mq_library_adapter.HAS_PYMQI', True):
+        with patch("commonpython.adapters.mq_library_adapter.HAS_PYMQI", True):
             from commonpython.adapters.mq_library_adapter import MQLibraryAdapter
 
             adapter = MQLibraryAdapter(self.config, self.logger)
@@ -733,7 +737,7 @@ class TestMQLibraryAdapter(unittest.TestCase):
 
     def test_is_connected_exception(self):
         """Test is_connected handles exceptions"""
-        with patch('commonpython.adapters.mq_library_adapter.HAS_PYMQI', True):
+        with patch("commonpython.adapters.mq_library_adapter.HAS_PYMQI", True):
             from commonpython.adapters.mq_library_adapter import MQLibraryAdapter
 
             mock_qmgr = Mock()
@@ -746,7 +750,7 @@ class TestMQLibraryAdapter(unittest.TestCase):
 
     def test_put_message_string(self):
         """Test putting string message"""
-        with patch('commonpython.adapters.mq_library_adapter.HAS_PYMQI', True):
+        with patch("commonpython.adapters.mq_library_adapter.HAS_PYMQI", True):
             from commonpython.adapters.mq_library_adapter import MQLibraryAdapter
 
             mock_queue = Mock()
@@ -766,7 +770,7 @@ class TestMQLibraryAdapter(unittest.TestCase):
 
     def test_put_message_dict(self):
         """Test putting dictionary message"""
-        with patch('commonpython.adapters.mq_library_adapter.HAS_PYMQI', True):
+        with patch("commonpython.adapters.mq_library_adapter.HAS_PYMQI", True):
             from commonpython.adapters.mq_library_adapter import MQLibraryAdapter
 
             mock_queue = Mock()
@@ -784,7 +788,7 @@ class TestMQLibraryAdapter(unittest.TestCase):
 
     def test_put_message_bytes(self):
         """Test putting bytes message"""
-        with patch('commonpython.adapters.mq_library_adapter.HAS_PYMQI', True):
+        with patch("commonpython.adapters.mq_library_adapter.HAS_PYMQI", True):
             from commonpython.adapters.mq_library_adapter import MQLibraryAdapter
 
             mock_queue = Mock()
@@ -802,7 +806,7 @@ class TestMQLibraryAdapter(unittest.TestCase):
 
     def test_put_message_with_properties(self):
         """Test putting message with properties"""
-        with patch('commonpython.adapters.mq_library_adapter.HAS_PYMQI', True):
+        with patch("commonpython.adapters.mq_library_adapter.HAS_PYMQI", True):
             from commonpython.adapters.mq_library_adapter import MQLibraryAdapter
 
             mock_queue = Mock()
@@ -820,7 +824,7 @@ class TestMQLibraryAdapter(unittest.TestCase):
                 "reply_to_queue": "REPLY.QUEUE",
                 "message_type": 8,
                 "priority": 5,
-                "persistence": 1
+                "persistence": 1,
             }
 
             result = adapter.put_message("TEST.QUEUE", "test", properties)
@@ -831,7 +835,7 @@ class TestMQLibraryAdapter(unittest.TestCase):
 
     def test_put_message_not_connected(self):
         """Test putting message when not connected"""
-        with patch('commonpython.adapters.mq_library_adapter.HAS_PYMQI', True):
+        with patch("commonpython.adapters.mq_library_adapter.HAS_PYMQI", True):
             from commonpython.adapters.mq_library_adapter import MQLibraryAdapter
 
             adapter = MQLibraryAdapter(self.config, self.logger)
@@ -842,7 +846,7 @@ class TestMQLibraryAdapter(unittest.TestCase):
 
     def test_put_message_error(self):
         """Test putting message with error"""
-        with patch('commonpython.adapters.mq_library_adapter.HAS_PYMQI', True):
+        with patch("commonpython.adapters.mq_library_adapter.HAS_PYMQI", True):
             from commonpython.adapters.mq_library_adapter import MQLibraryAdapter
 
             mock_queue = Mock()
@@ -861,24 +865,24 @@ class TestMQLibraryAdapter(unittest.TestCase):
 
     def test_get_message_success(self):
         """Test getting message successfully"""
-        with patch('commonpython.adapters.mq_library_adapter.HAS_PYMQI', True):
+        with patch("commonpython.adapters.mq_library_adapter.HAS_PYMQI", True):
             from commonpython.adapters.mq_library_adapter import MQLibraryAdapter
 
             mock_queue = Mock()
             mock_queue.get.return_value = b'{"key": "value"}'
 
             mock_md = Mock()
-            mock_md.MsgId = b'\x01\x02\x03\x04'
-            mock_md.CorrelId = b'\x05\x06\x07\x08'
-            mock_md.ReplyToQ = b'REPLY.QUEUE         '
-            mock_md.ReplyToQMgr = b'QM2                  '
+            mock_md.MsgId = b"\x01\x02\x03\x04"
+            mock_md.CorrelId = b"\x05\x06\x07\x08"
+            mock_md.ReplyToQ = b"REPLY.QUEUE         "
+            mock_md.ReplyToQMgr = b"QM2                  "
             mock_md.MsgType = 8
-            mock_md.Format = b'MQSTR   '
+            mock_md.Format = b"MQSTR   "
             mock_md.Priority = 5
             mock_md.Persistence = 1
             mock_md.Expiry = -1
-            mock_md.PutTime = b'12345678'
-            mock_md.PutDate = b'20240101'
+            mock_md.PutTime = b"12345678"
+            mock_md.PutDate = b"20240101"
 
             mock_qmgr = Mock()
             mock_qmgr.is_connected = True
@@ -899,24 +903,24 @@ class TestMQLibraryAdapter(unittest.TestCase):
 
     def test_get_message_string(self):
         """Test getting string message"""
-        with patch('commonpython.adapters.mq_library_adapter.HAS_PYMQI', True):
+        with patch("commonpython.adapters.mq_library_adapter.HAS_PYMQI", True):
             from commonpython.adapters.mq_library_adapter import MQLibraryAdapter
 
             mock_queue = Mock()
-            mock_queue.get.return_value = b'plain text message'
+            mock_queue.get.return_value = b"plain text message"
 
             mock_md = Mock()
-            mock_md.MsgId = b'\x01\x02\x03\x04'
-            mock_md.CorrelId = b''
-            mock_md.ReplyToQ = b''
-            mock_md.ReplyToQMgr = b''
+            mock_md.MsgId = b"\x01\x02\x03\x04"
+            mock_md.CorrelId = b""
+            mock_md.ReplyToQ = b""
+            mock_md.ReplyToQMgr = b""
             mock_md.MsgType = 8
-            mock_md.Format = b'MQSTR   '
+            mock_md.Format = b"MQSTR   "
             mock_md.Priority = 0
             mock_md.Persistence = 1
             mock_md.Expiry = -1
-            mock_md.PutTime = '12345678'
-            mock_md.PutDate = '20240101'
+            mock_md.PutTime = "12345678"
+            mock_md.PutDate = "20240101"
 
             mock_qmgr = Mock()
             mock_qmgr.is_connected = True
@@ -937,7 +941,7 @@ class TestMQLibraryAdapter(unittest.TestCase):
 
     def test_get_message_no_message_available(self):
         """Test getting message when queue is empty"""
-        with patch('commonpython.adapters.mq_library_adapter.HAS_PYMQI', True):
+        with patch("commonpython.adapters.mq_library_adapter.HAS_PYMQI", True):
             from commonpython.adapters.mq_library_adapter import MQLibraryAdapter
 
             mock_queue = Mock()
@@ -946,7 +950,7 @@ class TestMQLibraryAdapter(unittest.TestCase):
             mqmi_error.reason = self.mock_pymqi.CMQC.MQRC_NO_MSG_AVAILABLE
             mock_queue.get.side_effect = self.mock_pymqi.MQMIError(mqmi_error)
 
-            self.mock_pymqi.MQMIError = type('MQMIError', (Exception,), {})
+            self.mock_pymqi.MQMIError = type("MQMIError", (Exception,), {})
             self.mock_pymqi.CMQC = Mock()
             self.mock_pymqi.CMQC.MQCC_FAILED = 2
             self.mock_pymqi.CMQC.MQRC_NO_MSG_AVAILABLE = 2033
@@ -973,7 +977,7 @@ class TestMQLibraryAdapter(unittest.TestCase):
 
     def test_get_message_error(self):
         """Test getting message with error"""
-        with patch('commonpython.adapters.mq_library_adapter.HAS_PYMQI', True):
+        with patch("commonpython.adapters.mq_library_adapter.HAS_PYMQI", True):
             from commonpython.adapters.mq_library_adapter import MQLibraryAdapter
 
             mock_queue = Mock()
@@ -996,18 +1000,18 @@ class TestMQLibraryAdapter(unittest.TestCase):
 
     def test_browse_message_success(self):
         """Test browsing message successfully"""
-        with patch('commonpython.adapters.mq_library_adapter.HAS_PYMQI', True):
+        with patch("commonpython.adapters.mq_library_adapter.HAS_PYMQI", True):
             from commonpython.adapters.mq_library_adapter import MQLibraryAdapter
 
             mock_queue = Mock()
             mock_queue.get.return_value = b'{"key": "value"}'
 
             mock_md = Mock()
-            mock_md.MsgId = b'\x01\x02\x03\x04'
-            mock_md.CorrelId = b''
-            mock_md.ReplyToQ = b'REPLY.QUEUE         '
+            mock_md.MsgId = b"\x01\x02\x03\x04"
+            mock_md.CorrelId = b""
+            mock_md.ReplyToQ = b"REPLY.QUEUE         "
             mock_md.MsgType = 8
-            mock_md.Format = b'MQSTR   '
+            mock_md.Format = b"MQSTR   "
             mock_md.Priority = 5
             mock_md.Persistence = 1
 
@@ -1031,18 +1035,18 @@ class TestMQLibraryAdapter(unittest.TestCase):
 
     def test_browse_message_with_message_id(self):
         """Test browsing specific message by ID"""
-        with patch('commonpython.adapters.mq_library_adapter.HAS_PYMQI', True):
+        with patch("commonpython.adapters.mq_library_adapter.HAS_PYMQI", True):
             from commonpython.adapters.mq_library_adapter import MQLibraryAdapter
 
             mock_queue = Mock()
-            mock_queue.get.return_value = b'test message'
+            mock_queue.get.return_value = b"test message"
 
             mock_md = Mock()
-            mock_md.MsgId = b'\x01\x02\x03\x04'
-            mock_md.CorrelId = b''
-            mock_md.ReplyToQ = b''
+            mock_md.MsgId = b"\x01\x02\x03\x04"
+            mock_md.CorrelId = b""
+            mock_md.ReplyToQ = b""
             mock_md.MsgType = 8
-            mock_md.Format = b'MQSTR   '
+            mock_md.Format = b"MQSTR   "
             mock_md.Priority = 0
             mock_md.Persistence = 1
 
@@ -1059,19 +1063,19 @@ class TestMQLibraryAdapter(unittest.TestCase):
             adapter = MQLibraryAdapter(self.config, self.logger)
             adapter._qmgr = mock_qmgr
 
-            message = adapter.browse_message("TEST.QUEUE", b'\x01\x02\x03\x04')
+            message = adapter.browse_message("TEST.QUEUE", b"\x01\x02\x03\x04")
 
             self.assertIsNotNone(message)
-            self.assertEqual(mock_md.MsgId, b'\x01\x02\x03\x04')
+            self.assertEqual(mock_md.MsgId, b"\x01\x02\x03\x04")
 
     def test_browse_message_no_message(self):
         """Test browsing when no message available"""
-        with patch('commonpython.adapters.mq_library_adapter.HAS_PYMQI', True):
+        with patch("commonpython.adapters.mq_library_adapter.HAS_PYMQI", True):
             from commonpython.adapters.mq_library_adapter import MQLibraryAdapter
 
             mock_queue = Mock()
 
-            self.mock_pymqi.MQMIError = type('MQMIError', (Exception,), {})
+            self.mock_pymqi.MQMIError = type("MQMIError", (Exception,), {})
             self.mock_pymqi.CMQC = Mock()
             self.mock_pymqi.CMQC.MQCC_FAILED = 2
             self.mock_pymqi.CMQC.MQRC_NO_MSG_AVAILABLE = 2033
@@ -1099,17 +1103,17 @@ class TestMQLibraryAdapter(unittest.TestCase):
 
     def test_browse_message_method_exists(self):
         """Test that browse_message method exists and is callable"""
-        with patch('commonpython.adapters.mq_library_adapter.HAS_PYMQI', True):
+        with patch("commonpython.adapters.mq_library_adapter.HAS_PYMQI", True):
             from commonpython.adapters.mq_library_adapter import MQLibraryAdapter
 
             adapter = MQLibraryAdapter(self.config, self.logger)
             # Verify the adapter has browse_message method
-            self.assertTrue(hasattr(adapter, 'browse_message'))
+            self.assertTrue(hasattr(adapter, "browse_message"))
             self.assertTrue(callable(adapter.browse_message))
 
     def test_get_queue_depth_success(self):
         """Test getting queue depth successfully"""
-        with patch('commonpython.adapters.mq_library_adapter.HAS_PYMQI', True):
+        with patch("commonpython.adapters.mq_library_adapter.HAS_PYMQI", True):
             from commonpython.adapters.mq_library_adapter import MQLibraryAdapter
 
             mock_queue = Mock()
@@ -1131,7 +1135,7 @@ class TestMQLibraryAdapter(unittest.TestCase):
 
     def test_get_queue_depth_error(self):
         """Test getting queue depth with error"""
-        with patch('commonpython.adapters.mq_library_adapter.HAS_PYMQI', True):
+        with patch("commonpython.adapters.mq_library_adapter.HAS_PYMQI", True):
             from commonpython.adapters.mq_library_adapter import MQLibraryAdapter
 
             mock_queue = Mock()
@@ -1153,13 +1157,13 @@ class TestMQLibraryAdapter(unittest.TestCase):
 
     def test_purge_queue_success(self):
         """Test purging queue successfully"""
-        with patch('commonpython.adapters.mq_library_adapter.HAS_PYMQI', True):
+        with patch("commonpython.adapters.mq_library_adapter.HAS_PYMQI", True):
             from commonpython.adapters.mq_library_adapter import MQLibraryAdapter
 
             mock_queue = Mock()
 
             # Simulate 3 messages then no more messages
-            self.mock_pymqi.MQMIError = type('MQMIError', (Exception,), {})
+            self.mock_pymqi.MQMIError = type("MQMIError", (Exception,), {})
             self.mock_pymqi.CMQC = Mock()
             self.mock_pymqi.CMQC.MQGMO_NO_WAIT = 4
             self.mock_pymqi.CMQC.MQGMO_FAIL_IF_QUIESCING = 2
@@ -1168,7 +1172,7 @@ class TestMQLibraryAdapter(unittest.TestCase):
             no_msg_error = self.mock_pymqi.MQMIError()
             no_msg_error.reason = 2033
 
-            mock_queue.get.side_effect = [b'msg1', b'msg2', b'msg3', no_msg_error]
+            mock_queue.get.side_effect = [b"msg1", b"msg2", b"msg3", no_msg_error]
 
             mock_qmgr = Mock()
             mock_qmgr.is_connected = True
@@ -1185,7 +1189,7 @@ class TestMQLibraryAdapter(unittest.TestCase):
 
     def test_purge_queue_error(self):
         """Test purging queue with error"""
-        with patch('commonpython.adapters.mq_library_adapter.HAS_PYMQI', True):
+        with patch("commonpython.adapters.mq_library_adapter.HAS_PYMQI", True):
             from commonpython.adapters.mq_library_adapter import MQLibraryAdapter
 
             mock_queue = Mock()
@@ -1208,7 +1212,7 @@ class TestMQLibraryAdapter(unittest.TestCase):
 
     def test_test_connection_success(self):
         """Test connection test success"""
-        with patch('commonpython.adapters.mq_library_adapter.HAS_PYMQI', True):
+        with patch("commonpython.adapters.mq_library_adapter.HAS_PYMQI", True):
             from commonpython.adapters.mq_library_adapter import MQLibraryAdapter
 
             mock_pcf = Mock()
@@ -1226,7 +1230,7 @@ class TestMQLibraryAdapter(unittest.TestCase):
 
     def test_test_connection_no_qmgr(self):
         """Test connection test when no qmgr"""
-        with patch('commonpython.adapters.mq_library_adapter.HAS_PYMQI', True):
+        with patch("commonpython.adapters.mq_library_adapter.HAS_PYMQI", True):
             from commonpython.adapters.mq_library_adapter import MQLibraryAdapter
 
             adapter = MQLibraryAdapter(self.config, self.logger)
@@ -1238,7 +1242,7 @@ class TestMQLibraryAdapter(unittest.TestCase):
 
     def test_test_connection_failure(self):
         """Test connection test failure"""
-        with patch('commonpython.adapters.mq_library_adapter.HAS_PYMQI', True):
+        with patch("commonpython.adapters.mq_library_adapter.HAS_PYMQI", True):
             from commonpython.adapters.mq_library_adapter import MQLibraryAdapter
 
             self.mock_pymqi.PCFExecute.side_effect = Exception("Test failed")

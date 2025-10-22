@@ -12,7 +12,7 @@ from pathlib import Path
 # Add parent directory to path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from commonpython.exceptions import (
+from commonpython.exceptions import (  # noqa: E402
     CommonPythonError,
     ConfigurationError,
     ConfigFileNotFoundError,
