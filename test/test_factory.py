@@ -8,7 +8,7 @@ of database and messaging managers based on configuration.
 import sys
 import unittest
 from pathlib import Path
-from unittest.mock import Mock
+from unittest.mock import Mock, patch, MagicMock
 
 # Add parent directory to path
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -288,6 +288,206 @@ class TestManagerFactoryIntegration(unittest.TestCase):
 
         # They should be different instances
         self.assertIsNot(cli_manager, library_manager)
+
+
+class TestManagerFactoryLibraryAdapters(unittest.TestCase):
+    """Test suite for ManagerFactory with library adapters available"""
+
+    def setUp(self):
+        """Set up test fixtures"""
+        self.logger = Mock()
+        self.logger.logger = Mock()
+        ManagerFactory.reset_cache()
+
+    def tearDown(self):
+        """Clean up after tests"""
+        ManagerFactory.reset_cache()
+
+    def test_create_database_manager_library_available(self):
+        """Test creating database manager when library is available"""
+        config = {
+            "implementation": "library",
+            "host": "localhost",
+            "port": 50000,
+            "name": "testdb"
+        }
+
+        # Mock library as available
+        ManagerFactory._adapter_cache["db2_library_available"] = True
+
+        # Mock the library adapter module
+        with patch.dict('sys.modules', {
+            'commonpython.adapters.db2_library_adapter': MagicMock()
+        }):
+            mock_adapter_class = MagicMock()
+            mock_adapter_class.return_value = Mock(spec=IDatabaseManager)
+
+            with patch('commonpython.adapters.db2_library_adapter.DB2LibraryAdapter', mock_adapter_class):
+                # Also need to ensure the import in the factory works
+                import commonpython.adapters.db2_library_adapter as db2_lib_mod
+                db2_lib_mod.DB2LibraryAdapter = mock_adapter_class
+
+                manager = ManagerFactory.create_database_manager(config, self.logger)
+
+                self.assertIsNotNone(manager)
+                self.logger.logger.info.assert_called()
+
+    def test_create_database_manager_library_available_no_logger(self):
+        """Test creating database manager with library when no logger provided"""
+        config = {
+            "implementation": "library",
+            "host": "localhost",
+            "port": 50000,
+            "name": "testdb"
+        }
+
+        # Mock library as available
+        ManagerFactory._adapter_cache["db2_library_available"] = True
+
+        # Mock the library adapter module
+        with patch.dict('sys.modules', {
+            'commonpython.adapters.db2_library_adapter': MagicMock()
+        }):
+            mock_adapter_class = MagicMock()
+            mock_adapter_class.return_value = Mock(spec=IDatabaseManager)
+
+            with patch('commonpython.adapters.db2_library_adapter.DB2LibraryAdapter', mock_adapter_class):
+                import commonpython.adapters.db2_library_adapter as db2_lib_mod
+                db2_lib_mod.DB2LibraryAdapter = mock_adapter_class
+
+                manager = ManagerFactory.create_database_manager(config, None)
+
+                self.assertIsNotNone(manager)
+
+    def test_create_messaging_manager_library_available(self):
+        """Test creating messaging manager when library is available"""
+        config = {
+            "implementation": "library",
+            "host": "localhost",
+            "port": 1414,
+            "queue_manager": "QM1"
+        }
+
+        # Mock library as available
+        ManagerFactory._adapter_cache["mq_library_available"] = True
+
+        # Mock the library adapter module
+        with patch.dict('sys.modules', {
+            'commonpython.adapters.mq_library_adapter': MagicMock()
+        }):
+            mock_adapter_class = MagicMock()
+            mock_adapter_class.return_value = Mock(spec=IMessagingManager)
+
+            with patch('commonpython.adapters.mq_library_adapter.MQLibraryAdapter', mock_adapter_class):
+                import commonpython.adapters.mq_library_adapter as mq_lib_mod
+                mq_lib_mod.MQLibraryAdapter = mock_adapter_class
+
+                manager = ManagerFactory.create_messaging_manager(config, self.logger)
+
+                self.assertIsNotNone(manager)
+                self.logger.logger.info.assert_called()
+
+    def test_create_messaging_manager_library_available_no_logger(self):
+        """Test creating messaging manager with library when no logger provided"""
+        config = {
+            "implementation": "library",
+            "host": "localhost",
+            "port": 1414,
+            "queue_manager": "QM1"
+        }
+
+        # Mock library as available
+        ManagerFactory._adapter_cache["mq_library_available"] = True
+
+        # Mock the library adapter module
+        with patch.dict('sys.modules', {
+            'commonpython.adapters.mq_library_adapter': MagicMock()
+        }):
+            mock_adapter_class = MagicMock()
+            mock_adapter_class.return_value = Mock(spec=IMessagingManager)
+
+            with patch('commonpython.adapters.mq_library_adapter.MQLibraryAdapter', mock_adapter_class):
+                import commonpython.adapters.mq_library_adapter as mq_lib_mod
+                mq_lib_mod.MQLibraryAdapter = mock_adapter_class
+
+                manager = ManagerFactory.create_messaging_manager(config, None)
+
+                self.assertIsNotNone(manager)
+
+    def test_get_available_implementations_import_errors(self):
+        """Test get_available_implementations handles import errors"""
+        # Force ImportError by mocking the import to fail
+        with patch.dict('sys.modules', {
+            'commonpython.adapters.db2_library_adapter': None,
+            'commonpython.adapters.mq_library_adapter': None
+        }):
+            available = ManagerFactory.get_available_implementations()
+
+            # CLI should still be available
+            self.assertTrue(available["database"]["cli"])
+            self.assertTrue(available["messaging"]["cli"])
+
+            # Library adapters should be False due to import error
+            self.assertFalse(available["database"]["library"])
+            self.assertFalse(available["messaging"]["library"])
+
+    def test_cache_population_on_first_access_db(self):
+        """Test cache is populated on first database manager access"""
+        config = {"implementation": "cli", "host": "localhost", "port": 50000, "name": "testdb"}
+
+        # Ensure cache starts empty
+        ManagerFactory.reset_cache()
+        self.assertIsNone(ManagerFactory._adapter_cache["db2_library_available"])
+
+        # Create manager
+        manager = ManagerFactory.create_database_manager(config, None)
+
+        # Cache should now be populated
+        self.assertIsNotNone(ManagerFactory._adapter_cache["db2_library_available"])
+        self.assertIsInstance(manager, IDatabaseManager)
+
+    def test_cache_population_on_first_access_mq(self):
+        """Test cache is populated on first messaging manager access"""
+        config = {"implementation": "cli", "host": "localhost", "port": 1414, "queue_manager": "QM1"}
+
+        # Ensure cache starts empty
+        ManagerFactory.reset_cache()
+        self.assertIsNone(ManagerFactory._adapter_cache["mq_library_available"])
+
+        # Create manager
+        manager = ManagerFactory.create_messaging_manager(config, None)
+
+        # Cache should now be populated
+        self.assertIsNotNone(ManagerFactory._adapter_cache["mq_library_available"])
+        self.assertIsInstance(manager, IMessagingManager)
+
+    def test_import_error_cache_check_db(self):
+        """Test ImportError is caught during database library check"""
+        ManagerFactory.reset_cache()
+
+        # Simulate ImportError scenario by setting cache to False which triggers fallback
+        config = {"implementation": "library", "auto_fallback": True, "host": "localhost", "port": 50000, "name": "testdb"}
+
+        # Mock the cache check to simulate ImportError path
+        ManagerFactory._adapter_cache["db2_library_available"] = False
+
+        # This should fall back to CLI
+        manager = ManagerFactory.create_database_manager(config, self.logger)
+        self.assertIsInstance(manager, DB2CLIAdapter)
+
+    def test_import_error_cache_check_mq(self):
+        """Test ImportError is caught during messaging library check"""
+        ManagerFactory.reset_cache()
+
+        # Simulate ImportError scenario by setting cache to False which triggers fallback
+        config = {"implementation": "library", "auto_fallback": True, "host": "localhost", "port": 1414, "queue_manager": "QM1"}
+
+        # Mock the cache check to simulate ImportError path
+        ManagerFactory._adapter_cache["mq_library_available"] = False
+
+        # This should fall back to CLI
+        manager = ManagerFactory.create_messaging_manager(config, self.logger)
+        self.assertIsInstance(manager, MQCLIAdapter)
 
 
 if __name__ == "__main__":
