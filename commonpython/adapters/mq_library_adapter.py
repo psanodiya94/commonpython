@@ -245,12 +245,16 @@ class MQLibraryAdapter(IMessagingManager):
                     "priority": md.Priority,
                     "persistence": md.Persistence,
                     "expiry": md.Expiry,
-                    "put_time": md.PutTime.decode("utf-8")
-                    if hasattr(md.PutTime, "decode")
-                    else str(md.PutTime),
-                    "put_date": md.PutDate.decode("utf-8")
-                    if hasattr(md.PutDate, "decode")
-                    else str(md.PutDate),
+                    "put_time": (
+                        md.PutTime.decode("utf-8")
+                        if hasattr(md.PutTime, "decode")
+                        else str(md.PutTime)
+                    ),
+                    "put_date": (
+                        md.PutDate.decode("utf-8")
+                        if hasattr(md.PutDate, "decode")
+                        else str(md.PutDate)
+                    ),
                 }
 
                 duration = time.time() - start_time
