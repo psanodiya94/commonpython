@@ -20,10 +20,12 @@ All database and messaging adapters implement these interfaces, ensuring consist
 Located in `commonpython/adapters/`, these wrap concrete implementations:
 
 #### CLI Adapters (Always Available)
+
 - **`DB2CLIAdapter`**: Wraps the existing CLI-based `DB2Manager`
 - **`MQCLIAdapter`**: Wraps the existing CLI-based `MQManager`
 
 #### Library Adapters (Optional - require additional dependencies)
+
 - **`DB2LibraryAdapter`**: Uses `ibm_db` Python library for direct DB2 access
 - **`MQLibraryAdapter`**: Uses `pymqi` Python library for direct MQ access
 
@@ -83,6 +85,7 @@ database:
 ### 4. **Better Performance**
 
 Library implementations provide:
+
 - ✅ Connection pooling
 - ✅ Prepared statements
 - ✅ Proper parameterized queries (prevents SQL injection)
@@ -106,7 +109,7 @@ Mock interfaces instead of subprocess calls:
 ```python
 # Easy to mock
 mock_db = Mock(spec=IDatabaseManager)
-mock_db.execute_query.return_value = [{'id': 1, 'name': 'test'}]
+mock_db.execute_query.return_value = [{"id": 1, "name": "test"}]
 
 # Use in tests
 component.db_manager = mock_db
@@ -159,11 +162,13 @@ messaging:
 ### Step 1: Install Library Dependencies (Optional)
 
 For DB2 library support:
+
 ```bash
 pip install ibm_db
 ```
 
 For MQ library support:
+
 ```bash
 pip install pymqi
 ```
@@ -182,9 +187,10 @@ database:
 ### Step 3: Test Your Application
 
 Run your application and verify:
+
 1. Check logs for adapter selection messages
-2. Verify functionality works as expected
-3. Monitor performance improvements
+1. Verify functionality works as expected
+1. Monitor performance improvements
 
 ### Step 4: Disable Auto-Fallback (Production)
 
@@ -223,6 +229,7 @@ Components automatically use the factory pattern - no code changes needed:
 ```python
 from commonpython.framework import ComponentBase, run_component
 
+
 class MyComponent(ComponentBase):
     def __init__(self, config_file=None):
         super().__init__("MyComponent", config_file)
@@ -245,7 +252,8 @@ class MyComponent(ComponentBase):
     def cleanup(self) -> None:
         self.log_info("Component cleanup completed")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     sys.exit(0 if run_component(MyComponent, "MyComponent") else 1)
 ```
 
@@ -257,8 +265,8 @@ from commonpython.config import ConfigManager
 from commonpython.logging import LoggerManager
 
 # Load configuration
-config_manager = ConfigManager('config.yaml')
-logger_manager = LoggerManager('myapp', config_manager.get_logging_config())
+config_manager = ConfigManager("config.yaml")
+logger_manager = LoggerManager("myapp", config_manager.get_logging_config())
 
 # Create managers using factory
 db_config = config_manager.get_database_config()
@@ -279,14 +287,14 @@ if mq_manager.connect():
 
 ## Performance Comparison
 
-| Operation | CLI Implementation | Library Implementation |
-|-----------|-------------------|------------------------|
-| Connect | ~500ms | ~100ms |
-| Simple Query | ~200ms | ~10ms |
-| Parameterized Query | Limited support | Full support (safe) |
-| Transaction | Manual via CLI | Native support |
-| Connection Pooling | ❌ Not supported | ✅ Supported |
-| Prepared Statements | ❌ Not supported | ✅ Supported |
+| Operation           | CLI Implementation | Library Implementation |
+| ------------------- | ------------------ | ---------------------- |
+| Connect             | ~500ms             | ~100ms                 |
+| Simple Query        | ~200ms             | ~10ms                  |
+| Parameterized Query | Limited support    | Full support (safe)    |
+| Transaction         | Manual via CLI     | Native support         |
+| Connection Pooling  | ❌ Not supported   | ✅ Supported           |
+| Prepared Statements | ❌ Not supported   | ✅ Supported           |
 
 ## Troubleshooting
 
@@ -295,11 +303,13 @@ if mq_manager.connect():
 **Problem**: Configuration specifies `library` but CLI is being used.
 
 **Solution**: Check that dependencies are installed:
+
 ```bash
 pip install ibm_db pymqi
 ```
 
 Check logs for fallback warnings:
+
 ```
 WARNING - DB2 library adapter not available (ibm_db not installed), falling back to CLI adapter
 ```
@@ -309,8 +319,9 @@ WARNING - DB2 library adapter not available (ibm_db not installed), falling back
 **Problem**: `ImportError` when using library implementation.
 
 **Solution**:
+
 1. Ensure dependencies are installed
-2. Enable auto_fallback in config:
+1. Enable auto_fallback in config:
    ```yaml
    database:
      implementation: library
@@ -322,18 +333,19 @@ WARNING - DB2 library adapter not available (ibm_db not installed), falling back
 **Problem**: Connections fail with library implementation but work with CLI.
 
 **Solution**:
+
 1. Verify connection parameters are identical
-2. Check library-specific requirements (e.g., SSL certificates)
-3. Review library documentation for additional configuration
+1. Check library-specific requirements (e.g., SSL certificates)
+1. Review library documentation for additional configuration
 
 ## Best Practices
 
 1. **Use Auto-Fallback in Development**: Enable `auto_fallback: true` during development
-2. **Disable in Production**: Set `auto_fallback: false` in production for explicit control
-3. **Test Both Implementations**: Verify functionality with both CLI and library adapters
-4. **Monitor Logs**: Check logs for adapter selection and warnings
-5. **Gradual Rollout**: Migrate one service at a time (database first, then messaging)
-6. **Use Parameterized Queries**: Always use parameters with library adapters for security
+1. **Disable in Production**: Set `auto_fallback: false` in production for explicit control
+1. **Test Both Implementations**: Verify functionality with both CLI and library adapters
+1. **Monitor Logs**: Check logs for adapter selection and warnings
+1. **Gradual Rollout**: Migrate one service at a time (database first, then messaging)
+1. **Use Parameterized Queries**: Always use parameters with library adapters for security
 
 ## Future Enhancements
 

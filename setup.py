@@ -6,30 +6,21 @@ A common Python framework with config, logging, DB2, MQ, and CLI functionality.
 Supports both CLI-based and library-based implementations via adapter pattern.
 """
 
-from setuptools import setup, find_packages
-import os
+
+from setuptools import find_packages, setup
+
 
 # Read the README file
 def read_readme():
     """
     Read the README file.
-    
+
     @brief Read and return the contents of the README file.
     @return README file contents
     """
-    with open("README.md", "r", encoding="utf-8") as fh:
+    with open("README.md", encoding="utf-8") as fh:
         return fh.read()
 
-# Read requirements
-def read_requirements():
-    """
-    Read requirements from requirements.txt.
-    
-    @brief Read and return requirements from requirements file.
-    @return List of requirements
-    """
-    with open("requirements.txt", "r", encoding="utf-8") as fh:
-        return [line.strip() for line in fh if line.strip() and not line.startswith("#")]
 
 setup(
     name="commonpython",
@@ -47,18 +38,15 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.8",
-        "Programming Language :: Python :: 3.9",
-        "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
         "Programming Language :: Python :: 3.12",
         "Topic :: Software Development :: Libraries :: Python Modules",
         "Topic :: Database",
         "Topic :: System :: Networking",
     ],
-    python_requires=">=3.8",
+    python_requires=">=3.11",
     # Mandatory dependencies (always required)
-    install_requires=read_requirements(),
+    install_requires=["PyYAML>=6.0"],
     entry_points={
         "console_scripts": [
             "commonpython=commonpython.cli.cli:main",

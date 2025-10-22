@@ -9,4 +9,4 @@ and configuration management. This allows switching between different implementa
 from .database_interface import IDatabaseManager
 from .messaging_interface import IMessagingManager
 
-__all__ = ['IDatabaseManager', 'IMessagingManager']
+__all__ = ["IDatabaseManager", "IMessagingManager"]

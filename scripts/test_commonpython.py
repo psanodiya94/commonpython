@@ -6,13 +6,12 @@ Runs all test cases with detailed reporting, coverage analysis, and categorizati
 Supports testing of both CLI and library-based adapter implementations.
 """
 
-import unittest
-import sys
 import os
+import sys
 import time
-from pathlib import Path
-from typing import Dict, List, Tuple, Optional
+import unittest
 from collections import defaultdict
+from pathlib import Path
 
 # Add the parent directory to the path
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -20,6 +19,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 
 class TestCategories:
     """Test suite categories for organized reporting"""
+
     CORE = "Core Framework"
     ADAPTERS = "Adapter Pattern"
     INTEGRATION = "Integration Tests"
@@ -33,20 +33,21 @@ class TestCategories:
 
 class ColoredOutput:
     """ANSI color codes for terminal output"""
-    HEADER = '\033[95m'
-    OKBLUE = '\033[94m'
-    OKCYAN = '\033[96m'
-    OKGREEN = '\033[92m'
-    WARNING = '\033[93m'
-    FAIL = '\033[91m'
-    ENDC = '\033[0m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
+
+    HEADER = "\033[95m"
+    OKBLUE = "\033[94m"
+    OKCYAN = "\033[96m"
+    OKGREEN = "\033[92m"
+    WARNING = "\033[93m"
+    FAIL = "\033[91m"
+    ENDC = "\033[0m"
+    BOLD = "\033[1m"
+    UNDERLINE = "\033[4m"
 
     @staticmethod
     def supports_color():
         """Check if terminal supports colors"""
-        return hasattr(sys.stdout, 'isatty') and sys.stdout.isatty()
+        return hasattr(sys.stdout, "isatty") and sys.stdout.isatty()
 
     @classmethod
     def colorize(cls, text: str, color: str) -> str:
@@ -58,21 +59,21 @@ class ColoredOutput:
 
 def categorize_test(test_name: str) -> str:
     """Categorize test based on its name"""
-    if 'adapter' in test_name.lower():
+    if "adapter" in test_name.lower():
         return TestCategories.ADAPTERS
-    elif 'integration' in test_name.lower():
+    elif "integration" in test_name.lower():
         return TestCategories.INTEGRATION
-    elif 'cli' in test_name.lower():
+    elif "cli" in test_name.lower():
         return TestCategories.CLI
-    elif 'db2' in test_name.lower() or 'database' in test_name.lower():
+    elif "db2" in test_name.lower() or "database" in test_name.lower():
         return TestCategories.DATABASE
-    elif 'mq' in test_name.lower() or 'messaging' in test_name.lower():
+    elif "mq" in test_name.lower() or "messaging" in test_name.lower():
         return TestCategories.MESSAGING
-    elif 'config' in test_name.lower():
+    elif "config" in test_name.lower():
         return TestCategories.CONFIG
-    elif 'logger' in test_name.lower() or 'logging' in test_name.lower():
+    elif "logger" in test_name.lower() or "logging" in test_name.lower():
         return TestCategories.LOGGING
-    elif 'component' in test_name.lower():
+    elif "component" in test_name.lower():
         return TestCategories.COMPONENTS
     else:
         return TestCategories.CORE
@@ -82,13 +83,14 @@ def check_adapter_availability():
     """Check which adapter implementations are available"""
     try:
         from commonpython.factories import ManagerFactory
+
         available = ManagerFactory.get_available_implementations()
         return available
     except Exception as e:
         return {
-            'database': {'cli': True, 'library': False},
-            'messaging': {'cli': True, 'library': False},
-            'error': str(e)
+            "database": {"cli": True, "library": False},
+            "messaging": {"cli": True, "library": False},
+            "error": str(e),
         }
 
 
@@ -107,7 +109,7 @@ def print_subsection(title: str, char: str = "-", width: int = 80):
     print(ColoredOutput.colorize(char * width, ColoredOutput.OKBLUE))
 
 
-def discover_tests(test_dir: Path) -> List[str]:
+def discover_tests(test_dir: Path) -> list[str]:
     """Discover all test files"""
     test_files = []
     for test_file in sorted(test_dir.glob("test_*.py")):
@@ -120,11 +122,11 @@ class DetailedTestResult(unittest.TextTestResult):
 
     def __init__(self, stream, descriptions, verbosity):
         super().__init__(stream, descriptions, verbosity)
-        self.test_times: Dict[str, float] = {}
-        self.category_stats: Dict[str, Dict[str, int]] = defaultdict(
-            lambda: {'total': 0, 'passed': 0, 'failed': 0, 'errors': 0, 'skipped': 0}
+        self.test_times: dict[str, float] = {}
+        self.category_stats: dict[str, dict[str, int]] = defaultdict(
+            lambda: {"total": 0, "passed": 0, "failed": 0, "errors": 0, "skipped": 0}
         )
-        self.start_time: Optional[float] = None
+        self.start_time: float | None = None
 
     def startTest(self, test):
         super().startTest(test)
@@ -138,35 +140,36 @@ class DetailedTestResult(unittest.TextTestResult):
 
             # Categorize test
             category = categorize_test(str(test))
-            self.category_stats[category]['total'] += 1
+            self.category_stats[category]["total"] += 1
 
     def addSuccess(self, test):
         super().addSuccess(test)
         category = categorize_test(str(test))
-        self.category_stats[category]['passed'] += 1
+        self.category_stats[category]["passed"] += 1
 
     def addFailure(self, test, err):
         super().addFailure(test, err)
         category = categorize_test(str(test))
-        self.category_stats[category]['failed'] += 1
+        self.category_stats[category]["failed"] += 1
 
     def addError(self, test, err):
         super().addError(test, err)
         category = categorize_test(str(test))
-        self.category_stats[category]['errors'] += 1
+        self.category_stats[category]["errors"] += 1
 
     def addSkip(self, test, reason):
         super().addSkip(test, reason)
         category = categorize_test(str(test))
-        self.category_stats[category]['skipped'] += 1
+        self.category_stats[category]["skipped"] += 1
 
 
 class DetailedTestRunner(unittest.TextTestRunner):
     """Enhanced test runner with detailed reporting"""
+
     resultclass = DetailedTestResult
 
 
-def run_comprehensive_tests(suite_filter: Optional[str] = None, verbosity: int = 2):
+def run_comprehensive_tests(suite_filter: str | None = None, verbosity: int = 2):
     """
     Run comprehensive test suite with detailed reporting.
 
@@ -186,11 +189,11 @@ def run_comprehensive_tests(suite_filter: Optional[str] = None, verbosity: int =
     print(ColoredOutput.colorize("Adapter Implementation Availability:", ColoredOutput.OKBLUE))
     available = check_adapter_availability()
 
-    if 'error' not in available:
-        db_cli = "✓" if available['database']['cli'] else "✗"
-        db_lib = "✓" if available['database']['library'] else "✗"
-        mq_cli = "✓" if available['messaging']['cli'] else "✗"
-        mq_lib = "✓" if available['messaging']['library'] else "✗"
+    if "error" not in available:
+        db_cli = "✓" if available["database"]["cli"] else "✗"
+        db_lib = "✓" if available["database"]["library"] else "✗"
+        mq_cli = "✓" if available["messaging"]["cli"] else "✗"
+        mq_lib = "✓" if available["messaging"]["library"] else "✗"
 
         print(f"  Database: CLI {db_cli}  Library (ibm_db) {db_lib}")
         print(f"  Messaging: CLI {mq_cli}  Library (pymqi) {mq_lib}")
@@ -217,14 +220,11 @@ def run_comprehensive_tests(suite_filter: Optional[str] = None, verbosity: int =
         suite = loader.discover(test_dir, pattern=pattern)
     else:
         # Run all tests
-        suite = loader.discover(test_dir, pattern='test_*.py')
+        suite = loader.discover(test_dir, pattern="test_*.py")
 
     # Create detailed test runner
     runner = DetailedTestRunner(
-        verbosity=verbosity,
-        stream=sys.stdout,
-        descriptions=True,
-        failfast=False
+        verbosity=verbosity, stream=sys.stdout, descriptions=True, failfast=False
     )
 
     # Run tests with timing
@@ -239,48 +239,54 @@ def run_comprehensive_tests(suite_filter: Optional[str] = None, verbosity: int =
     total_tests = result.testsRun
     failures = len(result.failures)
     errors = len(result.errors)
-    skipped = len(result.skipped) if hasattr(result, 'skipped') else 0
+    skipped = len(result.skipped) if hasattr(result, "skipped") else 0
     passed = total_tests - failures - errors - skipped
     success_rate = (passed / total_tests * 100) if total_tests > 0 else 0
 
     print(f"Total Tests: {ColoredOutput.colorize(str(total_tests), ColoredOutput.BOLD)}")
     print(f"Passed: {ColoredOutput.colorize(str(passed), ColoredOutput.OKGREEN)}")
-    print(f"Failed: {ColoredOutput.colorize(str(failures), ColoredOutput.FAIL if failures > 0 else ColoredOutput.OKGREEN)}")
-    print(f"Errors: {ColoredOutput.colorize(str(errors), ColoredOutput.FAIL if errors > 0 else ColoredOutput.OKGREEN)}")
-    print(f"Skipped: {ColoredOutput.colorize(str(skipped), ColoredOutput.WARNING if skipped > 0 else ColoredOutput.OKGREEN)}")
-    print(f"Success Rate: {ColoredOutput.colorize(f'{success_rate:.1f}%', ColoredOutput.OKGREEN if success_rate == 100 else ColoredOutput.WARNING)}")
-    print(f"Execution Time: {ColoredOutput.colorize(f'{end_time - start_time:.2f}s', ColoredOutput.OKCYAN)}")
+    print(
+        f"Failed: {ColoredOutput.colorize(str(failures), ColoredOutput.FAIL if failures > 0 else ColoredOutput.OKGREEN)}"
+    )
+    print(
+        f"Errors: {ColoredOutput.colorize(str(errors), ColoredOutput.FAIL if errors > 0 else ColoredOutput.OKGREEN)}"
+    )
+    print(
+        f"Skipped: {ColoredOutput.colorize(str(skipped), ColoredOutput.WARNING if skipped > 0 else ColoredOutput.OKGREEN)}"
+    )
+    print(
+        f"Success Rate: {ColoredOutput.colorize(f'{success_rate:.1f}%', ColoredOutput.OKGREEN if success_rate == 100 else ColoredOutput.WARNING)}"
+    )
+    print(
+        f"Execution Time: {ColoredOutput.colorize(f'{end_time - start_time:.2f}s', ColoredOutput.OKCYAN)}"
+    )
 
     # Category breakdown
-    if hasattr(result, 'category_stats') and result.category_stats:
+    if hasattr(result, "category_stats") and result.category_stats:
         print_subsection("Tests by Category")
 
         for category in sorted(result.category_stats.keys()):
             stats = result.category_stats[category]
-            total = stats['total']
-            passed = stats['passed']
-            failed = stats['failed']
-            errors = stats['errors']
-            skipped = stats['skipped']
-
-            status_color = ColoredOutput.OKGREEN
-            if failed > 0 or errors > 0:
-                status_color = ColoredOutput.FAIL
-            elif skipped > 0:
-                status_color = ColoredOutput.WARNING
+            total = stats["total"]
+            passed = stats["passed"]
+            failed = stats["failed"]
+            errors = stats["errors"]
+            skipped = stats["skipped"]
 
             print(f"\n{ColoredOutput.colorize(category, ColoredOutput.BOLD)}")
-            print(f"  Total: {total} | Passed: {passed} | Failed: {failed} | Errors: {errors} | Skipped: {skipped}")
+            print(
+                f"  Total: {total} | Passed: {passed} | Failed: {failed} | Errors: {errors} | Skipped: {skipped}"
+            )
 
     # Performance metrics
-    if hasattr(result, 'test_times') and result.test_times:
+    if hasattr(result, "test_times") and result.test_times:
         print_subsection("Performance Metrics")
 
         avg_time = sum(result.test_times.values()) / len(result.test_times)
         slowest_tests = sorted(result.test_times.items(), key=lambda x: x[1], reverse=True)[:5]
 
         print(f"Average Test Time: {avg_time:.3f}s")
-        print(f"\nSlowest Tests:")
+        print("\nSlowest Tests:")
         for test_name, duration in slowest_tests:
             print(f"  {duration:.3f}s - {test_name}")
 
@@ -301,7 +307,7 @@ def run_comprehensive_tests(suite_filter: Optional[str] = None, verbosity: int =
             print(traceback)
 
     # Print skipped test details
-    if hasattr(result, 'skipped') and result.skipped:
+    if hasattr(result, "skipped") and result.skipped:
         print_section("SKIPPED TESTS", "=")
         for i, (test, reason) in enumerate(result.skipped, 1):
             print(f"{i}. {test}: {ColoredOutput.colorize(reason, ColoredOutput.WARNING)}")
@@ -309,7 +315,7 @@ def run_comprehensive_tests(suite_filter: Optional[str] = None, verbosity: int =
     return result
 
 
-def run_tests_with_coverage(suite_filter: Optional[str] = None, verbosity: int = 2):
+def run_tests_with_coverage(suite_filter: str | None = None, verbosity: int = 2):
     """
     Run tests with coverage analysis.
 
@@ -321,17 +327,14 @@ def run_tests_with_coverage(suite_filter: Optional[str] = None, verbosity: int =
     try:
         import coverage
 
-        print(ColoredOutput.colorize("Running tests with coverage analysis...", ColoredOutput.OKBLUE))
+        print(
+            ColoredOutput.colorize("Running tests with coverage analysis...", ColoredOutput.OKBLUE)
+        )
 
         # Start coverage
         cov = coverage.Coverage(
-            source=['commonpython'],
-            omit=[
-                'test/*',
-                '*/test_*.py',
-                '*/__init__.py',
-                '*/cli.py'  # CLI has its own tests
-            ]
+            source=["commonpython"],
+            omit=["test/*", "*/test_*.py", "*/__init__.py", "*/cli.py"],  # CLI has its own tests
         )
         cov.start()
 
@@ -345,7 +348,7 @@ def run_tests_with_coverage(suite_filter: Optional[str] = None, verbosity: int =
         # Generate coverage report
         print_section("COVERAGE REPORT")
 
-        total_coverage = cov.report(show_missing=True)
+        cov.report(show_missing=True)
 
         # Coverage by module
         print_subsection("Coverage by Module")
@@ -356,7 +359,7 @@ def run_tests_with_coverage(suite_filter: Optional[str] = None, verbosity: int =
 
         module_coverage = {}
         for filename in sorted(files):
-            if 'commonpython' in filename:
+            if "commonpython" in filename:
                 analysis = cov.analysis(filename)
                 executed = len(analysis[1])
                 missing = len(analysis[2])
@@ -367,21 +370,36 @@ def run_tests_with_coverage(suite_filter: Optional[str] = None, verbosity: int =
                     module_coverage[module_name] = coverage_pct
 
         for module, pct in sorted(module_coverage.items()):
-            color = ColoredOutput.OKGREEN if pct >= 80 else ColoredOutput.WARNING if pct >= 60 else ColoredOutput.FAIL
+            color = (
+                ColoredOutput.OKGREEN
+                if pct >= 80
+                else ColoredOutput.WARNING
+                if pct >= 60
+                else ColoredOutput.FAIL
+            )
             print(f"  {module:30s} {ColoredOutput.colorize(f'{pct:5.1f}%', color)}")
 
         # Generate HTML coverage report
         try:
-            html_dir = Path(__file__).parent.parent / 'htmlcov'
-            cov.html_report(directory=str(html_dir), title='CommonPython Framework Coverage')
-            print(f"\n{ColoredOutput.colorize('✓', ColoredOutput.OKGREEN)} HTML coverage report: {html_dir}/index.html")
+            html_dir = Path(__file__).parent.parent / "htmlcov"
+            cov.html_report(directory=str(html_dir), title="CommonPython Framework Coverage")
+            print(
+                f"\n{ColoredOutput.colorize('✓', ColoredOutput.OKGREEN)} HTML coverage report: {html_dir}/index.html"
+            )
         except Exception as e:
-            print(f"{ColoredOutput.colorize('✗', ColoredOutput.FAIL)} Could not generate HTML report: {e}")
+            print(
+                f"{ColoredOutput.colorize('✗', ColoredOutput.FAIL)} Could not generate HTML report: {e}"
+            )
 
         return result
 
     except ImportError:
-        print(ColoredOutput.colorize("Warning: Coverage module not available. Running tests without coverage.", ColoredOutput.WARNING))
+        print(
+            ColoredOutput.colorize(
+                "Warning: Coverage module not available. Running tests without coverage.",
+                ColoredOutput.WARNING,
+            )
+        )
         print("Install with: pip install coverage")
         return run_comprehensive_tests(suite_filter, verbosity)
 
@@ -395,15 +413,15 @@ def main():
     # Parse command line arguments
     args = sys.argv[1:]
 
-    run_coverage = '--coverage' in args or '--cov' in args
-    verbose = '--verbose' in args or '-v' in args
-    quiet = '--quiet' in args or '-q' in args
-    list_tests = '--list' in args
+    run_coverage = "--coverage" in args or "--cov" in args
+    verbose = "--verbose" in args or "-v" in args
+    quiet = "--quiet" in args or "-q" in args
+    list_tests = "--list" in args
 
     # Extract suite filter if provided
     suite_filter = None
     for arg in args:
-        if not arg.startswith('--') and not arg.startswith('-'):
+        if not arg.startswith("--") and not arg.startswith("-"):
             suite_filter = arg
             break
 
@@ -429,7 +447,11 @@ def main():
     # Print header
     print()
     print(ColoredOutput.colorize("╔" + "═" * 78 + "╗", ColoredOutput.HEADER))
-    print(ColoredOutput.colorize("║" + "CommonPython Framework - Test Runner".center(78) + "║", ColoredOutput.HEADER))
+    print(
+        ColoredOutput.colorize(
+            "║" + "CommonPython Framework - Test Runner".center(78) + "║", ColoredOutput.HEADER
+        )
+    )
     print(ColoredOutput.colorize("╚" + "═" * 78 + "╝", ColoredOutput.HEADER))
 
     # Run tests
@@ -458,9 +480,10 @@ def main():
     except Exception as e:
         print("\n\n" + ColoredOutput.colorize(f"Error running tests: {e}", ColoredOutput.FAIL))
         import traceback
+
         traceback.print_exc()
         sys.exit(1)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

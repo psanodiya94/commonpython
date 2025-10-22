@@ -7,4 +7,4 @@ Supports multiple implementation types (CLI, library) with automatic fallback.
 
 from .manager_factory import ManagerFactory
 
-__all__ = ['ManagerFactory']
+__all__ = ["ManagerFactory"]

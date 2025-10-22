@@ -5,15 +5,17 @@ Adapter that uses the ibm_db Python library for DB2 database operations.
 Implements the IDatabaseManager interface for library-based access.
 """
 
-from typing import Any, Dict, List, Optional, Tuple
-from contextlib import contextmanager
 import time
+from contextlib import contextmanager
+from typing import Any
+
 from ..interfaces.database_interface import IDatabaseManager
 
 # Try to import ibm_db library
 try:
     import ibm_db
     import ibm_db_dbi
+
     HAS_IBM_DB = True
 except ImportError:
     HAS_IBM_DB = False
@@ -28,7 +30,7 @@ class DB2LibraryAdapter(IDatabaseManager):
     parameterized queries.
     """
 
-    def __init__(self, config: Dict[str, Any], logger=None):
+    def __init__(self, config: dict[str, Any], logger=None):
         """
         Initialize the DB2 library adapter.
 
@@ -39,8 +41,7 @@ class DB2LibraryAdapter(IDatabaseManager):
         """
         if not HAS_IBM_DB:
             raise ImportError(
-                "ibm_db library is not installed. "
-                "Install it with: pip install ibm_db"
+                "ibm_db library is not installed. " "Install it with: pip install ibm_db"
             )
 
         self._config = config
@@ -56,12 +57,12 @@ class DB2LibraryAdapter(IDatabaseManager):
         @brief Create connection string for ibm_db.
         @return Formatted connection string
         """
-        host = self._config.get('host', 'localhost')
-        port = self._config.get('port', 50000)
-        database = self._config.get('database', self._config.get('name', 'testdb'))
-        user = self._config.get('user', 'db2inst1')
-        password = self._config.get('password', '')
-        schema = self._config.get('schema', '')
+        host = self._config.get("host", "localhost")
+        port = self._config.get("port", 50000)
+        database = self._config.get("database", self._config.get("name", "testdb"))
+        user = self._config.get("user", "db2inst1")
+        password = self._config.get("password", "")
+        schema = self._config.get("schema", "")
 
         conn_str = f"DATABASE={database};HOSTNAME={host};PORT={port};"
         conn_str += f"PROTOCOL=TCPIP;UID={user};PWD={password};"
@@ -125,11 +126,11 @@ class DB2LibraryAdapter(IDatabaseManager):
         try:
             if self._conn and ibm_db.active(self._conn):
                 return True
-        except:
+        except Exception:
             pass
         return False
 
-    def execute_query(self, query: str, params: Optional[Tuple] = None) -> List[Dict[str, Any]]:
+    def execute_query(self, query: str, params: tuple | None = None) -> list[dict[str, Any]]:
         """
         Execute a SELECT query and return results.
 
@@ -169,10 +170,7 @@ class DB2LibraryAdapter(IDatabaseManager):
             duration = time.time() - start_time
             if self._logger:
                 self._logger.log_database_operation(
-                    operation="SELECT",
-                    query=query,
-                    duration=duration,
-                    rows_affected=len(results)
+                    operation="SELECT", query=query, duration=duration, rows_affected=len(results)
                 )
 
             return results
@@ -182,14 +180,11 @@ class DB2LibraryAdapter(IDatabaseManager):
             if self._logger:
                 self._logger.logger.error(f"Query execution error: {str(e)}")
                 self._logger.log_database_operation(
-                    operation="SELECT",
-                    query=query,
-                    duration=duration,
-                    rows_affected=0
+                    operation="SELECT", query=query, duration=duration, rows_affected=0
                 )
             raise
 
-    def execute_update(self, query: str, params: Optional[Tuple] = None) -> int:
+    def execute_update(self, query: str, params: tuple | None = None) -> int:
         """
         Execute an INSERT, UPDATE, or DELETE query.
 
@@ -222,10 +217,7 @@ class DB2LibraryAdapter(IDatabaseManager):
             operation = query.strip().split()[0].upper()
             if self._logger:
                 self._logger.log_database_operation(
-                    operation=operation,
-                    query=query,
-                    duration=duration,
-                    rows_affected=rows_affected
+                    operation=operation, query=query, duration=duration, rows_affected=rows_affected
                 )
 
             return rows_affected
@@ -238,11 +230,13 @@ class DB2LibraryAdapter(IDatabaseManager):
                     operation=query.strip().split()[0].upper(),
                     query=query,
                     duration=duration,
-                    rows_affected=0
+                    rows_affected=0,
                 )
             raise
 
-    def execute_batch(self, queries: List[str], params_list: Optional[List[Tuple]] = None) -> List[int]:
+    def execute_batch(
+        self, queries: list[str], params_list: list[tuple] | None = None
+    ) -> list[int]:
         """
         Execute multiple queries in a batch.
 
@@ -318,7 +312,7 @@ class DB2LibraryAdapter(IDatabaseManager):
                 self._logger.logger.error(f"Transaction rolled back: {str(e)}")
             raise
 
-    def get_table_info(self, table_name: str) -> List[Dict[str, Any]]:
+    def get_table_info(self, table_name: str) -> list[dict[str, Any]]:
         """
         Get table column information.
 
@@ -336,7 +330,7 @@ class DB2LibraryAdapter(IDatabaseManager):
 
         return self.execute_query(query, (table_name.upper(),))
 
-    def get_database_info(self) -> Dict[str, Any]:
+    def get_database_info(self) -> dict[str, Any]:
         """
         Get database information.
 
