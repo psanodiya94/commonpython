@@ -10,10 +10,10 @@ readme = "README.md"
 requires-python = ">=3.11"
 license.text = "MIT"
 authors = [
-    {name = "CommonPython Framework Team", email = "team@commonpython.com"}
+    {name = "Pradumn Sanodiya", email = "pradumnsanodiya2@gmail.com"}
 ]
 maintainers = [
-    {name = "CommonPython Framework Team", email = "team@commonpython.com"}
+    {name = "Pradumn Sanodiya", email = "pradumnsanodiya2@gmail.com"}
 ]
 keywords = [
     "framework",
