@@ -5,14 +5,16 @@ Adapter that uses the pymqi Python library for IBM MQ messaging operations.
 Implements the IMessagingManager interface for library-based access.
 """
 
-from typing import Any, Dict, Optional, Union
 import json
 import time
+from typing import Any, Dict, Optional, Union
+
 from ..interfaces.messaging_interface import IMessagingManager
 
 # Try to import pymqi library
 try:
     import pymqi
+
     HAS_PYMQI = True
 except ImportError:
     HAS_PYMQI = False
@@ -38,8 +40,7 @@ class MQLibraryAdapter(IMessagingManager):
         """
         if not HAS_PYMQI:
             raise ImportError(
-                "pymqi library is not installed. "
-                "Install it with: pip install pymqi"
+                "pymqi library is not installed. " "Install it with: pip install pymqi"
             )
 
         self._config = config
@@ -55,13 +56,13 @@ class MQLibraryAdapter(IMessagingManager):
         @return Dictionary containing connection parameters
         """
         return {
-            'host': self._config.get('host', 'localhost'),
-            'port': self._config.get('port', 1414),
-            'queue_manager': self._config.get('queue_manager', 'QM1'),
-            'channel': self._config.get('channel', 'SYSTEM.DEF.SVRCONN'),
-            'user': self._config.get('user', ''),
-            'password': self._config.get('password', ''),
-            'timeout': self._config.get('timeout', 30)
+            "host": self._config.get("host", "localhost"),
+            "port": self._config.get("port", 1414),
+            "queue_manager": self._config.get("queue_manager", "QM1"),
+            "channel": self._config.get("channel", "SYSTEM.DEF.SVRCONN"),
+            "user": self._config.get("user", ""),
+            "password": self._config.get("password", ""),
+            "timeout": self._config.get("timeout", 30),
         }
 
     def connect(self) -> bool:
@@ -73,11 +74,11 @@ class MQLibraryAdapter(IMessagingManager):
         """
         try:
             self._qmgr = pymqi.connect(
-                self._connection_info['queue_manager'],
-                self._connection_info['channel'],
+                self._connection_info["queue_manager"],
+                self._connection_info["channel"],
                 f"{self._connection_info['host']}({self._connection_info['port']})",
-                self._connection_info['user'],
-                self._connection_info['password']
+                self._connection_info["user"],
+                self._connection_info["password"],
             )
 
             if self._logger:
@@ -123,8 +124,12 @@ class MQLibraryAdapter(IMessagingManager):
             pass
         return False
 
-    def put_message(self, queue_name: str, message: Union[str, bytes, Dict],
-                   message_properties: Optional[Dict[str, Any]] = None) -> bool:
+    def put_message(
+        self,
+        queue_name: str,
+        message: Union[str, bytes, Dict],
+        message_properties: Optional[Dict[str, Any]] = None,
+    ) -> bool:
         """
         Put a message to a queue.
 
@@ -146,25 +151,25 @@ class MQLibraryAdapter(IMessagingManager):
 
             # Convert message to bytes if needed
             if isinstance(message, dict):
-                message_bytes = json.dumps(message).encode('utf-8')
+                message_bytes = json.dumps(message).encode("utf-8")
             elif isinstance(message, str):
-                message_bytes = message.encode('utf-8')
+                message_bytes = message.encode("utf-8")
             else:
                 message_bytes = message
 
             # Create message descriptor
             md = pymqi.MD()
             if message_properties:
-                if 'correlation_id' in message_properties:
-                    md.CorrelId = message_properties['correlation_id']
-                if 'reply_to_queue' in message_properties:
-                    md.ReplyToQ = message_properties['reply_to_queue']
-                if 'message_type' in message_properties:
-                    md.MsgType = message_properties['message_type']
-                if 'priority' in message_properties:
-                    md.Priority = message_properties['priority']
-                if 'persistence' in message_properties:
-                    md.Persistence = message_properties['persistence']
+                if "correlation_id" in message_properties:
+                    md.CorrelId = message_properties["correlation_id"]
+                if "reply_to_queue" in message_properties:
+                    md.ReplyToQ = message_properties["reply_to_queue"]
+                if "message_type" in message_properties:
+                    md.MsgType = message_properties["message_type"]
+                if "priority" in message_properties:
+                    md.Priority = message_properties["priority"]
+                if "persistence" in message_properties:
+                    md.Persistence = message_properties["persistence"]
 
             # Put message
             queue.put(message_bytes, md)
@@ -176,7 +181,7 @@ class MQLibraryAdapter(IMessagingManager):
                     operation="PUT",
                     queue=queue_name,
                     message_size=len(message_bytes),
-                    duration=duration
+                    duration=duration,
                 )
 
             return True
@@ -185,14 +190,12 @@ class MQLibraryAdapter(IMessagingManager):
             duration = time.time() - start_time
             if self._logger:
                 self._logger.logger.error(f"Error putting message to queue {queue_name}: {str(e)}")
-                self._logger.log_mq_operation(
-                    operation="PUT",
-                    queue=queue_name,
-                    duration=duration
-                )
+                self._logger.log_mq_operation(operation="PUT", queue=queue_name, duration=duration)
             return False
 
-    def get_message(self, queue_name: str, timeout: Optional[int] = None) -> Optional[Dict[str, Any]]:
+    def get_message(
+        self, queue_name: str, timeout: Optional[int] = None
+    ) -> Optional[Dict[str, Any]]:
         """
         Get a message from a queue.
 
@@ -215,7 +218,7 @@ class MQLibraryAdapter(IMessagingManager):
             md = pymqi.MD()
             gmo = pymqi.GMO()
             gmo.Options = pymqi.CMQC.MQGMO_WAIT | pymqi.CMQC.MQGMO_FAIL_IF_QUIESCING
-            gmo.WaitInterval = (timeout or self._connection_info['timeout']) * 1000
+            gmo.WaitInterval = (timeout or self._connection_info["timeout"]) * 1000
 
             try:
                 # Get message
@@ -223,7 +226,7 @@ class MQLibraryAdapter(IMessagingManager):
                 queue.close()
 
                 # Parse message content
-                message_str = message_bytes.decode('utf-8')
+                message_str = message_bytes.decode("utf-8")
 
                 # Try to parse as JSON, fallback to string
                 try:
@@ -233,17 +236,21 @@ class MQLibraryAdapter(IMessagingManager):
 
                 # Extract message properties
                 message_properties = {
-                    'message_id': md.MsgId.hex(),
-                    'correlation_id': md.CorrelId.hex() if md.CorrelId else '',
-                    'reply_to_queue': md.ReplyToQ.strip(),
-                    'reply_to_queue_manager': md.ReplyToQMgr.strip(),
-                    'message_type': md.MsgType,
-                    'format': md.Format.strip(),
-                    'priority': md.Priority,
-                    'persistence': md.Persistence,
-                    'expiry': md.Expiry,
-                    'put_time': md.PutTime.decode('utf-8') if hasattr(md.PutTime, 'decode') else str(md.PutTime),
-                    'put_date': md.PutDate.decode('utf-8') if hasattr(md.PutDate, 'decode') else str(md.PutDate)
+                    "message_id": md.MsgId.hex(),
+                    "correlation_id": md.CorrelId.hex() if md.CorrelId else "",
+                    "reply_to_queue": md.ReplyToQ.strip(),
+                    "reply_to_queue_manager": md.ReplyToQMgr.strip(),
+                    "message_type": md.MsgType,
+                    "format": md.Format.strip(),
+                    "priority": md.Priority,
+                    "persistence": md.Persistence,
+                    "expiry": md.Expiry,
+                    "put_time": md.PutTime.decode("utf-8")
+                    if hasattr(md.PutTime, "decode")
+                    else str(md.PutTime),
+                    "put_date": md.PutDate.decode("utf-8")
+                    if hasattr(md.PutDate, "decode")
+                    else str(md.PutDate),
                 }
 
                 duration = time.time() - start_time
@@ -251,20 +258,23 @@ class MQLibraryAdapter(IMessagingManager):
                     self._logger.log_mq_operation(
                         operation="GET",
                         queue=queue_name,
-                        message_id=message_properties['message_id'],
+                        message_id=message_properties["message_id"],
                         message_size=len(message_bytes),
-                        duration=duration
+                        duration=duration,
                     )
 
                 return {
-                    'data': message_data,
-                    'properties': message_properties,
-                    'raw_bytes': message_bytes
+                    "data": message_data,
+                    "properties": message_properties,
+                    "raw_bytes": message_bytes,
                 }
 
             except pymqi.MQMIError as e:
                 queue.close()
-                if e.comp == pymqi.CMQC.MQCC_FAILED and e.reason == pymqi.CMQC.MQRC_NO_MSG_AVAILABLE:
+                if (
+                    e.comp == pymqi.CMQC.MQCC_FAILED
+                    and e.reason == pymqi.CMQC.MQRC_NO_MSG_AVAILABLE
+                ):
                     # No message available
                     return None
                 else:
@@ -273,15 +283,15 @@ class MQLibraryAdapter(IMessagingManager):
         except Exception as e:
             duration = time.time() - start_time
             if self._logger:
-                self._logger.logger.error(f"Error getting message from queue {queue_name}: {str(e)}")
-                self._logger.log_mq_operation(
-                    operation="GET",
-                    queue=queue_name,
-                    duration=duration
+                self._logger.logger.error(
+                    f"Error getting message from queue {queue_name}: {str(e)}"
                 )
+                self._logger.log_mq_operation(operation="GET", queue=queue_name, duration=duration)
             raise
 
-    def browse_message(self, queue_name: str, message_id: Optional[bytes] = None) -> Optional[Dict[str, Any]]:
+    def browse_message(
+        self, queue_name: str, message_id: Optional[bytes] = None
+    ) -> Optional[Dict[str, Any]]:
         """
         Browse a message from a queue without removing it.
 
@@ -314,7 +324,7 @@ class MQLibraryAdapter(IMessagingManager):
                 queue.close()
 
                 # Parse message content
-                message_str = message_bytes.decode('utf-8')
+                message_str = message_bytes.decode("utf-8")
 
                 # Try to parse as JSON, fallback to string
                 try:
@@ -324,13 +334,13 @@ class MQLibraryAdapter(IMessagingManager):
 
                 # Extract message properties
                 message_properties = {
-                    'message_id': md.MsgId.hex(),
-                    'correlation_id': md.CorrelId.hex() if md.CorrelId else '',
-                    'reply_to_queue': md.ReplyToQ.strip(),
-                    'message_type': md.MsgType,
-                    'format': md.Format.strip(),
-                    'priority': md.Priority,
-                    'persistence': md.Persistence
+                    "message_id": md.MsgId.hex(),
+                    "correlation_id": md.CorrelId.hex() if md.CorrelId else "",
+                    "reply_to_queue": md.ReplyToQ.strip(),
+                    "message_type": md.MsgType,
+                    "format": md.Format.strip(),
+                    "priority": md.Priority,
+                    "persistence": md.Persistence,
                 }
 
                 duration = time.time() - start_time
@@ -338,20 +348,23 @@ class MQLibraryAdapter(IMessagingManager):
                     self._logger.log_mq_operation(
                         operation="BROWSE",
                         queue=queue_name,
-                        message_id=message_properties['message_id'],
+                        message_id=message_properties["message_id"],
                         message_size=len(message_bytes),
-                        duration=duration
+                        duration=duration,
                     )
 
                 return {
-                    'data': message_data,
-                    'properties': message_properties,
-                    'raw_bytes': message_bytes
+                    "data": message_data,
+                    "properties": message_properties,
+                    "raw_bytes": message_bytes,
                 }
 
             except pymqi.MQMIError as e:
                 queue.close()
-                if e.comp == pymqi.CMQC.MQCC_FAILED and e.reason == pymqi.CMQC.MQRC_NO_MSG_AVAILABLE:
+                if (
+                    e.comp == pymqi.CMQC.MQCC_FAILED
+                    and e.reason == pymqi.CMQC.MQRC_NO_MSG_AVAILABLE
+                ):
                     # No message available
                     return None
                 else:
@@ -360,11 +373,11 @@ class MQLibraryAdapter(IMessagingManager):
         except Exception as e:
             duration = time.time() - start_time
             if self._logger:
-                self._logger.logger.error(f"Error browsing message from queue {queue_name}: {str(e)}")
+                self._logger.logger.error(
+                    f"Error browsing message from queue {queue_name}: {str(e)}"
+                )
                 self._logger.log_mq_operation(
-                    operation="BROWSE",
-                    queue=queue_name,
-                    duration=duration
+                    operation="BROWSE", queue=queue_name, duration=duration
                 )
             raise
 
@@ -437,9 +450,7 @@ class MQLibraryAdapter(IMessagingManager):
             duration = time.time() - start_time
             if self._logger:
                 self._logger.log_mq_operation(
-                    operation="PURGE",
-                    queue=queue_name,
-                    duration=duration
+                    operation="PURGE", queue=queue_name, duration=duration
                 )
 
             return purged_count
@@ -449,9 +460,7 @@ class MQLibraryAdapter(IMessagingManager):
             if self._logger:
                 self._logger.logger.error(f"Error purging queue {queue_name}: {str(e)}")
                 self._logger.log_mq_operation(
-                    operation="PURGE",
-                    queue=queue_name,
-                    duration=duration
+                    operation="PURGE", queue=queue_name, duration=duration
                 )
             raise
 

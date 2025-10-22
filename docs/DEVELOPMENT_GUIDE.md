@@ -5,16 +5,16 @@ This guide provides comprehensive information for developers who want to use the
 ## Table of Contents
 
 1. [Quick Start](#quick-start)
-2. [Framework Architecture](#framework-architecture)
-3. [Creating Your First Component](#creating-your-first-component)
-4. [Configuration Management](#configuration-management)
-5. [Logging System](#logging-system)
-6. [Database Operations](#database-operations)
-7. [Messaging Operations](#messaging-operations)
-8. [CLI Development](#cli-development)
-9. [Testing Your Components](#testing-your-components)
-10. [Best Practices](#best-practices)
-11. [Troubleshooting](#troubleshooting)
+1. [Framework Architecture](#framework-architecture)
+1. [Creating Your First Component](#creating-your-first-component)
+1. [Configuration Management](#configuration-management)
+1. [Logging System](#logging-system)
+1. [Database Operations](#database-operations)
+1. [Messaging Operations](#messaging-operations)
+1. [CLI Development](#cli-development)
+1. [Testing Your Components](#testing-your-components)
+1. [Best Practices](#best-practices)
+1. [Troubleshooting](#troubleshooting)
 
 ## Quick Start
 
@@ -68,11 +68,11 @@ The CommonPython framework consists of several core modules:
 ### Design Principles
 
 1. **Standard Library Only**: Uses only Python standard library modules
-2. **CLI Interface**: Uses IBM CLI tools instead of SDK modules
-3. **Configuration-Driven**: All behavior controlled by configuration
-4. **Comprehensive Logging**: Structured logging with multiple formats
-5. **Error Handling**: Built-in error handling and recovery
-6. **Testing**: Comprehensive test coverage
+1. **CLI Interface**: Uses IBM CLI tools instead of SDK modules
+1. **Configuration-Driven**: All behavior controlled by configuration
+1. **Comprehensive Logging**: Structured logging with multiple formats
+1. **Error Handling**: Built-in error handling and recovery
+1. **Testing**: Comprehensive test coverage
 
 ## Creating Your First Component
 
@@ -83,23 +83,25 @@ Start with the provided template:
 ```python
 from commonpython.framework import ComponentBase, run_component
 
+
 class MyComponent(ComponentBase):
     def __init__(self, config_file=None):
         super().__init__("MyComponent", config_file)
-    
+
     def initialize(self) -> bool:
         # Your initialization logic
         return True
-    
+
     def run(self) -> bool:
         # Your main logic
         return True
-    
+
     def cleanup(self) -> None:
         # Your cleanup logic
         pass
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     sys.exit(0 if run_component(MyComponent, "MyComponent") else 1)
 ```
 
@@ -111,10 +113,10 @@ def run(self) -> bool:
     if self.connect_database():
         results = self.execute_query("SELECT * FROM my_table")
         self.log_info(f"Found {len(results)} records")
-    
+
     if self.connect_messaging():
         self.send_message("MY.QUEUE", {"data": "message"})
-    
+
     return True
 ```
 
@@ -155,8 +157,8 @@ component:
 The framework supports multiple configuration sources with priority order:
 
 1. **Environment Variables** (highest priority)
-2. **Configuration Files**
-3. **Default Values** (lowest priority)
+1. **Configuration Files**
+1. **Default Values** (lowest priority)
 
 ### Environment Variables
 
@@ -182,12 +184,12 @@ export LOG_FILE=my_component.log
 
 ```python
 # Get configuration values
-host = self.get_config('database.host', 'localhost')
-port = self.get_config('database.port', 50000)
-operation_count = self.get_config('component.operation_count', 5)
+host = self.get_config("database.host", "localhost")
+port = self.get_config("database.port", 50000)
+operation_count = self.get_config("component.operation_count", 5)
 
 # Set configuration values
-self.set_config('component.custom_setting', 'value')
+self.set_config("component.custom_setting", "value")
 ```
 
 ## Logging System
@@ -225,7 +227,7 @@ The framework supports two log formats:
    2025-09-29 01:07:00,947 - MyComponent - INFO - Processing started
    ```
 
-2. **JSON format**:
+1. **JSON format**:
 
    ```json
    {"timestamp": "2025-09-29T01:07:00.947", "level": "INFO", "logger": "MyComponent", "message": "Processing started"}
@@ -239,10 +241,10 @@ The framework supports two log formats:
 # Connect to database
 if self.connect_database():
     self.log_info("Database connected")
-    
+
     # Perform operations
     results = self.execute_query("SELECT * FROM users")
-    
+
     # Disconnect
     self.disconnect_database()
 else:
@@ -256,13 +258,14 @@ else:
 results = self.execute_query("SELECT * FROM users WHERE active = ?", (True,))
 
 # INSERT/UPDATE/DELETE operations
-rows_affected = self.execute_update("INSERT INTO users (name, email) VALUES (?, ?)", 
-                                   ("John Doe", "john@example.com"))
+rows_affected = self.execute_update(
+    "INSERT INTO users (name, email) VALUES (?, ?)", ("John Doe", "john@example.com")
+)
 
 # Batch operations
 queries = [
     "INSERT INTO users (name) VALUES ('User 1')",
-    "INSERT INTO users (name) VALUES ('User 2')"
+    "INSERT INTO users (name) VALUES ('User 2')",
 ]
 self.execute_batch(queries)
 ```
@@ -285,10 +288,10 @@ with self.transaction():
 # Connect to messaging
 if self.connect_messaging():
     self.log_info("Messaging connected")
-    
+
     # Perform operations
     self.send_message("MY.QUEUE", {"data": "message"})
-    
+
     # Disconnect
     self.disconnect_messaging()
 else:
@@ -374,18 +377,19 @@ import unittest
 from unittest.mock import patch, MagicMock
 from commonpython.framework import ComponentBase
 
+
 class TestMyComponent(unittest.TestCase):
     def setUp(self):
-        with patch('commonpython.framework.ComponentBase._initialize_services'):
+        with patch("commonpython.framework.ComponentBase._initialize_services"):
             self.component = MyComponent()
-    
+
     def test_initialize(self):
         result = self.component.initialize()
         self.assertTrue(result)
-    
+
     def test_run(self):
-        with patch.object(self.component, 'connect_database', return_value=True):
-            with patch.object(self.component, 'execute_query', return_value=[]):
+        with patch.object(self.component, "connect_database", return_value=True):
+            with patch.object(self.component, "execute_query", return_value=[]):
                 result = self.component.run()
                 self.assertTrue(result)
 ```
@@ -464,12 +468,12 @@ def cleanup(self) -> None:
         self.disconnect_database()
     except:
         pass
-    
+
     try:
         self.disconnect_messaging()
     except:
         pass
-    
+
     # Cleanup other resources
 ```
 
@@ -550,10 +554,10 @@ export LOG_LEVEL=DEBUG
 ### Getting Help
 
 1. Check the logs for detailed error information
-2. Run tests to verify framework functionality
-3. Check configuration file syntax
-4. Verify IBM CLI tools installation
-5. Review the examples in the `examples/` directory
+1. Run tests to verify framework functionality
+1. Check configuration file syntax
+1. Verify IBM CLI tools installation
+1. Review the examples in the `examples/` directory
 
 ## Advanced Topics
 
@@ -566,7 +570,7 @@ class CustomManager:
     def __init__(self, config, logger_manager):
         self.config = config
         self.logger = logger_manager.logger
-    
+
     def custom_operation(self):
         self.logger.info("Custom operation executed")
 ```
@@ -590,6 +594,7 @@ Extend the CLI with custom commands:
 
 ```python
 from commonpython.cli import CLI
+
 
 class CustomCLI(CLI):
     def custom_command(self, args):

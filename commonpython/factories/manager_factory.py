@@ -7,6 +7,7 @@ with intelligent fallback mechanisms.
 """
 
 from typing import Any, Dict
+
 from ..interfaces.database_interface import IDatabaseManager
 from ..interfaces.messaging_interface import IMessagingManager
 
@@ -21,10 +22,7 @@ class ManagerFactory:
     """
 
     # Cache for adapter availability checks
-    _adapter_cache = {
-        'db2_library_available': None,
-        'mq_library_available': None
-    }
+    _adapter_cache = {"db2_library_available": None, "mq_library_available": None}
 
     @staticmethod
     def create_database_manager(config: Dict[str, Any], logger=None) -> IDatabaseManager:
@@ -42,20 +40,22 @@ class ManagerFactory:
         - implementation: 'cli' or 'library' (default: 'cli')
         - auto_fallback: True to automatically fallback to CLI if library unavailable (default: True)
         """
-        impl_type = config.get('implementation', 'cli').lower()
-        auto_fallback = config.get('auto_fallback', True)
+        impl_type = config.get("implementation", "cli").lower()
+        auto_fallback = config.get("auto_fallback", True)
 
         # Check library adapter availability (cached)
-        if ManagerFactory._adapter_cache['db2_library_available'] is None:
+        if ManagerFactory._adapter_cache["db2_library_available"] is None:
             try:
-                from ..adapters.db2_library_adapter import DB2LibraryAdapter, HAS_IBM_DB
-                ManagerFactory._adapter_cache['db2_library_available'] = HAS_IBM_DB
-            except ImportError:
-                ManagerFactory._adapter_cache['db2_library_available'] = False
+                from ..adapters.db2_library_adapter import HAS_IBM_DB, DB2LibraryAdapter
 
-        if impl_type == 'library':
-            if ManagerFactory._adapter_cache['db2_library_available']:
+                ManagerFactory._adapter_cache["db2_library_available"] = HAS_IBM_DB
+            except ImportError:
+                ManagerFactory._adapter_cache["db2_library_available"] = False
+
+        if impl_type == "library":
+            if ManagerFactory._adapter_cache["db2_library_available"]:
                 from ..adapters.db2_library_adapter import DB2LibraryAdapter
+
                 if logger:
                     logger.logger.info("Using DB2 library adapter (ibm_db)")
                 return DB2LibraryAdapter(config, logger)
@@ -66,6 +66,7 @@ class ManagerFactory:
                         "falling back to CLI adapter"
                     )
                 from ..adapters.db2_cli_adapter import DB2CLIAdapter
+
                 return DB2CLIAdapter(config, logger)
             else:
                 raise ValueError(
@@ -73,8 +74,9 @@ class ManagerFactory:
                     "Install with: pip install ibm_db"
                 )
 
-        elif impl_type == 'cli':
+        elif impl_type == "cli":
             from ..adapters.db2_cli_adapter import DB2CLIAdapter
+
             if logger:
                 logger.logger.info("Using DB2 CLI adapter")
             return DB2CLIAdapter(config, logger)
@@ -101,20 +103,22 @@ class ManagerFactory:
         - implementation: 'cli' or 'library' (default: 'cli')
         - auto_fallback: True to automatically fallback to CLI if library unavailable (default: True)
         """
-        impl_type = config.get('implementation', 'cli').lower()
-        auto_fallback = config.get('auto_fallback', True)
+        impl_type = config.get("implementation", "cli").lower()
+        auto_fallback = config.get("auto_fallback", True)
 
         # Check library adapter availability (cached)
-        if ManagerFactory._adapter_cache['mq_library_available'] is None:
+        if ManagerFactory._adapter_cache["mq_library_available"] is None:
             try:
-                from ..adapters.mq_library_adapter import MQLibraryAdapter, HAS_PYMQI
-                ManagerFactory._adapter_cache['mq_library_available'] = HAS_PYMQI
-            except ImportError:
-                ManagerFactory._adapter_cache['mq_library_available'] = False
+                from ..adapters.mq_library_adapter import HAS_PYMQI, MQLibraryAdapter
 
-        if impl_type == 'library':
-            if ManagerFactory._adapter_cache['mq_library_available']:
+                ManagerFactory._adapter_cache["mq_library_available"] = HAS_PYMQI
+            except ImportError:
+                ManagerFactory._adapter_cache["mq_library_available"] = False
+
+        if impl_type == "library":
+            if ManagerFactory._adapter_cache["mq_library_available"]:
                 from ..adapters.mq_library_adapter import MQLibraryAdapter
+
                 if logger:
                     logger.logger.info("Using MQ library adapter (pymqi)")
                 return MQLibraryAdapter(config, logger)
@@ -125,6 +129,7 @@ class ManagerFactory:
                         "falling back to CLI adapter"
                     )
                 from ..adapters.mq_cli_adapter import MQCLIAdapter
+
                 return MQCLIAdapter(config, logger)
             else:
                 raise ValueError(
@@ -132,8 +137,9 @@ class ManagerFactory:
                     "Install with: pip install pymqi"
                 )
 
-        elif impl_type == 'cli':
+        elif impl_type == "cli":
             from ..adapters.mq_cli_adapter import MQCLIAdapter
+
             if logger:
                 logger.logger.info("Using MQ CLI adapter")
             return MQCLIAdapter(config, logger)
@@ -166,27 +172,29 @@ class ManagerFactory:
         """
         # Check DB2 library
         try:
-            from ..adapters.db2_library_adapter import DB2LibraryAdapter, HAS_IBM_DB
+            from ..adapters.db2_library_adapter import HAS_IBM_DB, DB2LibraryAdapter
+
             db2_library_available = HAS_IBM_DB
         except ImportError:
             db2_library_available = False
 
         # Check MQ library
         try:
-            from ..adapters.mq_library_adapter import MQLibraryAdapter, HAS_PYMQI
+            from ..adapters.mq_library_adapter import HAS_PYMQI, MQLibraryAdapter
+
             mq_library_available = HAS_PYMQI
         except ImportError:
             mq_library_available = False
 
         return {
-            'database': {
-                'cli': True,  # CLI adapter is always available
-                'library': db2_library_available
+            "database": {
+                "cli": True,  # CLI adapter is always available
+                "library": db2_library_available,
             },
-            'messaging': {
-                'cli': True,  # CLI adapter is always available
-                'library': mq_library_available
-            }
+            "messaging": {
+                "cli": True,  # CLI adapter is always available
+                "library": mq_library_available,
+            },
         }
 
     @staticmethod
@@ -198,6 +206,6 @@ class ManagerFactory:
         Useful for testing or when dependencies are installed at runtime.
         """
         ManagerFactory._adapter_cache = {
-            'db2_library_available': None,
-            'mq_library_available': None
+            "db2_library_available": None,
+            "mq_library_available": None,
         }

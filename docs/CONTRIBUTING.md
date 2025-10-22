@@ -46,9 +46,9 @@ We are committed to providing a welcoming and inspiring community for all. Pleas
 ### Finding Ways to Contribute
 
 1. **Bug Reports**: Check the [Issues](https://github.com/psanodiya94/commonpython/issues) page
-2. **Feature Requests**: Propose new features by opening an issue
-3. **Documentation**: Improve or add documentation
-4. **Code**: Fix bugs or implement features
+1. **Feature Requests**: Propose new features by opening an issue
+1. **Documentation**: Improve or add documentation
+1. **Code**: Fix bugs or implement features
 
 ## Development Setup
 
@@ -176,6 +176,7 @@ Follow the [Conventional Commits](https://www.conventionalcommits.org/) specific
 ```
 
 **Types:**
+
 - `feat`: New feature
 - `fix`: Bug fix
 - `docs`: Documentation changes
@@ -245,7 +246,9 @@ mypy commonpython/
 We use Doxygen-style docstrings:
 
 ```python
-def execute_query(self, query: str, params: Optional[Tuple] = None) -> List[Dict[str, Any]]:
+def execute_query(
+    self, query: str, params: Optional[Tuple] = None
+) -> List[Dict[str, Any]]:
     """
     Execute a SELECT query and return results.
 
@@ -268,9 +271,9 @@ Always include type hints:
 ```python
 from typing import Any, Dict, List, Optional, Tuple
 
+
 def process_data(
-    data: List[Dict[str, Any]],
-    config: Optional[Dict[str, str]] = None
+    data: List[Dict[str, Any]], config: Optional[Dict[str, str]] = None
 ) -> Tuple[bool, str]:
     """Process data and return status."""
     pass
@@ -300,6 +303,7 @@ test/
 import unittest
 from commonpython.config import ConfigManager
 
+
 class TestConfigManager(unittest.TestCase):
     """Test suite for ConfigManager."""
 
@@ -310,13 +314,13 @@ class TestConfigManager(unittest.TestCase):
     def test_get_config_value(self):
         """Test retrieving configuration value."""
         # Arrange
-        self.config_manager.set('test.key', 'value')
+        self.config_manager.set("test.key", "value")
 
         # Act
-        result = self.config_manager.get('test.key')
+        result = self.config_manager.get("test.key")
 
         # Assert
-        self.assertEqual(result, 'value')
+        self.assertEqual(result, "value")
 
     def tearDown(self):
         """Clean up after tests."""
@@ -347,11 +351,12 @@ Use mocks for external dependencies:
 ```python
 from unittest.mock import Mock, patch
 
-@patch('commonpython.database.db2_manager.subprocess.run')
+
+@patch("commonpython.database.db2_manager.subprocess.run")
 def test_database_query(self, mock_run):
     """Test database query with mocked subprocess."""
     # Setup mock
-    mock_run.return_value = Mock(returncode=0, stdout='result')
+    mock_run.return_value = Mock(returncode=0, stdout="result")
 
     # Test your code
     result = manager.execute_query("SELECT * FROM test")
@@ -371,6 +376,7 @@ def test_database_query(self, mock_run):
 ### README Updates
 
 Update the README.md when:
+
 - Adding new features
 - Changing installation steps
 - Modifying configuration options
@@ -379,6 +385,7 @@ Update the README.md when:
 ### Architecture Documentation
 
 Update `docs/` when:
+
 - Changing system architecture
 - Adding new design patterns
 - Modifying core components
@@ -388,10 +395,10 @@ Update `docs/` when:
 ### Pull Request Process
 
 1. **Update Documentation**: Ensure all documentation is current
-2. **Add Tests**: Include tests for new features or bug fixes
-3. **Pass All Checks**: Ensure all tests and linting pass
-4. **Update CHANGELOG**: Add entry to CHANGELOG.md
-5. **Create PR**: Use the pull request template
+1. **Add Tests**: Include tests for new features or bug fixes
+1. **Pass All Checks**: Ensure all tests and linting pass
+1. **Update CHANGELOG**: Add entry to CHANGELOG.md
+1. **Create PR**: Use the pull request template
 
 ### Pull Request Template
 
@@ -420,9 +427,9 @@ Brief description of changes
 ### Review Process
 
 1. Automated checks must pass (tests, linting, formatting)
-2. At least one maintainer must review
-3. Address all review comments
-4. Maintainer will merge when approved
+1. At least one maintainer must review
+1. Address all review comments
+1. Maintainer will merge when approved
 
 ## Release Process
 
@@ -437,11 +444,11 @@ We follow [Semantic Versioning](https://semver.org/):
 ### Release Checklist
 
 1. Update version in `pyproject.toml` and `commonpython/__init__.py`
-2. Update CHANGELOG.md
-3. Create release commit: `git commit -m "chore: release v2.1.0"`
-4. Create tag: `git tag -a v2.1.0 -m "Release v2.1.0"`
-5. Push: `git push origin main --tags`
-6. Create GitHub release with notes
+1. Update CHANGELOG.md
+1. Create release commit: `git commit -m "chore: release v2.1.0"`
+1. Create tag: `git tag -a v2.1.0 -m "Release v2.1.0"`
+1. Push: `git push origin main --tags`
+1. Create GitHub release with notes
 
 ## Getting Help
 
@@ -459,10 +466,11 @@ We follow [Semantic Versioning](https://semver.org/):
 ## Recognition
 
 Contributors will be recognized in:
+
 - CHANGELOG.md for each release
 - GitHub contributors page
 - Project README (for significant contributions)
 
----
+______________________________________________________________________
 
 Thank you for contributing to CommonPython! Your efforts help make this framework better for everyone.

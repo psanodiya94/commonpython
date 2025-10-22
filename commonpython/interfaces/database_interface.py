@@ -7,8 +7,8 @@ library-based implementations without changing client code.
 """
 
 from abc import ABC, abstractmethod
-from typing import Any, Dict, List, Optional, Tuple
 from contextlib import contextmanager
+from typing import Any, Dict, List, Optional, Tuple
 
 
 class IDatabaseManager(ABC):
@@ -75,7 +75,9 @@ class IDatabaseManager(ABC):
         pass
 
     @abstractmethod
-    def execute_batch(self, queries: List[str], params_list: Optional[List[Tuple]] = None) -> List[int]:
+    def execute_batch(
+        self, queries: List[str], params_list: Optional[List[Tuple]] = None
+    ) -> List[int]:
         """
         Execute multiple queries in a batch.
 

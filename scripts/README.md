@@ -31,6 +31,7 @@ python scripts/test_commonpython.py --coverage
 ```
 
 This generates:
+
 - Console coverage report
 - HTML coverage report in `htmlcov/` directory
 
@@ -65,13 +66,13 @@ python scripts/test_commonpython.py -q
 
 ### Command Line Options
 
-| Option | Description |
-|--------|-------------|
-| `--coverage`, `--cov` | Run tests with coverage analysis |
-| `--verbose`, `-v` | Increase output verbosity |
-| `--quiet`, `-q` | Decrease output verbosity |
-| `--list` | List all available test suites |
-| `<suite_name>` | Run specific test suite (e.g., `adapters`, `factory`) |
+| Option                | Description                                           |
+| --------------------- | ----------------------------------------------------- |
+| `--coverage`, `--cov` | Run tests with coverage analysis                      |
+| `--verbose`, `-v`     | Increase output verbosity                             |
+| `--quiet`, `-q`       | Decrease output verbosity                             |
+| `--list`              | List all available test suites                        |
+| `<suite_name>`        | Run specific test suite (e.g., `adapters`, `factory`) |
 
 ### Examples
 
@@ -167,10 +168,10 @@ Slowest Tests:
 ## Tips
 
 1. **Use Coverage Regularly**: Run with `--coverage` to identify untested code
-2. **Test Specific Suites**: Speed up development by testing only what you changed
-3. **Check Adapter Availability**: The runner shows which implementations are available
-4. **View HTML Coverage**: Open `htmlcov/index.html` in your browser for detailed coverage
-5. **Monitor Performance**: Check slowest tests to identify optimization opportunities
+1. **Test Specific Suites**: Speed up development by testing only what you changed
+1. **Check Adapter Availability**: The runner shows which implementations are available
+1. **View HTML Coverage**: Open `htmlcov/index.html` in your browser for detailed coverage
+1. **Monitor Performance**: Check slowest tests to identify optimization opportunities
 
 ## Continuous Integration
 
@@ -186,12 +187,14 @@ python scripts/test_commonpython.py --coverage || exit 1
 ### Colors Not Showing
 
 The script automatically detects terminal color support. If colors aren't showing:
+
 - Ensure your terminal supports ANSI colors
 - Try a different terminal emulator
 
 ### Coverage Module Not Found
 
 Install coverage:
+
 ```bash
 pip install coverage
 ```
@@ -199,6 +202,7 @@ pip install coverage
 ### Tests Not Discovered
 
 Ensure:
+
 - Test files are in `test/` directory
 - Test files follow naming pattern `test_*.py`
 - Test classes inherit from `unittest.TestCase`

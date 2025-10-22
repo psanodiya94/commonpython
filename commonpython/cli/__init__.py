@@ -13,4 +13,4 @@ and framework testing using only standard Python modules.
 
 from .cli import CLI, create_parser, main
 
-__all__ = ['CLI', 'create_parser', 'main']
+__all__ = ["CLI", "create_parser", "main"]

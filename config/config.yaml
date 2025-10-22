@@ -38,7 +38,7 @@ logging:
   level: INFO
   file: app.log
   dir: log
-  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  format: '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
   max_size: 10485760  # 10MB
   backup_count: 5
   colored: true

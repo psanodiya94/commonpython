@@ -6,10 +6,11 @@ the IDatabaseManager interface. This allows the CLI implementation to be
 used interchangeably with library-based implementations.
 """
 
-from typing import Any, Dict, List, Optional, Tuple
 from contextlib import contextmanager
-from ..interfaces.database_interface import IDatabaseManager
+from typing import Any, Dict, List, Optional, Tuple
+
 from ..database.db2_manager import DB2Manager
+from ..interfaces.database_interface import IDatabaseManager
 
 
 class DB2CLIAdapter(IDatabaseManager):
@@ -82,7 +83,9 @@ class DB2CLIAdapter(IDatabaseManager):
         """
         return self._impl.execute_update(query, params)
 
-    def execute_batch(self, queries: List[str], params_list: Optional[List[Tuple]] = None) -> List[int]:
+    def execute_batch(
+        self, queries: List[str], params_list: Optional[List[Tuple]] = None
+    ) -> List[int]:
         """
         Execute multiple queries in a batch.
 

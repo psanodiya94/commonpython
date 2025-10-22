@@ -4,14 +4,14 @@ This guide provides detailed installation instructions for the CommonPython fram
 
 ## 📋 Dependency Overview
 
-| Category | Status | Purpose |
-|----------|--------|---------|
-| **Core Framework** | ✅ Mandatory | Basic framework functionality |
-| **CLI Tools** | ⚙️ Optional | For CLI-based database/messaging |
-| **Library Packages** | 🚀 Optional | For high-performance operations |
-| **Development Tools** | 🧪 Optional | For testing and development |
+| Category              | Status       | Purpose                          |
+| --------------------- | ------------ | -------------------------------- |
+| **Core Framework**    | ✅ Mandatory | Basic framework functionality    |
+| **CLI Tools**         | ⚙️ Optional  | For CLI-based database/messaging |
+| **Library Packages**  | 🚀 Optional  | For high-performance operations  |
+| **Development Tools** | 🧪 Optional  | For testing and development      |
 
----
+______________________________________________________________________
 
 ## ✅ Step 1: Mandatory Installation (Required)
 
@@ -29,12 +29,13 @@ pip install -e .
 ```
 
 This installs:
+
 - ✅ Python 3.8+ (runtime)
 - ✅ PyYAML (configuration parsing)
 
 **Minimum viable installation** - The framework will work but you'll need either CLI tools or library packages for actual database/messaging operations.
 
----
+______________________________________________________________________
 
 ## ⚙️ Step 2: CLI Implementation (Optional)
 
@@ -56,6 +57,7 @@ export PATH=$PATH:/opt/ibm/db2/V11.5/bin
 ```
 
 **Verify installation:**
+
 ```bash
 db2 -v
 # Should display DB2 CLI version
@@ -78,6 +80,7 @@ export PATH=$PATH:/opt/mqm/bin
 ```
 
 **Verify installation:**
+
 ```bash
 dspmqver
 # Should display IBM MQ version
@@ -85,7 +88,7 @@ dspmqver
 
 > 💡 **Note**: Only install CLI tools if you plan to use CLI implementation. You can skip this if using library implementations.
 
----
+______________________________________________________________________
 
 ## 🚀 Step 3: Library Implementation (Optional - Recommended)
 
@@ -99,24 +102,28 @@ pip install -e ".[library]"
 ```
 
 This installs:
+
 - 🚀 ibm_db >= 3.0.0 (native DB2 operations)
 - 🚀 pymqi >= 1.12.0 (native MQ operations)
 
 ### Option B: Install Selectively
 
 **Database library only:**
+
 ```bash
 pip install -e ".[db-library]"
 # Installs: ibm_db >= 3.0.0
 ```
 
 **Messaging library only:**
+
 ```bash
 pip install -e ".[mq-library]"
 # Installs: pymqi >= 1.12.0
 ```
 
 **Verify installation:**
+
 ```bash
 python -c "import ibm_db; print('ibm_db installed')"
 python -c "import pymqi; print('pymqi installed')"
@@ -124,7 +131,7 @@ python -c "import pymqi; print('pymqi installed')"
 
 > 💡 **Note**: Library implementations are **optional**. The framework auto-falls back to CLI if not installed.
 
----
+______________________________________________________________________
 
 ## 🧪 Step 4: Development Dependencies (Optional)
 
@@ -138,6 +145,7 @@ pip install -e ".[test]"
 ```
 
 This installs:
+
 - 🧪 coverage >= 7.0.0 (code coverage analysis)
 
 ### For Development
@@ -148,6 +156,7 @@ pip install -e ".[dev]"
 ```
 
 This installs:
+
 - 🧪 coverage >= 7.0.0 (code coverage)
 
 ### Install Everything
@@ -158,12 +167,13 @@ pip install -e ".[all]"
 ```
 
 This installs:
+
 - ✅ PyYAML (mandatory)
 - 🚀 ibm_db >= 3.0.0 (optional library)
 - 🚀 pymqi >= 1.12.0 (optional library)
 - 🧪 coverage >= 7.0.0 (optional testing)
 
----
+______________________________________________________________________
 
 ## 📊 Installation Scenarios
 
@@ -214,7 +224,7 @@ pip install -e ".[db-library]"
 
 **Use case**: Database-only applications
 
----
+______________________________________________________________________
 
 ## ✅ Verification
 
@@ -257,7 +267,7 @@ print('Database manager created:', type(db_manager).__name__)
 "
 ```
 
----
+______________________________________________________________________
 
 ## 🔧 Configuration
 
@@ -293,7 +303,7 @@ messaging:
   # ... connection details
 ```
 
----
+______________________________________________________________________
 
 ## 🐛 Troubleshooting
 
@@ -302,67 +312,72 @@ messaging:
 **Cause**: Library implementation requested but ibm_db not installed.
 
 **Solutions**:
+
 1. Install library: `pip install ibm_db`
-2. Enable auto-fallback in config: `auto_fallback: true`
-3. Switch to CLI: `implementation: cli`
+1. Enable auto-fallback in config: `auto_fallback: true`
+1. Switch to CLI: `implementation: cli`
 
 ### "ModuleNotFoundError: No module named 'pymqi'"
 
 **Cause**: Library implementation requested but pymqi not installed.
 
 **Solutions**:
+
 1. Install library: `pip install pymqi`
-2. Enable auto-fallback in config: `auto_fallback: true`
-3. Switch to CLI: `implementation: cli`
+1. Enable auto-fallback in config: `auto_fallback: true`
+1. Switch to CLI: `implementation: cli`
 
 ### "DB2 command not found"
 
 **Cause**: CLI implementation requested but DB2 CLI tools not in PATH.
 
 **Solutions**:
+
 1. Install DB2 CLI tools (see Step 2)
-2. Add to PATH: `export PATH=$PATH:/opt/ibm/db2/V11.5/bin`
-3. Switch to library: `implementation: library` (if ibm_db installed)
+1. Add to PATH: `export PATH=$PATH:/opt/ibm/db2/V11.5/bin`
+1. Switch to library: `implementation: library` (if ibm_db installed)
 
 ### "MQ command not found"
 
 **Cause**: CLI implementation requested but MQ CLI tools not in PATH.
 
 **Solutions**:
-1. Install MQ CLI tools (see Step 2)
-2. Add to PATH: `export PATH=$PATH:/opt/mqm/bin`
-3. Switch to library: `implementation: library` (if pymqi installed)
 
----
+1. Install MQ CLI tools (see Step 2)
+1. Add to PATH: `export PATH=$PATH:/opt/mqm/bin`
+1. Switch to library: `implementation: library` (if pymqi installed)
+
+______________________________________________________________________
 
 ## 📚 Next Steps
 
 After installation:
 
 1. **Read the Architecture Guide**: [docs/ADAPTER_ARCHITECTURE.md](docs/ADAPTER_ARCHITECTURE.md)
-2. **Try the Quick Start**: [examples/quick_start.py](examples/quick_start.py)
-3. **Review Configuration**: [config/config.yaml](config/config.yaml)
-4. **Run Tests**: `python scripts/test_commonpython.py`
-5. **Build Your First Component**: Copy [examples/component_template.py](examples/component_template.py)
+1. **Try the Quick Start**: [examples/quick_start.py](examples/quick_start.py)
+1. **Review Configuration**: [config/config.yaml](config/config.yaml)
+1. **Run Tests**: `python scripts/test_commonpython.py`
+1. **Build Your First Component**: Copy [examples/component_template.py](examples/component_template.py)
 
----
+______________________________________________________________________
 
 ## 💡 Recommendations
 
-| Scenario | Recommended Installation |
-|----------|-------------------------|
-| **Production** | `pip install -e ".[library]"` - Best performance |
-| **Development** | `pip install -e ".[all]"` - Full testing capability |
-| **Quick Testing** | `pip install -e .` - Minimal setup |
-| **CI/CD** | `pip install -e ".[test]"` - Testing only |
+| Scenario           | Recommended Installation                                 |
+| ------------------ | -------------------------------------------------------- |
+| **Production**     | `pip install -e ".[library]"` - Best performance         |
+| **Development**    | `pip install -e ".[all]"` - Full testing capability      |
+| **Quick Testing**  | `pip install -e .` - Minimal setup                       |
+| **CI/CD**          | `pip install -e ".[test]"` - Testing only                |
 | **Legacy Systems** | `pip install -e .` + CLI tools - Existing infrastructure |
 
----
+______________________________________________________________________
 
 ## 📞 Support
 
 For installation issues:
+
 1. Check the [Troubleshooting](#troubleshooting) section
-2. Review test output: `python scripts/test_commonpython.py`
-3. Check adapter availability (see [Verification](#verification))
-4. Consult [ADAPTER_ARCHITECTURE.md](docs/ADAPTER_ARCHITECTURE.md)
+1. Review test output: `python scripts/test_commonpython.py`
+1. Check adapter availability (see [Verification](#verification))
+1. Consult [ADAPTER_ARCHITECTURE.md](docs/ADAPTER_ARCHITECTURE.md)

@@ -26,7 +26,7 @@ logging:
   level: INFO
   file: component.log
   dir: log
-  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  format: '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
   max_size: 10485760  # 10MB
   backup_count: 5
   colored: true
@@ -37,15 +37,15 @@ component:
   # Simple component configuration
   operation_count: 10
   delay_seconds: 2
-  
+
   # Database component configuration
   table_name: events
   operation_type: select  # select, insert, update, delete
-  
+
   # Messaging component configuration
   queue_name: COMPONENT.QUEUE
   message_count: 5
-  
+
   # Integrated component configuration
   batch_size: 3
   processing_delay: 1

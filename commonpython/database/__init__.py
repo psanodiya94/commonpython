@@ -13,4 +13,4 @@ result set handling, and error handling using only standard Python modules.
 
 from .db2_manager import DB2Manager
 
-__all__ = ['DB2Manager']
+__all__ = ["DB2Manager"]

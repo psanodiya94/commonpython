@@ -11,6 +11,6 @@ and custom formatters using only standard Python modules.
 @since 1.0.0
 """
 
-from .logger_manager import LoggerManager, JSONFormatter, ColoredFormatter
+from .logger_manager import ColoredFormatter, JSONFormatter, LoggerManager
 
-__all__ = ['LoggerManager', 'JSONFormatter', 'ColoredFormatter']
+__all__ = ["LoggerManager", "JSONFormatter", "ColoredFormatter"]

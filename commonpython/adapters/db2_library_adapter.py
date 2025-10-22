@@ -5,15 +5,17 @@ Adapter that uses the ibm_db Python library for DB2 database operations.
 Implements the IDatabaseManager interface for library-based access.
 """
 
-from typing import Any, Dict, List, Optional, Tuple
-from contextlib import contextmanager
 import time
+from contextlib import contextmanager
+from typing import Any, Dict, List, Optional, Tuple
+
 from ..interfaces.database_interface import IDatabaseManager
 
 # Try to import ibm_db library
 try:
     import ibm_db
     import ibm_db_dbi
+
     HAS_IBM_DB = True
 except ImportError:
     HAS_IBM_DB = False
@@ -39,8 +41,7 @@ class DB2LibraryAdapter(IDatabaseManager):
         """
         if not HAS_IBM_DB:
             raise ImportError(
-                "ibm_db library is not installed. "
-                "Install it with: pip install ibm_db"
+                "ibm_db library is not installed. " "Install it with: pip install ibm_db"
             )
 
         self._config = config
@@ -56,12 +57,12 @@ class DB2LibraryAdapter(IDatabaseManager):
         @brief Create connection string for ibm_db.
         @return Formatted connection string
         """
-        host = self._config.get('host', 'localhost')
-        port = self._config.get('port', 50000)
-        database = self._config.get('database', self._config.get('name', 'testdb'))
-        user = self._config.get('user', 'db2inst1')
-        password = self._config.get('password', '')
-        schema = self._config.get('schema', '')
+        host = self._config.get("host", "localhost")
+        port = self._config.get("port", 50000)
+        database = self._config.get("database", self._config.get("name", "testdb"))
+        user = self._config.get("user", "db2inst1")
+        password = self._config.get("password", "")
+        schema = self._config.get("schema", "")
 
         conn_str = f"DATABASE={database};HOSTNAME={host};PORT={port};"
         conn_str += f"PROTOCOL=TCPIP;UID={user};PWD={password};"
@@ -169,10 +170,7 @@ class DB2LibraryAdapter(IDatabaseManager):
             duration = time.time() - start_time
             if self._logger:
                 self._logger.log_database_operation(
-                    operation="SELECT",
-                    query=query,
-                    duration=duration,
-                    rows_affected=len(results)
+                    operation="SELECT", query=query, duration=duration, rows_affected=len(results)
                 )
 
             return results
@@ -182,10 +180,7 @@ class DB2LibraryAdapter(IDatabaseManager):
             if self._logger:
                 self._logger.logger.error(f"Query execution error: {str(e)}")
                 self._logger.log_database_operation(
-                    operation="SELECT",
-                    query=query,
-                    duration=duration,
-                    rows_affected=0
+                    operation="SELECT", query=query, duration=duration, rows_affected=0
                 )
             raise
 
@@ -222,10 +217,7 @@ class DB2LibraryAdapter(IDatabaseManager):
             operation = query.strip().split()[0].upper()
             if self._logger:
                 self._logger.log_database_operation(
-                    operation=operation,
-                    query=query,
-                    duration=duration,
-                    rows_affected=rows_affected
+                    operation=operation, query=query, duration=duration, rows_affected=rows_affected
                 )
 
             return rows_affected
@@ -238,11 +230,13 @@ class DB2LibraryAdapter(IDatabaseManager):
                     operation=query.strip().split()[0].upper(),
                     query=query,
                     duration=duration,
-                    rows_affected=0
+                    rows_affected=0,
                 )
             raise
 
-    def execute_batch(self, queries: List[str], params_list: Optional[List[Tuple]] = None) -> List[int]:
+    def execute_batch(
+        self, queries: List[str], params_list: Optional[List[Tuple]] = None
+    ) -> List[int]:
         """
         Execute multiple queries in a batch.
 

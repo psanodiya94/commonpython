@@ -13,4 +13,4 @@ message properties, and error handling using only standard Python modules.
 
 from .mq_manager import MQManager
 
-__all__ = ['MQManager']
+__all__ = ["MQManager"]

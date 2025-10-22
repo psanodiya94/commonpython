@@ -7,6 +7,7 @@ used interchangeably with library-based implementations.
 """
 
 from typing import Any, Dict, Optional, Union
+
 from ..interfaces.messaging_interface import IMessagingManager
 from ..messaging.mq_manager import MQManager
 
@@ -57,8 +58,12 @@ class MQCLIAdapter(IMessagingManager):
         """
         return self._impl.is_connected()
 
-    def put_message(self, queue_name: str, message: Union[str, bytes, Dict],
-                   message_properties: Optional[Dict[str, Any]] = None) -> bool:
+    def put_message(
+        self,
+        queue_name: str,
+        message: Union[str, bytes, Dict],
+        message_properties: Optional[Dict[str, Any]] = None,
+    ) -> bool:
         """
         Put a message to a queue.
 
@@ -71,7 +76,9 @@ class MQCLIAdapter(IMessagingManager):
         """
         return self._impl.put_message(queue_name, message, message_properties)
 
-    def get_message(self, queue_name: str, timeout: Optional[int] = None) -> Optional[Dict[str, Any]]:
+    def get_message(
+        self, queue_name: str, timeout: Optional[int] = None
+    ) -> Optional[Dict[str, Any]]:
         """
         Get a message from a queue.
 
@@ -83,7 +90,9 @@ class MQCLIAdapter(IMessagingManager):
         """
         return self._impl.get_message(queue_name, timeout)
 
-    def browse_message(self, queue_name: str, message_id: Optional[bytes] = None) -> Optional[Dict[str, Any]]:
+    def browse_message(
+        self, queue_name: str, message_id: Optional[bytes] = None
+    ) -> Optional[Dict[str, Any]]:
         """
         Browse a message from a queue without removing it.
 
