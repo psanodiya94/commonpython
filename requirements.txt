@@ -1,3 +1,0 @@
-# Testing dependencies (unittest only - no third-party test frameworks)
-# Only coverage is needed for test coverage reports
-coverage>=7.0.0
