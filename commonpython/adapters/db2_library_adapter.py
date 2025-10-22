@@ -7,7 +7,7 @@ Implements the IDatabaseManager interface for library-based access.
 
 import time
 from contextlib import contextmanager
-from typing import Any, Optional
+from typing import Any
 
 from ..interfaces.database_interface import IDatabaseManager
 
@@ -130,7 +130,7 @@ class DB2LibraryAdapter(IDatabaseManager):
             pass
         return False
 
-    def execute_query(self, query: str, params: Optional[tuple] = None) -> list[dict[str, Any]]:
+    def execute_query(self, query: str, params: tuple | None = None) -> list[dict[str, Any]]:
         """
         Execute a SELECT query and return results.
 
@@ -184,7 +184,7 @@ class DB2LibraryAdapter(IDatabaseManager):
                 )
             raise
 
-    def execute_update(self, query: str, params: Optional[tuple] = None) -> int:
+    def execute_update(self, query: str, params: tuple | None = None) -> int:
         """
         Execute an INSERT, UPDATE, or DELETE query.
 
@@ -235,7 +235,7 @@ class DB2LibraryAdapter(IDatabaseManager):
             raise
 
     def execute_batch(
-        self, queries: list[str], params_list: Optional[list[tuple]] = None
+        self, queries: list[str], params_list: list[tuple] | None = None
     ) -> list[int]:
         """
         Execute multiple queries in a batch.

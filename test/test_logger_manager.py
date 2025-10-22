@@ -17,7 +17,11 @@ from unittest.mock import MagicMock
 # Add the parent directory to the path to import the module
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from commonpython.logging.logger_manager import ColoredFormatter, JSONFormatter, LoggerManager
+from commonpython.logging.logger_manager import (  # noqa: E402
+    ColoredFormatter,
+    JSONFormatter,
+    LoggerManager,
+)
 
 
 def safe_remove(filepath, retries=5, delay=0.2):

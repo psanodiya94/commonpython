@@ -5,7 +5,7 @@ Provides a common way to run components with shared functionality.
 """
 
 import argparse
-from typing import Any, Optional
+from typing import Any
 
 from .component_base import ComponentBase
 
@@ -61,7 +61,7 @@ class ComponentRunner:
 
         return parser
 
-    def run(self, args: Optional[list] = None) -> bool:
+    def run(self, args: list | None = None) -> bool:
         """
         Run the component.
 
@@ -135,7 +135,7 @@ class ComponentRunner:
 
 
 def run_component(
-    component_class: type[ComponentBase], component_name: str, args: Optional[list] = None
+    component_class: type[ComponentBase], component_name: str, args: list | None = None
 ) -> bool:
     """
     Run a component with CommonPython framework.

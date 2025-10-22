@@ -14,7 +14,7 @@ from unittest.mock import MagicMock, mock_open, patch
 # Add the parent directory to the path to import the module
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from commonpython.database.db2_manager import DB2Manager
+from commonpython.database.db2_manager import DB2Manager  # noqa: E402
 
 
 class TestDB2Manager(unittest.TestCase):

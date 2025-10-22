@@ -16,7 +16,7 @@ import yaml
 # Add the parent directory to the path to import the module
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from commonpython.config.config_manager import ConfigManager
+from commonpython.config.config_manager import ConfigManager  # noqa: E402
 
 
 class TestConfigManager(unittest.TestCase):

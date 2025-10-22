@@ -12,7 +12,7 @@ from unittest.mock import MagicMock, patch
 # Add the parent directory to the path to import the module
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from commonpython.messaging.mq_manager import MQManager
+from commonpython.messaging.mq_manager import MQManager  # noqa: E402
 
 
 class TestMQManager(unittest.TestCase):

@@ -4,7 +4,6 @@ Component Registry for CommonPython Framework
 Provides a registry for managing and discovering components.
 """
 
-
 from .component_base import ComponentBase
 
 

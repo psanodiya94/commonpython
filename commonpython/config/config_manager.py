@@ -9,7 +9,7 @@ Provides centralized configuration management using only standard Python modules
 """
 
 import os
-from typing import Any, Optional
+from typing import Any
 
 import yaml
 
@@ -24,7 +24,7 @@ class ConfigManager:
     3. Default values
     """
 
-    def __init__(self, config_file: Optional[str] = None, env_file: Optional[str] = None):
+    def __init__(self, config_file: str | None = None, env_file: str | None = None):
         """
         Initialize the configuration manager.
 

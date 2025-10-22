@@ -6,7 +6,7 @@ Provides base functionality for components that want to use the CommonPython fra
 
 import sys
 from abc import ABC, abstractmethod
-from typing import Any, Optional
+from typing import Any
 
 from ..config import ConfigManager
 from ..factories import ManagerFactory
@@ -21,7 +21,7 @@ class ComponentBase(ABC):
     and messaging capabilities to any component that inherits from this class.
     """
 
-    def __init__(self, component_name: str, config_file: Optional[str] = None):
+    def __init__(self, component_name: str, config_file: str | None = None):
         """
         Initialize the component.
 
@@ -191,7 +191,7 @@ class ComponentBase(ABC):
         except Exception as e:
             self.log_error(f"Messaging disconnection error: {str(e)}")
 
-    def execute_query(self, query: str, params: Optional[tuple] = None) -> list:
+    def execute_query(self, query: str, params: tuple | None = None) -> list:
         """
         Execute database query.
 
@@ -208,7 +208,7 @@ class ComponentBase(ABC):
             self.log_error(f"Query execution failed: {str(e)}")
             raise
 
-    def execute_update(self, query: str, params: Optional[tuple] = None) -> int:
+    def execute_update(self, query: str, params: tuple | None = None) -> int:
         """
         Execute database update.
 
@@ -226,7 +226,7 @@ class ComponentBase(ABC):
             raise
 
     def send_message(
-        self, queue_name: str, message: Any, properties: Optional[dict[str, Any]] = None
+        self, queue_name: str, message: Any, properties: dict[str, Any] | None = None
     ) -> bool:
         """
         Send message to queue.
@@ -248,9 +248,7 @@ class ComponentBase(ABC):
             self.log_error(f"Message sending failed: {str(e)}")
             return False
 
-    def receive_message(
-        self, queue_name: str, timeout: Optional[int] = None
-    ) -> Optional[dict[str, Any]]:
+    def receive_message(self, queue_name: str, timeout: int | None = None) -> dict[str, Any] | None:
         """
         Receive message from queue.
 

@@ -13,9 +13,9 @@ from unittest.mock import Mock, patch
 # Add parent directory to path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from commonpython.adapters import DB2CLIAdapter, MQCLIAdapter
-from commonpython.factories import ManagerFactory
-from commonpython.interfaces import IDatabaseManager, IMessagingManager
+from commonpython.adapters import DB2CLIAdapter, MQCLIAdapter  # noqa: E402
+from commonpython.factories import ManagerFactory  # noqa: E402
+from commonpython.interfaces import IDatabaseManager, IMessagingManager  # noqa: E402
 
 
 class TestImplementationConsistency(unittest.TestCase):

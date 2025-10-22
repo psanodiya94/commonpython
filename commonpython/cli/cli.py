@@ -12,7 +12,7 @@ Provides command-line interface using only standard Python modules with support 
 import argparse
 import json
 import sys
-from typing import Any, Optional
+from typing import Any
 
 
 class CLI:
@@ -23,7 +23,7 @@ class CLI:
     using only standard Python modules.
     """
 
-    def __init__(self, config_file: Optional[str] = None):
+    def __init__(self, config_file: str | None = None):
         """
         Initialize the CLI.
 
@@ -153,7 +153,7 @@ class CLI:
         else:
             print("✗ Database setup failed")
 
-    def execute_query(self, query: str, params: Optional[str] = None) -> None:
+    def execute_query(self, query: str, params: str | None = None) -> None:
         """
         Execute a database query.
 
@@ -215,7 +215,7 @@ class CLI:
         else:
             print("✗ MQ setup failed")
 
-    def get_message(self, queue_name: str, timeout: Optional[int] = None) -> None:
+    def get_message(self, queue_name: str, timeout: int | None = None) -> None:
         """
         Get a message from queue.
 
@@ -236,7 +236,7 @@ class CLI:
             print(f"Failed to get message: {str(e)}")
             sys.exit(1)
 
-    def put_message(self, queue_name: str, message: str, properties: Optional[str] = None) -> None:
+    def put_message(self, queue_name: str, message: str, properties: str | None = None) -> None:
         """
         Put a message to queue.
 

@@ -12,7 +12,6 @@ import time
 import unittest
 from collections import defaultdict
 from pathlib import Path
-from typing import Optional
 
 # Add the parent directory to the path
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -127,7 +126,7 @@ class DetailedTestResult(unittest.TextTestResult):
         self.category_stats: dict[str, dict[str, int]] = defaultdict(
             lambda: {"total": 0, "passed": 0, "failed": 0, "errors": 0, "skipped": 0}
         )
-        self.start_time: Optional[float] = None
+        self.start_time: float | None = None
 
     def startTest(self, test):
         super().startTest(test)
@@ -170,7 +169,7 @@ class DetailedTestRunner(unittest.TextTestRunner):
     resultclass = DetailedTestResult
 
 
-def run_comprehensive_tests(suite_filter: Optional[str] = None, verbosity: int = 2):
+def run_comprehensive_tests(suite_filter: str | None = None, verbosity: int = 2):
     """
     Run comprehensive test suite with detailed reporting.
 
@@ -316,7 +315,7 @@ def run_comprehensive_tests(suite_filter: Optional[str] = None, verbosity: int =
     return result
 
 
-def run_tests_with_coverage(suite_filter: Optional[str] = None, verbosity: int = 2):
+def run_tests_with_coverage(suite_filter: str | None = None, verbosity: int = 2):
     """
     Run tests with coverage analysis.
 

@@ -7,7 +7,7 @@ Implements the IMessagingManager interface for library-based access.
 
 import json
 import time
-from typing import Any, Optional, Union
+from typing import Any
 
 from ..interfaces.messaging_interface import IMessagingManager
 
@@ -127,8 +127,8 @@ class MQLibraryAdapter(IMessagingManager):
     def put_message(
         self,
         queue_name: str,
-        message: Union[str, bytes, dict],
-        message_properties: Optional[dict[str, Any]] = None,
+        message: str | bytes | dict,
+        message_properties: dict[str, Any] | None = None,
     ) -> bool:
         """
         Put a message to a queue.
@@ -193,9 +193,7 @@ class MQLibraryAdapter(IMessagingManager):
                 self._logger.log_mq_operation(operation="PUT", queue=queue_name, duration=duration)
             return False
 
-    def get_message(
-        self, queue_name: str, timeout: Optional[int] = None
-    ) -> Optional[dict[str, Any]]:
+    def get_message(self, queue_name: str, timeout: int | None = None) -> dict[str, Any] | None:
         """
         Get a message from a queue.
 
@@ -294,8 +292,8 @@ class MQLibraryAdapter(IMessagingManager):
             raise
 
     def browse_message(
-        self, queue_name: str, message_id: Optional[bytes] = None
-    ) -> Optional[dict[str, Any]]:
+        self, queue_name: str, message_id: bytes | None = None
+    ) -> dict[str, Any] | None:
         """
         Browse a message from a queue without removing it.
 

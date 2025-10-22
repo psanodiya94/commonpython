@@ -14,7 +14,7 @@ import os
 import subprocess
 import tempfile
 import time
-from typing import Any, Optional, Union
+from typing import Any
 
 
 class MQManager:
@@ -55,9 +55,7 @@ class MQManager:
             "timeout": self.config.get("timeout", 30),
         }
 
-    def _execute_mq_command(
-        self, command: str, params: Optional[list[str]] = None
-    ) -> dict[str, Any]:
+    def _execute_mq_command(self, command: str, params: list[str] | None = None) -> dict[str, Any]:
         """
         Execute an MQ CLI command.
 
@@ -151,8 +149,8 @@ class MQManager:
     def put_message(
         self,
         queue_name: str,
-        message: Union[str, bytes, dict],
-        message_properties: Optional[dict[str, Any]] = None,
+        message: str | bytes | dict,
+        message_properties: dict[str, Any] | None = None,
     ) -> bool:
         """
         Put a message to a queue.
@@ -219,9 +217,7 @@ class MQManager:
                 self.logger.log_mq_operation(operation="PUT", queue=queue_name, duration=duration)
             return False
 
-    def get_message(
-        self, queue_name: str, timeout: Optional[int] = None
-    ) -> Optional[dict[str, Any]]:
+    def get_message(self, queue_name: str, timeout: int | None = None) -> dict[str, Any] | None:
         """
         Get a message from a queue.
 
@@ -297,8 +293,8 @@ class MQManager:
             raise
 
     def browse_message(
-        self, queue_name: str, message_id: Optional[bytes] = None
-    ) -> Optional[dict[str, Any]]:
+        self, queue_name: str, message_id: bytes | None = None
+    ) -> dict[str, Any] | None:
         """
         Browse a message from a queue without removing it.
 

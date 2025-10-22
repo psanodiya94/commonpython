@@ -15,7 +15,12 @@ from unittest.mock import MagicMock, patch
 # Add the parent directory to the path to import the module
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from commonpython.framework import ComponentBase, ComponentRegistry, ComponentRunner, run_component
+from commonpython.framework import (  # noqa: E402
+    ComponentBase,
+    ComponentRegistry,
+    ComponentRunner,
+    run_component,
+)
 
 
 class TestComponent(ComponentBase):
