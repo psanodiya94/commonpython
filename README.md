@@ -19,21 +19,21 @@ git clone <repository-url>
 cd commonpython
 
 # Install core framework only
-pip install -e .
+pip install .
 ```
 
 #### Option B: High Performance (Recommended)
 
 ```bash
 # Install with library adapters for 10-50x better performance
-pip install -e ".[library]"
+pip install ".[library]"
 ```
 
 #### Option C: Full Development Setup
 
 ```bash
 # Install everything (libraries + testing tools)
-pip install -e ".[all]"
+pip install ".[all]"
 ```
 
 > 📖 **[Complete Installation Guide](docs/INSTALLATION.md)** - Detailed instructions for all scenarios
@@ -465,14 +465,13 @@ commonpython/
 │   └── __init__.py
 ├── .gitignore                # Git ignore rules
 ├── LICENSE                   # MIT License
-├── pyproject.toml            # Project metadata (modern)
-├── README.md                 # This file
-├── requirements.txt          # Test dependencies
-└── setup.py                  # Setup script (legacy compat)
+├── pyproject.toml            # Project metadata and dependencies
+└── README.md                 # This file
 ```
 
 ### Key Design Principles
 
+1. **Modern Python Packaging**: Uses `pyproject.toml` for all project configuration and dependency management
 1. **Minimal Dependencies**: Only PyYAML required; everything else is optional
 1. **Adapter Pattern**: Switch between CLI and library implementations seamlessly
 1. **unittest Framework**: All tests use Python's built-in unittest (no pytest)
