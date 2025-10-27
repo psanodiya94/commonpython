@@ -417,37 +417,70 @@ class TestAdapterInitModule(unittest.TestCase):
             if "MQLibraryAdapter" in adapters.__all__:
                 self.fail("MQLibraryAdapter in __all__ but HAS_MQ_LIBRARY is False")
 
-    def test_import_error_handling(self):
-        """Test import error handling by simulating missing libraries"""
+    def test_import_error_handling_db2(self):
+        """Test DB2 library import error handling"""
+        import builtins
         import importlib
         import sys
 
         # Save original modules
         original_modules = sys.modules.copy()
+        original_import = builtins.__import__
 
         try:
-            # Remove library adapters from sys.modules to force reimport
-            modules_to_remove = [
-                "commonpython.adapters",
-                "commonpython.adapters.db2_library_adapter",
-                "commonpython.adapters.mq_library_adapter",
-            ]
-            for mod in modules_to_remove:
-                if mod in sys.modules:
+            # Remove adapters module from sys.modules to force reimport
+            for mod in list(sys.modules.keys()):
+                if mod.startswith("commonpython.adapters"):
                     del sys.modules[mod]
 
-            # Mock ibm_db and pymqi to raise ImportError
-            sys.modules["ibm_db"] = None
-            sys.modules["pymqi"] = None
+            # Create a mock module that raises ImportError for db2_library_adapter
+            def mock_import(name, *args, **kwargs):
+                if "db2_library_adapter" in name:
+                    raise ImportError(f"No module named '{name}'")
+                return original_import(name, *args, **kwargs)
 
-            # Reimport the adapters module
-            import commonpython.adapters as test_adapters
+            with patch("builtins.__import__", side_effect=mock_import):
+                # This import should hit the ImportError path on lines 16-17
+                import commonpython.adapters as test_adapters
 
-            # Verify the flags are set correctly when libraries are missing
-            # Note: This test may not work as expected if libraries are installed
-            # But it tests the logic pathway
-            self.assertIsInstance(test_adapters.HAS_DB2_LIBRARY, bool)
-            self.assertIsInstance(test_adapters.HAS_MQ_LIBRARY, bool)
+                # Verify DB2 library is marked as unavailable
+                self.assertFalse(test_adapters.HAS_DB2_LIBRARY)
+                self.assertNotIn("DB2LibraryAdapter", test_adapters.__all__)
+
+        finally:
+            # Restore original modules
+            sys.modules.clear()
+            sys.modules.update(original_modules)
+
+    def test_import_error_handling_mq(self):
+        """Test MQ library import error handling"""
+        import builtins
+        import importlib
+        import sys
+
+        # Save original modules
+        original_modules = sys.modules.copy()
+        original_import = builtins.__import__
+
+        try:
+            # Remove adapters module from sys.modules to force reimport
+            for mod in list(sys.modules.keys()):
+                if mod.startswith("commonpython.adapters"):
+                    del sys.modules[mod]
+
+            # Create a mock module that raises ImportError for mq_library_adapter
+            def mock_import(name, *args, **kwargs):
+                if "mq_library_adapter" in name:
+                    raise ImportError(f"No module named '{name}'")
+                return original_import(name, *args, **kwargs)
+
+            with patch("builtins.__import__", side_effect=mock_import):
+                # This import should hit the ImportError path on lines 23-24
+                import commonpython.adapters as test_adapters
+
+                # Verify MQ library is marked as unavailable
+                self.assertFalse(test_adapters.HAS_MQ_LIBRARY)
+                self.assertNotIn("MQLibraryAdapter", test_adapters.__all__)
 
         finally:
             # Restore original modules

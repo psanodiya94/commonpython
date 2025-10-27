@@ -688,6 +688,106 @@ class TestRunComponent(unittest.TestCase):
         self.assertTrue(result)
         mock_run.assert_called_once_with(None)
 
+    def test_run_component_with_log_level(self):
+        """Test running component with --log-level argument"""
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".yaml", delete=False) as f:
+            f.write(
+                """
+database:
+  host: localhost
+messaging:
+  host: localhost
+logging:
+  level: INFO
+"""
+            )
+            config_file = f.name
+
+        try:
+            from commonpython.framework.component_runner import ComponentRunner
+
+            runner = ComponentRunner(TestComponent, "TestComponent")
+            result = runner.run(["--config", config_file, "--log-level", "WARNING"])
+            self.assertTrue(result)
+        finally:
+            os.unlink(config_file)
+
+    def test_run_component_with_verbose(self):
+        """Test running component with --verbose argument"""
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".yaml", delete=False) as f:
+            f.write(
+                """
+database:
+  host: localhost
+messaging:
+  host: localhost
+logging:
+  level: INFO
+"""
+            )
+            config_file = f.name
+
+        try:
+            from commonpython.framework.component_runner import ComponentRunner
+
+            runner = ComponentRunner(TestComponent, "TestComponent")
+            result = runner.run(["--config", config_file, "--verbose"])
+            self.assertTrue(result)
+        finally:
+            os.unlink(config_file)
+
+    def test_run_component_with_config_dict(self):
+        """Test run_component_with_config convenience function"""
+        from commonpython.framework.component_runner import run_component_with_config
+
+        config = {"dry_run": True, "test_key": "test_value"}
+
+        # Note: This will create component without config file (None)
+        # which will use default config
+        result = run_component_with_config(TestComponent, "TestComponent", config)
+        self.assertTrue(result)
+
+    def test_run_with_config_exception(self):
+        """Test run_with_config with exception after component creation"""
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".yaml", delete=False) as f:
+            f.write(
+                """
+database:
+  host: localhost
+messaging:
+  host: localhost
+logging:
+  level: INFO
+"""
+            )
+            config_file = f.name
+
+        try:
+
+            class FailingStartComponent(ComponentBase):
+                def initialize(self):
+                    pass
+
+                def run(self):
+                    pass
+
+                def cleanup(self):
+                    pass
+
+                def start(self):
+                    raise Exception("Start failed")
+
+            from commonpython.framework.component_runner import ComponentRunner
+
+            runner = ComponentRunner(FailingStartComponent, "FailingStart")
+            # First create a valid instance
+            runner.component_instance = FailingStartComponent(config_file)
+            # Then test run_with_config which will fail
+            result = runner.run_with_config({"test": "value"})
+            self.assertFalse(result)
+        finally:
+            os.unlink(config_file)
+
 
 if __name__ == "__main__":
     unittest.main()
