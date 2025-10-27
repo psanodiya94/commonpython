@@ -612,6 +612,61 @@ class TestComponentRegistry(unittest.TestCase):
         self.assertEqual(len(self.registry.list_components()), 0)
 
 
+class TestGlobalRegistryFunctions(unittest.TestCase):
+    """
+    Test cases for global component registry convenience functions.
+
+    @brief Test suite for global registry functions.
+    """
+
+    def setUp(self):
+        """Set up test fixtures"""
+        # Clear the global registry before each test
+        from commonpython.framework.component_registry import component_registry
+
+        component_registry.clear()
+
+    def tearDown(self):
+        """Clean up after tests"""
+        from commonpython.framework.component_registry import component_registry
+
+        component_registry.clear()
+
+    def test_register_component_global(self):
+        """Test register_component global function"""
+        from commonpython.framework.component_registry import register_component
+
+        register_component("test", TestComponent)
+
+        # Verify it was registered in global registry
+        from commonpython.framework.component_registry import component_registry
+
+        self.assertTrue(component_registry.is_registered("test"))
+
+    def test_get_component_global(self):
+        """Test get_component global function"""
+        from commonpython.framework.component_registry import get_component, register_component
+
+        register_component("test", TestComponent)
+
+        # Get component using global function
+        component_class = get_component("test")
+        self.assertEqual(component_class, TestComponent)
+
+    def test_list_components_global(self):
+        """Test list_components global function"""
+        from commonpython.framework.component_registry import list_components, register_component
+
+        register_component("test1", TestComponent)
+        register_component("test2", TestComponent)
+
+        # List components using global function
+        components = list_components()
+        self.assertEqual(len(components), 2)
+        self.assertIn("test1", components)
+        self.assertIn("test2", components)
+
+
 class TestRunComponent(unittest.TestCase):
     """
     Test cases for run_component convenience function.
