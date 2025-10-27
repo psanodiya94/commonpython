@@ -3,7 +3,7 @@
 A comprehensive Python framework providing configuration management, logging, database connectivity, message queue operations, and command-line interface functionality. Features a **flexible adapter architecture** that supports both CLI-based and library-based implementations.
 
 [![Python Version](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://www.python.org/downloads/)
-[![Tests](https://img.shields.io/badge/tests-295%20passed-brightgreen.svg)](test/)
+[![Tests](https://img.shields.io/badge/tests-410%20passed-brightgreen.svg)](test/)
 [![Coverage](https://img.shields.io/badge/coverage-89%25-green.svg)](test/)
 [![Architecture](https://img.shields.io/badge/architecture-adapter%20pattern-blue.svg)](docs/ADAPTER_ARCHITECTURE.md)
 
