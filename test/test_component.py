@@ -612,6 +612,61 @@ class TestComponentRegistry(unittest.TestCase):
         self.assertEqual(len(self.registry.list_components()), 0)
 
 
+class TestGlobalRegistryFunctions(unittest.TestCase):
+    """
+    Test cases for global component registry convenience functions.
+
+    @brief Test suite for global registry functions.
+    """
+
+    def setUp(self):
+        """Set up test fixtures"""
+        # Clear the global registry before each test
+        from commonpython.framework.component_registry import component_registry
+
+        component_registry.clear()
+
+    def tearDown(self):
+        """Clean up after tests"""
+        from commonpython.framework.component_registry import component_registry
+
+        component_registry.clear()
+
+    def test_register_component_global(self):
+        """Test register_component global function"""
+        from commonpython.framework.component_registry import register_component
+
+        register_component("test", TestComponent)
+
+        # Verify it was registered in global registry
+        from commonpython.framework.component_registry import component_registry
+
+        self.assertTrue(component_registry.is_registered("test"))
+
+    def test_get_component_global(self):
+        """Test get_component global function"""
+        from commonpython.framework.component_registry import get_component, register_component
+
+        register_component("test", TestComponent)
+
+        # Get component using global function
+        component_class = get_component("test")
+        self.assertEqual(component_class, TestComponent)
+
+    def test_list_components_global(self):
+        """Test list_components global function"""
+        from commonpython.framework.component_registry import list_components, register_component
+
+        register_component("test1", TestComponent)
+        register_component("test2", TestComponent)
+
+        # List components using global function
+        components = list_components()
+        self.assertEqual(len(components), 2)
+        self.assertIn("test1", components)
+        self.assertIn("test2", components)
+
+
 class TestRunComponent(unittest.TestCase):
     """
     Test cases for run_component convenience function.
@@ -632,6 +687,106 @@ class TestRunComponent(unittest.TestCase):
 
         self.assertTrue(result)
         mock_run.assert_called_once_with(None)
+
+    def test_run_component_with_log_level(self):
+        """Test running component with --log-level argument"""
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".yaml", delete=False) as f:
+            f.write(
+                """
+database:
+  host: localhost
+messaging:
+  host: localhost
+logging:
+  level: INFO
+"""
+            )
+            config_file = f.name
+
+        try:
+            from commonpython.framework.component_runner import ComponentRunner
+
+            runner = ComponentRunner(TestComponent, "TestComponent")
+            result = runner.run(["--config", config_file, "--log-level", "WARNING"])
+            self.assertTrue(result)
+        finally:
+            os.unlink(config_file)
+
+    def test_run_component_with_verbose(self):
+        """Test running component with --verbose argument"""
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".yaml", delete=False) as f:
+            f.write(
+                """
+database:
+  host: localhost
+messaging:
+  host: localhost
+logging:
+  level: INFO
+"""
+            )
+            config_file = f.name
+
+        try:
+            from commonpython.framework.component_runner import ComponentRunner
+
+            runner = ComponentRunner(TestComponent, "TestComponent")
+            result = runner.run(["--config", config_file, "--verbose"])
+            self.assertTrue(result)
+        finally:
+            os.unlink(config_file)
+
+    def test_run_component_with_config_dict(self):
+        """Test run_component_with_config convenience function"""
+        from commonpython.framework.component_runner import run_component_with_config
+
+        config = {"dry_run": True, "test_key": "test_value"}
+
+        # Note: This will create component without config file (None)
+        # which will use default config
+        result = run_component_with_config(TestComponent, "TestComponent", config)
+        self.assertTrue(result)
+
+    def test_run_with_config_exception(self):
+        """Test run_with_config with exception after component creation"""
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".yaml", delete=False) as f:
+            f.write(
+                """
+database:
+  host: localhost
+messaging:
+  host: localhost
+logging:
+  level: INFO
+"""
+            )
+            config_file = f.name
+
+        try:
+
+            class FailingStartComponent(ComponentBase):
+                def initialize(self):
+                    pass
+
+                def run(self):
+                    pass
+
+                def cleanup(self):
+                    pass
+
+                def start(self):
+                    raise Exception("Start failed")
+
+            from commonpython.framework.component_runner import ComponentRunner
+
+            runner = ComponentRunner(FailingStartComponent, "FailingStart")
+            # First create a valid instance
+            runner.component_instance = FailingStartComponent(config_file)
+            # Then test run_with_config which will fail
+            result = runner.run_with_config({"test": "value"})
+            self.assertFalse(result)
+        finally:
+            os.unlink(config_file)
 
 
 if __name__ == "__main__":

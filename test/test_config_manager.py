@@ -315,3 +315,46 @@ class TestConfigManager(unittest.TestCase):
 
         self.config_manager._set_nested_value("test.string", "hello")
         self.assertEqual(self.config_manager.get("test.string"), "hello")
+
+    def test_missing_config_file(self):
+        """
+        Test FileNotFoundError when config file doesn't exist.
+
+        @brief Test that FileNotFoundError is raised when config file is missing.
+        """
+        with self.assertRaises(FileNotFoundError) as context:
+            ConfigManager(config_file="/nonexistent/path/config.yaml")
+        self.assertIn("not found", str(context.exception))
+
+    def test_get_required_key_missing_none_value(self):
+        """
+        Test KeyError when required key has None value.
+
+        @brief Test that KeyError is raised when required key is None.
+        """
+        self.config_manager._config = {"database": {"host": None}}
+        with self.assertRaises(KeyError) as context:
+            self.config_manager.get("database.host", required=True)
+        self.assertIn("Required config key", str(context.exception))
+
+    def test_get_required_key_missing_not_exists(self):
+        """
+        Test KeyError when required key doesn't exist.
+
+        @brief Test that KeyError is raised when required key doesn't exist.
+        """
+        self.config_manager._config = {"database": {"host": "localhost"}}
+        with self.assertRaises(KeyError) as context:
+            self.config_manager.get("database.missing_key", required=True)
+        self.assertIn("Required config key", str(context.exception))
+
+    def test_get_required_key_nested_missing(self):
+        """
+        Test KeyError when required nested key doesn't exist.
+
+        @brief Test that KeyError is raised for deeply nested missing keys.
+        """
+        self.config_manager._config = {"database": {}}
+        with self.assertRaises(KeyError) as context:
+            self.config_manager.get("database.connection.timeout", required=True)
+        self.assertIn("Required config key", str(context.exception))

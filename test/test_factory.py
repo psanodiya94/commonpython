@@ -503,6 +503,38 @@ class TestManagerFactoryLibraryAdapters(unittest.TestCase):
         manager = ManagerFactory.create_messaging_manager(config, self.logger)
         self.assertIsInstance(manager, MQCLIAdapter)
 
+    def test_db_library_import_error_caught(self):
+        """Test that ImportError is properly caught during DB library adapter check"""
+        ManagerFactory.reset_cache()
+
+        config = {"implementation": "library", "auto_fallback": True, "host": "localhost", "port": 50000, "name": "testdb"}
+
+        # Remove the library adapter from sys.modules and mock it to raise ImportError
+        with patch.dict("sys.modules", {"commonpython.adapters.db2_library_adapter": None}):
+            manager = ManagerFactory.create_database_manager(config, self.logger)
+            self.assertIsInstance(manager, DB2CLIAdapter)
+            # Verify cache is set to False after ImportError
+            self.assertFalse(ManagerFactory._adapter_cache["db2_library_available"])
+
+    def test_mq_library_import_error_caught(self):
+        """Test that ImportError is properly caught during MQ library adapter check"""
+        ManagerFactory.reset_cache()
+
+        config = {
+            "implementation": "library",
+            "auto_fallback": True,
+            "host": "localhost",
+            "port": 1414,
+            "queue_manager": "QM1",
+        }
+
+        # Remove the library adapter from sys.modules and mock it to raise ImportError
+        with patch.dict("sys.modules", {"commonpython.adapters.mq_library_adapter": None}):
+            manager = ManagerFactory.create_messaging_manager(config, self.logger)
+            self.assertIsInstance(manager, MQCLIAdapter)
+            # Verify cache is set to False after ImportError
+            self.assertFalse(ManagerFactory._adapter_cache["mq_library_available"])
+
 
 if __name__ == "__main__":
     unittest.main()
